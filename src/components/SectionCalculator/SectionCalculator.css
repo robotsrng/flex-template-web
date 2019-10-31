@@ -1,0 +1,27 @@
+@import '../../marketplace.css';
+
+.title {
+  @apply --marketplaceH1FontStyles;
+  margin-top: 0;
+}
+
+.subtitle {
+  @apply --marketplaceH2FontStyles;
+}
+/*Change*/
+input {
+  border-bottom-color: #ffaa00 !important;
+}
+
+.button {
+  @apply --marketplaceButtonStyles;
+  @apply --SectionHero_animation;
+
+  animation-delay: 0.8s;
+  margin-top: 15px;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 260px;
+  }
+}

@@ -5,20 +5,13 @@
   margin-top: 0;
 }
 
+.subtitle {
+  @apply --marketplaceH2FontStyles;
+}
+
 .steps {
   display: flex;
   flex-direction: column;
-
-  @media (--viewportMedium) {
-    flex-direction: row;
-  }
-}
-
-.step {
-  @media (--viewportMedium) {
-    width: 324px;
-    margin-right: 40px;
-  }
 }
 
 .step:last-of-type {
@@ -43,4 +36,24 @@
   @media (--viewportMedium) {
     margin-top: 52px;
   }
+}
+.signupButton {
+  @apply --marketplaceButtonStyles;
+  @apply --SectionHero_animation;
+
+  animation-delay: 0.8s;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 260px;
+  }
+}
+.linkAccountImg {
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.steps hr {
+  width: 100%;
 }

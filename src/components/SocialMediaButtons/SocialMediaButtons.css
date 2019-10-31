@@ -1,0 +1,14 @@
+@import '../../marketplace.css';
+.linkAccountContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.colButtons button {
+  @apply --marketplaceButtonStyles;
+  height: 30px;
+  padding: 0;
+  min-height: 30px;
+  margin: 0 5px;
+}

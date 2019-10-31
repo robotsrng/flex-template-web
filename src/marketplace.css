@@ -42,9 +42,9 @@
 
   /* ================ Colors ================ */
 
-  --marketplaceColor: #c0392b;
-  --marketplaceColorLight: #ff4c38;
-  --marketplaceColorDark: #8c291e;
+  --marketplaceColor: #2a2a2a;
+  --marketplaceColorLight: #b2b2b2;
+  --marketplaceColorDark: #4a4a4a;
 
   /* Used with inline CSS SVGs */
   --marketplaceColorEncoded: %23c0392b;
@@ -98,7 +98,7 @@
 
   /* ================ Border radius ================ */
 
-  --borderRadius: 2px;
+  --borderRadius: 13px;
   --borderRadiusMobileSearch: 3px;
 
   /* ================ Transition styles ================ */
