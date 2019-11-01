@@ -48,6 +48,21 @@
     width: 260px;
   }
 }
+
+.linkAccountContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.linkAccountContainer .col {
+  flex-grow: 1;
+}
+
+.linkAccountContainer .colButtons {
+  flex-grow: 2;
+}
+
 .linkAccountImg {
   border-radius: 50px;
   width: 100px;

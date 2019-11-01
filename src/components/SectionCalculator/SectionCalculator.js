@@ -22,7 +22,7 @@ const SectionCalculator = props => {
       <SocialMediaButtons />
       <p>Username</p>
       <input></input>
-      <button className={css.button}>Calculate</button>
+      <a className={css.button}>Calculate</a>
     </div>
   );
 };

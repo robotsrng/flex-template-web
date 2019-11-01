@@ -158,7 +158,7 @@
 
   --marketplaceButtonFontStyles: {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightLight);
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.3px;
@@ -405,15 +405,15 @@
   /* Modal title */
 
   --marketplaceModalTitleStyles {
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightLight);
     font-size: 30px;
     line-height: 36px;
     letter-spacing: -0.5px;
     margin: 0;
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightLight);
 
     @media (--viewportMedium) {
-      font-weight: var(--fontWeightSemiBold);
+      font-weight: var(--fontWeightLight);
       line-height: 40px;
       letter-spacing: -0.9px;
       margin: 0;
@@ -553,7 +553,7 @@
   }
 
   --marketplaceModalHighlightEmail {
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightLight);
   }
 
   --marketplaceModalPasswordMargins {

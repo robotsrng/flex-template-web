@@ -10,7 +10,7 @@
     are left to CSS bundle. We are planning to enable it in the future
     since browsers support CSS Properties already.
  */
-
+  --fontWeightLight: 100;
   --fontWeightRegular: 400;
   --fontWeightMedium: 500;
   --fontWeightSemiBold: 600;
@@ -20,7 +20,7 @@
 
   --marketplaceDefaultFontStyles: {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.1px;
@@ -34,7 +34,7 @@
 
   --marketplaceSmallFontStyles: {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 15px;
     line-height: 24px;
   }
@@ -43,7 +43,7 @@
 
   --marketplaceBodyFontStyles: {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 18px;
     line-height: 24px;
     letter-spacing: -0.1px;
@@ -63,7 +63,7 @@
   /* ================ Hero title ================ */
 
   --marketplaceHeroTitleFontStyles: {
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightLight);
     font-size: 48px;
     line-height: 42px;
     letter-spacing: -1px;
@@ -91,15 +91,15 @@
 
   --marketplaceModalTitleStyles {
     font-family: 'sofiapro-bold', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightLight);
     font-size: 30px;
     line-height: 36px;
     letter-spacing: -0.5px;
     margin: 0;
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightLight);
 
     @media (--viewportMedium) {
-      font-weight: var(--fontWeightSemiBold);
+      font-weight: var(--fontWeightLight);
       line-height: 40px;
       letter-spacing: -0.9px;
       margin: 0;
@@ -109,7 +109,7 @@
   /* ================ H1, H2, H3, H4, H5 & H6 ================ */
 
   --marketplaceH1FontStyles: {
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightLight);
     font-size: 30px;
     line-height: 36px;
     letter-spacing: -1px;
@@ -119,7 +119,7 @@
 
     @media (--viewportMedium) {
       font-size: 48px;
-      font-weight: var(--fontWeightSemiBold);
+      font-weight: var(--fontWeightLight);
       line-height: 56px;
       letter-spacing: -2px;
       /* margin-top + n * line-height + margin-bottom => x * 8px */
@@ -129,7 +129,7 @@
   }
 
   --marketplaceH2FontStyles: {
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightLight);
     font-size: 24px;
     line-height: 30px;
     letter-spacing: -0.3px;
@@ -146,7 +146,7 @@
   }
 
   --marketplaceH3FontStyles: {
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightLight);
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.2px;
@@ -162,7 +162,7 @@
   }
 
   --marketplaceH4FontStyles: {
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0;
@@ -171,7 +171,7 @@
     margin-bottom: 12px;
 
     @media (--viewportMedium) {
-      font-weight: var(--fontWeightMedium);
+      font-weight: var(--fontWeightLight);
       /* margin-top + n * line-height + margin-bottom => x * 8px */
       margin-top: 17px;
       margin-bottom: 15px;
@@ -179,7 +179,7 @@
   }
 
   --marketplaceH5FontStyles: {
-    font-weight: var(--fontWeightRegular);
+    font-weight: var(--fontWeightLight);
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0;
@@ -196,7 +196,7 @@
   }
 
   --marketplaceH6FontStyles: {
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightLight);
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 1.5px;
@@ -217,7 +217,7 @@
 
   --marketplaceTinyFontStyles: {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightRegular);
+    font-weight: var(--fontWeightLight);
     font-size: 13px;
     line-height: 18px;
     letter-spacing: -0.1px;
@@ -235,20 +235,20 @@
 
   --marketplaceMessageFontStyles {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightRegular);
+    font-weight: var(--fontWeightLight);
     font-size: 16px;
     line-height: 24px;
   }
 
   --marketplaceMessageDateFontStyles {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightRegular);
+    font-weight: var(--fontWeightLight);
     font-size: 13px;
     line-height: 18px;
     letter-spacing: -0.1px;
 
     @media (--viewportMedium) {
-      font-weight: var(--fontWeightMedium);
+      font-weight: var(--fontWeightLight);
       font-size: 13px;
       line-height: 24px;
     }
@@ -256,7 +256,7 @@
 
   --marketplaceTxTransitionFontStyles {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 16px;
     line-height: 18px;
 
@@ -268,12 +268,12 @@
 
   --marketplaceSearchFilterLabelFontStyles {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightLight);
     font-size: 13px;
     line-height: 18px;
 
     @media (--viewportMedium) {
-      font-weight: var(--fontWeightMedium);
+      font-weight: var(--fontWeightLight);
       font-size: 16px;
       line-height: 20px;
     }
@@ -281,14 +281,14 @@
 
   --marketplaceSearchFilterSublabelFontStyles {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 18px;
     line-height: 18px;
   }
 
   --marketplaceListingAttributeFontStyles {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 18px;
     line-height: 32px;
   }
@@ -296,20 +296,20 @@
   /* ================ Tabbed navigation font styles ================ */
 
   --marketplaceTabNavFontStyles {
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0;
 
     @media (--viewportLarge) {
-      font-weight: var(--fontWeightSemiBold);
+      font-weight: var(--fontWeightLight);
       font-size: 24px;
       line-height: 32px;
     }
   }
 
   --marketplaceTabNavHorizontalFontStyles {
-    font-weight: var(--fontWeightMedium);
+    font-weight: var(--fontWeightLight);
     font-size: 16px;
     line-height: 24px;
     letter-spacing: 0;

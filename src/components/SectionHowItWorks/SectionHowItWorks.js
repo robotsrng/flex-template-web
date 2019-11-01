@@ -35,8 +35,12 @@ const SectionHowItWorks = props => {
             <FormattedMessage id="SectionHowItWorks.text1" />
           </p>
           <div className={css.linkAccountContainer}>
-            <img src={linkAccountImg} className={css.linkAccountImg} />
-            <SocialMediaButtons />
+            <div className={css.col}>
+              <img src={linkAccountImg} className={css.linkAccountImg} />
+            </div>
+            <div className={css.colButtons}>
+              <SocialMediaButtons />
+            </div>
           </div>
         </div>
         <hr />
