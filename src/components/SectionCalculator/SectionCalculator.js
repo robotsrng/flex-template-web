@@ -16,13 +16,17 @@ const SectionCalculator = props => {
       <div className={css.title}>
         <FormattedMessage id="SectionCalculator.title" />
       </div>
-      <p>
-        <FormattedMessage id="SectionCalculator.subTitle" />
-      </p>
+      <div className={css.description}>
+        <p>
+          <FormattedMessage id="SectionCalculator.subTitle" />
+        </p>
+      </div>
       <SocialMediaButtons />
-      <p>Username</p>
-      <input></input>
-      <a className={css.button}>Calculate</a>
+      <div className={css.calculatorInput}>
+        <p>Username</p>
+        <input></input>
+        <a className={css.button}>Calculate</a>
+      </div>
     </div>
   );
 };

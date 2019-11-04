@@ -44,12 +44,13 @@
   --marketplaceBodyFontStyles: {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
     font-weight: var(--fontWeightLight);
-    font-size: 18px;
+    font-size: 19px;
     line-height: 24px;
     letter-spacing: -0.1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 12px;
     margin-bottom: 12px;
+    color: var(--marketplaceColorLight);
 
     @media (--viewportMedium) {
       font-size: 20px;
@@ -110,8 +111,8 @@
 
   --marketplaceH1FontStyles: {
     font-weight: var(--fontWeightLight);
-    font-size: 30px;
-    line-height: 36px;
+    font-size: 40px;
+    line-height: 52px;
     letter-spacing: -1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 18px;

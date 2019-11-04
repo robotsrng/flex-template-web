@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import firstImg from './img/FirstImg.jpg';
 import secondImg from './img/SecondImg.jpg';
 import thirdImg from './img/ThirdImg.jpg';
-import companyFirstImg from './img/ThirdImg.jpg';
-import companySecondImg from './img/ThirdImg.jpg';
+import companyFirstImg from './img/FourthImg.png';
+import companySecondImg from './img/FifthImg.png';
 import linkAccountImg from './img/LinkAccountImg.jpg';
 
 import { NamedLink } from '../../components';
@@ -88,16 +88,18 @@ const SectionHowItWorks = props => {
             <FormattedMessage id="SectionHowItWorks.text3" />
           </p>
           <AccountExampleView
-            img={companySecondImg}
-            postTitle={<p>tinylifesupply</p>}
-            postUsername={<p>Marketing Team</p>}
-            postFollowerAmmount={<p>338 followers</p>}
+            cssImg={companyFirstImg}
+            img={companyFirstImg}
+            postTitle="tinylifesupply"
+            postUsername="Marketing Team"
+            postFollowerAmmount="338 followers"
           />
           <AccountExampleView
-            img={companyFirstImg}
-            postTitle={<p>sidesuite</p>}
-            postUsername={<p>Vancouver, CA</p>}
-            postFollowerAmmount={<p>338 followers</p>}
+            cssImg={companySecondImg}
+            img={companySecondImg}
+            postTitle="sidesuite"
+            postUsername="Vancouver, CA"
+            postFollowerAmmount="338 followers"
           />
         </div>
       </div>

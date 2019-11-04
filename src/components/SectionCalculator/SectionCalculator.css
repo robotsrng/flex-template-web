@@ -25,3 +25,12 @@ input {
     width: 260px;
   }
 }
+
+.calculatorInput {
+  margin: 50px 0;
+}
+
+.calculatorInput input,
+.description {
+  margin-bottom: 50px;
+}
