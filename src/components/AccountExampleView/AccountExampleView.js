@@ -15,9 +15,9 @@ const AccountExampleView = ({
         <img src={img} className={cssImg ? css.roundImg : css.img}></img>
       </div>
       <div className={css.col}>
-        <p>{postTitle}</p>
-        <p>{postUsername}</p>
-        <p>{postFollowerAmmount}</p>
+        <p className={css.postTitle}>{postTitle}</p>
+        <p className={css.postContent}>{postUsername}</p>
+        <p className={css.postContent}>{postFollowerAmmount}</p>
       </div>
       {postValue && (
         <div className={css.colValue}>

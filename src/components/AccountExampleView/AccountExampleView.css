@@ -13,15 +13,19 @@
   align-self: center;
 }
 
+.examples p {
+  line-height: 10px;
+}
+
 .roundImg {
-  width: 100px;
-  max-height: 100px;
+  width: 72px;
+  max-height: 72px;
   border-radius: 50%;
 }
 
 .img {
-  width: 100px;
-  max-height: 100px;
+  width: 72px;
+  max-height: 72px;
   border-radius: 20px;
 }
 .col p {
@@ -36,4 +40,12 @@
 .col p,
 .colValue p {
   color: var(--marketplaceColorDark);
+}
+
+.postContent {
+  font-size: 12px;
+}
+
+.postTitle {
+  font-size: 17px;
 }
