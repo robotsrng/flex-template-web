@@ -65,10 +65,7 @@ export class EditListingPhotosFormComponent extends Component {
           const chooseImageText = (
             <span className={css.chooseImageText}>
               <span className={css.chooseImage}>
-                <FormattedMessage id="EditListingPhotosForm.chooseImage" />
-              </span>
-              <span className={css.imageTypes}>
-                <FormattedMessage id="EditListingPhotosForm.imageTypes" />
+                <FormattedMessage id='EditListingPhotosForm.chooseImage' />
               </span>
             </span>
           );
@@ -86,13 +83,13 @@ export class EditListingPhotosFormComponent extends Component {
           if (uploadOverLimit) {
             uploadImageFailed = (
               <p className={css.error}>
-                <FormattedMessage id="EditListingPhotosForm.imageUploadFailed.uploadOverLimit" />
+                <FormattedMessage id='EditListingPhotosForm.imageUploadFailed.uploadOverLimit' />
               </p>
             );
           } else if (uploadImageError) {
             uploadImageFailed = (
               <p className={css.error}>
-                <FormattedMessage id="EditListingPhotosForm.imageUploadFailed.uploadFailed" />
+                <FormattedMessage id='EditListingPhotosForm.imageUploadFailed.uploadFailed' />
               </p>
             );
           }
@@ -102,12 +99,12 @@ export class EditListingPhotosFormComponent extends Component {
           // Create and show listing errors are shown above submit button
           const publishListingFailed = publishListingError ? (
             <p className={css.error}>
-              <FormattedMessage id="EditListingPhotosForm.publishListingFailed" />
+              <FormattedMessage id='EditListingPhotosForm.publishListingFailed' />
             </p>
           ) : null;
           const showListingFailed = showListingsError ? (
             <p className={css.error}>
-              <FormattedMessage id="EditListingPhotosForm.showListingFailed" />
+              <FormattedMessage id='EditListingPhotosForm.showListingFailed' />
             </p>
           ) : null;
 
@@ -137,7 +134,7 @@ export class EditListingPhotosFormComponent extends Component {
             >
               {updateListingError ? (
                 <p className={css.error}>
-                  <FormattedMessage id="EditListingPhotosForm.updateFailed" />
+                  <FormattedMessage id='EditListingPhotosForm.updateFailed' />
                 </p>
               ) : null}
               <AddImages
@@ -150,12 +147,12 @@ export class EditListingPhotosFormComponent extends Component {
                 onRemoveImage={onRemoveImage}
               >
                 <Field
-                  id="addImage"
-                  name="addImage"
+                  id='addImage'
+                  name='addImage'
                   accept={ACCEPT_IMAGES}
                   form={null}
                   label={chooseImageText}
-                  type="file"
+                  type='file'
                   disabled={imageUploadRequested}
                 >
                   {fieldprops => {
@@ -193,22 +190,22 @@ export class EditListingPhotosFormComponent extends Component {
                       </div>
                     );
                   }}
-                  name="images"
-                  type="hidden"
+                  name='images'
+                  type='hidden'
                   validate={composeValidators(nonEmptyArray(imageRequiredMessage))}
                 />
               </AddImages>
               {uploadImageFailed}
 
               <p className={css.tip}>
-                <FormattedMessage id="EditListingPhotosForm.addImagesTip" />
+                <FormattedMessage id='EditListingPhotosForm.addImagesTip' />
               </p>
               {publishListingFailed}
               {showListingFailed}
 
               <Button
                 className={css.submitButton}
-                type="submit"
+                type='submit'
                 inProgress={submitInProgress}
                 disabled={submitDisabled}
                 ready={submitReady}

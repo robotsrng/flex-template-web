@@ -24,7 +24,9 @@
     margin-bottom: 32px;
   }
 }
-
+.brands {
+  flex-shrink: 0;
+}
 .error {
   color: var(--failColor);
 }
@@ -39,4 +41,45 @@
     width: 241px;
     margin-top: 100px;
   }
+}
+.title {
+  @apply --marketplaceH1FontStyles;
+  margin-bottom: 19px;
+
+  @media (--viewportLarge) {
+    margin-bottom: 38px;
+    padding: 1px 0 7px 0;
+  }
+}
+
+.linkAccountContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+.colButtons button {
+  @apply --marketplaceButtonStyles;
+  height: 30px;
+  padding: 0 10px;
+  min-height: 30px;
+  margin-right: 5px;
+}
+.colButtonsSelected button {
+  @apply --marketplaceButtonStyles;
+  height: 30px;
+  padding: 0 10px;
+  min-height: 30px;
+  margin-right: 5px;
+  background-color: #ffffff;
+  color: #2a2a2a;
+  border: solid 1px #2a2a2a;
+}
+.colButtonsSelected button:hover {
+  color: #ffffff;
+}
+.colButtons,
+.colButtonsSelected {
+  margin: 10px 5px 5px 0;
 }

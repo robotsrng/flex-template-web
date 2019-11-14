@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from '../../util/reactIntl';
 
-import { LISTING_STATE_DRAFT } from '../../util/types';
 import { ensureListing } from '../../util/data';
 import { EditListingFeaturesForm } from '../../forms';
-import { ListingLink } from '../../components';
 
 import css from './EditListingFeaturesPanel.css';
 
-const FEATURES_NAME = 'amenities';
+const BRANDS_NAME = 'brands';
 
 const EditListingFeaturesPanel = props => {
   const {
@@ -29,31 +26,32 @@ const EditListingFeaturesPanel = props => {
   const currentListing = ensureListing(listing);
   const { publicData } = currentListing.attributes;
 
-  const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
-  const panelTitle = isPublished ? (
-    <FormattedMessage
-      id="EditListingFeaturesPanel.title"
-      values={{ listingTitle: <ListingLink listing={listing} /> }}
-    />
-  ) : (
-    <FormattedMessage id="EditListingFeaturesPanel.createListingTitle" />
-  );
-
-  const amenities = publicData && publicData.amenities;
-  const initialValues = { amenities };
-
+  const [brandList, setBrandList] = useState([]);
+  const [postCategoriesList, setPostCategoriesList] = useState([]);
+  useEffect(() => {
+    if (publicData.brandList) {
+      setBrandList(publicData.brandList);
+    }
+  }, [publicData.brandList]);
+  useEffect(() => {
+    if (publicData.postCategoriesList) {
+      setPostCategoriesList(publicData.postCategoriesList);
+    }
+  }, [publicData.postCategoriesList]);
+  console.log(publicData.postCategoriesList);
   return (
     <div className={classes}>
-      <h1 className={css.title}>{panelTitle}</h1>
       <EditListingFeaturesForm
+        listing={listing}
         className={css.form}
-        name={FEATURES_NAME}
-        initialValues={initialValues}
-        onSubmit={values => {
-          const { amenities = [] } = values;
-
+        brandsName={BRANDS_NAME}
+        brandList={brandList}
+        setBrandList={setBrandList}
+        postCategoriesList={postCategoriesList}
+        setPostCategoriesList={setPostCategoriesList}
+        onSubmit={_ => {
           const updatedValues = {
-            publicData: { amenities },
+            publicData: { brandList, postCategoriesList },
           };
           onSubmit(updatedValues);
         }}

@@ -1,10 +1,7 @@
 import React from 'react';
 import { bool, func, object, string } from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from '../../util/reactIntl';
 import { ensureOwnListing } from '../../util/data';
-import { ListingLink } from '../../components';
-import { LISTING_STATE_DRAFT } from '../../util/types';
 import { EditListingDescriptionForm } from '../../forms';
 import config from '../../config';
 
@@ -25,31 +22,20 @@ const EditListingDescriptionPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { description, title, publicData } = currentListing.attributes;
-
-  const isPublished = currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
-  const panelTitle = isPublished ? (
-    <FormattedMessage
-      id="EditListingDescriptionPanel.title"
-      values={{ listingTitle: <ListingLink listing={listing} /> }}
-    />
-  ) : (
-    <FormattedMessage id="EditListingDescriptionPanel.createListingTitle" />
-  );
+  const { description, title } = currentListing.attributes;
 
   return (
     <div className={classes}>
-      <h1 className={css.title}>{panelTitle}</h1>
       <EditListingDescriptionForm
+        listing={listing}
         className={css.form}
-        initialValues={{ title, description, category: publicData.category }}
+        initialValues={{ title, description }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
-          const { title, description, category } = values;
+          const { title, description } = values;
           const updateValues = {
             title: title.trim(),
             description,
-            publicData: { category },
           };
 
           onSubmit(updateValues);

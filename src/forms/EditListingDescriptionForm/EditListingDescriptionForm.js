@@ -7,18 +7,20 @@ import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { maxLength, required, composeValidators } from '../../util/validators';
 import { Form, Button, FieldTextInput } from '../../components';
-import CustomCategorySelectFieldMaybe from './CustomCategorySelectFieldMaybe';
+import { ListingLink } from '../../components';
+import { LISTING_STATE_DRAFT } from '../../util/types';
+import { ensureOwnListing } from '../../util/data';
 
 import css from './EditListingDescriptionForm.css';
 
-const TITLE_MAX_LENGTH = 60;
+const TITLE_MAX_LENGTH = 30;
 
 const EditListingDescriptionFormComponent = props => (
   <FinalForm
     {...props}
     render={fieldRenderProps => {
       const {
-        categories,
+        listing,
         className,
         disabled,
         handleSubmit,
@@ -31,7 +33,33 @@ const EditListingDescriptionFormComponent = props => (
         fetchErrors,
       } = fieldRenderProps;
 
-      const titleMessage = intl.formatMessage({ id: 'EditListingDescriptionForm.title' });
+      const currentListing = ensureOwnListing(listing);
+      const isPublished =
+        currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
+
+      const panelTitle = isPublished ? (
+        <FormattedMessage
+          id="EditListingDescriptionForm.editTitle"
+          values={{ listingTitle: <ListingLink listing={listing} /> }}
+        />
+      ) : (
+        <FormattedMessage id="EditListingDescriptionForm.createListingTitle" />
+      );
+
+      const panelSubTitle = isPublished ? (
+        <FormattedMessage
+          id="EditListingDescriptionForm.titleDescriptionEdit"
+          values={{ listingTitle: <ListingLink listing={listing} /> }}
+        />
+      ) : (
+        <FormattedMessage id="EditListingDescriptionForm.titleDescription" />
+      );
+      const titleDescription = intl.formatMessage({ id: 'EditListingDescriptionForm.title' });
+
+      const subtitleDescription = intl.formatMessage({
+        id: 'EditListingDescriptionForm.subtitleDescription',
+      });
+      const titleMessage = intl.formatMessage({ id: 'EditListingDescriptionForm.name' });
       const titlePlaceholderMessage = intl.formatMessage({
         id: 'EditListingDescriptionForm.titlePlaceholder',
       });
@@ -86,6 +114,8 @@ const EditListingDescriptionFormComponent = props => (
           {errorMessageCreateListingDraft}
           {errorMessageUpdateListing}
           {errorMessageShowListing}
+          <h2 className={css.title}>{panelTitle}</h2>
+          <p>{titleDescription}</p>
           <FieldTextInput
             id="title"
             name="title"
@@ -98,6 +128,8 @@ const EditListingDescriptionFormComponent = props => (
             autoFocus
           />
 
+          <h2 className={css.title}>{panelSubTitle}</h2>
+          <p>{subtitleDescription}</p>
           <FieldTextInput
             id="description"
             name="description"
@@ -106,13 +138,6 @@ const EditListingDescriptionFormComponent = props => (
             label={descriptionMessage}
             placeholder={descriptionPlaceholderMessage}
             validate={composeValidators(required(descriptionRequiredMessage))}
-          />
-
-          <CustomCategorySelectFieldMaybe
-            id="category"
-            name="category"
-            categories={categories}
-            intl={intl}
           />
 
           <Button
@@ -144,12 +169,6 @@ EditListingDescriptionFormComponent.propTypes = {
     showListingsError: propTypes.error,
     updateListingError: propTypes.error,
   }),
-  categories: arrayOf(
-    shape({
-      key: string.isRequired,
-      label: string.isRequired,
-    })
-  ),
 };
 
 export default compose(injectIntl)(EditListingDescriptionFormComponent);

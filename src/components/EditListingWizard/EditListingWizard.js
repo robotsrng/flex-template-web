@@ -18,8 +18,8 @@ import EditListingWizardTab, {
   AVAILABILITY,
   DESCRIPTION,
   FEATURES,
-  POLICY,
   LOCATION,
+  OFFERING,
   PRICING,
   PHOTOS,
 } from './EditListingWizardTab';
@@ -31,9 +31,9 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 // TODO: PHOTOS panel needs to be the last one since it currently contains PayoutDetailsForm modal
 // All the other panels can be reordered.
 export const TABS = [
+  OFFERING,
   DESCRIPTION,
   FEATURES,
-  POLICY,
   LOCATION,
   PRICING,
   ...availabilityMaybe,
@@ -45,12 +45,12 @@ const MAX_HORIZONTAL_NAV_SCREEN_WIDTH = 1023;
 
 const tabLabel = (intl, tab) => {
   let key = null;
-  if (tab === DESCRIPTION) {
+  if (tab === OFFERING) {
+    key = 'EditListingWizard.tabLabelOffering';
+  } else if (tab === DESCRIPTION) {
     key = 'EditListingWizard.tabLabelDescription';
   } else if (tab === FEATURES) {
     key = 'EditListingWizard.tabLabelFeatures';
-  } else if (tab === POLICY) {
-    key = 'EditListingWizard.tabLabelPolicy';
   } else if (tab === LOCATION) {
     key = 'EditListingWizard.tabLabelLocation';
   } else if (tab === PRICING) {
@@ -84,12 +84,12 @@ const tabCompleted = (tab, listing) => {
   const images = listing.images;
 
   switch (tab) {
+    case OFFERING:
+      return !!(publicData && publicData.offering);
     case DESCRIPTION:
       return !!(description && title);
     case FEATURES:
-      return !!(publicData && publicData.amenities);
-    case POLICY:
-      return !!(publicData && typeof publicData.rules !== 'undefined');
+      return !!(publicData && publicData.brands && publicData.postCategories);
     case LOCATION:
       return !!(geolocation && publicData && publicData.location && publicData.location.address);
     case PRICING:
@@ -216,7 +216,7 @@ class EditListingWizard extends Component {
         .reverse()
         .find(t => tabsStatus[t]);
 
-      return <NamedRedirect name="EditListingPage" params={{ ...params, tab: nearestActiveTab }} />;
+      return <NamedRedirect name='EditListingPage' params={{ ...params, tab: nearestActiveTab }} />;
     }
 
     const { width } = viewport;
@@ -270,19 +270,19 @@ class EditListingWizard extends Component {
           })}
         </Tabs>
         <Modal
-          id="EditListingWizard.payoutModal"
+          id='EditListingWizard.payoutModal'
           isOpen={this.state.showPayoutDetails}
           onClose={this.handlePayoutModalClose}
           onManageDisableScrolling={onManageDisableScrolling}
         >
           <div className={css.modalPayoutDetailsWrapper}>
             <h1 className={css.modalTitle}>
-              <FormattedMessage id="EditListingPhotosPanel.payoutModalTitleOneMoreThing" />
+              <FormattedMessage id='EditListingPhotosPanel.payoutModalTitleOneMoreThing' />
               <br />
-              <FormattedMessage id="EditListingPhotosPanel.payoutModalTitlePayoutPreferences" />
+              <FormattedMessage id='EditListingPhotosPanel.payoutModalTitlePayoutPreferences' />
             </h1>
             <p className={css.modalMessage}>
-              <FormattedMessage id="EditListingPhotosPanel.payoutModalInfo" />
+              <FormattedMessage id='EditListingPhotosPanel.payoutModalInfo' />
             </p>
             <PayoutDetailsForm
               className={css.payoutDetails}

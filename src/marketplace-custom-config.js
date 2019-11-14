@@ -2,38 +2,54 @@
  * Marketplace specific configuration.
  */
 
-export const amenities = [
+export const postCategories = [
   {
-    key: 'towels',
-    label: 'Towels',
+    key: 'adventure',
+    label: 'Adventure',
   },
   {
-    key: 'bathroom',
-    label: 'Bathroom',
+    key: 'art',
+    label: 'Art',
   },
   {
-    key: 'swimming_pool',
-    label: 'Swimming pool',
+    key: 'beauty',
+    label: 'Beauty',
   },
   {
-    key: 'own_drinks',
-    label: 'Own drinks allowed',
+    key: 'Fashion',
+    label: 'Fashion',
   },
   {
-    key: 'jacuzzi',
-    label: 'Jacuzzi',
+    key: 'food',
+    label: 'Food',
   },
   {
-    key: 'audiovisual_entertainment',
-    label: 'Audiovisual entertainment',
+    key: 'health',
+    label: 'Health',
   },
   {
-    key: 'barbeque',
-    label: 'Barbeque',
+    key: 'home',
+    label: 'Home',
   },
   {
-    key: 'own_food_allowed',
-    label: 'Own food allowed',
+    key: 'ideas',
+    label: 'Ideas',
+  },
+  {
+    key: 'lifestyle',
+    label: 'Lifestyle',
+  },
+  {
+    key: 'politics',
+    label: 'Politics',
+  },
+  {
+    key: 'sports',
+    label: 'Sports',
+  },
+  {
+    key: 'technology',
+    label: 'Technology',
   },
 ];
 

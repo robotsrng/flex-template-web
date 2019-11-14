@@ -4,7 +4,6 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
-  margin-bottom: 40px;
 }
 
 .examples .col,
@@ -19,7 +18,7 @@
 
 .roundImg {
   width: 72px;
-  max-height: 72px;
+  height: 72px;
   border-radius: 50%;
 }
 
@@ -40,6 +39,7 @@
 .col p,
 .colValue p {
   color: var(--marketplaceColorDark);
+  text-align: left;
 }
 
 .postContent {
@@ -48,4 +48,7 @@
 
 .postTitle {
   font-size: 17px;
+}
+.whiteLetters p {
+  color: white;
 }

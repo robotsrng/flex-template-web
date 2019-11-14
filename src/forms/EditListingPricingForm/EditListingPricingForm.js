@@ -5,12 +5,20 @@ import { Form as FinalForm } from 'react-final-form';
 import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import config from '../../config';
-import { LINE_ITEM_NIGHT, LINE_ITEM_DAY, propTypes } from '../../util/types';
+import { LINE_ITEM_NIGHT, LINE_ITEM_DAY, propTypes, LISTING_STATE_DRAFT } from '../../util/types';
 import * as validators from '../../util/validators';
 import { formatMoney } from '../../util/currency';
 import { types as sdkTypes } from '../../util/sdkLoader';
-import { Button, Form, FieldCurrencyInput } from '../../components';
+import placheolderImg from './img/CalculatorPlaceholderImg.jpg';
+import {
+  Button,
+  Form,
+  FieldCurrencyInput,
+  ListingLink,
+  AccountExampleView,
+} from '../../components';
 import css from './EditListingPricingForm.css';
+import { ensureOwnListing } from '../../util/data';
 
 const { Money } = sdkTypes;
 
@@ -19,6 +27,7 @@ export const EditListingPricingFormComponent = props => (
     {...props}
     render={fieldRenderProps => {
       const {
+        listing,
         className,
         disabled,
         handleSubmit,
@@ -30,7 +39,17 @@ export const EditListingPricingFormComponent = props => (
         updateInProgress,
         fetchErrors,
       } = fieldRenderProps;
-
+      const currentListing = ensureOwnListing(listing);
+      const isPublished =
+        currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
+      const panelTitle = isPublished ? (
+        <FormattedMessage
+          id='EditListingPricingPanel.title'
+          values={{ listingTitle: <ListingLink listing={listing} /> }}
+        />
+      ) : (
+        <FormattedMessage id='EditListingPricingPanel.createListingTitle' />
+      );
       const unitType = config.bookingUnitType;
       const isNightly = unitType === LINE_ITEM_NIGHT;
       const isDaily = unitType === LINE_ITEM_DAY;
@@ -43,6 +62,12 @@ export const EditListingPricingFormComponent = props => (
 
       const pricePerUnitMessage = intl.formatMessage({
         id: translationKey,
+      });
+      const secondTitle = intl.formatMessage({
+        id: 'EditListingPricingForm.secondTitle',
+      });
+      const secondTitleDescription = intl.formatMessage({
+        id: 'EditListingPricingForm.secondTitleDescription',
       });
 
       const pricePlaceholderMessage = intl.formatMessage({
@@ -80,17 +105,18 @@ export const EditListingPricingFormComponent = props => (
         <Form onSubmit={handleSubmit} className={classes}>
           {updateListingError ? (
             <p className={css.error}>
-              <FormattedMessage id="EditListingPricingForm.updateFailed" />
+              <FormattedMessage id='EditListingPricingForm.updateFailed' />
             </p>
           ) : null}
           {showListingsError ? (
             <p className={css.error}>
-              <FormattedMessage id="EditListingPricingForm.showListingFailed" />
+              <FormattedMessage id='EditListingPricingForm.showListingFailed' />
             </p>
           ) : null}
+          <h2 className={css.title}>{panelTitle}</h2>
           <FieldCurrencyInput
-            id="price"
-            name="price"
+            id='price'
+            name='price'
             className={css.priceInput}
             autoFocus
             label={pricePerUnitMessage}
@@ -99,9 +125,17 @@ export const EditListingPricingFormComponent = props => (
             validate={priceValidators}
           />
 
+          <h2>{secondTitle}</h2>
+          <p>{secondTitleDescription}</p>
+          <AccountExampleView
+            img={placheolderImg}
+            postUsername='axelwhalen'
+            postFollowerAmmount='Instagram | 338 followers'
+            postValueMaybe='$45 - $55 per post'
+          ></AccountExampleView>
           <Button
             className={css.submitButton}
-            type="submit"
+            type='submit'
             inProgress={submitInProgress}
             disabled={submitDisabled}
             ready={submitReady}

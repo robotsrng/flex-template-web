@@ -33,3 +33,13 @@
     margin-top: 100px;
   }
 }
+
+.title {
+  @apply --marketplaceH1FontStyles;
+  margin-bottom: 19px;
+
+  @media (--viewportMedium) {
+    margin-bottom: 38px;
+    padding: 1px 0 7px 0;
+  }
+}

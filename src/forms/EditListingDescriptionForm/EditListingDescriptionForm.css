@@ -42,8 +42,14 @@
 
 .title {
   @apply --EditListingDescriptionForm_formMargins;
-}
+  @apply --marketplaceH1FontStyles;
+  margin: 0 0 19px;
 
+  @media (--viewportLarge) {
+    margin-bottom: 38px;
+    padding: 1px 0 7px 0;
+  }
+}
 .description {
   @apply --EditListingDescriptionForm_formMargins;
   flex-shrink: 0;

@@ -1,17 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { FormattedMessage } from '../../util/reactIntl';
-import { EditListingPricingForm } from '../../forms';
+import { EditListingOfferingForm } from '../../forms';
 import { ensureOwnListing } from '../../util/data';
-import { types as sdkTypes } from '../../util/sdkLoader';
-import config from '../../config';
 
-import css from './EditListingPricingPanel.css';
+import css from './EditListingOfferingPanel.css';
 
-const { Money } = sdkTypes;
-
-const EditListingPricingPanel = props => {
+const EditListingOfferingPanel = props => {
   const {
     className,
     rootClassName,
@@ -26,25 +21,35 @@ const EditListingPricingPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { price } = currentListing.attributes;
+  const { publicData } = currentListing.attributes;
+  const [offering, setOffering] = useState('');
+  useEffect(
+    _ => {
+      if (publicData.offering) {
+        setOffering(publicData.offering);
+      }
+    },
+    [publicData.offering]
+  );
 
-  const priceCurrencyValid = price instanceof Money ? price.currency === config.currency : true;
-  const form = priceCurrencyValid ? (
-    <EditListingPricingForm
+  const form = (
+    <EditListingOfferingForm
       listing={listing}
+      offering={offering}
+      setOffering={setOffering}
       className={css.form}
-      initialValues={{ price }}
-      onSubmit={onSubmit}
+      onSubmit={_ => {
+        const updatedValues = {
+          publicData: { offering },
+        };
+        onSubmit(updatedValues);
+      }}
       onChange={onChange}
       saveActionMsg={submitButtonText}
       updated={panelUpdated}
       updateInProgress={updateInProgress}
       fetchErrors={errors}
     />
-  ) : (
-    <div className={css.priceCurrencyInvalid}>
-      <FormattedMessage id="EditListingPricingPanel.listingPriceCurrencyInvalid" />
-    </div>
   );
 
   return <div className={classes}>{form}</div>;
@@ -52,13 +57,13 @@ const EditListingPricingPanel = props => {
 
 const { func, object, string, bool } = PropTypes;
 
-EditListingPricingPanel.defaultProps = {
+EditListingOfferingPanel.defaultProps = {
   className: null,
   rootClassName: null,
   listing: null,
 };
 
-EditListingPricingPanel.propTypes = {
+EditListingOfferingPanel.propTypes = {
   className: string,
   rootClassName: string,
 
@@ -73,4 +78,4 @@ EditListingPricingPanel.propTypes = {
   errors: object.isRequired,
 };
 
-export default EditListingPricingPanel;
+export default EditListingOfferingPanel;

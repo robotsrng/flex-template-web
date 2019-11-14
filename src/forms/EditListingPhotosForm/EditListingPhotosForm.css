@@ -28,7 +28,9 @@
 }
 
 .thumbnail {
-  margin: 24px 0 0 0;
+  width: 100px;
+  height: 100px;
+  margin: 0 15px 0 0;
 
   @media (--viewportLarge) {
     width: var(--EditListingPhotosForm_imageWidthDesktop);
@@ -63,7 +65,7 @@
 
 /* Firefox doesn't support image aspect ratio inside flexbox */
 .aspectRatioWrapper {
-  padding-bottom: calc(100% * (2 / 3));
+  padding-bottom: calc(100% * (1 / 3));
 }
 
 .addImage {
@@ -74,8 +76,8 @@
   bottom: 0;
   left: 0;
   right: 0;
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,7 +93,7 @@
   border-style: dashed;
   border-color: var(--matterColorNegative);
   border-width: 2px;
-  border-radius: 2px;
+  border-radius: 20px;
 
   /* Behaviour */
   cursor: pointer;
@@ -118,19 +120,6 @@
 
   @media (--viewportLarge) {
     font-weight: var(--fontWeightSemiBold);
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-}
-
-.imageTypes {
-  @apply --marketplaceTinyFontStyles;
-  color: var(--matterColorAnti);
-
-  margin-top: 0;
-  margin-bottom: 0;
-
-  @media (--viewportLarge) {
     margin-top: 0;
     margin-bottom: 0;
   }
