@@ -17,7 +17,7 @@ const AccountExampleView = ({
         <img src={img} className={cssImg ? css.roundImg : css.img}></img>
       </div>
       <div className={css.col}>
-        <div className={whiteLetters && css.whiteLetters}>
+        <div className={whiteLetters ? css.whiteLetters : undefined}>
           {postTitle && <p className={css.postTitle}>{postTitle}</p>}
           <p className={css.postContent}>{postUsername}</p>
           <p className={css.postContent}>{postFollowerAmmount}</p>

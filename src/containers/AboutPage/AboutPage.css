@@ -1,7 +1,8 @@
 @import '../../marketplace.css';
 
 .pageTitle {
-  text-align: center;
+  text-align: left;
+  margin-bottom: 100px;
 }
 
 .staticPageWrapper {
@@ -25,13 +26,48 @@
 
 .contentWrapper {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+.createListingLink {
+  width: 100%;
+  margin-top: 36px;
 
   @media (--viewportMedium) {
-    flex-wrap: nowrap;
+    margin-top: 52px;
   }
 }
+.signupButton {
+  @apply --marketplaceButtonStyles;
+  @apply --SectionHero_animation;
 
+  animation-delay: 0.8s;
+
+  @media (--viewportMedium) {
+    display: block;
+    width: 260px;
+  }
+}
+.contentContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.col {
+  margin-right: 15px;
+}
+.roundImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-top: 25px;
+}
+.squareImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  margin-top: 25px;
+}
 .contentSide {
   font-style: italic;
 
@@ -43,6 +79,7 @@
 }
 
 .contentMain {
+  margin: 25px 0;
   width: 90%;
 
   @media (--viewportMedium) {
@@ -51,7 +88,7 @@
 }
 
 .subtitle {
-  @apply --marketplaceH3FontStyles;
+  @apply --marketplaceH2FontStyles;
   margin-top: 48px;
   margin-bottom: 24px;
 }

@@ -1,6 +1,4 @@
 import React from 'react';
-import config from '../../config';
-import { twitterPageURL } from '../../util/urlHelpers';
 import { StaticPage, TopbarContainer } from '../../containers';
 import {
   LayoutSingleColumn,
@@ -8,16 +6,15 @@ import {
   LayoutWrapperMain,
   LayoutWrapperFooter,
   Footer,
-  ExternalLink,
+  NamedLink,
 } from '../../components';
 
 import css from './AboutPage.css';
-import image from './about-us-1056.jpg';
+import firstImg from './img/FirstImg.jpg';
+import secondImg from './img/SecondImg.jpg';
+import thirdImg from './img/ThirdImg.jpg';
 
 const AboutPage = () => {
-  const { siteTwitterHandle, siteFacebookPage } = config;
-  const siteTwitterPage = twitterPageURL(siteTwitterHandle);
-
   // prettier-ignore
   return (
     <StaticPage
@@ -25,7 +22,7 @@ const AboutPage = () => {
       schema={{
         '@context': 'http://schema.org',
         '@type': 'AboutPage',
-        description: 'About Saunatime',
+        description: 'About Sidesuite',
         name: 'About page',
       }}
     >
@@ -35,54 +32,53 @@ const AboutPage = () => {
         </LayoutWrapperTopbar>
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
-          <h1 className={css.pageTitle}>Experience the unique Finnish home sauna.</h1>
-          <img className={css.coverImage} src={image} alt="My first ice cream." />
+          <h1 className={css.pageTitle}>About us</h1>
 
           <div className={css.contentWrapper}>
-            <div className={css.contentSide}>
-              <p>Did you know that Finland has 3.2 million saunas - almost one sauna per person!</p>
-            </div>
 
             <div className={css.contentMain}>
-              <h2>
-                Most of the Finnish saunas are located at the homes of individuals - indeed, most
-                people in Finland live in an apartment with sauna in it. In addition, lots of people
-                have lakeside summer cottages, which also typically come with a separate sauna
-                building near the waterfront.
-              </h2>
-
-              <p>
-                To truly experience a Finnish sauna, you need to look beyond the public saunas, and
-                instead visit a real home or cottage sauna. Saunatime makes this possible for
-                everyone. All our saunas are owned by individuals willing to let tourists and other
-                curious visitors to enter their sacred spaces.
-              </p>
-
-              <h3 className={css.subtitle}>Are you a sauna owner?</h3>
-
-              <p>
-                Saunatime offers you a good way to earn some extra cash! If you're not using your
-                sauna every evening, why not rent it to other people while it's free. And even if
-                you are using your sauna every evening (we understand, it's so good), why not invite
-                other people to join you when the sauna is already warm! A shared sauna experience
-                is often a more fulfilling one.
-              </p>
-
-              <h3 id="contact" className={css.subtitle}>
-                Create your own marketplace like Saunatime
-              </h3>
-              <p>
-                Saunatime is brought to you by the good folks at{' '}
-                <ExternalLink href="http://sharetribe.com">Sharetribe</ExternalLink>. Would you like
-                to create your own marketplace platform a bit like Saunatime? Or perhaps a mobile
-                app? With Sharetribe it's really easy. If you have a marketplace idea in mind, do
-                get in touch!
-              </p>
-              <p>
-                You can also checkout our{' '}
-                <ExternalLink href={siteFacebookPage}>Facebook</ExternalLink> and{' '}
-                <ExternalLink href={siteTwitterPage}>Twitter</ExternalLink>.
-              </p>
+              <h2 className={css.subtitle}>What is Sidesuite?</h2>
+              <div className={css.contentContainer}>
+                <div className={css.col}>
+                  <img src={firstImg} className={css.roundImg}></img>
+                </div>
+                <p>The marketplace for social media content. Where you can rent out the content of your social media posts. Where brands connect with people to tell their story. We’re here for introductions. Brands meet creators. Creators meet brands.</p>
+              </div>
+            </div>
+            <div className={css.contentMain}>
+              <h2 className={css.subtitle}>Why do brands want to pay for your online content?</h2>
+              <div className={css.contentContainer}>
+                <div className={css.col}>
+                  <img src={secondImg} className={css.squareImg}></img>
+                </div>
+                <p>Because it gives them an engaged audience that currently they do not have. Think about it, what’s more effective, telling a story about yourself, or letting someone else tell it for you? Their brand image is no different, they’re looking for someone else to tell their story.</p>
+              </div>
+            </div>
+            <div className={css.contentMain}>
+              <h2 className={css.subtitle}>What do we believe?</h2>
+              <div className={css.contentContainer}>
+                <div className={css.col}>
+                  <img src={thirdImg} className={css.roundImg}></img>
+                </div>
+                <p>In being our own customer. Our business is Sidesuite, we have to market it. We believe that Sidesuite provides the avenue for the most effective form of marketing in 2019, and we’re going to do one hundred percent of our marketing on our platform.</p>
+              </div>
+            </div>
+            <div className={css.contentMain}>
+              <h2 className={css.subtitle}>Established</h2>
+              <p>January 2020</p>
+            </div>
+            <div className={css.contentMain}>
+              <h2 className={css.subtitle}>Creators</h2>
+              <p>1</p>
+            </div>
+            <div className={css.contentMain}>
+              <h2 className={css.subtitle}>Brands</h2>
+              <p>1</p>
+            </div>
+            <div className={css.createListingLink}>
+              <NamedLink name='HowItWorks' className={css.signupButton}>
+                How it works
+              </NamedLink>
             </div>
           </div>
         </LayoutWrapperMain>

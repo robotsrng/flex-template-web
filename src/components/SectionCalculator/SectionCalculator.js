@@ -1,25 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 
 import css from './SectionCalculator.css';
 import SocialMediaButtons from '../SocialMediaButtons/SocialMediaButtons';
 
 const SectionCalculator = props => {
-  const { rootClassName, className } = props;
+  const { rootClassName, className, title, description } = props;
 
   const classes = classNames(rootClassName || css.root, className);
 
   return (
     <div className={classes}>
       <div className={css.title}>
-        <FormattedMessage id="SectionCalculator.title" />
+        <h1>{title}</h1>
       </div>
       <div className={css.description}>
-        <p>
-          <FormattedMessage id="SectionCalculator.subTitle" />
-        </p>
+        <p>{description}</p>
       </div>
       <SocialMediaButtons />
       <div className={css.calculatorInput}>

@@ -1,0 +1,6 @@
+@import '../../marketplace.css';
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+}

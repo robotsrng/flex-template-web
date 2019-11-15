@@ -175,4 +175,5 @@ export { default as TopbarMobileMenu } from './TopbarMobileMenu/TopbarMobileMenu
 export { default as TransactionPanel } from './TransactionPanel/TransactionPanel';
 
 // Custom Components
-export {default as AccountExampleView} from './AccountExampleView/AccountExampleView'
+export {default as AccountExampleView} from './AccountExampleView/AccountExampleView';
+export {default as BlogItem} from './BlogItem/BlogItem';
