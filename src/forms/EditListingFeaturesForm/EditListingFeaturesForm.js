@@ -1,4 +1,6 @@
 import React from 'react';
+import NoSSR from 'react-no-ssr';
+import Select from 'react-select';
 import { bool, func, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import { compose } from 'redux';
@@ -16,10 +18,14 @@ import { LISTING_STATE_DRAFT } from '../../util/types';
 import css from './EditListingFeaturesForm.css';
 
 const EditListingFeaturesFormComponent = props => {
+  const options = [
+    { value: 'sidesuite', label: 'Sidesuite' },
+    { value: 'tinyLifeSupply', label: 'Tiny Life Supply' },
+  ];
   const handleBrandSelect = e => {
-    const exist = props.brandList && props.brandList.includes(e.target.value);
+    const exist = props.brandList && props.brandList.includes(e.label);
     if (!exist) {
-      props.setBrandList([...props.brandList, e.target.value]);
+      props.setBrandList([...props.brandList, e.label]);
     }
   };
   const handleOnClickBrand = e => {
@@ -105,23 +111,15 @@ const EditListingFeaturesFormComponent = props => {
             {errorMessageShowListing}
             <h2 className={css.title}>{panelTitle}</h2>
             <p>{titleDescription}</p>
-            <FieldSelectBrands
-              className={css.brands}
-              id={brandsName}
-              name={brandsName}
-              changeBrand={handleBrandSelect}
-            >
-              <option disabled value="">
-                {selectBrandPlaceholder}
-              </option>
-              <option key="Sidesuite" value="Sidesuite">
-                Sidesuite
-              </option>
-              <option key="Tiny Life Supply" value="Tiny Life Supply">
-                Tiny Life Supply
-              </option>
-              >
-            </FieldSelectBrands>
+            <NoSSR>
+              <Select
+                className={css.brands}
+                id={brandsName}
+                name={brandsName}
+                onChange={handleBrandSelect}
+                options={options}
+              ></Select>
+            </NoSSR>
             <div className={css.linkAccountContainer}>
               {props.brandList &&
                 props.brandList.map(c => (
