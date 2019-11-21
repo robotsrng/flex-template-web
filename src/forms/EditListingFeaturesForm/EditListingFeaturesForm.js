@@ -1,5 +1,4 @@
 import React from 'react';
-import Select from 'react-select';
 import { bool, func, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import { compose } from 'redux';
@@ -17,14 +16,10 @@ import { LISTING_STATE_DRAFT } from '../../util/types';
 import css from './EditListingFeaturesForm.css';
 
 const EditListingFeaturesFormComponent = props => {
-  const options = [
-    { value: 'sidesuite', label: 'Sidesuite' },
-    { value: 'tinyLifeSupply', label: 'Tiny Life Supply' },
-  ];
   const handleBrandSelect = e => {
-    const exist = props.brandList && props.brandList.includes(e.label);
+    const exist = props.brandList && props.brandList.includes(e.target.value);
     if (!exist) {
-      props.setBrandList([...props.brandList, e.label]);
+      props.setBrandList([...props.brandList, e.target.value]);
     }
   };
   const handleOnClickBrand = e => {
@@ -110,17 +105,27 @@ const EditListingFeaturesFormComponent = props => {
             {errorMessageShowListing}
             <h2 className={css.title}>{panelTitle}</h2>
             <p>{titleDescription}</p>
-            <Select
+            <FieldSelectBrands
               className={css.brands}
               id={brandsName}
               name={brandsName}
-              onChange={handleBrandSelect}
-              options={options}
-            ></Select>
+              changeBrand={handleBrandSelect}
+            >
+              <option disabled value="">
+                {selectBrandPlaceholder}
+              </option>
+              <option key="Sidesuite" value="Sidesuite">
+                Sidesuite
+              </option>
+              <option key="Tiny Life Supply" value="Tiny Life Supply">
+                Tiny Life Supply
+              </option>
+              >
+            </FieldSelectBrands>
             <div className={css.linkAccountContainer}>
               {props.brandList &&
                 props.brandList.map(c => (
-                  <div key={c} className={css.colButtons}>
+                  <div className={css.colButtons}>
                     <button value={c} onClick={handleOnClickBrand}>
                       {c + ` x`}
                     </button>
@@ -131,13 +136,13 @@ const EditListingFeaturesFormComponent = props => {
             <div className={css.linkAccountContainer}>
               {config.custom.postCategories.map(postCategories =>
                 props.postCategoriesList.includes(postCategories.label) ? (
-                  <div key={postCategories.label} className={css.colButtonsSelected}>
+                  <div className={css.colButtonsSelected}>
                     <button value={postCategories.label} onClick={handleOnClickPostCategories}>
                       {postCategories.label}
                     </button>
                   </div>
                 ) : (
-                  <div key={postCategories.label} className={css.colButtons}>
+                  <div className={css.colButtons}>
                     <button value={postCategories.label} onClick={handleOnClickPostCategories}>
                       {postCategories.label}
                     </button>
