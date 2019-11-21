@@ -38,7 +38,6 @@ const EditListingFeaturesPanel = props => {
       setPostCategoriesList(publicData.postCategoriesList);
     }
   }, [publicData.postCategoriesList]);
-  console.log(publicData.postCategoriesList);
   return (
     <div className={classes}>
       <EditListingFeaturesForm

@@ -44,7 +44,7 @@ export const ACCOUNT_SETTINGS_PAGES = [
 const draftId = '00000000-0000-0000-0000-000000000000';
 const draftSlug = 'draft';
 
-const RedirectToLandingPage = () => <NamedRedirect name='LandingPage' />;
+const RedirectToLandingPage = () => <NamedRedirect name="LandingPage" />;
 
 // Our routes are exact by default.
 // See behaviour from Routes.js where Route is created.
@@ -84,19 +84,19 @@ const routeConfiguration = () => {
     {
       path: '/s/filters',
       name: 'SearchFiltersPage',
-      component: props => <SearchPage {...props} tab='filters' />,
+      component: props => <SearchPage {...props} tab="filters" />,
       loadData: SearchPage.loadData,
     },
     {
       path: '/s/listings',
       name: 'SearchListingsPage',
-      component: props => <SearchPage {...props} tab='listings' />,
+      component: props => <SearchPage {...props} tab="listings" />,
       loadData: SearchPage.loadData,
     },
     {
       path: '/s/map',
       name: 'SearchMapPage',
-      component: props => <SearchPage {...props} tab='map' />,
+      component: props => <SearchPage {...props} tab="map" />,
       loadData: SearchPage.loadData,
     },
     {
@@ -131,7 +131,7 @@ const routeConfiguration = () => {
       auth: true,
       component: () => (
         <NamedRedirect
-          name='EditListingPage'
+          name="EditListingPage"
           params={{ slug: draftSlug, id: draftId, type: 'new', tab: 'description' }}
         />
       ),
@@ -173,12 +173,12 @@ const routeConfiguration = () => {
     {
       path: '/login',
       name: 'LoginPage',
-      component: props => <AuthenticationPage {...props} tab='login' />,
+      component: props => <AuthenticationPage {...props} tab="login" />,
     },
     {
       path: '/signup',
       name: 'SignupPage',
-      component: props => <AuthenticationPage {...props} tab='signup' />,
+      component: props => <AuthenticationPage {...props} tab="signup" />,
     },
     {
       path: '/recover-password',
@@ -190,7 +190,7 @@ const routeConfiguration = () => {
       name: 'InboxBasePage',
       auth: true,
       authPage: 'LoginPage',
-      component: () => <NamedRedirect name='InboxPage' params={{ tab: 'sales' }} />,
+      component: () => <NamedRedirect name="InboxPage" params={{ tab: 'sales' }} />,
     },
     {
       path: '/inbox/:tab',
@@ -205,14 +205,14 @@ const routeConfiguration = () => {
       name: 'OrderPage',
       auth: true,
       authPage: 'LoginPage',
-      component: props => <NamedRedirect name='OrderDetailsPage' params={{ ...props.params }} />,
+      component: props => <NamedRedirect name="OrderDetailsPage" params={{ ...props.params }} />,
     },
     {
       path: '/order/:id/details',
       name: 'OrderDetailsPage',
       auth: true,
       authPage: 'LoginPage',
-      component: props => <TransactionPage {...props} transactionRole='customer' />,
+      component: props => <TransactionPage {...props} transactionRole="customer" />,
       loadData: params => TransactionPage.loadData({ ...params, transactionRole: 'customer' }),
       setInitialValues: TransactionPage.setInitialValues,
     },
@@ -221,14 +221,14 @@ const routeConfiguration = () => {
       name: 'SalePage',
       auth: true,
       authPage: 'LoginPage',
-      component: props => <NamedRedirect name='SaleDetailsPage' params={{ ...props.params }} />,
+      component: props => <NamedRedirect name="SaleDetailsPage" params={{ ...props.params }} />,
     },
     {
       path: '/sale/:id/details',
       name: 'SaleDetailsPage',
       auth: true,
       authPage: 'LoginPage',
-      component: props => <TransactionPage {...props} transactionRole='provider' />,
+      component: props => <TransactionPage {...props} transactionRole="provider" />,
       loadData: params => TransactionPage.loadData({ ...params, transactionRole: 'provider' }),
     },
     {
@@ -244,7 +244,7 @@ const routeConfiguration = () => {
       name: 'AccountSettingsPage',
       auth: true,
       authPage: 'LoginPage',
-      component: () => <NamedRedirect name='ContactDetailsPage' />,
+      component: () => <NamedRedirect name="ContactDetailsPage" />,
     },
     {
       path: '/account/contact-details',

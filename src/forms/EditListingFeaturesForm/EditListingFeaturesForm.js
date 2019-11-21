@@ -1,4 +1,5 @@
 import React from 'react';
+import Select from 'react-select';
 import { bool, func, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import { compose } from 'redux';
@@ -16,10 +17,14 @@ import { LISTING_STATE_DRAFT } from '../../util/types';
 import css from './EditListingFeaturesForm.css';
 
 const EditListingFeaturesFormComponent = props => {
+  const options = [
+    { value: 'sidesuite', label: 'Sidesuite' },
+    { value: 'tinyLifeSupply', label: 'Tiny Life Supply' },
+  ];
   const handleBrandSelect = e => {
-    const exist = props.brandList && props.brandList.includes(e.target.value);
+    const exist = props.brandList && props.brandList.includes(e.label);
     if (!exist) {
-      props.setBrandList([...props.brandList, e.target.value]);
+      props.setBrandList([...props.brandList, e.label]);
     }
   };
   const handleOnClickBrand = e => {
@@ -61,19 +66,19 @@ const EditListingFeaturesFormComponent = props => {
           currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
         const panelTitle = isPublished ? (
           <FormattedMessage
-            id='EditListingFeaturesPanel.title'
+            id="EditListingFeaturesPanel.title"
             values={{ listingTitle: <ListingLink listing={listing} /> }}
           />
         ) : (
-          <FormattedMessage id='EditListingFeaturesPanel.createListingTitle' />
+          <FormattedMessage id="EditListingFeaturesPanel.createListingTitle" />
         );
         const panelSecondTitle = isPublished ? (
           <FormattedMessage
-            id='EditListingFeaturesPanel.subtitle'
+            id="EditListingFeaturesPanel.subtitle"
             values={{ listingTitle: <ListingLink listing={listing} /> }}
           />
         ) : (
-          <FormattedMessage id='EditListingFeaturesPanel.createListingSubtitle' />
+          <FormattedMessage id="EditListingFeaturesPanel.createListingSubtitle" />
         );
         const selectBrandPlaceholder = intl.formatMessage({
           id: 'EditListingFeaturesPanel.inputBrandPlaceholder',
@@ -89,13 +94,13 @@ const EditListingFeaturesFormComponent = props => {
         const { updateListingError, showListingsError } = fetchErrors || {};
         const errorMessage = updateListingError ? (
           <p className={css.error}>
-            <FormattedMessage id='EditListingFeaturesForm.updateFailed' />
+            <FormattedMessage id="EditListingFeaturesForm.updateFailed" />
           </p>
         ) : null;
 
         const errorMessageShowListing = showListingsError ? (
           <p className={css.error}>
-            <FormattedMessage id='EditListingFeaturesForm.showListingFailed' />
+            <FormattedMessage id="EditListingFeaturesForm.showListingFailed" />
           </p>
         ) : null;
 
@@ -105,27 +110,17 @@ const EditListingFeaturesFormComponent = props => {
             {errorMessageShowListing}
             <h2 className={css.title}>{panelTitle}</h2>
             <p>{titleDescription}</p>
-            <FieldSelectBrands
+            <Select
               className={css.brands}
               id={brandsName}
               name={brandsName}
-              changeBrand={handleBrandSelect}
-            >
-              <option disabled value=''>
-                {selectBrandPlaceholder}
-              </option>
-              <option key='Sidesuite' value='Sidesuite'>
-                Sidesuite
-              </option>
-              <option key='Tiny Life Supply' value='Tiny Life Supply'>
-                Tiny Life Supply
-              </option>
-              >
-            </FieldSelectBrands>
+              onChange={handleBrandSelect}
+              options={options}
+            ></Select>
             <div className={css.linkAccountContainer}>
               {props.brandList &&
                 props.brandList.map(c => (
-                  <div className={css.colButtons}>
+                  <div key={c} className={css.colButtons}>
                     <button value={c} onClick={handleOnClickBrand}>
                       {c + ` x`}
                     </button>
@@ -136,13 +131,13 @@ const EditListingFeaturesFormComponent = props => {
             <div className={css.linkAccountContainer}>
               {config.custom.postCategories.map(postCategories =>
                 props.postCategoriesList.includes(postCategories.label) ? (
-                  <div className={css.colButtonsSelected}>
+                  <div key={postCategories.label} className={css.colButtonsSelected}>
                     <button value={postCategories.label} onClick={handleOnClickPostCategories}>
                       {postCategories.label}
                     </button>
                   </div>
                 ) : (
-                  <div className={css.colButtons}>
+                  <div key={postCategories.label} className={css.colButtons}>
                     <button value={postCategories.label} onClick={handleOnClickPostCategories}>
                       {postCategories.label}
                     </button>
@@ -153,7 +148,7 @@ const EditListingFeaturesFormComponent = props => {
 
             <Button
               className={css.submitButton}
-              type='submit'
+              type="submit"
               inProgress={submitInProgress}
               disabled={submitDisabled}
               ready={submitReady}

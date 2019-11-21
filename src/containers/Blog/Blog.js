@@ -13,6 +13,11 @@ import {
 import css from './Blog.css';
 
 const Blog = () => {
+  const marketingPlanImg = '';
+  const marketingPlanTitle = 'Our Marketing Plan';
+  const marketingPlanCreated = 'August 12, 2019';
+  const marketingPlanDescription =
+    'Once I had Sidesuite built, I thought about how I was going to market it. In the end it was a no brainer, but it didn’t come easy to me.';
   // prettier-ignore
   return (
     <StaticPage
@@ -33,7 +38,7 @@ const Blog = () => {
 
 
           <div className={css.contentWrapper}>
-            <BlogItem/>
+            <BlogItem img={marketingPlanImg} title={marketingPlanTitle} created={marketingPlanCreated} description={marketingPlanDescription}/>
           </div>
         </LayoutWrapperMain>
 
