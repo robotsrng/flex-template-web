@@ -115,7 +115,7 @@ const EditListingFeaturesFormComponent = props => {
               className={css.brands}
               id={brandsName}
               name={brandsName}
-              changeBrand={handleBrandSelect}
+              onChange={handleBrandSelect}
               options={options}
             ></Select>
             <div className={css.linkAccountContainer}>
