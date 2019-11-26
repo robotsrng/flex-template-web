@@ -82,14 +82,13 @@ const tabCompleted = (tab, listing) => {
     publicData,
   } = listing.attributes;
   const images = listing.images;
-
   switch (tab) {
     case OFFERING:
       return !!(publicData && publicData.offering);
     case DESCRIPTION:
       return !!(description && title);
     case FEATURES:
-      return !!(publicData && publicData.brands && publicData.postCategories);
+      return !!(publicData && publicData.brandList && publicData.postCategoriesList);
     case LOCATION:
       return !!(geolocation && publicData && publicData.location && publicData.location.address);
     case PRICING:
@@ -216,7 +215,7 @@ class EditListingWizard extends Component {
         .reverse()
         .find(t => tabsStatus[t]);
 
-      return <NamedRedirect name='EditListingPage' params={{ ...params, tab: nearestActiveTab }} />;
+      return <NamedRedirect name="EditListingPage" params={{ ...params, tab: nearestActiveTab }} />;
     }
 
     const { width } = viewport;
@@ -270,19 +269,19 @@ class EditListingWizard extends Component {
           })}
         </Tabs>
         <Modal
-          id='EditListingWizard.payoutModal'
+          id="EditListingWizard.payoutModal"
           isOpen={this.state.showPayoutDetails}
           onClose={this.handlePayoutModalClose}
           onManageDisableScrolling={onManageDisableScrolling}
         >
           <div className={css.modalPayoutDetailsWrapper}>
             <h1 className={css.modalTitle}>
-              <FormattedMessage id='EditListingPhotosPanel.payoutModalTitleOneMoreThing' />
+              <FormattedMessage id="EditListingPhotosPanel.payoutModalTitleOneMoreThing" />
               <br />
-              <FormattedMessage id='EditListingPhotosPanel.payoutModalTitlePayoutPreferences' />
+              <FormattedMessage id="EditListingPhotosPanel.payoutModalTitlePayoutPreferences" />
             </h1>
             <p className={css.modalMessage}>
-              <FormattedMessage id='EditListingPhotosPanel.payoutModalInfo' />
+              <FormattedMessage id="EditListingPhotosPanel.payoutModalInfo" />
             </p>
             <PayoutDetailsForm
               className={css.payoutDetails}

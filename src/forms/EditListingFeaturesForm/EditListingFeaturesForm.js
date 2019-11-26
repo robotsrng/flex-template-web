@@ -1,4 +1,5 @@
 import React from 'react';
+import dynamic from 'next/dynamic';
 import { bool, func, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import { compose } from 'redux';
@@ -9,13 +10,18 @@ import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 import { ensureListing } from '../../util/data';
 import { propTypes } from '../../util/types';
 import config from '../../config';
-import { Button, FieldCheckboxGroup, Form, FieldSelectBrands } from '../../components';
+import { Button, Form, FieldSelectBrands } from '../../components';
 import { ListingLink } from '../../components';
 import { LISTING_STATE_DRAFT } from '../../util/types';
 
 import css from './EditListingFeaturesForm.css';
 
 const EditListingFeaturesFormComponent = props => {
+  const Select = dynamic(() => import('react-select'), { ssr: false });
+  const options = [
+    { value: 'sidesuite', label: 'Sidesuite' },
+    { value: 'tinyLifeSupply', label: 'Tiny Life Supply' },
+  ];
   const handleBrandSelect = e => {
     const exist = props.brandList && props.brandList.includes(e.target.value);
     if (!exist) {
@@ -105,23 +111,13 @@ const EditListingFeaturesFormComponent = props => {
             {errorMessageShowListing}
             <h2 className={css.title}>{panelTitle}</h2>
             <p>{titleDescription}</p>
-            <FieldSelectBrands
+            <Select
               className={css.brands}
               id={brandsName}
               name={brandsName}
               changeBrand={handleBrandSelect}
-            >
-              <option disabled value="">
-                {selectBrandPlaceholder}
-              </option>
-              <option key="Sidesuite" value="Sidesuite">
-                Sidesuite
-              </option>
-              <option key="Tiny Life Supply" value="Tiny Life Supply">
-                Tiny Life Supply
-              </option>
-              >
-            </FieldSelectBrands>
+              options={options}
+            ></Select>
             <div className={css.linkAccountContainer}>
               {props.brandList &&
                 props.brandList.map(c => (
