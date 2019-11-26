@@ -23,9 +23,9 @@ const EditListingFeaturesFormComponent = props => {
     { value: 'tinyLifeSupply', label: 'Tiny Life Supply' },
   ];
   const handleBrandSelect = e => {
-    const exist = props.brandList && props.brandList.includes(e.target.value);
+    const exist = props.brandList && props.brandList.includes(e.label);
     if (!exist) {
-      props.setBrandList([...props.brandList, e.target.value]);
+      props.setBrandList([...props.brandList, e.label]);
     }
   };
   const handleOnClickBrand = e => {
