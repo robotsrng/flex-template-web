@@ -16,8 +16,8 @@ import { LISTING_STATE_DRAFT } from '../../util/types';
 
 import css from './EditListingFeaturesForm.css';
 
+const Select = dynamic(() => import('react-select'), { ssr: false });
 const EditListingFeaturesFormComponent = props => {
-  const Select = dynamic(() => import('react-select'), { ssr: false });
   const options = [
     { value: 'sidesuite', label: 'Sidesuite' },
     { value: 'tinyLifeSupply', label: 'Tiny Life Supply' },
