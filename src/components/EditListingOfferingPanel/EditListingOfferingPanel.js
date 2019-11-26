@@ -31,7 +31,7 @@ const EditListingOfferingPanel = props => {
     },
     [publicData.offering]
   );
-
+  const title = 'defaultUltimateTitleSidesuite';
   const form = (
     <EditListingOfferingForm
       listing={listing}
@@ -39,9 +39,10 @@ const EditListingOfferingPanel = props => {
       setOffering={setOffering}
       className={css.form}
       onSubmit={_ => {
-        const updatedValues = {
+        var updatedValues = {
           publicData: { offering },
         };
+        !currentListing.title && (updatedValues = { title: title, ...updatedValues });
         onSubmit(updatedValues);
       }}
       onChange={onChange}

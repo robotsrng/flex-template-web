@@ -17,6 +17,7 @@ import { LISTING_STATE_DRAFT } from '../../util/types';
 import css from './EditListingFeaturesForm.css';
 
 const Select = dynamic(() => import('react-select'), { ssr: false });
+
 const EditListingFeaturesFormComponent = props => {
   const options = [
     { value: 'sidesuite', label: 'Sidesuite' },
@@ -113,10 +114,20 @@ const EditListingFeaturesFormComponent = props => {
             <p>{titleDescription}</p>
             <Select
               className={css.brands}
-              id={brandsName}
-              name={brandsName}
+              placeholder={selectBrandPlaceholder}
+              maxMenuHeight={150}
               onChange={handleBrandSelect}
               options={options}
+              theme={theme => ({
+                ...theme,
+                colors: {
+                  ...theme.colors,
+                  primary: '#4a4a4a',
+                  secondary: '#4a4a4a',
+                  dangerLight: '#4a4a4a',
+                  primary25: '#b2b2b2',
+                },
+              })}
             ></Select>
             <div className={css.linkAccountContainer}>
               {props.brandList &&

@@ -22,7 +22,8 @@ const EditListingDescriptionPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  const { description, title } = currentListing.attributes;
+  var { description, title } = currentListing.attributes;
+  title === 'defaultUltimateTitleSidesuite' && (title = '');
 
   return (
     <div className={classes}>
