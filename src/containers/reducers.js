@@ -19,6 +19,9 @@ import SearchPage from './SearchPage/SearchPage.duck';
 import StripePayoutPage from './StripePayoutPage/StripePayoutPage.duck';
 import TransactionPage from './TransactionPage/TransactionPage.duck';
 
+// If you want to use old PayoutPreferencesPage with PayoutDetailsForm, you need to import this instead of StripePayoutPage:
+// import PayoutPreferencesPage from './PayoutPreferencesPage/PayoutPreferencesPage.duck';
+
 export {
   CheckoutPage,
   ContactDetailsPage,
@@ -29,6 +32,7 @@ export {
   PasswordChangePage,
   PasswordRecoveryPage,
   PasswordResetPage,
+  //PayoutPreferencesPage,
   PaymentMethodsPage,
   ProfilePage,
   ProfileSettingsPage,

@@ -283,14 +283,6 @@ const routeConfiguration = () => {
       loadData: StripePayoutPage.loadData,
     },
     {
-      path: '/account/payments/:returnURLType',
-      name: 'StripePayoutOnboardingPage',
-      auth: true,
-      authPage: 'LoginPage',
-      component: props => <StripePayoutPage {...props} />,
-      loadData: StripePayoutPage.loadData,
-    },
-    {
       path: '/account/payment-methods',
       name: 'PaymentMethodsPage',
       auth: true,
