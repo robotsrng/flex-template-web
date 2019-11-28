@@ -18,7 +18,6 @@ export { default as PasswordChangeForm } from './PasswordChangeForm/PasswordChan
 export { default as PasswordRecoveryForm } from './PasswordRecoveryForm/PasswordRecoveryForm';
 export { default as PasswordResetForm } from './PasswordResetForm/PasswordResetForm';
 export { default as PaymentMethodsForm } from './PaymentMethodsForm/PaymentMethodsForm';
-export { default as PayoutDetailsForm } from './PayoutDetailsForm/PayoutDetailsForm';
 export { default as PriceFilterForm } from './PriceFilterForm/PriceFilterForm';
 export { default as FollowerFilterForm } from './FollowerFilterForm/FollowerFilterForm';
 export { default as ProfileSettingsForm } from './ProfileSettingsForm/ProfileSettingsForm';
