@@ -17,10 +17,7 @@ describe('StripePayoutPage', () => {
         payoutDetailsSaved={false}
         onPayoutDetailsFormChange={noop}
         onPayoutDetailsFormSubmit={noop}
-        onGetStripeConnectAccountLink={noop}
-        getAccountLinkInProgress={false}
         intl={fakeIntl}
-        history={{ replace: noop }}
       />
     );
     expect(tree).toMatchSnapshot();
@@ -42,10 +39,7 @@ describe('StripePayoutPage', () => {
         payoutDetailsSaved={false}
         onPayoutDetailsFormChange={noop}
         onPayoutDetailsFormSubmit={noop}
-        onGetStripeConnectAccountLink={noop}
-        getAccountLinkInProgress={false}
         intl={fakeIntl}
-        history={{ replace: noop }}
       />
     );
     expect(tree).toMatchSnapshot();
@@ -67,10 +61,7 @@ describe('StripePayoutPage', () => {
         payoutDetailsSaved={true}
         onPayoutDetailsFormChange={noop}
         onPayoutDetailsFormSubmit={noop}
-        onGetStripeConnectAccountLink={noop}
-        getAccountLinkInProgress={false}
         intl={fakeIntl}
-        history={{ replace: noop }}
       />
     );
     expect(tree).toMatchSnapshot();
