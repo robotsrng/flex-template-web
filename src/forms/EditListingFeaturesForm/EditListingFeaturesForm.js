@@ -10,7 +10,7 @@ import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 import { ensureListing } from '../../util/data';
 import { propTypes } from '../../util/types';
 import config from '../../config';
-import { Button, Form, FieldSelectBrands } from '../../components';
+import { Button, Form } from '../../components';
 import { ListingLink } from '../../components';
 import { LISTING_STATE_DRAFT } from '../../util/types';
 
@@ -54,7 +54,6 @@ const EditListingFeaturesFormComponent = props => {
           disabled,
           rootClassName,
           className,
-          brandsName,
           handleSubmit,
           intl,
           pristine,

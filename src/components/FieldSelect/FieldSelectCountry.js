@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'react-final-form';
 import classNames from 'classnames';
-import { ValidationError } from '../../components';
+import { ValidationError } from '..';
 
 import css from './FieldSelect.css';
 
-const FieldSelectBrandsComponent = props => {
+const FieldSelectCountryComponent = props => {
   const {
     rootClassName,
     className,
@@ -14,7 +14,7 @@ const FieldSelectBrandsComponent = props => {
     label,
     input,
     meta,
-    changeBrand,
+    changeCountry,
     selectonChange,
     children,
     ...rest
@@ -55,7 +55,7 @@ const FieldSelectBrandsComponent = props => {
   );
 };
 
-FieldSelectBrandsComponent.defaultProps = {
+FieldSelectCountryComponent.defaultProps = {
   rootClassName: null,
   className: null,
   id: null,
@@ -65,7 +65,7 @@ FieldSelectBrandsComponent.defaultProps = {
 
 const { string, object, node } = PropTypes;
 
-FieldSelectBrandsComponent.propTypes = {
+FieldSelectCountryComponent.propTypes = {
   rootClassName: string,
   className: string,
 
@@ -81,10 +81,14 @@ FieldSelectBrandsComponent.propTypes = {
   children: node,
 };
 
-const FieldSelectBrands = props => {
+const FieldSelectCountry = props => {
   return (
-    <Field selectonChange={props.changeBrand} component={FieldSelectBrandsComponent} {...props} />
+    <Field
+      selectonChange={props.changeCountry}
+      component={FieldSelectCountryComponent}
+      {...props}
+    />
   );
 };
 
-export default FieldSelectBrands;
+export default FieldSelectCountry;

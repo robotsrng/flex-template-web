@@ -40,7 +40,7 @@ import css from './AuthenticationPage.css';
 export class AuthenticationPageComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = { tosModalOpen: false };
+    this.state = { tosModalOpen: false, accountTypeName: 'personal' };
   }
   render() {
     const {
@@ -60,6 +60,7 @@ export class AuthenticationPageComponent extends Component {
       onResendVerificationEmail,
       onManageDisableScrolling,
     } = this.props;
+
     const isLogin = tab === 'login';
     const from = location.state && location.state.from ? location.state.from : null;
 
@@ -132,7 +133,12 @@ export class AuthenticationPageComponent extends Component {
 
     const handleSubmitSignup = values => {
       const { fname, lname, ...rest } = values;
-      const params = { firstName: fname.trim(), lastName: lname.trim(), ...rest };
+      const params = {
+        firstName: fname.trim(),
+        lastName: lname.trim(),
+        accountType: this.state.accountTypeName,
+        ...rest,
+      };
       submitSignup(params);
     };
 
@@ -148,11 +154,12 @@ export class AuthenticationPageComponent extends Component {
             onSubmit={handleSubmitSignup}
             inProgress={authInProgress}
             onOpenTermsOfService={() => this.setState({ tosModalOpen: true })}
+            accountTypeName={this.state.accountTypeName}
+            setAccountTypeName={newValue => this.setState({ accountTypeName: newValue })}
           />
         )}
       </div>
     );
-
     const name = user.attributes.profile.firstName;
     const email = <span className={css.email}>{user.attributes.email}</span>;
 

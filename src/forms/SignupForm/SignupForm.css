@@ -10,6 +10,23 @@
   }
 }
 
+.fieldSelect {
+  margin-top: 32px;
+}
+.radioButtonRow {
+  display: flex;
+  justify-content: left;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 32px;
+  white-space: nowrap;
+}
+
+.radioButtonRow > :first-child {
+  margin-right: 36px;
+}
+
 .name {
   display: flex;
   justify-content: space-between;
@@ -19,7 +36,6 @@
     margin-top: 32px;
   }
 }
-
 .firstNameRoot {
   width: calc(34% - 9px);
 }
@@ -51,4 +67,35 @@
     text-decoration: underline;
     cursor: pointer;
   }
+}
+.colButtons button {
+  @apply --marketplaceButtonStyles;
+  height: 30px;
+  padding: 0 10px;
+  min-height: 30px;
+  margin-right: 5px;
+}
+.colButtons button:hover,
+.colButtonsSelected button:focus {
+  background-color: #b2b2b2 !important;
+  color: #4a4a4a;
+}
+.colButtonsSelected button {
+  @apply --marketplaceButtonStyles;
+  height: 30px;
+  padding: 0 10px;
+  min-height: 30px;
+  margin-right: 5px;
+  background-color: #b2b2b2;
+  color: #4a4a4a;
+  border: solid 1px #b2b2b2;
+}
+.colButtonsSelected button:hover,
+.colButtons button:focus {
+  color: #ffffff;
+  background-color: #2a2a2a !important;
+}
+.colButtons,
+.colButtonsSelected {
+  margin: 10px 5px 5px 0;
 }

@@ -6,7 +6,6 @@ import {
   LayoutWrapperMain,
   LayoutWrapperFooter,
   Footer,
-  NamedLink,
   BlogItem,
 } from '../../components';
 

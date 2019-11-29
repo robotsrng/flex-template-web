@@ -42,11 +42,11 @@ export const EditListingOfferingFormComponent = props => {
           currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
         const panelTitle = isPublished ? (
           <FormattedMessage
-            id='EditListingOfferingPanel.title'
+            id="EditListingOfferingPanel.title"
             values={{ listingTitle: <ListingLink listing={listing} /> }}
           />
         ) : (
-          <FormattedMessage id='EditListingPricingPanel.createListingTitle' />
+          <FormattedMessage id="EditListingPricingPanel.createListingTitle" />
         );
 
         const titleDescription = intl.formatMessage({
@@ -63,75 +63,75 @@ export const EditListingOfferingFormComponent = props => {
           <Form onSubmit={handleSubmit} className={classes}>
             {updateListingError ? (
               <p className={css.error}>
-                <FormattedMessage id='EditListingPricingForm.updateFailed' />
+                <FormattedMessage id="EditListingPricingForm.updateFailed" />
               </p>
             ) : null}
             {showListingsError ? (
               <p className={css.error}>
-                <FormattedMessage id='EditListingPricingForm.showListingFailed' />
+                <FormattedMessage id="EditListingPricingForm.showListingFailed" />
               </p>
             ) : null}
             <h2 className={css.title}>{panelTitle}</h2>
             <p>{titleDescription}</p>
             <div className={css.accountContainer}>
               <button
-                type='button'
+                type="button"
                 onClick={e => handleOnClickAccount(e, instagramValue)}
                 className={
-                  props.offering == 'instagram' ? css.accountButtonSelected : css.accountButton
+                  props.offering === 'instagram' ? css.accountButtonSelected : css.accountButton
                 }
               >
                 <div className={css.accountPosition}>
                   <AccountExampleView
-                    whiteLetters={props.offering == 'instagram' && 'true'}
-                    cssImg='img'
+                    whiteLetters={props.offering === 'instagram' && 'true'}
+                    cssImg="img"
                     img={instagram}
-                    postUsername='axelwhalen'
-                    postFollowerAmmount='Instagram'
-                    postValueMaybe='338 followers'
+                    postUsername="axelwhalen"
+                    postFollowerAmmount="Instagram"
+                    postValueMaybe="338 followers"
                   ></AccountExampleView>
                 </div>
               </button>
               <button
-                type='button'
+                type="button"
                 onClick={e => handleOnClickAccount(e, facebookValue)}
                 className={
-                  props.offering == 'facebook' ? css.accountButtonSelected : css.accountButton
+                  props.offering === 'facebook' ? css.accountButtonSelected : css.accountButton
                 }
               >
                 <div className={css.accountPosition}>
                   <AccountExampleView
-                    whiteLetters={props.offering == 'facebook' && 'true'}
-                    cssImg='img'
+                    whiteLetters={props.offering === 'facebook' && 'true'}
+                    cssImg="img"
                     img={facebook}
-                    postUsername='Axel Whalen'
-                    postFollowerAmmount='Facebook'
-                    postValueMaybe='705 friends'
+                    postUsername="Axel Whalen"
+                    postFollowerAmmount="Facebook"
+                    postValueMaybe="705 friends"
                   ></AccountExampleView>
                 </div>
               </button>
               <button
-                type='button'
+                type="button"
                 onClick={e => handleOnClickAccount(e, youtubeValue)}
                 className={
-                  props.offering == 'youtube' ? css.accountButtonSelected : css.accountButton
+                  props.offering === 'youtube' ? css.accountButtonSelected : css.accountButton
                 }
               >
                 <div className={css.accountPosition}>
                   <AccountExampleView
-                    whiteLetters={props.offering == 'youtube' && 'true'}
-                    cssImg='img'
+                    whiteLetters={props.offering === 'youtube' && 'true'}
+                    cssImg="img"
                     img={youtube}
-                    postUsername='The Waylon Axle'
-                    postFollowerAmmount='Youtube'
-                    postValueMaybe='338 subscribers'
+                    postUsername="The Waylon Axle"
+                    postFollowerAmmount="Youtube"
+                    postValueMaybe="338 subscribers"
                   ></AccountExampleView>
                 </div>
               </button>
             </div>
             <Button
               className={css.submitButton}
-              type='submit'
+              type="submit"
               inProgress={submitInProgress}
               disabled={submitDisabled}
               ready={submitReady}
