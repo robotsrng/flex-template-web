@@ -14,11 +14,13 @@ import includes from 'lodash/includes';
 import css from './PropertyGroup.css';
 
 const checkSelected = (options, selectedOptions) => {
-  return options.map(option => ({
-    key: option.key,
-    label: option.label,
-    isSelected: includes(selectedOptions, option.key),
-  }));
+  if (options) {
+    return options.map(option => ({
+      key: option.key,
+      label: option.label,
+      isSelected: includes(selectedOptions, option.key),
+    }));
+  } else return null;
 };
 
 const IconCheck = props => {
@@ -57,14 +59,15 @@ const PropertyGroup = props => {
   const listClasses = twoColumns ? classNames(classes, css.twoColumns) : classes;
 
   const checked = checkSelected(options, selectedOptions);
-
-  return (
-    <ul className={listClasses}>
-      {checked.map(option => (
-        <Item key={`${id}.${option.key}`} label={option.label} isSelected={option.isSelected} />
-      ))}
-    </ul>
-  );
+  if (checked) {
+    return (
+      <ul className={listClasses}>
+        {checked.map(option => (
+          <Item key={`${id}.${option.key}`} label={option.label} isSelected={option.isSelected} />
+        ))}
+      </ul>
+    );
+  } else return null;
 };
 
 PropertyGroup.defaultProps = {
