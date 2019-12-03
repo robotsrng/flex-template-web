@@ -177,32 +177,47 @@ export const signup = params => (dispatch, getState, sdk) => {
     firstName,
     lastName,
     accountType,
-    country,
-    state,
-    city,
-    address,
     businessName,
+    username,
     ...rest
   } = params;
-  if (!address) address = '';
-  if (!businessName) businessName = '';
+  if (!firstName) firstName = businessName;
+  if (!lastName) lastName = businessName;
   const createUserParams = isEmpty(rest)
+    ? businessName
+      ? {
+          email,
+          password,
+          firstName,
+          lastName,
+          displayName: businessName,
+          publicData: { accountType, username },
+        }
+      : {
+          email,
+          password,
+          firstName,
+          lastName,
+          publicData: { accountType, username },
+        }
+    : businessName
     ? {
         email,
         password,
         firstName,
         lastName,
-        publicData: { accountType, country, state, city, address, businessName },
+        displayName: businessName,
+        publicData: { accountType, username },
+        protectedData: { ...rest },
       }
     : {
         email,
         password,
         firstName,
         lastName,
-        publicData: { accountType, country, state, city, address, businessName },
+        publicData: { accountType, username },
         protectedData: { ...rest },
       };
-
   // We must login the user if signup succeeds since the API doesn't
   // do that automatically.
   return sdk.currentUser
@@ -215,6 +230,7 @@ export const signup = params => (dispatch, getState, sdk) => {
         email: params.email,
         firstName: params.firstName,
         lastName: params.lastName,
+        displayName: params.businessName,
       });
     });
 };

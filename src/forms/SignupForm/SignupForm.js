@@ -1,42 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import * as validators from '../../util/validators';
-import {
-  Form,
-  PrimaryButton,
-  FieldTextInput,
-  FieldSelectCountry,
-  FieldSelectState,
-  FieldSelect,
-} from '../../components';
-import csc from 'country-state-city';
+import { Form, PrimaryButton, FieldTextInput } from '../../components';
 
 import css from './SignupForm.css';
 
 const KEY_CODE_ENTER = 13;
 
 const SignupFormComponent = props => {
-  const [countries] = useState(csc.getAllCountries());
-  const [states, setStates] = useState([]);
-  const [cities, setCities] = useState([]);
-  const handleOnChangeCountries = e => {
-    setStates(
-      csc.getStatesOfCountry(
-        e.target.options[e.target.options.selectedIndex].getAttribute('data-key')
-      )
-    );
-  };
-  const handleOnChangeStates = e => {
-    setCities(
-      csc.getCitiesOfState(
-        e.target.options[e.target.options.selectedIndex].getAttribute('data-key')
-      )
-    );
-  };
   const handleOnClickAccountType = e => {
     e.preventDefault();
     props.setAccountTypeName(e.target.value);
@@ -137,10 +112,8 @@ const SignupFormComponent = props => {
         });
         const lastNameRequired = validators.required(lastNameRequiredMessage);
 
-        const countryRequiredMessage = 'Please select a country';
-        const stateRequiredMessage = 'Please select a state';
-        const cityRequiredMessage = 'Please select a city';
         const businessNameRequiredMessage = 'You need to add a business name';
+        const usernameRequiredMessage = 'You need to add a username';
 
         const classes = classNames(rootClassName || css.root, className);
         const submitInProgress = inProgress;
@@ -166,6 +139,37 @@ const SignupFormComponent = props => {
 
         return (
           <Form className={classes} onSubmit={handleSubmit}>
+            <p className={css.accountTypeDescription}>
+              <strong>Select your account type</strong>
+            </p>
+            <div className={css.radioButtonRow}>
+              {props.accountTypeName === 'personal' ? (
+                <div className={css.colButtonsSelected}>
+                  <button value="personal" onClick={handleOnClickAccountType} disabled>
+                    Personal
+                  </button>
+                </div>
+              ) : (
+                <div className={css.colButtons}>
+                  <button value="personal" onClick={handleOnClickAccountType}>
+                    Personal
+                  </button>
+                </div>
+              )}
+              {props.accountTypeName === 'business' ? (
+                <div className={css.colButtonsSelected}>
+                  <button value="business" onClick={handleOnClickAccountType} disabled>
+                    Business
+                  </button>
+                </div>
+              ) : (
+                <div className={css.colButtons}>
+                  <button value="business" onClick={handleOnClickAccountType}>
+                    Business
+                  </button>
+                </div>
+              )}
+            </div>
             <div>
               <FieldTextInput
                 type="email"
@@ -176,29 +180,41 @@ const SignupFormComponent = props => {
                 placeholder={emailPlaceholder}
                 validate={validators.composeValidators(emailRequired, emailValid)}
               />
-              <div className={css.name}>
+              {props.accountTypeName === 'business' ? (
                 <FieldTextInput
-                  className={css.firstNameRoot}
+                  className={css.fieldSelect}
                   type="text"
-                  id={formId ? `${formId}.fname` : 'fname'}
-                  name="fname"
-                  autoComplete="given-name"
-                  label={firstNameLabel}
-                  placeholder={firstNamePlaceholder}
-                  validate={firstNameRequired}
+                  id={formId ? `${formId}.businessName` : 'businessName'}
+                  name="businessName"
+                  label="Business Name"
+                  placeholder="Enter your business name..."
+                  validate={validators.required(businessNameRequiredMessage)}
                 />
-                <FieldTextInput
-                  className={css.lastNameRoot}
-                  type="text"
-                  id={formId ? `${formId}.lname` : 'lname'}
-                  name="lname"
-                  autoComplete="family-name"
-                  label={lastNameLabel}
-                  placeholder={lastNamePlaceholder}
-                  validate={lastNameRequired}
-                />
-              </div>
-              <FieldSelectCountry
+              ) : (
+                <div className={css.name}>
+                  <FieldTextInput
+                    className={css.firstNameRoot}
+                    type="text"
+                    id={formId ? `${formId}.fname` : 'fname'}
+                    name="fname"
+                    autoComplete="given-name"
+                    label={firstNameLabel}
+                    placeholder={firstNamePlaceholder}
+                    validate={firstNameRequired}
+                  />
+                  <FieldTextInput
+                    className={css.lastNameRoot}
+                    type="text"
+                    id={formId ? `${formId}.lname` : 'lname'}
+                    name="lname"
+                    autoComplete="family-name"
+                    label={lastNameLabel}
+                    placeholder={lastNamePlaceholder}
+                    validate={lastNameRequired}
+                  />
+                </div>
+              )}
+              {/* <FieldSelectCountry
                 className={css.fieldSelect}
                 label="Country"
                 validate={validators.required(countryRequiredMessage)}
@@ -255,47 +271,16 @@ const SignupFormComponent = props => {
                 name="address"
                 label="Address"
                 placeholder="123 Street"
+              />*/}
+              <FieldTextInput
+                className={css.fieldSelect}
+                type="text"
+                id={formId ? `${formId}.username` : 'username'}
+                name="username"
+                label="Username"
+                placeholder="Enter your username..."
+                validate={validators.required(usernameRequiredMessage)}
               />
-              <div className={css.radioButtonRow}>
-                {props.accountTypeName === 'personal' ? (
-                  <div className={css.colButtonsSelected}>
-                    <button value="personal" onClick={handleOnClickAccountType}>
-                      Personal
-                    </button>
-                  </div>
-                ) : (
-                  <div className={css.colButtons}>
-                    <button value="personal" onClick={handleOnClickAccountType}>
-                      Personal
-                    </button>
-                  </div>
-                )}
-                {props.accountTypeName === 'business' ? (
-                  <div className={css.colButtonsSelected}>
-                    <button value="business" onClick={handleOnClickAccountType}>
-                      Business
-                    </button>
-                  </div>
-                ) : (
-                  <div className={css.colButtons}>
-                    <button value="business" onClick={handleOnClickAccountType}>
-                      Business
-                    </button>
-                  </div>
-                )}
-              </div>
-              {props.accountTypeName === 'business' ? (
-                <FieldTextInput
-                  className={css.fieldSelect}
-                  type="text"
-                  id={formId ? `${formId}.businessName` : 'businessName'}
-                  name="businessName"
-                  label="Business Name"
-                  placeholder="Enter your business name..."
-                  validate={validators.required(businessNameRequiredMessage)}
-                />
-              ) : null}
-
               <FieldTextInput
                 className={css.password}
                 type="password"

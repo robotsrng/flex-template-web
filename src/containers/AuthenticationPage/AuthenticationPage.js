@@ -132,7 +132,9 @@ export class AuthenticationPageComponent extends Component {
     ];
 
     const handleSubmitSignup = values => {
-      const { fname, lname, ...rest } = values;
+      var { fname, lname, ...rest } = values;
+      if (!fname || this.state.accountTypeName === 'business') fname = '';
+      if (!lname || this.state.accountTypeName === 'business') lname = '';
       const params = {
         firstName: fname.trim(),
         lastName: lname.trim(),
