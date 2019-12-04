@@ -25,11 +25,12 @@ const { Money } = sdkTypes;
 export const EditListingPricingFormComponent = props => (
   <FinalForm
     {...props}
-    render={fieldRenderProps => {
+    render={formRenderProps => {
       const {
         listing,
         className,
         disabled,
+        ready,
         handleSubmit,
         intl,
         invalid,
@@ -38,6 +39,7 @@ export const EditListingPricingFormComponent = props => (
         updated,
         updateInProgress,
         fetchErrors,
+<<<<<<< HEAD
       } = fieldRenderProps;
       const currentListing = ensureOwnListing(listing);
       const isPublished =
@@ -50,6 +52,10 @@ export const EditListingPricingFormComponent = props => (
       ) : (
         <FormattedMessage id='EditListingPricingPanel.createListingTitle' />
       );
+=======
+      } = formRenderProps;
+
+>>>>>>> c0211e22... EditListingWizard: update forms to work with ready and disabled props
       const unitType = config.bookingUnitType;
       const isNightly = unitType === LINE_ITEM_NIGHT;
       const isDaily = unitType === LINE_ITEM_DAY;
@@ -96,7 +102,7 @@ export const EditListingPricingFormComponent = props => (
         : priceRequired;
 
       const classes = classNames(css.root, className);
-      const submitReady = updated && pristine;
+      const submitReady = (updated && pristine) || ready;
       const submitInProgress = updateInProgress;
       const submitDisabled = invalid || disabled || submitInProgress;
       const { updateListingError, showListingsError } = fetchErrors || {};
@@ -154,6 +160,8 @@ EditListingPricingFormComponent.propTypes = {
   intl: intlShape.isRequired,
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
+  disabled: bool.isRequired,
+  ready: bool.isRequired,
   updated: bool.isRequired,
   updateInProgress: bool.isRequired,
   fetchErrors: shape({

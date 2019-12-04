@@ -48,12 +48,14 @@ const EditListingFeaturesFormComponent = props => {
     <FinalForm
       {...props}
       mutators={{ ...arrayMutators }}
-      render={fieldRenderProps => {
+      render={formRenderProps => {
         const {
           listing,
           disabled,
+          ready,
           rootClassName,
           className,
+          name,
           handleSubmit,
           intl,
           pristine,
@@ -61,7 +63,7 @@ const EditListingFeaturesFormComponent = props => {
           updated,
           updateInProgress,
           fetchErrors,
-        } = fieldRenderProps;
+        } = formRenderProps;
         const currentListing = ensureListing(listing);
         const isPublished =
           currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
@@ -88,7 +90,7 @@ const EditListingFeaturesFormComponent = props => {
           id: 'EditListingFeaturesPanel.titleDescription',
         });
         const classes = classNames(rootClassName || css.root, className);
-        const submitReady = updated && pristine;
+        const submitReady = (updated && pristine) || ready;
         const submitInProgress = updateInProgress;
         const submitDisabled = disabled || submitInProgress;
 
@@ -185,6 +187,8 @@ EditListingFeaturesFormComponent.propTypes = {
   intl: intlShape.isRequired,
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
+  disabled: bool.isRequired,
+  ready: bool.isRequired,
   updated: bool.isRequired,
   updateInProgress: bool.isRequired,
   fetchErrors: shape({
