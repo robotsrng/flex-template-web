@@ -75,6 +75,13 @@ export const autocompleteSearchRequired = message => value => {
   return value && value.search ? VALID : message;
 };
 
+export const autocompletePlaceSelectedProfile = message => value => {
+  var selectedPlaceIsValid = true;
+  value && value.search !== ''
+    ? (selectedPlaceIsValid = value.selectedPlace && value.selectedPlace.address)
+    : (selectedPlaceIsValid = true);
+  return selectedPlaceIsValid ? VALID : message;
+};
 export const autocompletePlaceSelected = message => value => {
   const selectedPlaceIsValid =
     value &&
@@ -83,7 +90,6 @@ export const autocompletePlaceSelected = message => value => {
     value.selectedPlace.origin instanceof LatLng;
   return selectedPlaceIsValid ? VALID : message;
 };
-
 export const bookingDateRequired = inValidDateMessage => value => {
   const dateIsValid = value && value.date instanceof Date;
   return !dateIsValid ? inValidDateMessage : VALID;

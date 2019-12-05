@@ -8,6 +8,7 @@ import { ListingLink } from '../../components';
 import { EditListingLocationForm } from '../../forms';
 
 import css from './EditListingLocationPanel.css';
+import { consoleSandbox } from '@sentry/utils';
 
 class EditListingLocationPanel extends Component {
   constructor(props) {
@@ -31,7 +32,6 @@ class EditListingLocationPanel extends Component {
       publicData && publicData.location && publicData.location.address && geolocation;
     const location = publicData && publicData.location ? publicData.location : {};
     const { address, building } = location;
-
     return {
       building,
       location: locationFieldsPresent

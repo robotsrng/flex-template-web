@@ -136,13 +136,11 @@ export function uploadImage(actionPayload) {
 export const updateProfile = actionPayload => {
   return (dispatch, getState, sdk) => {
     dispatch(updateProfileRequest());
-
     const queryParams = {
       expand: true,
       include: ['profileImage'],
       'fields.image': ['variants.square-small', 'variants.square-small2x'],
     };
-
     return sdk.currentUser
       .updateProfile(actionPayload, queryParams)
       .then(response => {

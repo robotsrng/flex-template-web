@@ -9,10 +9,19 @@ import { ensureCurrentUser } from '../../util/data';
 import { propTypes } from '../../util/types';
 import * as validators from '../../util/validators';
 import { isUploadImageOverLimitError } from '../../util/errors';
-import { Form, Avatar, Button, ImageFromFile, IconSpinner, FieldTextInput } from '../../components';
+import {
+  Form,
+  Avatar,
+  Button,
+  ImageFromFile,
+  IconSpinner,
+  FieldTextInput,
+  LocationAutocompleteInputField,
+} from '../../components';
 
 import css from './ProfileSettingsForm.css';
 
+const identity = v => v;
 const ACCEPT_IMAGES = 'image/*';
 const UPLOAD_CHANGE_DELAY = 2000; // Show spinner so that browser has time to load img srcset
 
@@ -62,6 +71,13 @@ class ProfileSettingsFormComponent extends Component {
             form,
             values,
           } = fieldRenderProps;
+
+          const businessType =
+            currentUser && currentUser.attributes.profile.publicData.accountType === 'business';
+
+          const addressNotRecognizedMessage = intl.formatMessage({
+            id: 'EditListingLocationForm.addressNotRecognized',
+          });
 
           const user = ensureCurrentUser(currentUser);
 
@@ -245,52 +261,90 @@ class ProfileSettingsFormComponent extends Component {
                     );
                   }}
                 </Field>
-                <div className={css.tip}>
-                  <FormattedMessage id="ProfileSettingsForm.tip" />
-                </div>
-                <div className={css.fileInfo}>
-                  <FormattedMessage id="ProfileSettingsForm.fileInfo" />
-                </div>
               </div>
               <div className={css.sectionContainer}>
                 <h3 className={css.sectionTitle}>
-                  <FormattedMessage id="ProfileSettingsForm.yourName" />
+                  <FormattedMessage id="ProfileSettingsForm.yourInformation" />
                 </h3>
-                <div className={css.nameContainer}>
-                  <FieldTextInput
-                    className={css.firstName}
-                    type="text"
-                    id="firstName"
-                    name="firstName"
-                    label={firstNameLabel}
-                    placeholder={firstNamePlaceholder}
-                    validate={firstNameRequired}
-                  />
-                  <FieldTextInput
-                    className={css.lastName}
-                    type="text"
-                    id="lastName"
-                    name="lastName"
-                    label={lastNameLabel}
-                    placeholder={lastNamePlaceholder}
-                    validate={lastNameRequired}
-                  />
-                </div>
+
+                {businessType ? (
+                  <div>
+                    <FieldTextInput
+                      type="text"
+                      id="businessName"
+                      name="businessName"
+                      label="Business Name"
+                      placeholder="Sidesuite"
+                      validate={firstNameRequired}
+                    />
+                  </div>
+                ) : (
+                  <div className={css.nameContainer}>
+                    <FieldTextInput
+                      className={css.firstName}
+                      type="text"
+                      id="firstName"
+                      name="firstName"
+                      label="Axel"
+                      placeholder={firstNamePlaceholder}
+                      validate={firstNameRequired}
+                    />
+                    <FieldTextInput
+                      className={css.lastName}
+                      type="text"
+                      id="lastName"
+                      name="lastName"
+                      label="Whalen"
+                      placeholder={lastNamePlaceholder}
+                      validate={lastNameRequired}
+                    />
+                  </div>
+                )}
               </div>
+              <FieldTextInput
+                className={css.field}
+                type="text"
+                id="username"
+                name="username"
+                label="Username"
+                placeholder="axelwhalen"
+                validate={lastNameRequired}
+              />
               <div className={classNames(css.sectionContainer, css.lastSection)}>
-                <h3 className={css.sectionTitle}>
-                  <FormattedMessage id="ProfileSettingsForm.bioHeading" />
-                </h3>
                 <FieldTextInput
+                  className={css.field}
                   type="textarea"
                   id="bio"
                   name="bio"
                   label={bioLabel}
                   placeholder={bioPlaceholder}
                 />
-                <p className={css.bioInfo}>
-                  <FormattedMessage id="ProfileSettingsForm.bioInfo" />
-                </p>
+                <LocationAutocompleteInputField
+                  className={css.locationAddress}
+                  inputClassName={css.locationAutocompleteInput}
+                  iconClassName={css.locationAutocompleteInputIcon}
+                  predictionsClassName={css.predictionsRoot}
+                  validClassName={css.validLocation}
+                  autoFocus
+                  name="location"
+                  label="Location"
+                  placeholder="Start typing..."
+                  useDefaultPredictions={false}
+                  format={identity}
+                  valueFromForm={values.location}
+                  validate={validators.composeValidators(
+                    validators.autocompletePlaceSelectedProfile(addressNotRecognizedMessage)
+                  )}
+                />
+                <h3 className={css.sectionAccountSocialMedia}>Your verified accounts</h3>
+                <div className={css.avatarPlaceholder}>
+                  <div className={css.avatarPlaceholderText}>
+                    <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
+                  </div>
+                  <div className={css.avatarPlaceholderTextMobile}>
+                    <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
+                  </div>
+                </div>
               </div>
               {submitError}
               <Button

@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { propTypes } from '../../util/types';
-import { ensureCurrentUser } from '../../util/data';
+import { ensureCurrentUserProfile } from '../../util/data';
 import { isScrollingDisabled } from '../../ducks/UI.duck';
 import {
   Page,
@@ -28,7 +28,6 @@ const onImageUploadHandler = (values, fn) => {
     fn({ id, imageId, file });
   }
 };
-
 export class ProfileSettingsPageComponent extends Component {
   render() {
     const {
@@ -45,16 +44,30 @@ export class ProfileSettingsPageComponent extends Component {
     } = this.props;
 
     const handleSubmit = values => {
-      const { firstName, lastName, bio: rawBio } = values;
-
+      const { firstName, lastName, businessName, location, username, bio: rawBio } = values;
       // Ensure that the optional bio is a string
       const bio = rawBio || '';
-
-      const profile = {
-        firstName: firstName.trim(),
-        lastName: lastName.trim(),
-        bio,
-      };
+      const address = location || '';
+      const business = businessName || '';
+      let profile;
+      currentUser.attributes.profile.publicData.accountType === 'personal'
+        ? (profile = {
+            firstName: firstName.trim(),
+            lastName: lastName.trim(),
+            bio,
+            publicData: {
+              username: username.trim(),
+              location: address,
+            },
+          })
+        : (profile = {
+            bio,
+            displayName: business.trim(),
+            publicData: {
+              username: username.trim(),
+              location: address,
+            },
+          });
       const uploadedImage = this.props.image;
 
       // Update profileImage only if file system has been accessed
@@ -62,20 +75,28 @@ export class ProfileSettingsPageComponent extends Component {
         uploadedImage && uploadedImage.imageId && uploadedImage.file
           ? { ...profile, profileImageId: uploadedImage.imageId }
           : profile;
-
       onUpdateProfile(updatedValues);
     };
 
-    const user = ensureCurrentUser(currentUser);
-    const { firstName, lastName, bio } = user.attributes.profile;
+    const user = ensureCurrentUserProfile(currentUser);
+    const { firstName, lastName, bio, displayName, publicData } = user.attributes.profile;
+    const { location, username } = publicData;
+    console.log(publicData);
     const profileImageId = user.profileImage ? user.profileImage.id : null;
     const profileImage = image || { imageId: profileImageId };
-
     const profileSettingsForm = user.id ? (
       <ProfileSettingsForm
         className={css.form}
         currentUser={currentUser}
-        initialValues={{ firstName, lastName, bio, profileImage: user.profileImage }}
+        initialValues={{
+          firstName,
+          lastName,
+          bio,
+          location,
+          username,
+          businessName: displayName,
+          profileImage: user.profileImage,
+        }}
         profileImage={profileImage}
         onImageUpload={e => onImageUploadHandler(e, onImageUpload)}
         uploadInProgress={uploadInProgress}
