@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import css from './SocialMediaButtons.css';
-import FacebookProvider, { Login } from 'react-facebook-sdk';
+import { FacebookProvider, LoginButton } from 'react-facebook';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
@@ -44,9 +44,9 @@ const SocialMediaButtons = props => {
       </div>
       <div className={css.colButtons}>
         <FacebookProvider appId="2644611702444575">
-          <Login scope="email" onResponse={handleResponse} onError={handleError}>
+          <LoginButton scope="email" onCompleted={handleResponse} onError={handleError}>
             <button>Facebook</button>
-          </Login>
+          </LoginButton>
         </FacebookProvider>
       </div>
       <div className={css.colButtons}>
