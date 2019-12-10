@@ -7,7 +7,7 @@ import {
   LayoutWrapperFooter,
   Footer,
 } from '../../components';
-import FacebookProvider, { Login } from 'react-facebook-sdk';
+import FacebookProvider, { Login } from 'react-facebook';
 const TestPage = () => {
   const handleResponse = data => {
     console.log(data);
@@ -35,7 +35,7 @@ const TestPage = () => {
         <LayoutWrapperMain>
 
         <FacebookProvider appId="2644611702444575">
-              <Login scope="email" onResponse={handleResponse} onError={handleError}>
+              <Login scope="email" onCompleted={handleResponse} onError={handleError}>
                 <span>Login via Facebook</span>
               </Login>
             </FacebookProvider>
