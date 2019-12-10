@@ -8435,6 +8435,11 @@ node-releases@^1.1.25:
   dependencies:
     semver "^5.3.0"
 
+nodemailer@^6.4.1:
+  version "6.4.1"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.4.1.tgz#f70b40355b7b08f1f80344b353970a4f8f664370"
+  integrity sha512-mSQAzMim8XIC1DemK9TifDTIgASfoJEllG5aC1mEtZeZ+FQyrSOdGBRth6JRA1ERzHQCET3QHVSd9Kc6mh356g==
+
 nodemon@^1.17.2:
   version "1.19.1"
   resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.19.1.tgz#576f0aad0f863aabf8c48517f6192ff987cd5071"
@@ -10479,6 +10484,11 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
+react-verification-code-input@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-verification-code-input/-/react-verification-code-input-1.2.2.tgz#4b868d486c8502d5ae0250c160e8570c2057932a"
+  integrity sha512-DZcywqkqWR4jytSo2yZo8geI66i7sqzf/XSiYSfxDx0OgdYPE1wo56CoSiGeWHcnRv6gMMQ5/6rC0g78bxN3hA==
+
 react-with-direction@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/react-with-direction/-/react-with-direction-1.3.0.tgz#9885f5941aa986be753db95a41e8f3d8f8de97ff"
@@ -11902,6 +11912,11 @@ svgo@^1.0.0, svgo@^1.2.2:
     stable "^0.1.8"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+sweetalert2@^9.5.3:
+  version "9.5.3"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-9.5.3.tgz#b280e218dc387a96fa2b6175b50d75421a708f7d"
+  integrity sha512-4wzLUCmVby3NPQC8XHp0HRJgTm5tbAO7OOaqabATNe0U6JN/oyBTS7iJJG9V83MpcP6MLDUEWcGO/Y8i6g2jYw==
 
 symbol-observable@^1.0.4, symbol-observable@^1.2.0:
   version "1.2.0"

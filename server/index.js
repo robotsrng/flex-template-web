@@ -116,6 +116,7 @@ app.use('/static', express.static(path.join(buildPath, 'static')));
 // server robots.txt from the root
 app.use('/robots.txt', express.static(path.join(buildPath, 'robots.txt')));
 app.use(cookieParser());
+app.use(express.json());
 
 // Use basic authentication when not in dev mode. This is
 // intentionally after the static middleware to skip basic auth for
@@ -142,6 +143,10 @@ const noCacheHeaders = {
 // for setting up new TCP connections.
 const httpAgent = new http.Agent({ keepAlive: true });
 const httpsAgent = new https.Agent({ keepAlive: true });
+
+// Mail sender initiator
+const mailer = require('./mailSender');
+app.use('/api', mailer);
 
 app.get('*', (req, res) => {
   if (req.url.startsWith('/static/')) {

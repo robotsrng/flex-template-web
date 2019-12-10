@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import css from './SectionCalculator.css';
-import SocialMediaButtons from '../SocialMediaButtons/SocialMediaButtons';
+import { SocialMediaButtons } from '../../components';
 
 const SectionCalculator = props => {
   const { rootClassName, className, title, description } = props;

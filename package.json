@@ -11,6 +11,7 @@
     "array-includes": "^3.0.3",
     "array.prototype.find": "^2.0.4",
     "autosize": "^4.0.0",
+    "axios": "^0.19.0",
     "basic-auth": "^2.0.1",
     "body-parser": "^1.18.3",
     "classnames": "^2.2.6",
@@ -32,6 +33,7 @@
     "mapbox-gl-multitouch": "^1.0.3",
     "moment": "^2.22.2",
     "next": "^9.1.4",
+    "nodemailer": "^6.4.1",
     "object.entries": "^1.0.4",
     "object.values": "^1.0.4",
     "path-to-regexp": "^3.0.0",
@@ -51,6 +53,7 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
     "react-select": "^3.0.8",
+    "react-verification-code-input": "^1.2.2",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "seedrandom": "^3.0.3",
@@ -58,6 +61,7 @@
     "sharetribe-scripts": "3.1.1",
     "smoothscroll-polyfill": "^0.4.0",
     "source-map-support": "^0.5.9",
+    "sweetalert2": "^9.5.3",
     "url": "^0.11.0"
   },
   "devDependencies": {

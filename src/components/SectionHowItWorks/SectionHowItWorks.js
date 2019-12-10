@@ -14,7 +14,7 @@ import { NamedLink } from '../../components';
 
 import css from './SectionHowItWorks.css';
 import AccountExampleView from '../AccountExampleView/AccountExampleView';
-import SocialMediaButtons from '../SocialMediaButtons/SocialMediaButtons';
+import { SocialMediaButtons } from '../../components';
 
 const SectionHowItWorks = props => {
   const { rootClassName, className } = props;

@@ -33,7 +33,6 @@ class ProfileSettingsFormComponent extends Component {
     this.state = { uploadDelay: false };
     this.submittedValues = {};
   }
-
   componentDidUpdate(prevProps) {
     // Upload delay is additional time window where Avatar is added to the DOM,
     // but not yet visible (time to load image URL from srcset)
@@ -50,6 +49,10 @@ class ProfileSettingsFormComponent extends Component {
   }
 
   render() {
+    const addAccount = e => {
+      e.preventDefault();
+      this.props.setToggle({ toggleForm: 1 });
+    };
     return (
       <FinalForm
         {...this.props}
@@ -285,7 +288,7 @@ class ProfileSettingsFormComponent extends Component {
                       type="text"
                       id="firstName"
                       name="firstName"
-                      label="Axel"
+                      label={firstNameLabel}
                       placeholder={firstNamePlaceholder}
                       validate={firstNameRequired}
                     />
@@ -294,7 +297,7 @@ class ProfileSettingsFormComponent extends Component {
                       type="text"
                       id="lastName"
                       name="lastName"
-                      label="Whalen"
+                      label={lastNameLabel}
                       placeholder={lastNamePlaceholder}
                       validate={lastNameRequired}
                     />
@@ -307,7 +310,7 @@ class ProfileSettingsFormComponent extends Component {
                 id="username"
                 name="username"
                 label="Username"
-                placeholder="axelwhalen"
+                placeholder="Username"
                 validate={lastNameRequired}
               />
               <div className={classNames(css.sectionContainer, css.lastSection)}>
@@ -337,11 +340,11 @@ class ProfileSettingsFormComponent extends Component {
                   )}
                 />
                 <h3 className={css.sectionAccountSocialMedia}>Your verified accounts</h3>
-                <div className={css.avatarPlaceholder}>
-                  <div className={css.avatarPlaceholderText}>
+                <div className={css.accountPlaceholder} onClick={addAccount}>
+                  <div className={css.accountPlaceholderText}>
                     <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
                   </div>
-                  <div className={css.avatarPlaceholderTextMobile}>
+                  <div className={css.accountPlaceholderTextMobile}>
                     <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
                   </div>
                 </div>

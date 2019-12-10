@@ -10,8 +10,10 @@
     since browsers support CSS Properties already.
  */
 
-  --ProfileSettingsForm_avatarSize: 96px;
+  --ProfileSettingsForm_avatarSize: 100px;
   --ProfileSettingsForm_avatarSizeDesktop: 240px;
+  --ProfileSettingsForm_accountSize: 80px;
+  --ProfileSettingsForm_accountSizeDesktop: 150px;
 }
 
 .root {
@@ -149,7 +151,55 @@
     text-align: center;
   }
 }
+.accountPlaceholder {
+  /* Dimension */
+  position: relative;
+  width: var(--ProfileSettingsForm_accountSize);
+  height: var(--ProfileSettingsForm_accountSize);
 
+  /* Center content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Initial coloring */
+  background-color: var(--matterColorBright);
+  border-radius: calc(var(--ProfileSettingsForm_accountSize) / 2);
+  cursor: pointer;
+
+  @media (--viewportMedium) {
+    width: var(--ProfileSettingsForm_accountSizeDesktop);
+    height: var(--ProfileSettingsForm_accountSizeDesktop);
+    border-radius: calc(var(--ProfileSettingsForm_accountSizeDesktop) / 2);
+  }
+}
+.accountPlaceholder {
+  /* Placeholder border */
+  border-style: dashed;
+  border-color: var(--matterColorNegative);
+  border-width: 2px;
+
+  transition: var(--transitionStyleButton);
+
+  &:hover {
+    border-color: var(--matterColorAnti);
+  }
+}
+
+.accountPlaceholderTextMobile {
+  @media (--viewportMedium) {
+    display: none;
+  }
+}
+.accountPlaceholderText {
+  display: none;
+
+  @media (--viewportMedium) {
+    display: block;
+    max-width: 130px;
+    text-align: center;
+  }
+}
 .avatarUploadError {
   /* Placeholder border */
   border-style: dashed;

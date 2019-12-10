@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -16,7 +17,7 @@ import {
   Footer,
   NamedLink,
 } from '../../components';
-import { ProfileSettingsForm } from '../../forms';
+import { ProfileSettingsForm, AddAccountForm } from '../../forms';
 import { TopbarContainer } from '../../containers';
 
 import { updateProfile, uploadImage } from './ProfileSettingsPage.duck';
@@ -29,6 +30,16 @@ const onImageUploadHandler = (values, fn) => {
   }
 };
 export class ProfileSettingsPageComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { toggleForm: 1 };
+  }
+  componentDidMount() {
+    ReactDOM.findDOMNode(this).scrollIntoView();
+  }
+  updateToggle = newToggle => {
+    this.setState(newToggle);
+  };
   render() {
     const {
       currentUser,
@@ -81,7 +92,6 @@ export class ProfileSettingsPageComponent extends Component {
     const user = ensureCurrentUserProfile(currentUser);
     const { firstName, lastName, bio, displayName, publicData } = user.attributes.profile;
     const { location, username } = publicData;
-    console.log(publicData);
     const profileImageId = user.profileImage ? user.profileImage.id : null;
     const profileImage = image || { imageId: profileImageId };
     const profileSettingsForm = user.id ? (
@@ -97,6 +107,7 @@ export class ProfileSettingsPageComponent extends Component {
           businessName: displayName,
           profileImage: user.profileImage,
         }}
+        setToggle={this.updateToggle}
         profileImage={profileImage}
         onImageUpload={e => onImageUploadHandler(e, onImageUpload)}
         uploadInProgress={uploadInProgress}
@@ -104,6 +115,17 @@ export class ProfileSettingsPageComponent extends Component {
         uploadImageError={uploadImageError}
         updateProfileError={updateProfileError}
         onSubmit={handleSubmit}
+      />
+    ) : null;
+    const addAccountForm = user.id ? (
+      <AddAccountForm
+        className={css.form}
+        currentUser={currentUser}
+        setToggle={this.updateToggle}
+        onSubmit={handleSubmit}
+        initialValues={{
+          profileImage: user.profileImage,
+        }}
       />
     ) : null;
 
@@ -132,7 +154,7 @@ export class ProfileSettingsPageComponent extends Component {
                   </NamedLink>
                 ) : null}
               </div>
-              {profileSettingsForm}
+              {this.state.toggleForm === 1 ? addAccountForm : profileSettingsForm}
             </div>
           </LayoutWrapperMain>
           <LayoutWrapperFooter>

@@ -1,0 +1,15 @@
+@import '../../marketplace.css';
+
+.container {
+  margin-bottom: 75px;
+}
+.codeInputContainer {
+  display: flex;
+  justify-content: center;
+}
+.codeInputContainer div div {
+  display: flex;
+}
+.socialContainer {
+  margin-bottom: 32px;
+}
