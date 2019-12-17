@@ -154,7 +154,7 @@ export class ProfileSettingsPageComponent extends Component {
                   </NamedLink>
                 ) : null}
               </div>
-              {this.state.toggleForm === 1 ? addAccountForm : profileSettingsForm}
+              {this.state.toggleForm === 1 ? profileSettingsForm : addAccountForm}
             </div>
           </LayoutWrapperMain>
           <LayoutWrapperFooter>

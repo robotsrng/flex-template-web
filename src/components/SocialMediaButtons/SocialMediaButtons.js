@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import css from './SocialMediaButtons.css';
-import { FacebookProvider, LoginButton } from 'react-facebook';
+import { FacebookProvider, Profile, LoginButton } from 'react-facebook';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import cloudinary from 'cloudinary-core';
 
+const cloudName = 'sidesuite';
 const SocialMediaButtons = props => {
+  //Get img
+  const cloudinaryCore = new cloudinary.Cloudinary({ cloud_name: 'demo' });
+  const SampleImg = () => <img src={cloudinaryCore.url('sample')} />;
+  // Upload img
+
   const handleResponse = data => {
     Swal.fire({
       title: 'Success',
@@ -20,15 +27,16 @@ const SocialMediaButtons = props => {
       destination: props.currentUser.attributes.email,
       text: 'Your verification code is ' + verificationCode,
     };
-    axios
-      .post('/api/sendMail', mailData)
-      .then(r => {
-        console.log(r);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    props.setStateButtons(true);
+    // axios
+    //   .post('/api/sendMail', mailData)
+    //   .then(r => {
+    //     console.log(r);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+    // props.setStateButtons(true);
+    console.log(data);
   };
   const handleError = error => {
     Swal.fire({
@@ -39,13 +47,14 @@ const SocialMediaButtons = props => {
   };
   return (
     <div className={css.linkAccountContainer}>
+      {console.log(cloudinaryCore.url('sample'))}
       <div className={css.colButtons}>
         <button>Instagram</button>
       </div>
       <div className={css.colButtons}>
         <FacebookProvider appId="2644611702444575">
           <LoginButton scope="email" onCompleted={handleResponse} onError={handleError}>
-            <button>Facebook</button>
+            Facebook
           </LoginButton>
         </FacebookProvider>
       </div>

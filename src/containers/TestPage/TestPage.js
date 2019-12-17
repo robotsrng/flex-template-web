@@ -7,7 +7,7 @@ import {
   LayoutWrapperFooter,
   Footer,
 } from '../../components';
-import FacebookProvider, { Login } from 'react-facebook';
+import { FacebookProvider, Login } from 'react-facebook';
 const TestPage = () => {
   const handleResponse = data => {
     console.log(data);
