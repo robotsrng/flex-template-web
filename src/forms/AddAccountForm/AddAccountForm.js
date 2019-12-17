@@ -15,7 +15,7 @@ const AddAccountFormComponent = props => {
   const [verificationCode, setVerificationCode] = useState();
   const handleFinishedEditing = e => {
     e.preventDefault();
-    props.setToggle({ toggleForm: 2 });
+    props.setToggle({ toggleForm: 1 });
   };
   const handleOnComplete = e => {
     console.log(e);

@@ -51,7 +51,7 @@ class ProfileSettingsFormComponent extends Component {
   render() {
     const addAccount = e => {
       e.preventDefault();
-      this.props.setToggle({ toggleForm: 1 });
+      this.props.setToggle({ toggleForm: 2 });
     };
     return (
       <FinalForm
