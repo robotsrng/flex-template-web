@@ -12,9 +12,10 @@ import {
   LISTING_PAGE_PARAM_TYPE_NEW,
   LISTING_PAGE_PARAM_TYPES,
 } from '../../util/urlHelpers';
-import { ensureListing } from '../../util/data';
+import { ensureCurrentUser, ensureListing } from '../../util/data';
 
-import { Modal, NamedRedirect, Tabs } from '../../components';
+import { Modal, NamedRedirect, Tabs, StripeConnectAccountStatusBox } from '../../components';
+import { StripeConnectAccountForm } from '../../forms';
 
 import EditListingWizardTab, {
   AVAILABILITY,
@@ -386,7 +387,47 @@ class EditListingWizard extends Component {
             <p className={css.modalMessage}>
               <FormattedMessage id="EditListingPhotosPanel.payoutModalInfo" />
             </p>
-            <p>TODO: Connect Onboarding flow</p>
+            {!currentUserLoaded ? (
+              <FormattedMessage id="StripePayoutPage.loadingData" />
+            ) : (
+              <StripeConnectAccountForm
+                disabled={formDisabled}
+                inProgress={payoutDetailsSaveInProgress}
+                ready={payoutDetailsSaved}
+                stripeBankAccountLastDigits={getBankAccountLast4Digits(stripeAccountData)}
+                savedCountry={savedCountry}
+                submitButtonText={intl.formatMessage({
+                  id: 'StripePayoutPage.submitButtonText',
+                })}
+                stripeAccountError={
+                  createStripeAccountError || updateStripeAccountError || fetchStripeAccountError
+                }
+                stripeAccountFetched={stripeAccountFetched}
+                onChange={onPayoutDetailsFormChange}
+                onSubmit={rest.onPayoutDetailsSubmit}
+                onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink}
+                stripeConnected={stripeConnected}
+              >
+                {stripeConnected && (showVerificationError || showVerificationNeeded) ? (
+                  <StripeConnectAccountStatusBox
+                    type={showVerificationError ? 'verificationError' : 'verificationNeeded'}
+                    inProgress={getAccountLinkInProgress}
+                    onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink(
+                      'custom_account_verification'
+                    )}
+                  />
+                ) : stripeConnected && savedCountry ? (
+                  <StripeConnectAccountStatusBox
+                    type="verificationSuccess"
+                    inProgress={getAccountLinkInProgress}
+                    disabled={payoutDetailsSaveInProgress}
+                    onGetStripeConnectAccountLink={handleGetStripeConnectAccountLink(
+                      'custom_account_update'
+                    )}
+                  />
+                ) : null}
+              </StripeConnectAccountForm>
+            )}
           </div>
         </Modal>
       </div>

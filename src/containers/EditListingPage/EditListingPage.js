@@ -19,7 +19,9 @@ import { manageDisableScrolling, isScrollingDisabled } from '../../ducks/UI.duck
 import {
   stripeAccountClearError,
   createStripeAccount,
+  getStripeConnectAccountLink,
 } from '../../ducks/stripeConnectAccount.duck';
+
 import { EditListingWizard, NamedRedirect, Page } from '../../components';
 import { TopbarContainer } from '../../containers';
 

@@ -938,7 +938,7 @@
   "StripeConnectAccountForm.countryRequired": "This field is required",
   "StripeConnectAccountForm.createStripeAccountFailed": "Whoops, something went wrong. Please try again.",
   "StripeConnectAccountForm.createStripeAccountFailedWithStripeError": "Whoops, something went wrong. Stripe returned an error message: \"{stripeMessage}\"",
-  "StripeConnectAccountForm.loadingStripeAccountData": "Fetching payout details",
+  "StripeConnectAccountForm.loadingStripeAccountData": "Fetching payout details…",
   "StripePayoutPage.heading": "Payout details",
   "StripePayoutPage.loadingData": "Loading data…",
   "StripePayoutPage.stripeNotConnected": "Payment information not saved. Please fill in the form to accept payments from your listings.",
