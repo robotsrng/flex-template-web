@@ -9,7 +9,7 @@ import { ensureListing, ensureUser } from '../../util/data';
 import { richText } from '../../util/richText';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
-import { NamedLink, ResponsiveImage } from '../../components';
+import { NamedLink, ResponsiveImage, AccountExampleView } from '../../components';
 
 import css from './ListingCard.css';
 
@@ -52,7 +52,7 @@ export const ListingCardComponent = props => {
   const authorName = author.attributes.profile.displayName;
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
-
+  console.log(currentListing);
   const { formattedPrice, priceTitle } = priceData(price, intl);
 
   const unitType = config.bookingUnitType;
@@ -64,10 +64,19 @@ export const ListingCardComponent = props => {
     : isDaily
     ? 'ListingCard.perDay'
     : 'ListingCard.perUnit';
-
   return (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
-      <div
+      <div className={css.accountContainer}>
+        <AccountExampleView
+          img={firstImage.attributes.variants['scaled-small'].url}
+          postTitle={title}
+          postUsername={authorName}
+          postFollowerAmmount="120 followers"
+          postValue={priceTitle}
+          postSocialMedia="Instagram"
+        />
+      </div>
+      {/* <div
         className={css.threeToTwoWrapper}
         onMouseEnter={() => setActiveListing(currentListing.id)}
         onMouseLeave={() => setActiveListing(null)}
@@ -102,7 +111,7 @@ export const ListingCardComponent = props => {
             <FormattedMessage id="ListingCard.hostedBy" values={{ authorName }} />
           </div>
         </div>
-      </div>
+      </div> */}
     </NamedLink>
   );
 };

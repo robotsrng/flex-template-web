@@ -4,22 +4,25 @@ import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { Field, Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import { compose } from 'redux';
-import { Form, Button, SocialMediaButtons } from '../../components';
+import { Form, Button, SocialMediaButtons, AccountExampleView } from '../../components';
 import CodeInput from 'react-verification-code-input';
 import Swal from 'sweetalert2';
 
+import { updateSocialAccount } from '../../containers/ProfileSettingsPage/ProfileSettingsPage.duck';
 import css from './AddAccountForm.css';
 
 const AddAccountFormComponent = props => {
+  const [newAccount, setNewAccount] = useState();
+  const [accountList, setAccountList] = useState([]);
   const [showVerification, setShowVerification] = useState(false);
   const [verificationCode, setVerificationCode] = useState();
+  const test = { publicData: { age: 27 } };
+  updateSocialAccount(test);
   const handleFinishedEditing = e => {
     e.preventDefault();
     props.setToggle({ toggleForm: 1 });
   };
   const handleOnComplete = e => {
-    console.log(e);
-    console.log(verificationCode);
     if (e === verificationCode) {
       Swal.fire({
         icon: 'success',
@@ -27,6 +30,12 @@ const AddAccountFormComponent = props => {
         showConfirmButton: false,
         timer: 2500,
       });
+      if (accountList) {
+        setAccountList([...accountList, newAccount]);
+      } else setAccountList([newAccount]);
+      console.log(accountList);
+      const updateUser = { publicData: accountList };
+      updateSocialAccount(updateUser);
       setShowVerification(false);
     } else {
       Swal.fire({
@@ -53,6 +62,8 @@ const AddAccountFormComponent = props => {
                   setVerificationCode={setVerificationCode}
                   stateButtons={showVerification}
                   setStateButtons={setShowVerification}
+                  newAccount={newAccount}
+                  setNewAccount={setNewAccount}
                 />
               </div>
               <div className={css.codeInputContainer}>
@@ -60,8 +71,18 @@ const AddAccountFormComponent = props => {
                   <CodeInput classNamecss={css.codeInput} onComplete={handleOnComplete} />
                 ) : null}
               </div>
+              {accountList.map(options => {
+                return (
+                  <AccountExampleView
+                    postUsername={options.Facebook.username}
+                    postFollowerAmmount="450 Friends"
+                    img={options.Facebook.picture}
+                    cssImg="Circle"
+                  />
+                );
+              })}
             </div>
-            <Button className={css.submitButton} type="button" onClick={handleFinishedEditing}>
+            <Button className={css.submitButton} type="submit" onClick={handleFinishedEditing}>
               Finished editing
             </Button>
           </Form>

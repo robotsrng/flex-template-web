@@ -10,10 +10,9 @@ import companyFirstImg from './img/FourthImg.png';
 import companySecondImg from './img/FifthImg.png';
 import linkAccountImg from './img/LinkAccountImg.jpg';
 
-import { NamedLink } from '../../components';
+import { NamedLink, AccountExampleView } from '../../components';
 
 import css from './SectionHowItWorks.css';
-import AccountExampleView from '../AccountExampleView/AccountExampleView';
 import { SocialMediaButtons } from '../../components';
 
 const SectionHowItWorks = props => {

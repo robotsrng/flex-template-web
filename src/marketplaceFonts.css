@@ -44,7 +44,7 @@
   --marketplaceBodyFontStyles: {
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
     font-weight: var(--fontWeightLight);
-    font-size: 19px;
+    font-size: 14px;
     line-height: 24px;
     letter-spacing: -0.1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
@@ -111,7 +111,7 @@
 
   --marketplaceH1FontStyles: {
     font-weight: var(--fontWeightLight);
-    font-size: 40px;
+    font-size: 28px;
     line-height: 52px;
     letter-spacing: -1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */

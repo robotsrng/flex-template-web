@@ -4,6 +4,7 @@ import { FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { NamedLink } from '../../components';
 
+import searchIcon from './img/SearchIcon.png';
 import css from './SectionHero.css';
 
 const SectionHero = props => {
@@ -27,6 +28,8 @@ const SectionHero = props => {
           }}
           className={css.heroButton}
         >
+          <img src={searchIcon} className={css.searchIcon} />
+          &nbsp;&nbsp;&nbsp;&nbsp;
           <FormattedMessage id="SectionHero.browseButton" />
         </NamedLink>
       </div>

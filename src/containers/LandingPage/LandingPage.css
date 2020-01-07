@@ -10,7 +10,7 @@
     since browsers support CSS Properties already.
  */
 
-  --LandingPage_sectionMarginTop: 40px;
+  --LandingPage_sectionMarginTop: 10px;
   --LandingPage_sectionMarginTopMedium: 60px;
   --LandingPage_sectionMarginTopLarge: 94px;
 }
@@ -25,7 +25,7 @@
   display: flex;
   flex-direction: column;
   min-height: 300px;
-  height: 92.5vh;
+  height: 80.5vh;
   padding: 0;
 
   @media (--viewportMedium) {
@@ -73,7 +73,7 @@
 }
 
 /* Every other section has a light background */
-.section:nth-of-type(2n) {
+.section:nth-of-type(3n) {
   background-color: var(--matterColorLight);
   @media (--viewportMedium) {
     border-radius: 4px;
@@ -81,11 +81,11 @@
 }
 
 .sectionContent {
-  margin: var(--LandingPage_sectionMarginTop) 24px 51px 24px;
+  margin: var(--LandingPage_sectionMarginTop) 20px 51px;
 
   @media (--viewportMedium) {
     max-width: 100%;
-    margin: var(--LandingPage_sectionMarginTopMedium) 24px 60px 24px;
+    margin: var(--LandingPage_sectionMarginTopMedium) 24px 60px;
   }
 
   @media (--viewportLarge) {
@@ -105,7 +105,7 @@
   margin-top: 3vh;
 }
 
-/* A bar on top of light sections */
+/* A bar on top of light sections
 .section:nth-of-type(2n) .sectionContent::before {
   background: var(--marketplaceColor);
   content: '';
@@ -113,7 +113,7 @@
   width: 109px;
   height: 6px;
 
-  /* Place the bar on top of .sectionContent top margin */
+  /* Place the bar on top of .sectionContent top margin */ /*
   position: relative;
   top: calc(-1 * var(--LandingPage_sectionMarginTop));
 
@@ -126,4 +126,4 @@
   @media (--viewportLarge) {
     top: calc(-1 * var(--LandingPage_sectionMarginTopLarge));
   }
-}
+}*/

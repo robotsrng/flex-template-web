@@ -171,14 +171,15 @@
     @apply --marketplaceButtonFontStyles;
 
     /* Dimensions */
-    display: block;
+    display: inline-flex;
     width: 100%;
     min-height: 59px;
     margin: 0;
 
     /* Padding is only for <a> elements where button styles are applied,
 		buttons elements should have zero padding */
-    padding: 20px 0 0 0;
+    align-items: center;
+    justify-content: center;
 
     /* Borders */
     border: none;

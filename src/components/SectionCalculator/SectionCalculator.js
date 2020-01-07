@@ -20,8 +20,8 @@ const SectionCalculator = props => {
       </div>
       <SocialMediaButtons />
       <div className={css.calculatorInput}>
-        <p>Username</p>
-        <input></input>
+        <p className={css.inputTitle}>Username</p>
+        <input placeholder="username"></input>
         <a className={css.button}>Calculate</a>
       </div>
     </div>

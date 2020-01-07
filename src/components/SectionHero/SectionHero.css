@@ -73,7 +73,7 @@
 .heroMainTitle {
   @apply --marketplaceHeroTitleFontStyles;
   color: var(--matterColorLight);
-  font-size: 64px;
+  font-size: 50px;
   line-height: 70px;
   margin-bottom: 50px;
 
@@ -88,7 +88,7 @@
 .heroSubTitle {
   @apply --marketplaceBodyFontStyles;
 
-  color: var(--matterColorLight);
+  color: var(--matterColorAnti);
   margin: 0 0 60px 0;
 
   @apply --SectionHero_animation;
@@ -110,4 +110,9 @@
     display: block;
     width: 260px;
   }
+}
+
+.searchIcon {
+  height: 20px;
+  vertical-align: bottom;
 }

@@ -32,5 +32,9 @@ input {
 
 .calculatorInput input,
 .description {
-  margin-bottom: 50px;
+  margin-bottom: 25px;
+}
+.inputTitle {
+  font-size: 16px;
+  color: var(--matterColor);
 }

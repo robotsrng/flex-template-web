@@ -19,42 +19,42 @@ const SectionExplanation = props => {
     <div className={classes}>
       <div className={css.container}>
         <div className={css.title}>
-          <FormattedMessage id='SectionExplanation.title' />
+          Sidesuite is the <br></br> marketplace for your social <br></br> media content.
         </div>
         <p className={css.subtitle}>
-          <FormattedMessage id='SectionExplanation.subTitle' />
+          <FormattedMessage id="SectionExplanation.subTitle" />
         </p>
         <div className={css.accountContainer}>
           <AccountExampleView
             img={firstImg}
-            postTitle={<FormattedMessage id='AccountExampleViewInfluencer.postTitle' />}
-            postUsername={<FormattedMessage id='AccountExampleViewInfluencer.postUsername' />}
+            postTitle={<FormattedMessage id="AccountExampleViewInfluencer.postTitle" />}
+            postUsername={<FormattedMessage id="AccountExampleViewInfluencer.postUsername" />}
             postFollowerAmmount={
-              <FormattedMessage id='AccountExampleViewInfluencer.postFollowerAmmount' />
+              <FormattedMessage id="AccountExampleViewInfluencer.postFollowerAmmount" />
             }
-            postValue={<FormattedMessage id='AccountExampleViewInfluencer.postValue' />}
+            postValue={<FormattedMessage id="AccountExampleViewInfluencer.postValue" />}
           />
         </div>
         <div className={css.accountContainer}>
           <AccountExampleView
             img={secondImg}
-            postTitle={<FormattedMessage id='AccountExampleViewInfluencer.postTitle' />}
-            postUsername={<FormattedMessage id='AccountExampleViewInfluencer.postUsername' />}
+            postTitle={<FormattedMessage id="AccountExampleViewInfluencer.postTitle" />}
+            postUsername={<FormattedMessage id="AccountExampleViewInfluencer.postUsername" />}
             postFollowerAmmount={
-              <FormattedMessage id='AccountExampleViewInfluencer.postFollowerAmmount' />
+              <FormattedMessage id="AccountExampleViewInfluencer.postFollowerAmmount" />
             }
-            postValue={<FormattedMessage id='AccountExampleViewInfluencer.postValue' />}
+            postValue={<FormattedMessage id="AccountExampleViewInfluencer.postValue" />}
           />
         </div>
         <div className={css.accountContainer}>
           <AccountExampleView
             img={thirdImg}
-            postTitle={<FormattedMessage id='AccountExampleViewInfluencer.postTitle' />}
-            postUsername={<FormattedMessage id='AccountExampleViewInfluencer.postUsername' />}
+            postTitle={<FormattedMessage id="AccountExampleViewInfluencer.postTitle" />}
+            postUsername={<FormattedMessage id="AccountExampleViewInfluencer.postUsername" />}
             postFollowerAmmount={
-              <FormattedMessage id='AccountExampleViewInfluencer.postFollowerAmmount' />
+              <FormattedMessage id="AccountExampleViewInfluencer.postFollowerAmmount" />
             }
-            postValue={<FormattedMessage id='AccountExampleViewInfluencer.postValue' />}
+            postValue={<FormattedMessage id="AccountExampleViewInfluencer.postValue" />}
           />
         </div>
       </div>
