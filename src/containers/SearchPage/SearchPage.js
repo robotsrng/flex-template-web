@@ -54,7 +54,8 @@ export class SearchPageComponent extends Component {
   filters() {
     const {
       categories,
-      amenities,
+      postCategories,
+      socialMedias,
       priceFilterConfig,
       dateRangeFilterConfig,
       keywordFilterConfig,
@@ -72,8 +73,9 @@ export class SearchPageComponent extends Component {
       },
       amenitiesFilter: {
         paramName: 'pub_amenities',
-        options: amenities,
+        options: postCategories,
       },
+      socialMediasFilter: { paramName: 'pub_socialMedias', options: socialMedias },
       priceFilter: {
         paramName: 'price',
         config: priceFilterConfig,
@@ -232,6 +234,9 @@ export class SearchPageComponent extends Component {
               dateRangeFilter: filters.dateRangeFilter,
               keywordFilter: filters.keywordFilter,
             }}
+            secondaryFilters={{
+              socialMediasFilter: filters.socialMediasFilter,
+            }}
           />
           <ModalInMobile
             className={css.mapPanel}
@@ -275,7 +280,8 @@ SearchPageComponent.defaultProps = {
   searchParams: {},
   tab: 'listings',
   categories: config.custom.categories,
-  amenities: config.custom.amenities,
+  postCategories: config.custom.postCategories,
+  socialMedias: config.custom.socialMedias,
   priceFilterConfig: config.custom.priceFilterConfig,
   dateRangeFilterConfig: config.custom.dateRangeFilterConfig,
   keywordFilterConfig: config.custom.keywordFilterConfig,
@@ -295,7 +301,8 @@ SearchPageComponent.propTypes = {
   searchParams: object,
   tab: oneOf(['filters', 'listings', 'map']).isRequired,
   categories: array,
-  amenities: array,
+  postCategories: array,
+  socialMedias: array,
   priceFilterConfig: shape({
     min: number.isRequired,
     max: number.isRequired,

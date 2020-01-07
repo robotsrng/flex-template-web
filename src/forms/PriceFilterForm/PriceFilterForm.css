@@ -74,14 +74,17 @@
 
 .inputsWrapper {
   display: flex;
+  justify-content: space-between;
+}
+.col {
+  display: flex;
 }
 
 .minPrice {
   @apply --marketplaceSearchFilterSublabelFontStyles;
   width: 48px;
-  text-align: center;
-  border-bottom-color: var(--attentionColor);
-  border-bottom-width: 3px;
+  text-align: left;
+  border: none;
 
   -moz-appearance: textfield;
   &::-webkit-inner-spin-button,
@@ -92,10 +95,9 @@
 }
 .maxPrice {
   @apply --marketplaceSearchFilterSublabelFontStyles;
-  width: 48px;
-  text-align: center;
-  border-bottom-color: var(--attentionColor);
-  border-bottom-width: 3px;
+  width: 60px;
+  text-align: right;
+  border: none;
 
   -moz-appearance: textfield;
   &::-webkit-inner-spin-button,
@@ -106,7 +108,8 @@
 }
 
 .priceSeparator {
-  margin: 4px 8px 0 8px;
+  margin: 5px 0;
+  color: black;
 }
 
 @media (--viewportMedium) {

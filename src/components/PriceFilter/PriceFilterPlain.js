@@ -67,7 +67,7 @@ class PriceFilterPlainComponent extends Component {
       <div className={classes}>
         <div className={labelClass}>
           <button type="button" className={css.labelButton} onClick={this.toggleIsOpen}>
-            <span className={labelClass}>{labelText}</span>
+            <span className={labelClass}>Price</span>
           </button>
           <button type="button" className={css.clearButton} onClick={this.handleClear}>
             <FormattedMessage id={'PriceFilter.clear'} />

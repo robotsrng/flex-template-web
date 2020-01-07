@@ -53,6 +53,21 @@ export const postCategories = [
   },
 ];
 
+export const socialMedias = [
+  { key: 'instagram', label: 'Instagram' },
+  { key: 'facebook', label: 'Facebook' },
+  { key: 'snapchat', label: 'Snapchat' },
+  { key: 'vsco', label: 'Vsco' },
+  { key: 'pinterest', label: 'Pinterest' },
+  { key: 'linkedIn', label: 'LinkedIn' },
+  { key: 'podcast', label: 'Podcast' },
+  { key: 'tiktok', label: 'Tiktok' },
+  { key: 'youtube', label: 'Youtube' },
+  { key: 'vimeo', label: 'Vimeo' },
+  { key: 'twitch', label: 'Twitch' },
+  { key: 'blog', label: 'Blog' },
+];
+
 export const categories = [
   { key: 'smoke', label: 'Smoke' },
   { key: 'electric', label: 'Electric' },
@@ -64,7 +79,7 @@ export const categories = [
 // Note: unlike most prices this is not handled in subunits
 export const priceFilterConfig = {
   min: 0,
-  max: 1000,
+  max: 100000,
   step: 5,
 };
 

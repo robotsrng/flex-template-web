@@ -70,6 +70,7 @@ const SearchFiltersComponent = props => {
     categoryFilter,
     amenitiesFilter,
     priceFilter,
+    socialMediasFilter,
     dateRangeFilter,
     keywordFilter,
     isSearchFiltersPanelOpen,
@@ -78,7 +79,6 @@ const SearchFiltersComponent = props => {
     history,
     intl,
   } = props;
-
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
   const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
 
@@ -94,8 +94,16 @@ const SearchFiltersComponent = props => {
     id: 'SearchFilters.keywordLabel',
   });
 
+  const socialMediasLabel = intl.formatMessage({
+    id: 'SearchFilters.socialMediasLabel',
+  });
+
   const initialAmenities = amenitiesFilter
     ? initialValues(urlQueryParams, amenitiesFilter.paramName)
+    : null;
+
+  const initialSocialMedias = socialMediasFilter
+    ? initialValues(urlQueryParams, socialMediasFilter.paramName)
     : null;
 
   const initialCategory = categoryFilter
@@ -177,6 +185,20 @@ const SearchFiltersComponent = props => {
     />
   ) : null;
 
+  const socialMediasFilterElement = socialMediasFilter ? (
+    <SelectMultipleFilter
+      id={'SearchFilters.socialMediasFilter'}
+      name="socialMedias"
+      urlParam={socialMediasFilter.paramName}
+      label={socialMediasLabel}
+      onSubmit={handleSelectOptions}
+      showAsPopup
+      options={socialMediasFilter.options}
+      initialValues={initialSocialMedias}
+      contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
+    />
+  ) : null;
+
   const amenitiesFilterElement = amenitiesFilter ? (
     <SelectMultipleFilter
       id={'SearchFilters.amenitiesFilter'}
@@ -249,10 +271,9 @@ const SearchFiltersComponent = props => {
   return (
     <div className={classes}>
       <div className={css.filters}>
-        {categoryFilterElement}
+        {socialMediasFilterElement}
         {amenitiesFilterElement}
         {priceFilterElement}
-        {dateRangeFilterElement}
         {keywordFilterElement}
         {toggleSearchFiltersPanelButton}
       </div>

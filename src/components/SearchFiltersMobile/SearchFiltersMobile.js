@@ -194,6 +194,7 @@ class SearchFiltersMobileComponent extends Component {
       selectedFiltersCount,
       categoryFilter,
       amenitiesFilter,
+      socialMediasFilter,
       priceFilter,
       dateRangeFilter,
       keywordFilter,
@@ -232,6 +233,23 @@ class SearchFiltersMobileComponent extends Component {
         options={categoryFilter.options}
         initialValue={initialCategory}
         intl={intl}
+      />
+    ) : null;
+
+    const socialMediasLabel = intl.formatMessage({ id: 'SearchFilters.socialMediasLabel' });
+
+    const initialSocialMedias = this.initialValues(socialMediasFilter.paramName);
+
+    const socialMediasFilterElement = socialMediasFilter ? (
+      <SelectMultipleFilter
+        id="SearchFiltersMobile.socialMediasFilter"
+        name="socialMedias"
+        urlParam={socialMediasFilter.paramName}
+        label={socialMediasLabel}
+        onSubmit={this.handleSelectMultiple}
+        liveEdit
+        options={socialMediasFilter.options}
+        initialValues={initialSocialMedias}
       />
     ) : null;
 
@@ -329,11 +347,9 @@ class SearchFiltersMobileComponent extends Component {
           </div>
           {this.state.isFiltersOpenOnMobile ? (
             <div className={css.filtersWrapper}>
-              {keywordFilterElement}
-              {categoryFilterElement}
+              {socialMediasFilterElement}
               {amenitiesFilterElement}
               {priceFilterElement}
-              {dateRangeFilterElement}
             </div>
           ) : null}
 

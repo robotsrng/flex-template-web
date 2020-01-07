@@ -112,7 +112,6 @@ const PriceFilterFormComponent = props => {
           [css.plain]: !showAsPopup,
           [css.isOpen]: !showAsPopup && isOpen,
         });
-
         return (
           <Form
             className={classes}
@@ -121,11 +120,21 @@ const PriceFilterFormComponent = props => {
             contentRef={contentRef}
             style={{ minWidth: '300px', ...style }}
           >
-            <div className={css.contentWrapper}>
-              <span className={css.label}>
-                <FormattedMessage id="PriceFilterForm.label" />
-              </span>
-              <div className={css.inputsWrapper}>
+            <div className={css.sliderWrapper}>
+              <RangeSlider
+                min={min}
+                max={max}
+                step={step}
+                handles={[minPrice, maxPrice]}
+                onChange={handles => {
+                  form.change('minPrice', handles[0]);
+                  form.change('maxPrice', handles[1]);
+                }}
+              />
+            </div>
+            <div className={css.inputsWrapper}>
+              <div className={css.col}>
+                <span className={css.priceSeparator}>Min:$</span>
                 <Field
                   className={css.minPrice}
                   id={`${id}.minPrice`}
@@ -138,7 +147,9 @@ const PriceFilterFormComponent = props => {
                   step={step}
                   parse={parseMin(min, maxPrice)}
                 />
-                <span className={css.priceSeparator}>-</span>
+              </div>
+              <div className={css.col}>
+                <span className={css.priceSeparator}>Max:$</span>
                 <Field
                   className={css.maxPrice}
                   id={`${id}.maxPrice`}
@@ -152,19 +163,6 @@ const PriceFilterFormComponent = props => {
                   parse={parseMax(max, minPrice)}
                 />
               </div>
-            </div>
-
-            <div className={css.sliderWrapper}>
-              <RangeSlider
-                min={min}
-                max={max}
-                step={step}
-                handles={[minPrice, maxPrice]}
-                onChange={handles => {
-                  form.change('minPrice', handles[0]);
-                  form.change('maxPrice', handles[1]);
-                }}
-              />
             </div>
 
             {liveEdit ? (

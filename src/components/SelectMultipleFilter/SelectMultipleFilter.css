@@ -59,13 +59,21 @@
   margin: 0;
 }
 
-.item {
-  padding: 2px 0;
+.linkAccountContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.colButtons button {
+  @apply --marketplaceButtonStyles;
+  font-size: 14px;
+  height: 25px;
+  padding: 0 10px;
+  min-height: 30px;
+  margin: 5px 0;
+}
 
-  /* Fix broken multi-column layout in Chrome */
-  page-break-inside: avoid;
-
-  @media (--viewportMedium) {
-    padding: 4px 0;
-  }
+.colButtons {
+  margin: 5px 5px;
 }

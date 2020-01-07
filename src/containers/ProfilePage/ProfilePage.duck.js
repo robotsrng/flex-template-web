@@ -127,7 +127,7 @@ export const queryUserListings = userId => (dispatch, getState, sdk) => {
     .query({
       author_id: userId,
       include: ['author', 'images'],
-      'fields.image': ['variants.landscape-crop', 'variants.landscape-crop2x'],
+      'fields.image': ['variants.scaled-small'],
     })
     .then(response => {
       // Pick only the id and type properties from the response listings

@@ -105,7 +105,7 @@ class SelectMultipleFilter extends Component {
       const usedValue = values ? values[name] : values;
       onSubmit(urlParam, usedValue);
     };
-
+    console.log(options);
     return showAsPopup ? (
       <FilterPopup
         className={classes}
