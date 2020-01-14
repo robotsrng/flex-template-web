@@ -80,9 +80,9 @@
   display: flex;
 }
 
-.minPrice {
+.minFollower {
   @apply --marketplaceSearchFilterSublabelFontStyles;
-  width: 60px;
+  width: 70px;
   text-align: left;
   border: none;
 
@@ -93,9 +93,9 @@
     margin: 0;
   }
 }
-.maxPrice {
+.maxFollower {
   @apply --marketplaceSearchFilterSublabelFontStyles;
-  width: 60px;
+  width: 70px;
   text-align: right;
   border: none;
 
@@ -107,7 +107,7 @@
   }
 }
 
-.priceSeparator {
+.followerSeparator {
   margin: 5px 0;
   color: black;
 }

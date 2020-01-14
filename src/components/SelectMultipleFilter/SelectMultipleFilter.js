@@ -15,14 +15,22 @@ const GroupOfFieldCheckboxes = props => {
   return (
     <fieldset className={className}>
       <ul className={css.list}>
-        {options.map((option, index) => {
-          const fieldId = `${id}.${option.key}`;
-          return (
-            <li key={fieldId} className={css.item}>
-              <FieldCheckbox id={fieldId} name={name} label={option.label} value={option.key} />
-            </li>
-          );
-        })}
+        <div className={css.container}>
+          {options.map((option, index) => {
+            const fieldId = `${id}.${option.key}`;
+            return (
+              <li key={fieldId} className={css.item}>
+                <FieldCheckbox
+                  className={css.checkbox}
+                  id={fieldId}
+                  name={name}
+                  label={option.label}
+                  value={option.key}
+                />
+              </li>
+            );
+          })}
+        </div>
       </ul>
     </fieldset>
   );
@@ -105,7 +113,6 @@ class SelectMultipleFilter extends Component {
       const usedValue = values ? values[name] : values;
       onSubmit(urlParam, usedValue);
     };
-    console.log(options);
     return showAsPopup ? (
       <FilterPopup
         className={classes}

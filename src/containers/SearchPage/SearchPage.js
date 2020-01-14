@@ -57,6 +57,7 @@ export class SearchPageComponent extends Component {
       postCategories,
       socialMedias,
       priceFilterConfig,
+      followerFilterConfig,
       dateRangeFilterConfig,
       keywordFilterConfig,
     } = this.props;
@@ -71,14 +72,18 @@ export class SearchPageComponent extends Component {
         paramName: 'pub_category',
         options: categories,
       },
-      amenitiesFilter: {
-        paramName: 'pub_amenities',
+      postCategoriesFilter: {
+        paramName: 'pub_postCategoriesList',
         options: postCategories,
       },
-      socialMediasFilter: { paramName: 'pub_socialMedias', options: socialMedias },
+      socialMediasFilter: { paramName: 'pub_offering', options: socialMedias },
       priceFilter: {
         paramName: 'price',
         config: priceFilterConfig,
+      },
+      followerFilter: {
+        paramName: 'pub_follower',
+        config: followerFilterConfig,
       },
       dateRangeFilter: {
         paramName: 'dates',
@@ -229,13 +234,12 @@ export class SearchPageComponent extends Component {
             showAsModalMaxWidth={MODAL_BREAKPOINT}
             primaryFilters={{
               categoryFilter: filters.categoryFilter,
-              amenitiesFilter: filters.amenitiesFilter,
+              postCategoriesFilter: filters.postCategoriesFilter,
+              socialMediasFilter: filters.socialMediasFilter,
               priceFilter: filters.priceFilter,
+              followerFilter: filters.followerFilter,
               dateRangeFilter: filters.dateRangeFilter,
               keywordFilter: filters.keywordFilter,
-            }}
-            secondaryFilters={{
-              socialMediasFilter: filters.socialMediasFilter,
             }}
           />
           <ModalInMobile
@@ -283,6 +287,7 @@ SearchPageComponent.defaultProps = {
   postCategories: config.custom.postCategories,
   socialMedias: config.custom.socialMedias,
   priceFilterConfig: config.custom.priceFilterConfig,
+  followerFilterConfig: config.custom.followerFilterConfig,
   dateRangeFilterConfig: config.custom.dateRangeFilterConfig,
   keywordFilterConfig: config.custom.keywordFilterConfig,
   activeListingId: null,
@@ -304,6 +309,11 @@ SearchPageComponent.propTypes = {
   postCategories: array,
   socialMedias: array,
   priceFilterConfig: shape({
+    min: number.isRequired,
+    max: number.isRequired,
+    step: number.isRequired,
+  }),
+  followerFilterConfig: shape({
     min: number.isRequired,
     max: number.isRequired,
     step: number.isRequired,
@@ -385,7 +395,7 @@ SearchPage.loadData = (params, search) => {
     page,
     perPage: RESULT_PAGE_SIZE,
     include: ['author', 'images'],
-    'fields.listing': ['title', 'geolocation', 'price'],
+    'fields.listing': ['title', 'geolocation', 'price', 'publicData'],
     'fields.user': ['profile.displayName', 'profile.abbreviatedName'],
     'fields.image': ['variants.scaled-small'],
     'limit.images': 1,

@@ -53,7 +53,9 @@ export const ListingCardComponent = props => {
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
   const { formattedPrice, priceTitle } = priceData(price, intl);
-  console.log(firstImage);
+  const offering = currentListing.attributes.publicData.offering.replace(/^\w/, c =>
+    c.toUpperCase()
+  );
   const unitType = config.bookingUnitType;
   const isNightly = unitType === LINE_ITEM_NIGHT;
   const isDaily = unitType === LINE_ITEM_DAY;
@@ -72,7 +74,7 @@ export const ListingCardComponent = props => {
           postUsername={authorName}
           postFollowerAmmount="120 followers"
           postValue={priceTitle}
-          postSocialMedia="Instagram"
+          postSocialMedia={offering}
         />
       </div>
       {/* <div

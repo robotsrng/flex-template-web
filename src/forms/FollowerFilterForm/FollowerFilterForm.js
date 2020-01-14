@@ -6,7 +6,7 @@ import { Field, Form as FinalForm, FormSpy } from 'react-final-form';
 import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 
 import { Form, RangeSlider } from '../../components';
-import css from './PriceFilterForm.css';
+import css from './FollowerFilterForm.css';
 
 const DEBOUNCE_WAIT_TIME = 400;
 
@@ -31,26 +31,28 @@ const parseMax = (max, currentMin) => value => {
 };
 
 // PriceFilterForm component
-const PriceFilterFormComponent = props => {
+const FollowerFilterFormComponent = props => {
   const { liveEdit, onChange, onSubmit, onCancel, onClear, ...rest } = props;
 
   if (liveEdit && !onChange) {
-    throw new Error('PriceFilterForm: if liveEdit is true you need to provide onChange function');
+    throw new Error(
+      'FollowerFilterForm: if liveEdit is true you need to provide onChange function'
+    );
   }
 
   if (!liveEdit && !(onCancel && onClear && onSubmit)) {
     throw new Error(
-      'PriceFilterForm: if liveEdit is false you need to provide onCancel, onClear, and onSubmit functions'
+      'FollowerFilterForm: if liveEdit is false you need to provide onCancel, onClear, and onSubmit functions'
     );
   }
 
   const handleChange = debounce(
     formState => {
       if (formState.dirty) {
-        const { minPrice, maxPrice, ...restValues } = formState.values;
+        const { minFollower, maxFollower, ...restValues } = formState.values;
         onChange({
-          minPrice: minPrice === '' ? rest.min : minPrice,
-          maxPrice: maxPrice === '' ? rest.max : maxPrice,
+          minFollower: minFollower === '' ? rest.min : minFollower,
+          maxFollower: maxFollower === '' ? rest.max : maxFollower,
           ...restValues,
         });
       }
@@ -60,10 +62,10 @@ const PriceFilterFormComponent = props => {
   );
 
   const handleSubmit = values => {
-    const { minPrice, maxPrice, ...restValues } = values;
+    const { minFollower, maxFollower, ...restValues } = values;
     return onSubmit({
-      minPrice: minPrice === '' ? rest.min : minPrice,
-      maxPrice: maxPrice === '' ? rest.max : maxPrice,
+      minFollower: minFollower === '' ? rest.min : minFollower,
+      maxFollower: maxFollower === '' ? rest.max : maxFollower,
       ...restValues,
     });
   };
@@ -92,18 +94,19 @@ const PriceFilterFormComponent = props => {
           max,
           step,
         } = formRenderProps;
-        const { minPrice: minPriceRaw, maxPrice: maxPriceRaw } = values;
-        const minPrice = typeof minPriceRaw !== 'string' ? minPriceRaw : min;
-        const maxPrice = typeof maxPriceRaw !== 'string' ? maxPriceRaw : max;
+        const { minFollower: minFollowerRaw, maxFollower: maxFollowerRaw } = values;
+        const minFollower = typeof minFollowerRaw !== 'string' ? minFollowerRaw : min;
+        const maxFollower = typeof maxFollowerRaw !== 'string' ? maxFollowerRaw : max;
+
         const handleCancel = () => {
           // reset the final form to initialValues
           form.reset();
           onCancel();
         };
 
-        const clear = intl.formatMessage({ id: 'PriceFilterForm.clear' });
-        const cancel = intl.formatMessage({ id: 'PriceFilterForm.cancel' });
-        const submit = intl.formatMessage({ id: 'PriceFilterForm.submit' });
+        const clear = intl.formatMessage({ id: 'FollowerFilterForm.clear' });
+        const cancel = intl.formatMessage({ id: 'FollowerFilterForm.cancel' });
+        const submit = intl.formatMessage({ id: 'FollowerFilterForm.submit' });
 
         const classes = classNames(css.root, {
           [css.popup]: showAsPopup,
@@ -124,42 +127,42 @@ const PriceFilterFormComponent = props => {
                 min={min}
                 max={max}
                 step={step}
-                handles={[minPrice, maxPrice]}
+                handles={[minFollower, maxFollower]}
                 onChange={handles => {
-                  form.change('minPrice', handles[0]);
-                  form.change('maxPrice', handles[1]);
+                  form.change('minFollower', handles[0]);
+                  form.change('maxFollower', handles[1]);
                 }}
               />
             </div>
             <div className={css.inputsWrapper}>
               <div className={css.col}>
-                <span className={css.priceSeparator}>Min:$</span>
+                <span className={css.followerSeparator}>Min:</span>
                 <Field
-                  className={css.minPrice}
-                  id={`${id}.minPrice`}
-                  name="minPrice"
+                  className={css.minFollower}
+                  id={`${id}.minFollower`}
+                  name="minFollower"
                   component="input"
                   type="number"
                   placeholder={min}
                   min={min}
                   max={max}
                   step={step}
-                  parse={parseMin(min, maxPrice)}
+                  parse={parseMin(min, maxFollower)}
                 />
               </div>
               <div className={css.col}>
-                <span className={css.priceSeparator}>Max:$</span>
+                <span className={css.followerSeparator}>Max:</span>
                 <Field
-                  className={css.maxPrice}
-                  id={`${id}.maxPrice`}
-                  name="maxPrice"
+                  className={css.maxFollower}
+                  id={`${id}.maxFollower`}
+                  name="maxFollower"
                   component="input"
                   type="number"
                   placeholder={max}
                   min={min}
                   max={max}
                   step={step}
-                  parse={parseMax(max, minPrice)}
+                  parse={parseMax(max, minFollower)}
                 />
               </div>
             </div>
@@ -186,7 +189,7 @@ const PriceFilterFormComponent = props => {
   );
 };
 
-PriceFilterFormComponent.defaultProps = {
+FollowerFilterFormComponent.defaultProps = {
   liveEdit: false,
   showAsPopup: false,
   isOpen: false,
@@ -200,7 +203,7 @@ PriceFilterFormComponent.defaultProps = {
   onSubmit: null,
 };
 
-PriceFilterFormComponent.propTypes = {
+FollowerFilterFormComponent.propTypes = {
   id: string.isRequired,
   liveEdit: bool,
   showAsPopup: bool,
@@ -219,6 +222,6 @@ PriceFilterFormComponent.propTypes = {
   intl: intlShape.isRequired,
 };
 
-const PriceFilterForm = injectIntl(PriceFilterFormComponent);
+const FollowerFilterForm = injectIntl(FollowerFilterFormComponent);
 
-export default PriceFilterForm;
+export default FollowerFilterForm;

@@ -4,15 +4,15 @@
 
 export const postCategories = [
   {
-    key: 'adventure',
+    key: 'Adventure',
     label: 'Adventure',
   },
   {
-    key: 'art',
+    key: 'Art',
     label: 'Art',
   },
   {
-    key: 'beauty',
+    key: 'Beauty',
     label: 'Beauty',
   },
   {
@@ -20,35 +20,35 @@ export const postCategories = [
     label: 'Fashion',
   },
   {
-    key: 'food',
+    key: 'Food',
     label: 'Food',
   },
   {
-    key: 'health',
+    key: 'Health',
     label: 'Health',
   },
   {
-    key: 'home',
+    key: 'Home',
     label: 'Home',
   },
   {
-    key: 'ideas',
+    key: 'Ideas',
     label: 'Ideas',
   },
   {
-    key: 'lifestyle',
+    key: 'Lifestyle',
     label: 'Lifestyle',
   },
   {
-    key: 'politics',
+    key: 'Politics',
     label: 'Politics',
   },
   {
-    key: 'sports',
+    key: 'Sports',
     label: 'Sports',
   },
   {
-    key: 'technology',
+    key: 'Technology',
     label: 'Technology',
   },
 ];
@@ -80,6 +80,13 @@ export const categories = [
 export const priceFilterConfig = {
   min: 0,
   max: 100000,
+  step: 5,
+};
+
+// Follower filter configuration
+export const followerFilterConfig = {
+  min: 0,
+  max: 1000000,
   step: 5,
 };
 

@@ -41,30 +41,3 @@
     border: 1px solid var(--marketplaceColorDark);
   }
 }
-
-.fieldGroup {
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-
-.fieldGroupPlain {
-  margin: 0;
-  padding: 10px 0 30px;
-  border: none;
-}
-
-.list {
-  margin: 0;
-}
-
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-}
-
-.item {
-  margin: 5px 5px;
-}

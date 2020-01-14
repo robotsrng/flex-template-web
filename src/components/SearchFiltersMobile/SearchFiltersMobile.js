@@ -13,6 +13,7 @@ import {
   Button,
   KeywordFilter,
   PriceFilter,
+  FollowerFilter,
   SelectSingleFilter,
   SelectMultipleFilter,
   BookingDateRangeFilter,
@@ -105,6 +106,17 @@ class SearchFiltersMobileComponent extends Component {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   }
 
+  handleFollower(urlParam, range) {
+    const { urlQueryParams, history } = this.props;
+    const { minFollower, maxFollower } = range || {};
+    const queryParams =
+      minFollower != null && maxFollower != null
+        ? { ...urlQueryParams, [urlParam]: `${minFollower},${maxFollower}` }
+        : omit(urlQueryParams, urlParam);
+
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  }
+
   handleDateRange(urlParam, dateRange) {
     const { urlQueryParams, history } = this.props;
     const hasDates = dateRange && dateRange.dates;
@@ -165,6 +177,20 @@ class SearchFiltersMobileComponent extends Component {
         }
       : null;
   }
+  initialFollowerRangeValue(paramName) {
+    const urlQueryParams = this.props.urlQueryParams;
+    const follower = urlQueryParams[paramName];
+    const valuesFromParams = !!follower
+      ? follower.split(',').map(v => Number.parseInt(v, RADIX))
+      : [];
+
+    return !!follower && valuesFromParams.length === 2
+      ? {
+          minFollower: valuesFromParams[0],
+          maxFollower: valuesFromParams[1],
+        }
+      : null;
+  }
 
   initialDateRangeValue(paramName) {
     const urlQueryParams = this.props.urlQueryParams;
@@ -193,9 +219,10 @@ class SearchFiltersMobileComponent extends Component {
       onManageDisableScrolling,
       selectedFiltersCount,
       categoryFilter,
-      amenitiesFilter,
+      postCategoriesFilter,
       socialMediasFilter,
       priceFilter,
+      followerFilter,
       dateRangeFilter,
       keywordFilter,
       intl,
@@ -243,7 +270,7 @@ class SearchFiltersMobileComponent extends Component {
     const socialMediasFilterElement = socialMediasFilter ? (
       <SelectMultipleFilter
         id="SearchFiltersMobile.socialMediasFilter"
-        name="socialMedias"
+        name="offering"
         urlParam={socialMediasFilter.paramName}
         label={socialMediasLabel}
         onSubmit={this.handleSelectMultiple}
@@ -255,18 +282,18 @@ class SearchFiltersMobileComponent extends Component {
 
     const amenitiesLabel = intl.formatMessage({ id: 'SearchFiltersMobile.amenitiesLabel' });
 
-    const initialAmenities = this.initialValues(amenitiesFilter.paramName);
+    const initialPostCategories = this.initialValues(postCategoriesFilter.paramName);
 
-    const amenitiesFilterElement = amenitiesFilter ? (
+    const postCategoriesFilterElement = postCategoriesFilter ? (
       <SelectMultipleFilter
-        id="SearchFiltersMobile.amenitiesFilter"
-        name="amenities"
-        urlParam={amenitiesFilter.paramName}
+        id="SearchFiltersMobile.postCategories"
+        name="postCategories"
+        urlParam={postCategoriesFilter.paramName}
         label={amenitiesLabel}
         onSubmit={this.handleSelectMultiple}
         liveEdit
-        options={amenitiesFilter.options}
-        initialValues={initialAmenities}
+        options={postCategoriesFilter.options}
+        initialValues={initialPostCategories}
       />
     ) : null;
 
@@ -280,6 +307,19 @@ class SearchFiltersMobileComponent extends Component {
         liveEdit
         {...priceFilter.config}
         initialValues={initialPriceRange}
+      />
+    ) : null;
+
+    const initialFollowerRange = this.initialFollowerRangeValue(followerFilter.paramName);
+
+    const followerFilterElement = followerFilter ? (
+      <FollowerFilter
+        id="SearchFiltersMobile.followerFilter"
+        urlParam={followerFilter.paramName}
+        onSubmit={this.handlePrice}
+        liveEdit
+        {...followerFilter.config}
+        initialValues={initialFollowerRange}
       />
     ) : null;
 
@@ -348,7 +388,8 @@ class SearchFiltersMobileComponent extends Component {
           {this.state.isFiltersOpenOnMobile ? (
             <div className={css.filtersWrapper}>
               {socialMediasFilterElement}
-              {amenitiesFilterElement}
+              {postCategoriesFilterElement}
+              {followerFilterElement}
               {priceFilterElement}
             </div>
           ) : null}

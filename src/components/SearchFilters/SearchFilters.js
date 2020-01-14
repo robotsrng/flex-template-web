@@ -68,7 +68,7 @@ const SearchFiltersComponent = props => {
     resultsCount,
     searchInProgress,
     categoryFilter,
-    amenitiesFilter,
+    postCategoriesFilter,
     priceFilter,
     socialMediasFilter,
     dateRangeFilter,
@@ -98,8 +98,8 @@ const SearchFiltersComponent = props => {
     id: 'SearchFilters.socialMediasLabel',
   });
 
-  const initialAmenities = amenitiesFilter
-    ? initialValues(urlQueryParams, amenitiesFilter.paramName)
+  const initialPostCategories = postCategoriesFilter
+    ? initialValues(urlQueryParams, postCategoriesFilter.paramName)
     : null;
 
   const initialSocialMedias = socialMediasFilter
@@ -199,16 +199,16 @@ const SearchFiltersComponent = props => {
     />
   ) : null;
 
-  const amenitiesFilterElement = amenitiesFilter ? (
+  const postCategoriesFilterElement = postCategoriesFilter ? (
     <SelectMultipleFilter
-      id={'SearchFilters.amenitiesFilter'}
-      name="amenities"
-      urlParam={amenitiesFilter.paramName}
+      id={'SearchFilters.postCategoriesFilter'}
+      name="postCategories"
+      urlParam={postCategoriesFilter.paramName}
       label={amenitiesLabel}
       onSubmit={handleSelectOptions}
       showAsPopup
-      options={amenitiesFilter.options}
-      initialValues={initialAmenities}
+      options={postCategoriesFilter.options}
+      initialValues={initialPostCategories}
       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
     />
   ) : null;
@@ -272,7 +272,7 @@ const SearchFiltersComponent = props => {
     <div className={classes}>
       <div className={css.filters}>
         {socialMediasFilterElement}
-        {amenitiesFilterElement}
+        {postCategoriesFilterElement}
         {priceFilterElement}
         {keywordFilterElement}
         {toggleSearchFiltersPanelButton}
