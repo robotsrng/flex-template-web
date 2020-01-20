@@ -58,8 +58,27 @@
 }
 
 .fieldPlain {
-  @apply --marketplaceH4FontStyles;
+  @apply --marketplaceH1FontStyles;
   margin: 0;
   padding: 16px 0 30px 20px;
   border: none;
+}
+.input {
+  flex-grow: 1;
+  height: 50px;
+  padding-left: 10px;
+  margin: 0;
+  line-height: unset;
+  border-bottom-width: 2px;
+
+  /* Safari bugfix: without this Safari will print placeholder to a wrong place */
+  &::-webkit-input-placeholder {
+    line-height: normal;
+  }
+
+  &:hover,
+  &:focus {
+    border-bottom-color: var(--marketplaceColor);
+    outline: none;
+  }
 }

@@ -18,8 +18,10 @@ import {
   NamedLink,
   TopbarDesktop,
   TopbarMobileMenu,
+  KeywordFilter,
 } from '../../components';
 import { TopbarSearchForm } from '../../forms';
+import omit from 'lodash/omit';
 
 import MenuIcon from './MenuIcon';
 import SearchIcon from './SearchIcon';
@@ -76,6 +78,18 @@ class TopbarComponent extends Component {
     this.handleMobileSearchClose = this.handleMobileSearchClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleKeyword = this.handleKeyword.bind(this);
+    this.initialValue = this.initialValue.bind(this);
+    this.state = {
+      checked: 'keywords',
+    };
+    this.handleToggleButton = this.handleToggleButton.bind(this);
+  }
+
+  handleToggleButton(e) {
+    this.setState({
+      checked: e.target.value,
+    });
   }
 
   handleMobileMenuOpen() {
@@ -109,6 +123,14 @@ class TopbarComponent extends Component {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, searchParams));
   }
 
+  handleKeyword(urlParam, keywords) {
+    const { urlQueryParams, history } = this.props;
+    const queryParams = urlParam
+      ? { ...urlQueryParams, [urlParam]: keywords }
+      : omit(urlQueryParams, urlParam);
+
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  }
   handleLogout() {
     const { onLogout, history } = this.props;
     onLogout().then(() => {
@@ -124,6 +146,9 @@ class TopbarComponent extends Component {
 
       console.log('logged out'); // eslint-disable-line
     });
+  }
+  initialValue(paramName) {
+    return this.props.urlQueryParams[paramName];
   }
 
   render() {
@@ -148,8 +173,28 @@ class TopbarComponent extends Component {
       sendVerificationEmailInProgress,
       sendVerificationEmailError,
       showGenericError,
+      keywordFilter,
     } = this.props;
 
+    const initialKeyword = keywordFilter && this.initialValue(keywordFilter.paramName);
+    const keywordLabel = intl.formatMessage({
+      id: 'SearchFiltersMobile.keywordLabel',
+    });
+    const keywordFilterElement =
+      keywordFilter && keywordFilter.config.active ? (
+        <KeywordFilter
+          id={'SearchFiltersMobile.keywordFilter'}
+          name="keyword"
+          urlParam={keywordFilter.paramName}
+          label={keywordLabel}
+          onSubmit={this.handleKeyword}
+          liveEdit
+          showAsPopup={false}
+          initialValues={initialKeyword}
+          handleMobileSearchClose={this.handleMobileSearchClose}
+          isMobile
+        />
+      ) : null;
     const { mobilemenu, mobilesearch, address, origin, bounds } = parse(location.search, {
       latlng: ['origin'],
       latlngBounds: ['bounds'],
@@ -186,6 +231,17 @@ class TopbarComponent extends Component {
     };
 
     const classes = classNames(rootClassName || css.root, className);
+    const locationFilterElement = (
+      <TopbarSearchForm
+        onSubmit={this.handleSubmit}
+        initialValues={initialSearchFormValues}
+        isMobile
+      />
+    );
+    let filter;
+    if (this.state.checked === 'location') {
+      filter = locationFilterElement;
+    } else filter = keywordFilterElement;
 
     return (
       <div className={classes}>
@@ -243,11 +299,53 @@ class TopbarComponent extends Component {
           onManageDisableScrolling={onManageDisableScrolling}
         >
           <div className={css.searchContainer}>
-            <TopbarSearchForm
-              onSubmit={this.handleSubmit}
-              initialValues={initialSearchFormValues}
-              isMobile
-            />
+            <ul className={css.buttons}>
+              <li className={css.col}>
+                <input
+                  id="r1"
+                  type="radio"
+                  name="search"
+                  value="keywords"
+                  checked={this.state.checked === 'keywords'}
+                  onChange={this.handleToggleButton}
+                ></input>
+                <label for="r1">Keywords</label>
+              </li>
+              <li className={css.col}>
+                <input
+                  id="r2"
+                  type="radio"
+                  name="search"
+                  value="location"
+                  checked={this.state.checked === 'location'}
+                  onChange={this.handleToggleButton}
+                ></input>
+                <label for="r2">Location</label>
+              </li>
+              <li className={css.col}>
+                <input
+                  id="r3"
+                  type="radio"
+                  name="search"
+                  value="creators"
+                  checked={this.state.checked === 'creators'}
+                  onChange={this.handleToggleButton}
+                ></input>
+                <label for="r3">Creators</label>
+              </li>
+              <li className={css.col}>
+                <input
+                  id="r4"
+                  type="radio"
+                  name="search"
+                  value="brands"
+                  checked={this.state.checked === 'brands'}
+                  onChange={this.handleToggleButton}
+                ></input>
+                <label for="r4">Brands</label>
+              </li>
+            </ul>
+            {filter}
           </div>
         </Modal>
         <ModalMissingInformation
@@ -280,9 +378,10 @@ TopbarComponent.defaultProps = {
   currentUserHasOrders: null,
   currentPage: null,
   sendVerificationEmailError: null,
+  keywordFilter: null,
 };
 
-const { func, number, shape, string } = PropTypes;
+const { func, number, shape, string, object } = PropTypes;
 
 TopbarComponent.propTypes = {
   className: string,
@@ -303,6 +402,8 @@ TopbarComponent.propTypes = {
   sendVerificationEmailInProgress: bool.isRequired,
   sendVerificationEmailError: propTypes.error,
   showGenericError: bool.isRequired,
+  urlQueryParams: object.isRequired,
+  keywordFilter: propTypes.filterConfig,
 
   // These are passed from Page to keep Topbar rendering aware of location changes
   history: shape({

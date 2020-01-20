@@ -3,7 +3,7 @@ import { func, number, string } from 'prop-types';
 import classNames from 'classnames';
 import { injectIntl, intlShape } from '../../util/reactIntl';
 import debounce from 'lodash/debounce';
-import { FieldTextInput } from '../../components';
+import { FieldTextInput, FieldTextInputKeywords } from '../../components';
 
 import { FilterPopup, FilterPlain } from '../../components';
 import css from './KeywordFilter.css';
@@ -65,9 +65,14 @@ class KeywordFilter extends Component {
       urlParam,
       intl,
       showAsPopup,
+      handleMobileSearchClose,
       ...rest
     } = this.props;
-
+    const handleOnEnter = e => {
+      if (e.key === 'Enter') {
+        handleMobileSearchClose();
+      }
+    };
     const classes = classNames(rootClassName || css.root, className);
 
     const hasInitialValues = !!initialValues && initialValues.length > 0;
@@ -161,7 +166,6 @@ class KeywordFilter extends Component {
       <FilterPlain
         className={className}
         rootClassName={rootClassName}
-        label={labelForPlain}
         isSelected={hasInitialValues}
         id={`${id}.plain`}
         liveEdit
@@ -170,20 +174,19 @@ class KeywordFilter extends Component {
         onClear={handleClear}
         initialValues={namedInitialValues}
         urlParam={urlParam}
+        withoutBorder="true"
         {...rest}
       >
-        <fieldset className={css.fieldPlain}>
-          <label>{filterText}</label>
-          <FieldTextInput
-            name={name}
-            id={`${id}-input`}
-            isUncontrolled
-            inputRef={this.mobileInputRef}
-            type="text"
-            placeholder={placeholder}
-            autoComplete="off"
-          />
-        </fieldset>
+        <FieldTextInputKeywords
+          name={name}
+          id={`${id}-input`}
+          isUncontrolled
+          inputRef={this.mobileInputRef}
+          type="text"
+          placeholder={placeholder}
+          autoComplete="off"
+          onKeyDown={handleOnEnter}
+        />
       </FilterPlain>
     );
   }

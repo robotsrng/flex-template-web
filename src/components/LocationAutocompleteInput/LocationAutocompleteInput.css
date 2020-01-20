@@ -18,6 +18,10 @@
 .root {
   position: relative;
   display: flex;
+  padding-top: 66px;
+  @media (--viewportMedium) {
+    padding-top: 0;
+  }
 }
 
 .icon {

@@ -29,7 +29,6 @@ class TopbarSearchFormComponent extends Component {
       }
     }
   }
-
   render() {
     return (
       <FinalForm

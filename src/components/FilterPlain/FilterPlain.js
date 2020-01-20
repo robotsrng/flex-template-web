@@ -47,6 +47,7 @@ class FilterPlainComponent extends Component {
       initialValues,
       keepDirtyOnReinitialize,
       contentPlacementOffset,
+      withoutBorder,
     } = this.props;
     const classes = classNames(rootClassName || css.root, className);
 
@@ -54,31 +55,33 @@ class FilterPlainComponent extends Component {
 
     return (
       <div className={classes}>
-        <div className={labelClass}>
-          <button type="button" className={css.labelButton} onClick={this.toggleIsOpen}>
-            <span className={labelClass}>{label}</span>
-          </button>
-          <button type="button" className={css.clearButton} onClick={this.handleClear}>
-            <FormattedMessage id={'FilterPlain.clear'} />
-          </button>
-        </div>
-        <div
-          id={id}
-          className={classNames(plainClassName, css.plain, { [css.isOpen]: this.state.isOpen })}
-          ref={node => {
-            this.filterContent = node;
-          }}
-        >
-          <FilterForm
-            id={`${id}.form`}
-            liveEdit
-            contentPlacementOffset={contentPlacementOffset}
-            onChange={this.handleChange}
-            initialValues={initialValues}
-            keepDirtyOnReinitialize={keepDirtyOnReinitialize}
+        <div className={withoutBorder ? css.withoutBorder : css.border}>
+          <div className={labelClass}>
+            <button type="button" className={css.labelButton} onClick={this.toggleIsOpen}>
+              <span className={labelClass}>{label}</span>
+            </button>
+            <button type="button" className={css.clearButton} onClick={this.handleClear}>
+              <FormattedMessage id={'FilterPlain.clear'} />
+            </button>
+          </div>
+          <div
+            id={id}
+            className={classNames(plainClassName, css.plain, { [css.isOpen]: this.state.isOpen })}
+            ref={node => {
+              this.filterContent = node;
+            }}
           >
-            {children}
-          </FilterForm>
+            <FilterForm
+              id={`${id}.form`}
+              liveEdit
+              contentPlacementOffset={contentPlacementOffset}
+              onChange={this.handleChange}
+              initialValues={initialValues}
+              keepDirtyOnReinitialize={keepDirtyOnReinitialize}
+            >
+              {children}
+            </FilterForm>
+          </div>
         </div>
       </div>
     );

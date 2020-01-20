@@ -95,6 +95,7 @@ export { default as FieldSelect } from './FieldSelect/FieldSelect';
 export { default as FieldSelectCountry } from './FieldSelect/FieldSelectCountry';
 export { default as FieldSelectState } from './FieldSelect/FieldSelectState';
 export { default as FieldTextInput } from './FieldTextInput/FieldTextInput';
+export { default as FieldTextInputKeywords } from './FieldTextInput/FieldTextInputKeywords';
 // Fields that use other Fields
 export { default as FieldBoolean } from './FieldBoolean/FieldBoolean';
 export { default as FieldCheckboxGroup } from './FieldCheckboxGroup/FieldCheckboxGroup';

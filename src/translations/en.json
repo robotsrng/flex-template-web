@@ -369,7 +369,7 @@
   "ListingPage.viewImagesButton": "View photos ({count})",
   "ListingPage.yourHostHeading": "Your host",
   "LocationAutocompleteInput.currentLocation": "Current location",
-  "LocationSearchForm.placeholder": "Search saunas…",
+  "LocationSearchForm.placeholder": "Search by location…",
   "LoginForm.emailInvalid": "A valid email address is required",
   "LoginForm.emailLabel": "Email",
   "LoginForm.emailPlaceholder": "john.doe@example.com",

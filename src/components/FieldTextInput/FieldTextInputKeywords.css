@@ -1,0 +1,64 @@
+@import '../../marketplace.css';
+
+.root {
+  position: relative;
+  display: flex;
+}
+
+.inputSuccess {
+  border-bottom-color: var(--successColor);
+}
+
+.inputError {
+  border-bottom-color: var(--failColor);
+}
+
+.textarea {
+}
+
+.icon {
+  display: flex;
+  width: 24px;
+  padding: 11px 0 17px 0;
+  align-self: stretch;
+  background-color: var(--matterColorLight);
+  margin-left: 24px;
+}
+
+.iconSvg {
+  margin: auto;
+}
+
+.iconSvgGroup {
+  stroke: var(--marketplaceColor);
+  stroke-width: 2.5px;
+
+  @media (--viewportMedium) {
+    stroke-width: 2px;
+  }
+}
+
+.iconSpinner {
+  margin: auto;
+  width: 23px;
+}
+.input {
+  flex-grow: 1;
+  height: 53px;
+  padding: 1px 13px 13px;
+  margin: 0 24px 0 0;
+  line-height: unset;
+  border-bottom-width: 3px;
+  font-size: 28px;
+
+  /* Safari bugfix: without this Safari will print placeholder to a wrong place */
+  &::-webkit-input-placeholder {
+    line-height: normal;
+  }
+
+  &:hover,
+  &:focus {
+    border-bottom-color: var(--marketplaceColor);
+    outline: none;
+  }
+}

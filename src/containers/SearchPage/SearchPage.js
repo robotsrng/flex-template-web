@@ -216,6 +216,8 @@ export class SearchPageComponent extends Component {
           className={topbarClasses}
           currentPage="SearchPage"
           currentSearchParams={urlQueryParams}
+          urlQueryParams={validQueryParams}
+          keywordFilter={filters.keywordFilter}
         />
         <div className={css.container}>
           <MainPanel

@@ -23,6 +23,7 @@ const EditListingOfferingPanel = props => {
   const currentListing = ensureOwnListing(listing);
   const { publicData } = currentListing.attributes;
   const [offering, setOffering] = useState('');
+  const [follower, setFollower] = useState(120);
   useEffect(
     _ => {
       if (publicData.offering) {
@@ -37,11 +38,12 @@ const EditListingOfferingPanel = props => {
     <EditListingOfferingForm
       listing={listing}
       offering={offering}
+      follower={follower}
       setOffering={setOffering}
       className={css.form}
       onSubmit={_ => {
         var updatedValues = {
-          publicData: { offering },
+          publicData: { offering, follower },
         };
         !currentListing.attributes.title && (updatedValues = { title: title, ...updatedValues });
         onSubmit(updatedValues);

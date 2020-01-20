@@ -4,7 +4,6 @@
   position: relative;
   padding-top: 24px;
   padding-bottom: 17px;
-  border-bottom: 1px solid var(--matterColorNegative);
 }
 
 .filterLabel,
@@ -63,4 +62,7 @@
 
 .isOpen {
   display: block;
+}
+.border {
+  border-bottom: 1px solid var(--matterColorNegative);
 }

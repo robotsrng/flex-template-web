@@ -11,6 +11,7 @@
  */
 
   --TopbarSearchForm_inputHeight: 53px;
+  --TopbarPaddingTop: 66px;
   --TopbarSearchForm_topbarMargin: 94px;
   --TopbarSearchForm_bottomBorder: 3px;
   --TopbarSearchForm_mobilePredictionTop: calc(
@@ -128,7 +129,10 @@
 
 .mobilePredictions {
   position: absolute;
-  top: calc(var(--TopbarSearchForm_inputHeight) - var(--TopbarSearchForm_bottomBorder));
+  top: calc(
+    var(--TopbarSearchForm_inputHeight) - var(--TopbarSearchForm_bottomBorder) +
+      var(--TopbarPaddingTop)
+  );
   left: 0;
   min-height: calc(100vh - var(--TopbarSearchForm_mobilePredictionTop));
   width: 100%;
