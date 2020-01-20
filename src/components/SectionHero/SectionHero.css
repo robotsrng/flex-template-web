@@ -73,7 +73,7 @@
 .heroMainTitle {
   @apply --marketplaceHeroTitleFontStyles;
   color: var(--matterColorLight);
-  font-size: 50px;
+  font-size: 100px;
   line-height: 70px;
   margin-bottom: 50px;
 
