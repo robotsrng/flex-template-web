@@ -35,7 +35,7 @@ export const LandingPageComponent = props => {
   const schemaDescription = intl.formatMessage({ id: 'LandingPage.schemaDescription' });
   const schemaImage = `${config.canonicalRootURL}${facebookImage}`;
 
-  const calculatorTitle = 'We all have digital assets, find out how much they’re worth.';
+  const calculatorTitle = 'We all have an audience, find out how much yours is worth.';
   const calculatorDescription="Use our calculator by clicking on a social platform, and entering your username to find an estimated value for your next social post."
   return (
     <Page
@@ -72,12 +72,12 @@ export const LandingPageComponent = props => {
             </li>
             <li className={css.section}>
               <div className={css.sectionContent}>
-                <SectionHowItWorks />
+                <SectionCalculator title={calculatorTitle} description={calculatorDescription}/>
               </div>
             </li>
             <li className={css.section}>
               <div className={css.sectionContent}>
-                <SectionCalculator title={calculatorTitle} description={calculatorDescription}/>
+                <SectionHowItWorks />
               </div>
             </li>
           </ul>

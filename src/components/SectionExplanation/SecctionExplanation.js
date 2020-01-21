@@ -19,7 +19,7 @@ const SectionExplanation = props => {
     <div className={classes}>
       <div className={css.container}>
         <div className={css.title}>
-          Sidesuite is the <br></br> marketplace for your social <br></br> media content.
+          Sidesuite is the <br></br> marketplace for social <br></br> media content.
         </div>
         <p className={css.subtitle}>
           <FormattedMessage id="SectionExplanation.subTitle" />

@@ -53,7 +53,8 @@
 }
 
 .postTitle {
-  font-size: 17px;
+  @apply --marketplaceH4FontStyles;
+  font-weight: var(--fontWeightSemiBold);
 }
 .whiteLetters p {
   color: white;

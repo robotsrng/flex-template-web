@@ -117,7 +117,7 @@ const Footer = props => {
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
-                  <NamedLink name='LandingPage' className={css.link}>
+                  <NamedLink name='SearchPage' className={css.link}>
                     <FormattedMessage id='Footer.toMarketplace' />
                   </NamedLink>
                 </li>

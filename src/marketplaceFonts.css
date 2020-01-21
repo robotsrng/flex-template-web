@@ -45,7 +45,7 @@
     font-family: 'sofiapro', Helvetica, Arial, sans-serif;
     font-weight: var(--fontWeightLight);
     font-size: 14px;
-    line-height: 24px;
+    line-height: 18px;
     letter-spacing: -0.1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 12px;
@@ -64,7 +64,7 @@
   /* ================ Hero title ================ */
 
   --marketplaceHeroTitleFontStyles: {
-    font-weight: var(--fontWeightLight);
+    font-weight: var(--fontWeightSemiBold);
     font-size: 48px;
     line-height: 42px;
     letter-spacing: -1px;
@@ -110,9 +110,9 @@
   /* ================ H1, H2, H3, H4, H5 & H6 ================ */
 
   --marketplaceH1FontStyles: {
-    font-weight: var(--fontWeightLight);
-    font-size: 28px;
-    line-height: 52px;
+    font-weight: var(--fontWeightSemiBold);
+    font-size: 30px;
+    line-height: 36px;
     letter-spacing: -1px;
     /* margin-top + n * line-height + margin-bottom => x * 6px */
     margin-top: 18px;
@@ -130,7 +130,7 @@
   }
 
   --marketplaceH2FontStyles: {
-    font-weight: var(--fontWeightLight);
+    font-weight: var(--fontWeightSemiBold);
     font-size: 24px;
     line-height: 30px;
     letter-spacing: -0.3px;

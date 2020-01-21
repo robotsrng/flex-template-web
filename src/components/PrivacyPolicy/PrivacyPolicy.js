@@ -213,7 +213,7 @@ Their Privacy Policy can be viewed at <a href="https://stripe.com/us/privacy">ht
 <br></br><br></br>
 PayPal
 <br></br><br></br>
-Their Privacy Policy can be viewed at <a href="https://www.paypal.com/webapps/mpp/ua/privacy-full">https://www.paypal.com/webapps/mpp/ua/privacy-full</a>
+Their Privacy Policy can be viewed at <a href="https://www.paypal.com/privacy">https://www.paypal.com/privacy</a>
       </p>
 
       <h2>Links to Other Sites</h2>
