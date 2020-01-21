@@ -884,16 +884,12 @@
   "StripePaymentForm.stripe.validation_error.processing_error": "An error occurred while processing the card.",
   "StripePaymentForm.submitConfirmPaymentInfo": "Confirm request",
   "StripePaymentForm.submitPaymentInfo": "Send request",
-<<<<<<< HEAD
-  "TermsOfServicePage.heading": "Terms",
-=======
   "StripePayoutPage.heading": "Payout details",
   "StripePayoutPage.loadingData": "Loading data…",
   "StripePayoutPage.stripeNotConnected": "Payment information not saved. Please fill in the form to accept payments from your listings.",
   "StripePayoutPage.submitButtonText": "Save details",
   "StripePayoutPage.title": "Payout details",
   "TermsOfServicePage.heading": "Terms of Service",
->>>>>>> e40de5a7... Create StripePayoutPage
   "TermsOfServicePage.privacyTabTitle": "Privacy Policy",
   "TermsOfServicePage.schemaTitle": "Terms of Service | {siteTitle}",
   "TermsOfServicePage.tosTabTitle": "Terms of Service",
