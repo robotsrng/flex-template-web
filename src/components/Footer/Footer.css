@@ -172,7 +172,6 @@
 .link {
   /* Font */
   @apply --marketplaceH4FontStyles;
-  font-weight: 300;
   line-height: 20px;
   color: var(--matterColor);
   transition: var(--transitionStyleButton);
