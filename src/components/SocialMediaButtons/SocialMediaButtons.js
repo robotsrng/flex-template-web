@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import css from './SocialMediaButtons.css';
-import FacebookLogin from 'react-facebook-login';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
