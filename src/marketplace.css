@@ -51,8 +51,11 @@
 
   --successColor: #4a4a4a;
   --successColorDark: #2a2a2a;
+  --successColorLight: #f0fff6;
   --failColor: #ff0000;
+  --failColorLight: #fff0f0;
   --attentionColor: #ffaa00;
+  --attentionColorLight: #fff7f0;
   --bannedColorLight: var(--marketplaceColorLight);
   --bannedColorDark: var(--marketplaceColor);
 
@@ -577,6 +580,8 @@
 @custom-media --viewportXLarge (min-width: 1921px);
 
 /* ================ Horizontal Rule ================ */
-hr {border: 0;
-    height: 1px;
-    background: #E6E6E6;}
+hr {
+  border: 0;
+  height: 1px;
+  background: #e6e6e6;
+}

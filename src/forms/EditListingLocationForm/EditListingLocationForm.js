@@ -10,7 +10,7 @@ import {
   autocompletePlaceSelected,
   composeValidators,
 } from '../../util/validators';
-import { Form, LocationAutocompleteInputField, Button, FieldTextInput } from '../../components';
+import { Form, LocationAutocompleteInputField, Button } from '../../components';
 
 import css from './EditListingLocationForm.css';
 
@@ -19,10 +19,11 @@ const identity = v => v;
 export const EditListingLocationFormComponent = props => (
   <FinalForm
     {...props}
-    render={fieldRenderProps => {
+    render={formRenderProps => {
       const {
         className,
         disabled,
+        ready,
         handleSubmit,
         intl,
         invalid,
@@ -32,7 +33,7 @@ export const EditListingLocationFormComponent = props => (
         updateInProgress,
         fetchErrors,
         values,
-      } = fieldRenderProps;
+      } = formRenderProps;
 
       const titleRequiredMessage = intl.formatMessage({ id: 'EditListingLocationForm.address' });
       const addressPlaceholderMessage = intl.formatMessage({
@@ -45,17 +46,17 @@ export const EditListingLocationFormComponent = props => (
         id: 'EditListingLocationForm.addressNotRecognized',
       });
 
-      const optionalText = intl.formatMessage({
+      /* const optionalText = intl.formatMessage({
         id: 'EditListingLocationForm.optionalText',
-      });
+      }); */
 
-      const buildingMessage = intl.formatMessage(
+      /* const buildingMessage = intl.formatMessage(
         { id: 'EditListingLocationForm.building' },
         { optionalText: optionalText }
       );
       const buildingPlaceholderMessage = intl.formatMessage({
         id: 'EditListingLocationForm.buildingPlaceholder',
-      });
+      }); */
 
       const { updateListingError, showListingsError } = fetchErrors || {};
       const errorMessage = updateListingError ? (
@@ -71,7 +72,7 @@ export const EditListingLocationFormComponent = props => (
       ) : null;
 
       const classes = classNames(css.root, className);
-      const submitReady = updated && pristine;
+      const submitReady = (updated && pristine) || ready;
       const submitInProgress = updateInProgress;
       const submitDisabled = invalid || disabled || submitInProgress;
 
@@ -123,6 +124,8 @@ EditListingLocationFormComponent.propTypes = {
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
   selectedPlace: propTypes.place,
+  disabled: bool.isRequired,
+  ready: bool.isRequired,
   updated: bool.isRequired,
   updateInProgress: bool.isRequired,
   fetchErrors: shape({

@@ -3,7 +3,7 @@ import { func, number, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { propTypes } from '../../util/types';
-import { formatCurrencyMajorUnit } from '../../util/currency';
+// import { formatCurrencyMajorUnit } from '../../util/currency';
 import config from '../../config';
 
 import { PriceFilterForm } from '../../forms';
@@ -44,7 +44,7 @@ class PriceFilterPlainComponent extends Component {
       max,
       step,
       intl,
-      currencyConfig,
+      // currencyConfig,
     } = this.props;
     const classes = classNames(rootClassName || css.root, className);
     const { minPrice, maxPrice } = initialValues || {};
@@ -53,15 +53,15 @@ class PriceFilterPlainComponent extends Component {
     const hasInitialValues = initialValues && hasValue(minPrice) && hasValue(maxPrice);
 
     const labelClass = hasInitialValues ? css.filterLabelSelected : css.filterLabel;
-    const labelText = hasInitialValues
-      ? intl.formatMessage(
-          { id: 'PriceFilter.labelSelectedPlain' },
-          {
-            minPrice: formatCurrencyMajorUnit(intl, currencyConfig.currency, minPrice),
-            maxPrice: formatCurrencyMajorUnit(intl, currencyConfig.currency, maxPrice),
-          }
-        )
-      : intl.formatMessage({ id: 'PriceFilter.label' });
+    // const labelText = hasInitialValues
+    //   ? intl.formatMessage(
+    //       { id: 'PriceFilter.labelSelectedPlain' },
+    //       {
+    //         minPrice: formatCurrencyMajorUnit(intl, currencyConfig.currency, minPrice),
+    //         maxPrice: formatCurrencyMajorUnit(intl, currencyConfig.currency, maxPrice),
+    //       }
+    //     )
+    //   : intl.formatMessage({ id: 'PriceFilter.label' });
 
     return (
       <div className={classes}>

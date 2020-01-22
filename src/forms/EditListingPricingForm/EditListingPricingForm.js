@@ -25,11 +25,12 @@ const { Money } = sdkTypes;
 export const EditListingPricingFormComponent = props => (
   <FinalForm
     {...props}
-    render={fieldRenderProps => {
+    render={formRenderProps => {
       const {
         listing,
         className,
         disabled,
+        ready,
         handleSubmit,
         intl,
         invalid,
@@ -38,17 +39,17 @@ export const EditListingPricingFormComponent = props => (
         updated,
         updateInProgress,
         fetchErrors,
-      } = fieldRenderProps;
+      } = formRenderProps;
       const currentListing = ensureOwnListing(listing);
       const isPublished =
         currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
       const panelTitle = isPublished ? (
         <FormattedMessage
-          id='EditListingPricingPanel.title'
+          id="EditListingPricingPanel.title"
           values={{ listingTitle: <ListingLink listing={listing} /> }}
         />
       ) : (
-        <FormattedMessage id='EditListingPricingPanel.createListingTitle' />
+        <FormattedMessage id="EditListingPricingPanel.createListingTitle" />
       );
       const unitType = config.bookingUnitType;
       const isNightly = unitType === LINE_ITEM_NIGHT;
@@ -96,7 +97,7 @@ export const EditListingPricingFormComponent = props => (
         : priceRequired;
 
       const classes = classNames(css.root, className);
-      const submitReady = updated && pristine;
+      const submitReady = (updated && pristine) || ready;
       const submitInProgress = updateInProgress;
       const submitDisabled = invalid || disabled || submitInProgress;
       const { updateListingError, showListingsError } = fetchErrors || {};
@@ -105,18 +106,18 @@ export const EditListingPricingFormComponent = props => (
         <Form onSubmit={handleSubmit} className={classes}>
           {updateListingError ? (
             <p className={css.error}>
-              <FormattedMessage id='EditListingPricingForm.updateFailed' />
+              <FormattedMessage id="EditListingPricingForm.updateFailed" />
             </p>
           ) : null}
           {showListingsError ? (
             <p className={css.error}>
-              <FormattedMessage id='EditListingPricingForm.showListingFailed' />
+              <FormattedMessage id="EditListingPricingForm.showListingFailed" />
             </p>
           ) : null}
           <h2 className={css.title}>{panelTitle}</h2>
           <FieldCurrencyInput
-            id='price'
-            name='price'
+            id="price"
+            name="price"
             className={css.priceInput}
             autoFocus
             label={pricePerUnitMessage}
@@ -129,13 +130,13 @@ export const EditListingPricingFormComponent = props => (
           <p>{secondTitleDescription}</p>
           <AccountExampleView
             img={placheolderImg}
-            postUsername='axelwhalen'
-            postFollowerAmmount='Instagram | 338 followers'
-            postValueMaybe='$45 - $55 per post'
+            postUsername="axelwhalen"
+            postFollowerAmmount="Instagram | 338 followers"
+            postValueMaybe="$45 - $55 per post"
           ></AccountExampleView>
           <Button
             className={css.submitButton}
-            type='submit'
+            type="submit"
             inProgress={submitInProgress}
             disabled={submitDisabled}
             ready={submitReady}
@@ -154,6 +155,8 @@ EditListingPricingFormComponent.propTypes = {
   intl: intlShape.isRequired,
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
+  disabled: bool.isRequired,
+  ready: bool.isRequired,
   updated: bool.isRequired,
   updateInProgress: bool.isRequired,
   fetchErrors: shape({

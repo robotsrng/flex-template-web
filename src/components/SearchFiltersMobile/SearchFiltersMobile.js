@@ -11,12 +11,12 @@ import { createResourceLocatorString } from '../../util/routes';
 import {
   ModalInMobile,
   Button,
-  KeywordFilter,
+  // KeywordFilter,
   PriceFilter,
   FollowerFilter,
-  SelectSingleFilter,
+  // SelectSingleFilter,
   SelectMultipleFilter,
-  BookingDateRangeFilter,
+  // BookingDateRangeFilter,
 } from '../../components';
 import { propTypes } from '../../util/types';
 import css from './SearchFiltersMobile.css';
@@ -246,22 +246,22 @@ class SearchFiltersMobileComponent extends Component {
     const filtersButtonClasses =
       selectedFiltersCount > 0 ? css.filtersButtonSelected : css.filtersButton;
 
-    const categoryLabel = intl.formatMessage({
-      id: 'SearchFiltersMobile.categoryLabel',
-    });
-    const initialCategory = categoryFilter ? this.initialValue(categoryFilter.paramName) : null;
+    // const categoryLabel = intl.formatMessage({
+    //   id: 'SearchFiltersMobile.categoryLabel',
+    // });
+    // const initialCategory = categoryFilter ? this.initialValue(categoryFilter.paramName) : null;
 
-    const categoryFilterElement = categoryFilter ? (
-      <SelectSingleFilter
-        urlParam={categoryFilter.paramName}
-        label={categoryLabel}
-        onSelect={this.handleSelectSingle}
-        liveEdit
-        options={categoryFilter.options}
-        initialValue={initialCategory}
-        intl={intl}
-      />
-    ) : null;
+    // const categoryFilterElement = categoryFilter ? (
+    //   <SelectSingleFilter
+    //     urlParam={categoryFilter.paramName}
+    //     label={categoryLabel}
+    //     onSelect={this.handleSelectSingle}
+    //     liveEdit
+    //     options={categoryFilter.options}
+    //     initialValue={initialCategory}
+    //     intl={intl}
+    //   />
+    // ) : null;
 
     const socialMediasLabel = intl.formatMessage({ id: 'SearchFilters.socialMediasLabel' });
 
@@ -323,37 +323,37 @@ class SearchFiltersMobileComponent extends Component {
       />
     ) : null;
 
-    const initialDateRange = this.initialDateRangeValue(dateRangeFilter.paramName);
+    // const initialDateRange = this.initialDateRangeValue(dateRangeFilter.paramName);
 
-    const dateRangeFilterElement =
-      dateRangeFilter && dateRangeFilter.config.active ? (
-        <BookingDateRangeFilter
-          id="SearchFiltersMobile.dateRangeFilter"
-          urlParam={dateRangeFilter.paramName}
-          onSubmit={this.handleDateRange}
-          liveEdit
-          showAsPopup={false}
-          initialValues={initialDateRange}
-        />
-      ) : null;
+    // const dateRangeFilterElement =
+    //   dateRangeFilter && dateRangeFilter.config.active ? (
+    //     <BookingDateRangeFilter
+    //       id="SearchFiltersMobile.dateRangeFilter"
+    //       urlParam={dateRangeFilter.paramName}
+    //       onSubmit={this.handleDateRange}
+    //       liveEdit
+    //       showAsPopup={false}
+    //       initialValues={initialDateRange}
+    //     />
+    //   ) : null;
 
-    const initialKeyword = this.initialValue(keywordFilter.paramName);
-    const keywordLabel = intl.formatMessage({
-      id: 'SearchFiltersMobile.keywordLabel',
-    });
-    const keywordFilterElement =
-      keywordFilter && keywordFilter.config.active ? (
-        <KeywordFilter
-          id={'SearchFiltersMobile.keywordFilter'}
-          name="keyword"
-          urlParam={keywordFilter.paramName}
-          label={keywordLabel}
-          onSubmit={this.handleKeyword}
-          liveEdit
-          showAsPopup={false}
-          initialValues={initialKeyword}
-        />
-      ) : null;
+    // const initialKeyword = this.initialValue(keywordFilter.paramName);
+    // const keywordLabel = intl.formatMessage({
+    //   id: 'SearchFiltersMobile.keywordLabel',
+    // });
+    // const keywordFilterElement =
+    //   keywordFilter && keywordFilter.config.active ? (
+    //     <KeywordFilter
+    //       id={'SearchFiltersMobile.keywordFilter'}
+    //       name="keyword"
+    //       urlParam={keywordFilter.paramName}
+    //       label={keywordLabel}
+    //       onSubmit={this.handleKeyword}
+    //       liveEdit
+    //       showAsPopup={false}
+    //       initialValues={initialKeyword}
+    //     />
+    //   ) : null;
 
     return (
       <div className={classes}>

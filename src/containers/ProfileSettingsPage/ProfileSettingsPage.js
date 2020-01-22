@@ -124,7 +124,6 @@ export class ProfileSettingsPageComponent extends Component {
         currentUser={currentUser}
         setToggle={this.updateToggle}
         onSubmit={handleSubmit}
-        currentUser={currentUser}
         initialValues={{
           profileImage: user.profileImage,
         }}

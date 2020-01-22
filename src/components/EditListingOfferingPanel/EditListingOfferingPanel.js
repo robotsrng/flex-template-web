@@ -23,7 +23,7 @@ const EditListingOfferingPanel = props => {
   const currentListing = ensureOwnListing(listing);
   const { publicData } = currentListing.attributes;
   const [offering, setOffering] = useState('');
-  const [follower, setFollower] = useState(120);
+  const [follower] = useState(120);
   useEffect(
     _ => {
       if (publicData.offering) {
@@ -32,7 +32,6 @@ const EditListingOfferingPanel = props => {
     },
     [publicData.offering]
   );
-  console.log(currentListing);
   const title = 'defaultUltimateTitleSidesuite';
   const form = (
     <EditListingOfferingForm
@@ -42,7 +41,7 @@ const EditListingOfferingPanel = props => {
       setOffering={setOffering}
       className={css.form}
       onSubmit={_ => {
-        var updatedValues = {
+        let updatedValues = {
           publicData: { offering, follower },
         };
         !currentListing.attributes.title && (updatedValues = { title: title, ...updatedValues });

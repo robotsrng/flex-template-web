@@ -28,7 +28,7 @@ const SectionHero = props => {
           }}
           className={css.heroButton}
         >
-          <img src={searchIcon} className={css.searchIcon} />
+          <img src={searchIcon} className={css.searchIcon} alt="" />
           &nbsp;&nbsp;&nbsp;&nbsp;
           <FormattedMessage id="SectionHero.browseButton" />
         </NamedLink>

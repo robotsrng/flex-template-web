@@ -35,7 +35,7 @@ const SectionHowItWorks = props => {
           </p>
           <div className={css.linkAccountContainer}>
             <div className={css.col}>
-              <img src={linkAccountImg} className={css.linkAccountImg} />
+              <img src={linkAccountImg} className={css.linkAccountImg} alt="" />
             </div>
             <div className={css.colButtons}>
               <SocialMediaButtons />

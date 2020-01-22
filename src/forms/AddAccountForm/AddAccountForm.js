@@ -1,7 +1,7 @@
-import React, { Component, useState } from 'react';
-import { bool, string } from 'prop-types';
-import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
-import { Field, Form as FinalForm } from 'react-final-form';
+import React, { useState } from 'react';
+import { string } from 'prop-types';
+import { injectIntl, intlShape } from '../../util/reactIntl';
+import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import { compose } from 'redux';
 import { Form, Button, SocialMediaButtons, AccountExampleView } from '../../components';
@@ -49,7 +49,7 @@ const AddAccountFormComponent = props => {
     <FinalForm
       {...props}
       render={fieldRenderProps => {
-        const { className, currentUser, intl, rootClassName, values } = fieldRenderProps;
+        const { className, currentUser, rootClassName } = fieldRenderProps;
 
         const classes = classNames(rootClassName || css.root, className);
         return (
