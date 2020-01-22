@@ -8,7 +8,7 @@ import { ListingLink } from '../../components';
 import { EditListingLocationForm } from '../../forms';
 
 import css from './EditListingLocationPanel.css';
-import { consoleSandbox } from '@sentry/utils';
+// import { consoleSandbox } from '@sentry/utils';
 
 class EditListingLocationPanel extends Component {
   constructor(props) {

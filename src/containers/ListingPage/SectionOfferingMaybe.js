@@ -1,6 +1,5 @@
 import React from 'react';
 import { shape, string } from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import css from './SectionRulesMaybe.css';

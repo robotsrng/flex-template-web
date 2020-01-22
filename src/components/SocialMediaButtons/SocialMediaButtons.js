@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import css from './SocialMediaButtons.css';
-import Swal from 'sweetalert2';
-import axios from 'axios';
+// import Swal from 'sweetalert2';
+// import axios from 'axios';
 
 const SocialMediaButtons = props => {
   return (

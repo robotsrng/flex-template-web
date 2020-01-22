@@ -80,12 +80,12 @@ class KeywordFilter extends Component {
       ? intl.formatMessage({ id: 'KeywordFilter.labelSelected' }, { labelText: initialValues })
       : label;
 
-    const labelForPlain = hasInitialValues
-      ? intl.formatMessage(
-          { id: 'KeywordFilterPlainForm.labelSelected' },
-          { labelText: initialValues }
-        )
-      : label;
+    // const labelForPlain = hasInitialValues
+    //   ? intl.formatMessage(
+    //       { id: 'KeywordFilterPlainForm.labelSelected' },
+    //       { labelText: initialValues }
+    //     )
+    //   : label;
 
     const filterText = intl.formatMessage({ id: 'KeywordFilter.filterText' });
 

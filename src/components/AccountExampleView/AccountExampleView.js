@@ -16,7 +16,7 @@ const AccountExampleView = ({
     <div className={css.examples}>
       <div className={css.colInfo}>
         <div>
-          <img src={img} className={cssImg ? css.roundImg : css.img}></img>
+          <img src={img} className={cssImg ? css.roundImg : css.img} alt=""></img>
         </div>
         <div className={css.col}>
           <div className={whiteLetters ? css.whiteLetters : undefined}>

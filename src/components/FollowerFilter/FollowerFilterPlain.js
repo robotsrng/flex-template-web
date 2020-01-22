@@ -53,15 +53,15 @@ class FollowerFilterPlainComponent extends Component {
     const hasInitialValues = initialValues && hasValue(minFollower) && hasValue(maxFollower);
 
     const labelClass = hasInitialValues ? css.filterLabelSelected : css.filterLabel;
-    const labelText = hasInitialValues
-      ? intl.formatMessage(
-          { id: 'FollowerFilterForm.labelSelectedPlain' },
-          {
-            minFollower: formatCurrencyMajorUnit(intl, currencyConfig.currency, minFollower),
-            maxFollower: formatCurrencyMajorUnit(intl, currencyConfig.currency, maxFollower),
-          }
-        )
-      : intl.formatMessage({ id: 'FollowerFilterForm.label' });
+    // const labelText = hasInitialValues
+    //   ? intl.formatMessage(
+    //       { id: 'FollowerFilterForm.labelSelectedPlain' },
+    //       {
+    //         minFollower: formatCurrencyMajorUnit(intl, currencyConfig.currency, minFollower),
+    //         maxFollower: formatCurrencyMajorUnit(intl, currencyConfig.currency, maxFollower),
+    //       }
+    //     )
+    //   : intl.formatMessage({ id: 'FollowerFilterForm.label' });
 
     return (
       <div className={classes}>

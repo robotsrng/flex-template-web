@@ -12,7 +12,7 @@ const BlogItem = props => {
   return (
     <div className={classes}>
       <div className={css.container}>
-        <img className={css.img} src={img}></img>
+        <img className={css.img} src={img} alt=""></img>
         <h2>{title}</h2>
         <p>{created}</p>
         <span>{description}</span>

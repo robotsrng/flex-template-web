@@ -22,7 +22,9 @@ const SectionCalculator = props => {
       <div className={css.calculatorInput}>
         <p className={css.inputTitle}>Username</p>
         <input placeholder="username"></input>
-        <a className={css.button}>Calculate</a>
+        <a className={css.button} href="www.sidesuite.herokuapp.com">
+          Calculate
+        </a>
       </div>
     </div>
   );

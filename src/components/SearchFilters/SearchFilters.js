@@ -7,8 +7,8 @@ import { withRouter } from 'react-router-dom';
 import omit from 'lodash/omit';
 
 import {
-  BookingDateRangeFilter,
-  SelectSingleFilter,
+  // BookingDateRangeFilter,
+  // SelectSingleFilter,
   SelectMultipleFilter,
   PriceFilter,
   KeywordFilter,
@@ -173,17 +173,17 @@ const SearchFiltersComponent = props => {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
-  const categoryFilterElement = categoryFilter ? (
-    <SelectSingleFilter
-      urlParam={categoryFilter.paramName}
-      label={categoryLabel}
-      onSelect={handleSelectOption}
-      showAsPopup
-      options={categoryFilter.options}
-      initialValue={initialCategory}
-      contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
-    />
-  ) : null;
+  // const categoryFilterElement = categoryFilter ? (
+  //   <SelectSingleFilter
+  //     urlParam={categoryFilter.paramName}
+  //     label={categoryLabel}
+  //     onSelect={handleSelectOption}
+  //     showAsPopup
+  //     options={categoryFilter.options}
+  //     initialValue={initialCategory}
+  //     contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
+  //   />
+  // ) : null;
 
   const socialMediasFilterElement = socialMediasFilter ? (
     <SelectMultipleFilter
@@ -225,17 +225,17 @@ const SearchFiltersComponent = props => {
     />
   ) : null;
 
-  const dateRangeFilterElement =
-    dateRangeFilter && dateRangeFilter.config.active ? (
-      <BookingDateRangeFilter
-        id="SearchFilters.dateRangeFilter"
-        urlParam={dateRangeFilter.paramName}
-        onSubmit={handleDateRange}
-        showAsPopup
-        contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
-        initialValues={initialDateRange}
-      />
-    ) : null;
+  // const dateRangeFilterElement =
+  //   dateRangeFilter && dateRangeFilter.config.active ? (
+  //     <BookingDateRangeFilter
+  //       id="SearchFilters.dateRangeFilter"
+  //       urlParam={dateRangeFilter.paramName}
+  //       onSubmit={handleDateRange}
+  //       showAsPopup
+  //       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
+  //       initialValues={initialDateRange}
+  //     />
+  //   ) : null;
 
   const keywordFilterElement =
     keywordFilter && keywordFilter.config.active ? (

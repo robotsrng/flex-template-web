@@ -8,13 +8,13 @@ import {
   Footer,
 } from '../../components';
 const TestPage = () => {
-  const handleResponse = data => {
-    console.log(data);
-  };
+  // const handleResponse = data => {
+  //   console.log(data);
+  // };
 
-  const handleError = error => {
-    console.log(error);
-  };
+  // const handleError = error => {
+  //   console.log(error);
+  // };
   // prettier-ignore
   return (
     <StaticPage
