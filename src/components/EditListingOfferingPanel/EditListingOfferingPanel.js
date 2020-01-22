@@ -42,7 +42,7 @@ const EditListingOfferingPanel = props => {
       setOffering={setOffering}
       className={css.form}
       onSubmit={_ => {
-        var updatedValues = {
+        let updatedValues = {
           publicData: { offering, follower },
         };
         !currentListing.attributes.title && (updatedValues = { title: title, ...updatedValues });
