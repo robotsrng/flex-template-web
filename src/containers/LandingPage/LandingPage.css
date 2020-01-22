@@ -73,7 +73,7 @@
 }
 
 /* Every other section has a light background */
-.section:nth-of-type(3n) {
+.section:nth-of-type(odd) {
   background-color: var(--matterColorLight);
   @media (--viewportMedium) {
     border-radius: 4px;
