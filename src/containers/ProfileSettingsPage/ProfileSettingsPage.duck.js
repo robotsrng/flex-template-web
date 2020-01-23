@@ -160,14 +160,11 @@ export const updateProfile = actionPayload => {
 };
 
 export const updateSocialAccount = actionPayload => {
-  console.log(actionPayload);
   return (dispatch, sdk) => {
     dispatch(updateProfileRequest());
     return sdk.currentUser
       .updateProfile(actionPayload)
       .then(response => {
-        console.log('success');
-        console.log(response);
         const entities = denormalisedResponseEntities(response);
         if (entities.length !== 1) {
           throw new Error('Expected a resource in the sdk.currentUser.updateProfile response');

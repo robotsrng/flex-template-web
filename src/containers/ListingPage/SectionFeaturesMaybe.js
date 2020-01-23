@@ -11,7 +11,6 @@ const SectionFeaturesMaybe = props => {
   }
   const selectedOptions =
     publicData && publicData.postCategoriesList ? publicData.postCategoriesList : [];
-  console.log(selectedOptions);
   return (
     <div className={css.sectionFeatures}>
       <h2 className={css.featuresTitle}>

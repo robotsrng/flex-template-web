@@ -152,6 +152,12 @@ export const getAccountLinkSuccess = () => ({
 });
 
 // ================ Thunks ================ //
+export const createUserListing = user => (dispatch, getState, sdk) => {
+  sdk.ownListings
+    .create(user)
+    .then(r => console.log(r))
+    .catch(err => console.log(err));
+};
 
 export const createStripeAccount = params => (dispatch, getState, sdk) => {
   const country = params.country;
@@ -167,6 +173,13 @@ export const createStripeAccount = params => (dispatch, getState, sdk) => {
     .then(response => {
       const stripeAccount = response.data.data;
       dispatch(stripeAccountCreateSuccess(stripeAccount));
+      sdk.currentUser.show().then(res => {
+        const user = {
+          title: res.data.data.attributes.profile.publicData.username,
+          publicData: { uuid: res.data.data.id.uuid, listingType: 'user' },
+        };
+        dispatch(createUserListing(user));
+      });
       return stripeAccount;
     })
     .catch(err => {

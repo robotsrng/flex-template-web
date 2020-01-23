@@ -47,7 +47,6 @@ const createReturnURL = (returnURLType, rootURL, routes) => {
     {}
   );
   const root = rootURL.replace(/\/$/, '');
-  console.log(`${root}${path}`);
   return `${root}${path}`;
 };
 

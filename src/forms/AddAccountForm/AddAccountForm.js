@@ -33,7 +33,6 @@ const AddAccountFormComponent = props => {
       if (accountList) {
         setAccountList([...accountList, newAccount]);
       } else setAccountList([newAccount]);
-      console.log(accountList);
       const updateUser = { publicData: accountList };
       updateSocialAccount(updateUser);
       setShowVerification(false);

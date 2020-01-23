@@ -49,9 +49,9 @@ export const ListingCardComponent = props => {
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
   const { priceTitle } = priceData(price, intl);
-  const offering = currentListing.attributes.publicData.offering.replace(/^\w/, c =>
-    c.toUpperCase()
-  );
+  const offering = currentListing.attributes.publicData.offering
+    ? currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase())
+    : '';
   const unitType = config.bookingUnitType;
   // const isNightly = unitType === LINE_ITEM_NIGHT;
   // const isDaily = unitType === LINE_ITEM_DAY;
@@ -65,7 +65,7 @@ export const ListingCardComponent = props => {
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
       <div className={css.accountContainer}>
         <AccountExampleView
-          img={firstImage.attributes.variants['scaled-small'].url}
+          img={firstImage && firstImage.attributes.variants['scaled-small'].url}
           postTitle={title}
           postUsername={authorName}
           postFollowerAmmount="120 followers"
