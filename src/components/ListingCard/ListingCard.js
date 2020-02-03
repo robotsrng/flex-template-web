@@ -39,6 +39,7 @@ class ListingImage extends Component {
 
 export const ListingCardComponent = props => {
   const { className, rootClassName, intl, listing } = props;
+  console.log(listing);
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureListing(listing);
   const id = currentListing.id.uuid;
@@ -61,7 +62,7 @@ export const ListingCardComponent = props => {
   //   : isDaily
   //   ? 'ListingCard.perDay'
   //   : 'ListingCard.perUnit';
-  return (
+  return listing.attributes.publicData.listingType === 'post' ? (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
       <div className={css.accountContainer}>
         <AccountExampleView
@@ -110,6 +111,8 @@ export const ListingCardComponent = props => {
         </div>
       </div> */}
     </NamedLink>
+  ) : (
+    <p>asdsdasa</p>
   );
 };
 

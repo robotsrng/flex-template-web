@@ -39,6 +39,7 @@ const EditListingDescriptionPanel = props => {
           const updateValues = {
             title: title.trim(),
             description,
+            publicData: { listingType: 'post' },
           };
 
           onSubmit(updateValues);

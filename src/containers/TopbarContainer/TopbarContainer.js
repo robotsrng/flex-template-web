@@ -27,10 +27,8 @@ export const TopbarContainerComponent = props => {
     sendVerificationEmailInProgress,
     sendVerificationEmailError,
     onResendVerificationEmail,
-    keywordFilter,
     ...rest
   } = props;
-
   return (
     <Topbar
       authInProgress={authInProgress}
@@ -49,7 +47,6 @@ export const TopbarContainerComponent = props => {
       sendVerificationEmailInProgress={sendVerificationEmailInProgress}
       sendVerificationEmailError={sendVerificationEmailError}
       showGenericError={hasGenericError}
-      keywordFilter={keywordFilter}
       {...rest}
     />
   );

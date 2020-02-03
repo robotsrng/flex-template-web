@@ -3,7 +3,6 @@ import { bool, func, object, shape, string } from 'prop-types';
 import { Field } from 'react-final-form';
 import classNames from 'classnames';
 import { ValidationError, ExpandingTextarea } from '../../components';
-import IconHourGlass from './IconHourGlass.js';
 
 import css from './FieldTextInputKeywords.css';
 
@@ -84,9 +83,7 @@ class FieldTextInputKeywordsComponent extends Component {
     return (
       <div className={classes}>
         {label ? <label htmlFor={id}>{label}</label> : null}
-        <div className={css.icon}>
-          <IconHourGlass />
-        </div>
+
         {isTextarea ? <ExpandingTextarea {...inputProps} /> : <input {...inputProps} />}
         <ValidationError fieldMeta={fieldMeta} />
       </div>

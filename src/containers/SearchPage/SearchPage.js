@@ -124,12 +124,15 @@ export class SearchPageComponent extends Component {
 
       //const viewportMapCenter = SearchMap.getMapCenter(map);
       const originMaybe = config.sortSearchByDistance ? { origin: viewportCenter } : {};
+      const data = JSON.parse(sessionStorage.getItem('filterState'));
+      const pub_listingType = data.pub_listingType;
 
       const searchParams = {
         address,
         ...originMaybe,
         bounds: viewportBounds,
         mapSearch: true,
+        pub_listingType,
         ...validFilterParams(rest, this.filters()),
       };
 
@@ -201,7 +204,6 @@ export class SearchPageComponent extends Component {
     const topbarClasses = this.state.isMobileModalOpen
       ? classNames(css.topbarBehindModal, css.topbar)
       : css.topbar;
-
     // N.B. openMobileMap button is sticky.
     // For some reason, stickyness doesn't work on Safari, if the element is <button>
     /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -216,8 +218,6 @@ export class SearchPageComponent extends Component {
           className={topbarClasses}
           currentPage="SearchPage"
           currentSearchParams={urlQueryParams}
-          urlQueryParams={validQueryParams}
-          keywordFilter={filters.keywordFilter}
         />
         <div className={css.container}>
           <MainPanel
@@ -390,6 +390,7 @@ SearchPage.loadData = (params, search) => {
     latlngBounds: ['bounds'],
   });
   const { page = 1, address, origin, ...rest } = queryParams;
+  console.log(queryParams);
   const originMaybe = config.sortSearchByDistance && origin ? { origin } : {};
   return searchListings({
     ...rest,

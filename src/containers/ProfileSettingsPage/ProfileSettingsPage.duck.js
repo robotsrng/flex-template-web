@@ -144,6 +144,32 @@ export const updateProfile = actionPayload => {
     return sdk.currentUser
       .updateProfile(actionPayload, queryParams)
       .then(response => {
+        console.log(actionPayload.publicData.location.selectedPlace.origin);
+        sdk.currentUser
+          .show()
+          .then(res => {
+            const actionPayloadUserCard = actionPayload.profileImageId
+              ? ({
+                  id: res.data.data.attributes.publicData.userCard,
+                  geolocation: actionPayload.publicData.location.selectedPlace.origin,
+                  images: [actionPayload.profileImageId.uuid],
+                },
+                {
+                  expand: true,
+                  include: ['images'],
+                  'fields.image': [
+                    'variants.scaled-small',
+                    'variants.square-small',
+                    'variants.square-small2x',
+                  ],
+                })
+              : {
+                  id: res.data.data.attributes.profile.publicData.userCard,
+                  geolocation: actionPayload.publicData.location.selectedPlace.origin,
+                };
+            sdk.ownListings.update(actionPayloadUserCard).then(r => console.log(r));
+          })
+          .catch(err => console.log(err));
         dispatch(updateProfileSuccess(response));
 
         const entities = denormalisedResponseEntities(response);

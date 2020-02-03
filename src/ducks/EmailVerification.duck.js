@@ -52,6 +52,16 @@ export const verificationError = error => ({
 });
 
 // ================ Thunks ================ //
+export const createUserListing = user => (dispatch, getState, sdk) => {
+  sdk.ownListings
+    .create(user)
+    .then(r =>
+      sdk.currentUser
+        .updateProfile({ publicData: { userCard: r.data.data.id.uuid } })
+        .then(response => console.log(response))
+    )
+    .catch(err => console.log(err));
+};
 
 export const verify = verificationToken => (dispatch, getState, sdk) => {
   if (verificationInProgress(getState())) {
@@ -63,6 +73,18 @@ export const verify = verificationToken => (dispatch, getState, sdk) => {
   // just dispatches the login error action.
   return sdk.currentUser
     .verifyEmail({ verificationToken })
+    .then(() => {
+      sdk.currentUser.show().then(res => {
+        const user = {
+          title: res.data.data.attributes.profile.publicData.username,
+          publicData: {
+            uuid: res.data.data.id.uuid,
+            listingType: res.data.data.attributes.profile.publicData.accountType,
+          },
+        };
+        dispatch(createUserListing(user));
+      });
+    })
     .then(() => dispatch(verificationSuccess()))
     .then(() => dispatch(fetchCurrentUser()))
     .catch(e => dispatch(verificationError(storableError(e))));

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import css from './FieldTextInputKeywords.css';
+import css from './TopbarSearchForm.css';
 
 const IconHourGlass = () => (
   <svg

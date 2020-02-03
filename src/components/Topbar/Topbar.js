@@ -72,24 +72,39 @@ GenericError.propTypes = {
 class TopbarComponent extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      checked: 'keywords',
+    };
     this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
     this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
     this.handleMobileSearchOpen = this.handleMobileSearchOpen.bind(this);
     this.handleMobileSearchClose = this.handleMobileSearchClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleKeyword = this.handleKeyword.bind(this);
+    this.handleSubmitKeywords = this.handleSubmitKeywords.bind(this);
     this.initialValue = this.initialValue.bind(this);
-    this.state = {
-      checked: 'keywords',
-    };
     this.handleToggleButton = this.handleToggleButton.bind(this);
   }
-
+  componentDidMount() {
+    sessionStorage.setItem('filterState', JSON.stringify({ pub_listingType: 'post' }));
+  }
+  componentWillUnmount() {
+    const sessionData = JSON.parse(sessionStorage.getItem('filterState'));
+    if (sessionData) {
+      sessionStorage.removeItem('filterState');
+    }
+  }
   handleToggleButton(e) {
     this.setState({
       checked: e.target.value,
     });
+    if (e.target.value === 'keywords') {
+      sessionStorage.setItem('filterState', JSON.stringify({ pub_listingType: 'post' }));
+    } else if (e.target.value === 'creators') {
+      sessionStorage.setItem('filterState', JSON.stringify({ pub_listingType: 'personal' }));
+    } else if (e.target.value === 'brands') {
+      sessionStorage.setItem('filterState', JSON.stringify({ pub_listingType: 'business' }));
+    }
   }
 
   handleMobileMenuOpen() {
@@ -114,22 +129,32 @@ class TopbarComponent extends Component {
     const { history } = this.props;
     const { origin, bounds } = selectedPlace;
     const originMaybe = config.sortSearchByDistance ? { origin } : {};
+    const data = JSON.parse(sessionStorage.getItem('filterState'));
+    const pub_listingType = data.pub_listingType;
     const searchParams = {
       ...currentSearchParams,
       ...originMaybe,
+      pub_listingType,
       address: search,
       bounds,
     };
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, searchParams));
   }
 
-  handleKeyword(urlParam, keywords) {
-    const { urlQueryParams, history } = this.props;
-    const queryParams = urlParam
-      ? { ...urlQueryParams, [urlParam]: keywords }
-      : omit(urlQueryParams, urlParam);
+  handleSubmitKeywords(values) {
+    const { currentSearchParams } = this.props;
+    const keywords = values.keywords;
+    const { history } = this.props;
+    let searchParams;
+    const data = JSON.parse(sessionStorage.getItem('filterState'));
+    const pub_listingType = data.pub_listingType;
+    searchParams = {
+      ...currentSearchParams,
+      keywords,
+      pub_listingType,
+    };
 
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, searchParams));
   }
   handleLogout() {
     const { onLogout, history } = this.props;
@@ -148,7 +173,9 @@ class TopbarComponent extends Component {
     });
   }
   initialValue(paramName) {
-    return this.props.urlQueryParams[paramName];
+    if (this.props.currentSearchParams) {
+      return this.props.currentSearchParams[paramName];
+    } else return '';
   }
 
   render() {
@@ -173,28 +200,9 @@ class TopbarComponent extends Component {
       sendVerificationEmailInProgress,
       sendVerificationEmailError,
       showGenericError,
-      keywordFilter,
     } = this.props;
+    const initialKeyword = this.initialValue('keywords');
 
-    const initialKeyword = keywordFilter && this.initialValue(keywordFilter.paramName);
-    const keywordLabel = intl.formatMessage({
-      id: 'SearchFiltersMobile.keywordLabel',
-    });
-    const keywordFilterElement =
-      keywordFilter && keywordFilter.config.active ? (
-        <KeywordFilter
-          id={'SearchFiltersMobile.keywordFilter'}
-          name="keyword"
-          urlParam={keywordFilter.paramName}
-          label={keywordLabel}
-          onSubmit={this.handleKeyword}
-          liveEdit
-          showAsPopup={false}
-          initialValues={initialKeyword}
-          handleMobileSearchClose={this.handleMobileSearchClose}
-          isMobile
-        />
-      ) : null;
     const { mobilemenu, mobilesearch, address, origin, bounds } = parse(location.search, {
       latlng: ['origin'],
       latlngBounds: ['bounds'],
@@ -231,17 +239,6 @@ class TopbarComponent extends Component {
     };
 
     const classes = classNames(rootClassName || css.root, className);
-    const locationFilterElement = (
-      <TopbarSearchForm
-        onSubmit={this.handleSubmit}
-        initialValues={initialSearchFormValues}
-        isMobile
-      />
-    );
-    let filter;
-    if (this.state.checked === 'location') {
-      filter = locationFilterElement;
-    } else filter = keywordFilterElement;
 
     return (
       <div className={classes}>
@@ -309,7 +306,7 @@ class TopbarComponent extends Component {
                   checked={this.state.checked === 'keywords'}
                   onChange={this.handleToggleButton}
                 ></input>
-                <label for="r1">Keywords</label>
+                <label htmlFor="r1">Keywords</label>
               </li>
               <li className={css.col}>
                 <input
@@ -320,7 +317,7 @@ class TopbarComponent extends Component {
                   checked={this.state.checked === 'location'}
                   onChange={this.handleToggleButton}
                 ></input>
-                <label for="r2">Location</label>
+                <label htmlFor="r2">Location</label>
               </li>
               <li className={css.col}>
                 <input
@@ -331,7 +328,7 @@ class TopbarComponent extends Component {
                   checked={this.state.checked === 'creators'}
                   onChange={this.handleToggleButton}
                 ></input>
-                <label for="r3">Creators</label>
+                <label htmlFor="r3">Creators</label>
               </li>
               <li className={css.col}>
                 <input
@@ -342,10 +339,19 @@ class TopbarComponent extends Component {
                   checked={this.state.checked === 'brands'}
                   onChange={this.handleToggleButton}
                 ></input>
-                <label for="r4">Brands</label>
+                <label htmlFor="r4">Brands</label>
               </li>
             </ul>
-            {filter}
+            <TopbarSearchForm
+              onSubmit={
+                this.state.checked === 'location' ? this.handleSubmit : this.handleSubmitKeywords
+              }
+              initialValues={initialSearchFormValues}
+              isMobile
+              initialKeyword={initialKeyword}
+              stateFilter={this.state.checked}
+              handleSubmitKeywords={this.handleSubmitKeywords}
+            />
           </div>
         </Modal>
         <ModalMissingInformation
