@@ -75,8 +75,15 @@ export const verify = verificationToken => (dispatch, getState, sdk) => {
     .verifyEmail({ verificationToken })
     .then(() => {
       sdk.currentUser.show().then(res => {
+        let description;
+        if (res.data.data.attributes.profile.publicData.accountType === 'personal') {
+          const name = res.data.data.attributes.profile.firstName;
+          const lastName = res.data.data.attributes.profile.lastName;
+          description = name.concat(' ', lastName);
+        } else description = res.data.data.attributes.profile.firstName;
         const user = {
           title: res.data.data.attributes.profile.publicData.username,
+          description: description.toString(),
           publicData: {
             uuid: res.data.data.id.uuid,
             listingType: res.data.data.attributes.profile.publicData.accountType,

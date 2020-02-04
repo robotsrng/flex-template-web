@@ -141,33 +141,34 @@ export const updateProfile = actionPayload => {
       include: ['profileImage'],
       'fields.image': ['variants.square-small', 'variants.square-small2x'],
     };
+    console.log(actionPayload);
     return sdk.currentUser
       .updateProfile(actionPayload, queryParams)
       .then(response => {
-        console.log(actionPayload.publicData.location.selectedPlace.origin);
         sdk.currentUser
           .show()
           .then(res => {
-            const actionPayloadUserCard = actionPayload.profileImageId
-              ? ({
-                  id: res.data.data.attributes.publicData.userCard,
-                  geolocation: actionPayload.publicData.location.selectedPlace.origin,
-                  images: [actionPayload.profileImageId.uuid],
-                },
-                {
-                  expand: true,
-                  include: ['images'],
-                  'fields.image': [
-                    'variants.scaled-small',
-                    'variants.square-small',
-                    'variants.square-small2x',
-                  ],
-                })
-              : {
-                  id: res.data.data.attributes.profile.publicData.userCard,
-                  geolocation: actionPayload.publicData.location.selectedPlace.origin,
-                };
-            sdk.ownListings.update(actionPayloadUserCard).then(r => console.log(r));
+            console.log(res);
+            const actionPayloadUserCard = {
+              id: res.data.data.attributes.profile.publicData.userCard,
+              geolocation: actionPayload.publicData.location.selectedPlace.origin,
+              images: [actionPayload.profileImageId.uuid],
+            };
+            const queryParamsUserCard = {
+              expand: true,
+              include: ['images'],
+              'fields.image': [
+                'variants.scaled-small',
+                'variants.square-small',
+                'variants.square-small2x',
+              ],
+            };
+            console.log(actionPayloadUserCard);
+            if (actionPayload.profileImageId) {
+              sdk.ownListings
+                .update(actionPayloadUserCard, queryParamsUserCard)
+                .then(r => console.log(r));
+            } else sdk.ownListings.update(actionPayloadUserCard).then(r => console.log(r));
           })
           .catch(err => console.log(err));
         dispatch(updateProfileSuccess(response));

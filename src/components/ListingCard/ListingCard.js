@@ -8,7 +8,7 @@ import { formatMoney } from '../../util/currency';
 import { ensureListing, ensureUser } from '../../util/data';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
-import { NamedLink, ResponsiveImage, ListingPostCard } from '../../components';
+import { NamedLink, ResponsiveImage, ListingPostCard, listingUserCard } from '../../components';
 
 import css from './ListingCard.css';
 
