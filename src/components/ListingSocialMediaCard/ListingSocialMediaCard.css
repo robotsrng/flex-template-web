@@ -1,0 +1,42 @@
+@import '../../marketplace.css';
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .col {
+  margin-left: 15px;
+  align-self: center;
+}
+
+.container p {
+  line-height: 10px;
+}
+
+.roundImg {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
+
+.col p {
+  flex-grow: 2;
+}
+.colValue p {
+  font-size: 28px;
+  font-weight: lighter;
+  flex-grow: 1;
+}
+
+.col p,
+.colValue p {
+  color: var(--marketplaceColorDark);
+  text-align: left;
+}
+
+.whiteLetters p {
+  color: white;
+}
+.userContent {
+  font-size: 12px;
+}

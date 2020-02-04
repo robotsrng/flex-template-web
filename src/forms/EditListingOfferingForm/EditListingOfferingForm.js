@@ -5,7 +5,7 @@ import { Form as FinalForm } from 'react-final-form';
 import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { propTypes, LISTING_STATE_DRAFT } from '../../util/types';
-import { Button, Form, ListingLink, AccountExampleView } from '../../components';
+import { Button, Form, ListingLink, ListingSocialMediaCard } from '../../components';
 import css from './EditListingOfferingForm.css';
 import { ensureOwnListing } from '../../util/data';
 
@@ -82,14 +82,13 @@ export const EditListingOfferingFormComponent = props => {
                 }
               >
                 <div className={css.accountPosition}>
-                  <AccountExampleView
+                  <ListingSocialMediaCard
                     whiteLetters={props.offering === 'instagram' && 'true'}
-                    cssImg="img"
                     img={instagram}
-                    postUsername="axelwhalen"
-                    postFollowerAmmount="Instagram"
-                    postValueMaybe="338 followers"
-                  ></AccountExampleView>
+                    username="axelwhalen"
+                    platform="Instagram"
+                    audience="338 followers"
+                  />
                 </div>
               </button>
               <button
@@ -100,14 +99,13 @@ export const EditListingOfferingFormComponent = props => {
                 }
               >
                 <div className={css.accountPosition}>
-                  <AccountExampleView
+                  <ListingSocialMediaCard
                     whiteLetters={props.offering === 'facebook' && 'true'}
-                    cssImg="img"
                     img={facebook}
-                    postUsername="Axel Whalen"
-                    postFollowerAmmount="Facebook"
-                    postValueMaybe="705 friends"
-                  ></AccountExampleView>
+                    username="Axel Whalen"
+                    platform="Facebook"
+                    audience="705 friends"
+                  />
                 </div>
               </button>
               <button
@@ -118,14 +116,13 @@ export const EditListingOfferingFormComponent = props => {
                 }
               >
                 <div className={css.accountPosition}>
-                  <AccountExampleView
+                  <ListingSocialMediaCard
                     whiteLetters={props.offering === 'youtube' && 'true'}
-                    cssImg="img"
                     img={youtube}
-                    postUsername="The Waylon Axle"
-                    postFollowerAmmount="Youtube"
-                    postValueMaybe="338 subscribers"
-                  ></AccountExampleView>
+                    username="The Waylon Axle"
+                    platform="Youtube"
+                    audience="338 subscribers"
+                  />
                 </div>
               </button>
             </div>

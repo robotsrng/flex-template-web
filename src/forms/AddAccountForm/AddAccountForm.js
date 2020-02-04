@@ -4,7 +4,7 @@ import { injectIntl, intlShape } from '../../util/reactIntl';
 import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import { compose } from 'redux';
-import { Form, Button, SocialMediaButtons, AccountExampleView } from '../../components';
+import { Form, Button, SocialMediaButtons, ListingPostCard } from '../../components';
 import CodeInput from 'react-verification-code-input';
 import Swal from 'sweetalert2';
 
@@ -72,7 +72,7 @@ const AddAccountFormComponent = props => {
               </div>
               {accountList.map(options => {
                 return (
-                  <AccountExampleView
+                  <ListingPostCard
                     postUsername={options.Facebook.username}
                     postFollowerAmmount="450 Friends"
                     img={options.Facebook.picture}

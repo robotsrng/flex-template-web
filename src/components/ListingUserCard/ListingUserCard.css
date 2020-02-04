@@ -1,23 +1,23 @@
 @import '../../marketplace.css';
-.examples {
+.container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
 }
-.examples .colInfo {
+.container .colInfo {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   vertical-align: middle;
 }
-.examples .col {
+.container .col {
   margin-left: 15px;
   align-self: center;
 }
 
-.examples p {
+.container p {
   line-height: 10px;
 }
 
@@ -27,12 +27,6 @@
   border-radius: 50%;
 }
 
-.img {
-  width: 72px;
-  height: 72px;
-  max-height: 72px;
-  border-radius: 20px;
-}
 .col p {
   flex-grow: 2;
 }
@@ -48,14 +42,11 @@
   text-align: left;
 }
 
-.postContent {
-  font-size: 12px;
-}
-
-.postTitle {
+.username {
   @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightSemiBold);
 }
-.whiteLetters p {
-  color: white;
+
+.userContent {
+  font-size: 12px;
 }

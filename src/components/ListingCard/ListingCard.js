@@ -8,7 +8,7 @@ import { formatMoney } from '../../util/currency';
 import { ensureListing, ensureUser } from '../../util/data';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
-import { NamedLink, ResponsiveImage, AccountExampleView } from '../../components';
+import { NamedLink, ResponsiveImage, ListingPostCard } from '../../components';
 
 import css from './ListingCard.css';
 
@@ -65,7 +65,7 @@ export const ListingCardComponent = props => {
   return listing.attributes.publicData.listingType === 'post' ? (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
       <div className={css.accountContainer}>
-        <AccountExampleView
+        <ListingPostCard
           img={firstImage && firstImage.attributes.variants['scaled-small'].url}
           postTitle={title}
           postUsername={authorName}

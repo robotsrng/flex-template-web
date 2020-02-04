@@ -10,7 +10,7 @@ import companyFirstImg from './img/FourthImg.png';
 import companySecondImg from './img/FifthImg.png';
 import linkAccountImg from './img/LinkAccountImg.jpg';
 
-import { NamedLink, AccountExampleView } from '../../components';
+import { NamedLink, ListingPostCard, ListingUserCard } from '../../components';
 
 import css from './SectionHowItWorks.css';
 import { SocialMediaButtons } from '../../components';
@@ -19,6 +19,8 @@ const SectionHowItWorks = props => {
   const { rootClassName, className } = props;
 
   const classes = classNames(rootClassName || css.root, className);
+
+  const reviews = { rating: 5, ammount: 105 };
   return (
     <div className={classes}>
       <div className={css.title}>
@@ -51,36 +53,30 @@ const SectionHowItWorks = props => {
             <FormattedMessage id="SectionHowItWorks.text2" />
           </p>
           <div className={css.accountContainer}>
-            <AccountExampleView
+            <ListingPostCard
               img={firstImg}
-              postTitle={<FormattedMessage id="AccountExampleViewInfluencer.postTitle" />}
-              postUsername={<FormattedMessage id="AccountExampleViewInfluencer.postUsername" />}
-              postFollowerAmmount={
-                <FormattedMessage id="AccountExampleViewInfluencer.postFollowerAmmount" />
-              }
-              postValue={<FormattedMessage id="AccountExampleViewInfluencer.postValue" />}
+              postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
+              postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+              postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
+              postValue={<FormattedMessage id="ListingPostCard.postValue" />}
             />
           </div>
           <div className={css.accountContainer}>
-            <AccountExampleView
+            <ListingPostCard
               img={secondImg}
-              postTitle={<FormattedMessage id="AccountExampleViewInfluencer.postTitle" />}
-              postUsername={<FormattedMessage id="AccountExampleViewInfluencer.postUsername" />}
-              postFollowerAmmount={
-                <FormattedMessage id="AccountExampleViewInfluencer.postFollowerAmmount" />
-              }
-              postValue={<FormattedMessage id="AccountExampleViewInfluencer.postValue" />}
+              postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
+              postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+              postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
+              postValue={<FormattedMessage id="ListingPostCard.postValue" />}
             />
           </div>
           <div className={css.accountContainer}>
-            <AccountExampleView
+            <ListingPostCard
               img={thirdImg}
-              postTitle={<FormattedMessage id="AccountExampleViewInfluencer.postTitle" />}
-              postUsername={<FormattedMessage id="AccountExampleViewInfluencer.postUsername" />}
-              postFollowerAmmount={
-                <FormattedMessage id="AccountExampleViewInfluencer.postFollowerAmmount" />
-              }
-              postValue={<FormattedMessage id="AccountExampleViewInfluencer.postValue" />}
+              postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
+              postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+              postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
+              postValue={<FormattedMessage id="ListingPostCard.postValue" />}
             />
           </div>
         </div>
@@ -92,19 +88,17 @@ const SectionHowItWorks = props => {
           <p>
             <FormattedMessage id="SectionHowItWorks.text3" />
           </p>
-          <AccountExampleView
-            cssImg={companyFirstImg}
+          <ListingUserCard
             img={companyFirstImg}
-            postTitle="tinylifesupply"
-            postUsername="Marketing Team"
-            postFollowerAmmount="338 followers"
+            username="tinylifesupply"
+            userAudience="500"
+            reviews={reviews}
           />
-          <AccountExampleView
-            cssImg={companySecondImg}
+          <ListingUserCard
             img={companySecondImg}
-            postTitle="sidesuite"
-            postUsername="Vancouver, CA"
-            postFollowerAmmount="338 followers"
+            username="sidesuite"
+            userAudience="500"
+            reviews={reviews}
           />
         </div>
       </div>

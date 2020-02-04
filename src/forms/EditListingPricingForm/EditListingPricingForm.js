@@ -10,13 +10,7 @@ import * as validators from '../../util/validators';
 import { formatMoney } from '../../util/currency';
 import { types as sdkTypes } from '../../util/sdkLoader';
 import placheolderImg from './img/CalculatorPlaceholderImg.jpg';
-import {
-  Button,
-  Form,
-  FieldCurrencyInput,
-  ListingLink,
-  AccountExampleView,
-} from '../../components';
+import { Button, Form, FieldCurrencyInput, ListingLink, ListingPostCard } from '../../components';
 import css from './EditListingPricingForm.css';
 import { ensureOwnListing } from '../../util/data';
 
@@ -128,12 +122,12 @@ export const EditListingPricingFormComponent = props => (
 
           <h2>{secondTitle}</h2>
           <p>{secondTitleDescription}</p>
-          <AccountExampleView
+          <ListingPostCard
             img={placheolderImg}
             postUsername="axelwhalen"
             postFollowerAmmount="Instagram | 338 followers"
             postValueMaybe="$45 - $55 per post"
-          ></AccountExampleView>
+          />
           <Button
             className={css.submitButton}
             type="submit"
