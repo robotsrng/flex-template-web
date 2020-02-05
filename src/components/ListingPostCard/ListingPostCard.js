@@ -1,6 +1,5 @@
 import React from 'react';
 import css from './ListingPostCard.css';
-import ResizeImage from 'react-resize-image'
 
 const ListingPostCard = ({
   img,
