@@ -328,7 +328,7 @@ class ProfileSettingsFormComponent extends Component {
                   iconClassName={css.locationAutocompleteInputIcon}
                   predictionsClassName={css.predictionsRoot}
                   validClassName={css.validLocation}
-                  autoFocus
+                  // autoFocus
                   name="location"
                   label="Location"
                   placeholder="Start typing..."

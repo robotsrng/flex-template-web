@@ -13,9 +13,13 @@ const ListingPostCard = ({
   return (
     <div className={css.container}>
       <div className={css.colInfo}>
-        <div>
+        <div className={css.imgContainer}>
+          <div style={{ background: `url(${img})` }} className={css.overlayImage}/>
           <img src={img} className={css.img} alt=""></img>
         </div>
+        {/* <div className={css.imgContainer}>
+          <div style={{ background: `url(${img})` }} className={css.img} />
+        </div> */}
         <div className={css.col}>
           {postTitle && <p className={css.postTitle}>{postTitle}</p>}
           <p className={css.postContent}>{postUsername}</p>
@@ -24,8 +28,8 @@ const ListingPostCard = ({
               {postSocialMedia} | {postFollowerAmmount}
             </p>
           ) : (
-            <p className={css.postContent}>{postFollowerAmmount}</p>
-          )}
+              <p className={css.postContent}>{postFollowerAmmount}</p>
+            )}
           <p className={css.postContent}>{postValueMaybe}</p>
         </div>
       </div>
