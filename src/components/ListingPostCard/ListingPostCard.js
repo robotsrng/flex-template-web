@@ -14,8 +14,11 @@ const ListingPostCard = ({
   return (
     <div className={css.container}>
       <div className={css.colInfo}>
-        <div>
+        {/* <div>
           <img src={img} className={css.img} alt=""></img>
+        </div> */}
+        <div style={{backgroundImage:`url(${img})`}} className={css.imageWrapper}>
+          {/* <img src={img} className={css.img} alt=""></img> */}
         </div>
         <div className={css.col}>
           {postTitle && <p className={css.postTitle}>{postTitle}</p>}
