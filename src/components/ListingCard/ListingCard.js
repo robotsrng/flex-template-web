@@ -8,7 +8,7 @@ import { formatMoney } from '../../util/currency';
 import { ensureListing, ensureUser } from '../../util/data';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
-import { NamedLink, ResponsiveImage, ListingPostCard, listingUserCard } from '../../components';
+import { NamedLink, ResponsiveImage, ListingPostCard, ListingUserCard } from '../../components';
 
 import css from './ListingCard.css';
 
@@ -112,7 +112,9 @@ export const ListingCardComponent = props => {
       </div> */}
     </NamedLink>
   ) : (
-    <p>asdsdasa</p>
+    <NamedLink className={css.link} name="ProfilePage" params={{ id: listing.author.id.uuid }}>
+      <p>asdsdasa</p>
+    </NamedLink>
   );
 };
 

@@ -390,7 +390,6 @@ SearchPage.loadData = (params, search) => {
     latlngBounds: ['bounds'],
   });
   const { page = 1, address, origin, ...rest } = queryParams;
-  console.log(queryParams);
   const originMaybe = config.sortSearchByDistance && origin ? { origin } : {};
   return searchListings({
     ...rest,

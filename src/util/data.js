@@ -218,7 +218,7 @@ export const ensureCurrentUser = user => {
   };
   return { ...empty, ...user };
 };
-
+// Custom to bring user public Data
 export const ensureCurrentUserProfile = user => {
   const empty = {
     id: null,
