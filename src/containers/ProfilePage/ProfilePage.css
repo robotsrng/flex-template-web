@@ -127,8 +127,10 @@
 }
 
 .listingsTitle {
+  text-transform: capitalize;
   @apply --marketplaceH3FontStyles;
-  color: var(--matterColorAnti);
+  color: var(--matterColor);
+  /* color: var(--marketplaceColorDark); */
   margin-bottom: 0;
 
   @media (--viewportMedium) {

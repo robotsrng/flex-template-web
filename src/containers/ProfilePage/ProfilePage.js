@@ -23,6 +23,7 @@ import {
   ListingCard,
   Reviews,
   ButtonTabNavHorizontal,
+  ListingSocialMediaCard,
 } from '../../components';
 import { TopbarContainer, NotFoundPage } from '../../containers';
 import { loadData } from './ProfilePage.duck';
@@ -216,6 +217,22 @@ export class ProfilePageComponent extends Component {
           </div>
         ) : null}
         {isMobileLayout ? mobileReviews : desktopReviews}
+        {/* DISPLAY CHANNELS */}
+        <div className={listingsContainerClasses}>
+          <h2 className={css.listingsTitle}>
+            <FormattedMessage
+              id="ProfilePage.channelsTitle"
+              values={{ count: listings.length }}
+            />
+          </h2>
+          <ul className={css.listings}>
+            {listings.map(l => (
+              <li className={css.listing} key={l.id.uuid}>
+                <ListingSocialMediaCard username="frederickcalderon" audience="700k followers" platform="Instagram" />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
 

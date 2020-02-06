@@ -659,6 +659,7 @@
   "ProfilePage.editProfileLinkDesktop": "Edit profile",
   "ProfilePage.editProfileLinkMobile": "Edit",
   "ProfilePage.listingsTitle": "My posts ({count})",
+  "ProfilePage.channelsTitle": "Channels ({count})",
   "ProfilePage.loadingDataFailed": "Whoops, something went wrong. Please try again.",
   "ProfilePage.loadingReviewsFailed": "Loading reviews failed.",
   "ProfilePage.mobileHeading": "{name}",
