@@ -8,6 +8,8 @@ export const CLEAR_UPDATED_FORM = 'app/ProfileSettingsPage/CLEAR_UPDATED_FORM';
 
 export const UPLOAD_IMAGE_REQUEST = 'app/ProfileSettingsPage/UPLOAD_IMAGE_REQUEST';
 export const UPLOAD_IMAGE_SUCCESS = 'app/ProfileSettingsPage/UPLOAD_IMAGE_SUCCESS';
+export const UPLOAD_IMAGE_TO_LISTING_SUCCESS =
+  'app/ProfileSettingsPage/UPLOAD_IMAGE_TO_LISTING_SUCCESS';
 export const UPLOAD_IMAGE_ERROR = 'app/ProfileSettingsPage/UPLOAD_IMAGE_ERROR';
 
 export const UPDATE_PROFILE_REQUEST = 'app/ProfileSettingsPage/UPDATE_PROFILE_REQUEST';
@@ -18,6 +20,7 @@ export const UPDATE_PROFILE_ERROR = 'app/ProfileSettingsPage/UPDATE_PROFILE_ERRO
 
 const initialState = {
   image: null,
+  imageToListing: null,
   uploadImageError: null,
   uploadInProgress: false,
   updateInProgress: false,
@@ -32,6 +35,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         image: { ...payload.params },
+        imageToListing: { ...payload.params },
         uploadInProgress: true,
         uploadImageError: null,
       };
@@ -42,9 +46,27 @@ export default function reducer(state = initialState, action = {}) {
       const image = { id, imageId: uploadedImage.id, file, uploadedImage };
       return { ...state, image, uploadInProgress: false };
     }
+    case UPLOAD_IMAGE_TO_LISTING_SUCCESS: {
+      // payload: { id: 'tempId', uploadedImage }
+      const { id, uploadedImageToListing } = payload;
+      const { file } = state.imageToListing || {};
+      const imageToListing = {
+        id,
+        imageId: uploadedImageToListing.id,
+        file,
+        uploadedImageToListing,
+      };
+      return { ...state, imageToListing, uploadInProgress: false };
+    }
     case UPLOAD_IMAGE_ERROR: {
       // eslint-disable-next-line no-console
-      return { ...state, image: null, uploadInProgress: false, uploadImageError: payload.error };
+      return {
+        ...state,
+        image: null,
+        imageToListing: null,
+        uploadInProgress: false,
+        uploadImageError: payload.error,
+      };
     }
 
     case UPDATE_PROFILE_REQUEST:
@@ -57,12 +79,14 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         image: null,
+        imageToListing: null,
         updateInProgress: false,
       };
     case UPDATE_PROFILE_ERROR:
       return {
         ...state,
         image: null,
+        imageToListing: null,
         updateInProgress: false,
         updateProfileError: payload,
       };
@@ -86,6 +110,11 @@ export const clearUpdatedForm = () => ({
 // SDK method: images.upload
 export const uploadImageRequest = params => ({ type: UPLOAD_IMAGE_REQUEST, payload: { params } });
 export const uploadImageSuccess = result => ({ type: UPLOAD_IMAGE_SUCCESS, payload: result.data });
+export const uploadImageToListingSuccess = result => ({
+  type: UPLOAD_IMAGE_TO_LISTING_SUCCESS,
+  payload: result.data,
+});
+
 export const uploadImageError = error => ({
   type: UPLOAD_IMAGE_ERROR,
   payload: error,
@@ -129,6 +158,12 @@ export function uploadImage(actionPayload) {
         const uploadedImage = resp.data.data;
         dispatch(uploadImageSuccess({ data: { id, uploadedImage } }));
       })
+      .then(
+        sdk.images.upload(bodyParams, queryParams).then(res => {
+          const uploadedImageToListing = res.data.data;
+          dispatch(uploadImageToListingSuccess({ data: { id, uploadedImageToListing } }));
+        })
+      )
       .catch(e => dispatch(uploadImageError({ id, error: storableError(e) })));
   };
 }
@@ -136,6 +171,8 @@ export function uploadImage(actionPayload) {
 export const updateProfile = actionPayload => {
   return (dispatch, getState, sdk) => {
     dispatch(updateProfileRequest());
+    const listingImageId = actionPayload.listingImageId;
+    delete actionPayload.listingImageId;
     const queryParams = {
       expand: true,
       include: ['profileImage'],
@@ -152,7 +189,7 @@ export const updateProfile = actionPayload => {
               geolocation: actionPayload.publicData.location
                 ? actionPayload.publicData.location.selectedPlace.origin
                 : '',
-              images: actionPayload.profileImageId ? [actionPayload.profileImageId.uuid] : [],
+              images: listingImageId ? [listingImageId.uuid] : [],
             };
             const queryParamsUserCard = {
               expand: true,
