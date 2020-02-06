@@ -80,11 +80,16 @@ export class ProfileSettingsPageComponent extends Component {
             },
           });
       const uploadedImage = this.props.image;
+      const uploadedImageToListing = this.props.imageToListing;
 
       // Update profileImage only if file system has been accessed
       const updatedValues =
         uploadedImage && uploadedImage.imageId && uploadedImage.file
-          ? { ...profile, profileImageId: uploadedImage.imageId }
+          ? {
+              ...profile,
+              profileImageId: uploadedImage.imageId,
+              listingImageId: uploadedImageToListing.imageId,
+            }
           : profile;
       onUpdateProfile(updatedValues);
     };
@@ -171,6 +176,7 @@ ProfileSettingsPageComponent.defaultProps = {
   uploadImageError: null,
   updateProfileError: null,
   image: null,
+  imageToListing: null,
 };
 
 const { bool, func, object, shape, string } = PropTypes;
@@ -178,6 +184,12 @@ const { bool, func, object, shape, string } = PropTypes;
 ProfileSettingsPageComponent.propTypes = {
   currentUser: propTypes.currentUser,
   image: shape({
+    id: string,
+    imageId: propTypes.uuid,
+    file: object,
+    uploadedImage: propTypes.image,
+  }),
+  imageToListing: shape({
     id: string,
     imageId: propTypes.uuid,
     file: object,
@@ -199,6 +211,7 @@ const mapStateToProps = state => {
   const { currentUser } = state.user;
   const {
     image,
+    imageToListing,
     uploadImageError,
     uploadInProgress,
     updateInProgress,
@@ -207,6 +220,7 @@ const mapStateToProps = state => {
   return {
     currentUser,
     image,
+    imageToListing,
     scrollingDisabled: isScrollingDisabled(state),
     updateInProgress,
     updateProfileError,

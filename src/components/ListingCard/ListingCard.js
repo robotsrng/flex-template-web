@@ -38,8 +38,8 @@ class ListingImage extends Component {
 }
 
 export const ListingCardComponent = props => {
+  const reviews = { rating: 5, ammount: 105 };
   const { className, rootClassName, intl, listing } = props;
-  console.log(listing);
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureListing(listing);
   const id = currentListing.id.uuid;
@@ -113,7 +113,12 @@ export const ListingCardComponent = props => {
     </NamedLink>
   ) : (
     <NamedLink className={css.link} name="ProfilePage" params={{ id: listing.author.id.uuid }}>
-      <p>asdsdasa</p>
+      <ListingUserCard
+        img={firstImage && firstImage.attributes.variants['scaled-small'].url}
+        username={title}
+        userAudience="500"
+        reviews={reviews}
+      />
     </NamedLink>
   );
 };
