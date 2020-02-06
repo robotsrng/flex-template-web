@@ -84,6 +84,7 @@ export class ProfilePageComponent extends Component {
     const hasBio = !!bio;
     const hasListings = listings.length > 0;
     const username = profileUser.attributes.profile.publicData.username;
+    const location = profileUser.attributes.profile.publicData.location;
     const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
 
     const editLinkMobile = isCurrentUser ? (
@@ -105,7 +106,7 @@ export class ProfilePageComponent extends Component {
             <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: displayName }} />
           ) : null} */}
           {username ? (
-            <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: username + '123123' }} />
+            <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: username }} />
           ) : null}
         </h1>
         {editLinkMobile}
@@ -184,8 +185,8 @@ export class ProfilePageComponent extends Component {
         {this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER ? (
           <Reviews reviews={reviewsOfProvider} />
         ) : (
-          <Reviews reviews={reviewsOfCustomer} />
-        )}
+            <Reviews reviews={reviewsOfCustomer} />
+          )}
       </div>
     );
 
@@ -194,7 +195,8 @@ export class ProfilePageComponent extends Component {
         <h1 className={css.desktopHeading}>
           <FormattedMessage id="ProfilePage.desktopHeading" values={{ name: displayName }} />
         </h1>
-        <h2>sdf</h2>
+        <h1 className={css.displayName}>{displayName}</h1>
+        {location ? <h2 className={css.location}>{location.search}</h2> : null}
         {hasBio ? <p className={css.bio}>{bio}</p> : null}
         {hasListings ? (
           <div className={listingsContainerClasses}>

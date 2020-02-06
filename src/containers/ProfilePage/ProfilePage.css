@@ -56,6 +56,18 @@
   }
 }
 
+.displayName {
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: normal;
+  margin: 0 0 12px 0;
+  padding: 0;
+  color: var(--marketplaceColorLight);
+}
 
 .editLinkMobile {
   margin-top: 17px;
@@ -92,6 +104,7 @@
   /* Preserve newlines, but collapse other whitespace */
   white-space: pre-line;
   margin: 5px 0 24px 0;
+  color: var(--matterColorDark);
 
   @media (--viewportMedium) {
     margin: 4px 0 51px 0;

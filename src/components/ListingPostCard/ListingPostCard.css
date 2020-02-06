@@ -56,4 +56,5 @@
 .postTitle {
   @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightSemiBold);
+  line-height: 2px;
 }
