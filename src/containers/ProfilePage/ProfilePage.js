@@ -114,14 +114,6 @@ export class ProfilePageComponent extends Component {
       </div>
     );
 
-    const basicProfileInformation = (
-      <div className={css.basicProfileInformation}>
-        <h1 className={css.displayName}>{displayName}</h1>
-        {location ? <h2 className={css.location}>{location.search}</h2> : null}
-        {hasBio ? <p className={css.bio}>{bio}</p> : null}
-      </div>
-    )
-
     const listingsContainerClasses = classNames(css.listingsContainer, {
       [css.withBioMissingAbove]: !hasBio,
     });
@@ -203,6 +195,9 @@ export class ProfilePageComponent extends Component {
         <h1 className={css.desktopHeading}>
           <FormattedMessage id="ProfilePage.desktopHeading" values={{ name: displayName }} />
         </h1>
+        <h1 className={css.displayName}>{displayName}</h1>
+        {location ? <h2 className={css.location}>{location.search}</h2> : null}
+        {hasBio ? <p className={css.bio}>{bio}</p> : null}
         {hasListings ? (
           <div className={listingsContainerClasses}>
             <h2 className={css.listingsTitle}>
@@ -262,10 +257,7 @@ export class ProfilePageComponent extends Component {
           <LayoutWrapperTopbar>
             <TopbarContainer currentPage="ProfilePage" />
           </LayoutWrapperTopbar>
-          <LayoutWrapperSideNav className={css.aside}>
-            {asideContent}
-            {basicProfileInformation}
-          </LayoutWrapperSideNav>
+          <LayoutWrapperSideNav className={css.aside}>{asideContent}</LayoutWrapperSideNav>
           <LayoutWrapperMain>{content}</LayoutWrapperMain>
           <LayoutWrapperFooter>
             <Footer />
