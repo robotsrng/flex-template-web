@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { types as sdkTypes } from '../../util/sdkLoader';
 import { REVIEW_TYPE_OF_PROVIDER, REVIEW_TYPE_OF_CUSTOMER, propTypes } from '../../util/types';
-import { ensureCurrentUser, ensureUser } from '../../util/data';
+import { ensureCurrentUser, ensureUserProfile } from '../../util/data';
 import { withViewport } from '../../util/contextHelpers';
 import { isScrollingDisabled } from '../../ducks/UI.duck';
 import { getMarketplaceEntities } from '../../ducks/marketplaceData.duck';
@@ -76,14 +76,14 @@ export class ProfilePageComponent extends Component {
       intl,
     } = this.props;
     const ensuredCurrentUser = ensureCurrentUser(currentUser);
-    const profileUser = ensureUser(user);
+    const profileUser = ensureUserProfile(user);
     const isCurrentUser =
       ensuredCurrentUser.id && profileUser.id && ensuredCurrentUser.id.uuid === profileUser.id.uuid;
     const displayName = profileUser.attributes.profile.displayName;
     const bio = profileUser.attributes.profile.bio;
     const hasBio = !!bio;
     const hasListings = listings.length > 0;
-    const username = currentUser ? currentUser.attributes.profile.publicData.username :  'sdf';
+    const username = profileUser.attributes.profile.publicData.username;
     const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
 
     const editLinkMobile = isCurrentUser ? (
@@ -101,8 +101,11 @@ export class ProfilePageComponent extends Component {
       <div className={css.asideContent}>
         <AvatarLarge className={css.avatar} user={user} disableProfileLink />
         <h1 className={css.mobileHeading}>
-          {displayName ? (
+          {/* {displayName ? (
             <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: displayName }} />
+          ) : null} */}
+          {username ? (
+            <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: username + '123123' }} />
           ) : null}
         </h1>
         {editLinkMobile}
@@ -191,7 +194,7 @@ export class ProfilePageComponent extends Component {
         <h1 className={css.desktopHeading}>
           <FormattedMessage id="ProfilePage.desktopHeading" values={{ name: displayName }} />
         </h1>
-        <h2>username: {username}</h2>
+        <h2>sdf</h2>
         {hasBio ? <p className={css.bio}>{bio}</p> : null}
         {hasListings ? (
           <div className={listingsContainerClasses}>

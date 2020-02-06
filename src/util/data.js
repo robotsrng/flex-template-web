@@ -203,7 +203,11 @@ export const ensureUser = user => {
   const empty = { id: null, type: 'user', attributes: { profile: {} } };
   return { ...empty, ...user };
 };
-
+// Custom to bring public data
+export const ensureUserProfile = user => {
+  const empty = { id: null, type: 'user', attributes: { profile: {publicData:{}} } };
+  return { ...empty, ...user };
+};
 /**
  * Create shell objects to ensure that attributes etc. exists.
  *

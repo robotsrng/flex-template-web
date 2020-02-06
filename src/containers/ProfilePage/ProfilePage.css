@@ -41,8 +41,12 @@
 }
 
 .mobileHeading {
+  @apply --marketplaceH4FontStyles;
+  font-weight: var(--fontWeightSemiBold);
   flex-shrink: 0;
   margin: 47px 0 0 0;
+  word-break: break-all;
+  max-width: 50%;
 
   @media (--viewportMedium) {
     margin: 49px 0 0 0;
@@ -51,6 +55,7 @@
     display: none;
   }
 }
+
 
 .editLinkMobile {
   margin-top: 17px;
