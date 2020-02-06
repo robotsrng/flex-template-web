@@ -141,18 +141,18 @@ export const updateProfile = actionPayload => {
       include: ['profileImage'],
       'fields.image': ['variants.square-small', 'variants.square-small2x'],
     };
-    console.log(actionPayload);
     return sdk.currentUser
       .updateProfile(actionPayload, queryParams)
       .then(response => {
         sdk.currentUser
           .show()
           .then(res => {
-            console.log(res);
             const actionPayloadUserCard = {
               id: res.data.data.attributes.profile.publicData.userCard,
-              geolocation: actionPayload.publicData.location.selectedPlace.origin,
-              images: [actionPayload.profileImageId.uuid],
+              geolocation: actionPayload.publicData.location
+                ? actionPayload.publicData.location.selectedPlace.origin
+                : '',
+              images: actionPayload.profileImageId ? [actionPayload.profileImageId.uuid] : [],
             };
             const queryParamsUserCard = {
               expand: true,
@@ -163,7 +163,6 @@ export const updateProfile = actionPayload => {
                 'variants.square-small2x',
               ],
             };
-            console.log(actionPayloadUserCard);
             if (actionPayload.profileImageId) {
               sdk.ownListings
                 .update(actionPayloadUserCard, queryParamsUserCard)
