@@ -102,14 +102,15 @@ export class ProfilePageComponent extends Component {
     const asideContent = (
       <div className={css.asideContent}>
         <AvatarLarge className={css.avatar} user={user} disableProfileLink />
-        <h1 className={css.mobileHeading}>
-          {/* {displayName ? (
-            <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: displayName }} />
-          ) : null} */}
-          {username ? (
-            <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: username }} />
-          ) : null}
-        </h1>
+        <div>
+          <h1 className={css.mobileHeading}>
+            {username ? (
+              <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: username }} />
+            ) : null}
+          </h1>
+          <a className={css.counter}>10.7k <span>audience</span></a>
+          <a className={css.counter}>5.0 <span>(105)</span></a>
+        </div>
         {editLinkMobile}
         {editLinkDesktop}
       </div>
@@ -191,6 +192,18 @@ export class ProfilePageComponent extends Component {
       </div>
     );
 
+    const reviewsContent = (
+      <div className={listingsContainerClasses}>
+        <h2 className={css.listingsTitle}>
+          <FormattedMessage
+            id="ProfilePage.reviewsTitle"
+            values={{ count: reviews.length }}
+          />
+        </h2>
+        <Reviews reviews={reviews} />
+      </div>
+    )
+
     const mainContent = (
       <div>
         <h1 className={css.desktopHeading}>
@@ -216,7 +229,9 @@ export class ProfilePageComponent extends Component {
             </ul>
           </div>
         ) : null}
-        {isMobileLayout ? mobileReviews : desktopReviews}
+        {/* {isMobileLayout ? mobileReviews : desktopReviews} */}
+        {/* DISPLAY REVIEWS */}
+        {reviewsContent}
         {/* DISPLAY CHANNELS */}
         <div className={listingsContainerClasses}>
           <h2 className={css.listingsTitle}>

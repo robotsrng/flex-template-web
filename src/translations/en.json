@@ -665,6 +665,7 @@
   "ProfilePage.mobileHeading": "{name}",
   "ProfilePage.reviewsOfCustomerTitle": "Reviews from Hosts ({count})",
   "ProfilePage.reviewsOfProviderTitle": "Reviews from Guests ({count})",
+  "ProfilePage.reviewsTitle": "Reviews ({count})",
   "ProfilePage.schemaTitle": "{name} | {siteTitle}",
   "ProfileSettingsForm.addYourProfilePicture": "+ Add",
   "ProfileSettingsForm.addYourProfilePictureMobile": "+ Add",

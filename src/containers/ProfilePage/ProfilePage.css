@@ -43,10 +43,12 @@
 .mobileHeading {
   @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightSemiBold);
+  line-height: 14px;
   flex-shrink: 0;
   margin: 47px 0 0 0;
   word-break: break-all;
-  max-width: 50%;
+  max-width: 100%;
+  margin-bottom: 5px;
 
   @media (--viewportMedium) {
     margin: 49px 0 0 0;
@@ -54,6 +56,18 @@
   @media (--viewportLarge) {
     display: none;
   }
+}
+
+.counter {
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--marketplaceColorDark);
+}
+
+.counter span {
+  font-weight: normal;
 }
 
 .displayName {
