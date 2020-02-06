@@ -52,6 +52,10 @@ export class ProfilePageComponent extends Component {
     });
   }
 
+  componentDidMount() {
+    console.log(this.props)
+  }
+
   showOfCustomerReviews() {
     this.setState({
       showReviewsType: REVIEW_TYPE_OF_CUSTOMER,
@@ -79,6 +83,7 @@ export class ProfilePageComponent extends Component {
     const bio = profileUser.attributes.profile.bio;
     const hasBio = !!bio;
     const hasListings = listings.length > 0;
+    const username = currentUser ? currentUser.attributes.profile.publicData.username :  'sdf';
     const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
 
     const editLinkMobile = isCurrentUser ? (
@@ -186,6 +191,7 @@ export class ProfilePageComponent extends Component {
         <h1 className={css.desktopHeading}>
           <FormattedMessage id="ProfilePage.desktopHeading" values={{ name: displayName }} />
         </h1>
+        <h2>username: {username}</h2>
         {hasBio ? <p className={css.bio}>{bio}</p> : null}
         {hasListings ? (
           <div className={listingsContainerClasses}>
@@ -301,6 +307,7 @@ const mapStateToProps = state => {
   const userMatches = getMarketplaceEntities(state, [{ type: 'user', id: userId }]);
   const user = userMatches.length === 1 ? userMatches[0] : null;
   const listings = getMarketplaceEntities(state, userListingRefs);
+  // console.log(currentUser ? currentUser.attributes.profile.publicData.username : 'none')
   return {
     scrollingDisabled: isScrollingDisabled(state),
     currentUser,

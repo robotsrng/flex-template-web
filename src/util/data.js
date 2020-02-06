@@ -218,6 +218,7 @@ export const ensureCurrentUser = user => {
   };
   return { ...empty, ...user };
 };
+
 export const ensureCurrentUserProfile = user => {
   const empty = {
     id: null,
