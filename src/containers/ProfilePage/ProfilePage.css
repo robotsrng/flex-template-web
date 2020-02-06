@@ -17,13 +17,16 @@
 
 .aside {
   box-shadow: none;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .asideContent {
   width: 100%;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid var(--matterColorNegative);
+  /* border-bottom: 1px solid var(--matterColorNegative); */
 
   @media (--viewportLarge) {
     flex-direction: column;

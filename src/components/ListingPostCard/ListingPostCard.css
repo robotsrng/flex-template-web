@@ -17,9 +17,9 @@
   align-self: center;
 }
 
-.container p {
+/* .container p {
   line-height: 10px;
-}
+} */
 
 .imageWrapper {
   width: 72px;
@@ -51,10 +51,11 @@
 
 .postContent {
   font-size: 12px;
+  line-height: 6px;
 }
 
 .postTitle {
   @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightSemiBold);
-  line-height: 2px;
+  line-height: 16px;
 }
