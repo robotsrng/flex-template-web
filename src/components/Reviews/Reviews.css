@@ -127,3 +127,16 @@
     margin-right: 0;
   }
 }
+
+.showMoreReviews {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  padding: 18px 0 0 0;
+}
+
+.showMoreReviews span {
+  @apply --marketplaceH4FontStyles;
+  font-weight: var(--fontWeightSemiBold);
+}
+

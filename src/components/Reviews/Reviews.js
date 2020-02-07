@@ -56,15 +56,21 @@ const ReviewsComponent = props => {
   const classes = classNames(rootClassName || css.root, className);
 
   return (
-    <ul className={classes}>
-      {reviews.map(r => {
-        return (
-          <li key={`Review_${r.id.uuid}`} className={css.reviewItem}>
-            <Review review={r} intl={intl} />
-          </li>
-        );
-      })}
-    </ul>
+    <React.Fragment>
+      <ul className={classes}>
+        {reviews.map(r => {
+          return (
+            <li key={`Review_${r.id.uuid}`} className={css.reviewItem}>
+              <Review review={r} intl={intl} />
+            </li>
+          );
+        })}
+      </ul>
+      {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
+      <div className={css.showMoreReviews} onClick={()=>{/*do something here*/}}>
+        <span>+ Show more reviews</span>
+      </div>
+    </React.Fragment>
   );
 };
 
