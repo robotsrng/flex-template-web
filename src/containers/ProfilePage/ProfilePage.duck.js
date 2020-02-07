@@ -31,7 +31,7 @@ const initialState = {
   queryListingsError: null,
   reviews: [],
   queryReviewsError: null,
-  showMoreReviews: true,
+  showMoreReviews: false,
 };
 
 export default function profilePageReducer(state = initialState, action = {}) {

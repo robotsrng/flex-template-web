@@ -138,13 +138,7 @@ export class ProfilePageComponent extends Component {
             {editLinkMobile}
             {editLinkDesktop}
           </React.Fragment>
-        ) : (
-            <div>
-              <h1>You have 105 reviews</h1>
-              {/* show tabs here */}
-              {reviewTabs}
-            </div>
-          )}
+        ) : null}
       </div>
     );
 
@@ -356,7 +350,13 @@ export class ProfilePageComponent extends Component {
               </ul>
             </div>
           </React.Fragment>
-        ) : renderReviewTab()}
+        ) : (
+          <React.Fragment>
+            <h1>You have 105 reviews</h1>
+              {reviewTabs}
+            {renderReviewTab()}
+          </React.Fragment>
+        )}
       </div>
     );
 
