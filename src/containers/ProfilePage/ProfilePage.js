@@ -351,12 +351,12 @@ export class ProfilePageComponent extends Component {
             </div>
           </React.Fragment>
         ) : (
-          <React.Fragment>
-            <h1>You have 105 reviews</h1>
+            <React.Fragment>
+              <h1>You have 105 reviews</h1>
               {reviewTabs}
-            {renderReviewTab()}
-          </React.Fragment>
-        )}
+              {renderReviewTab()}
+            </React.Fragment>
+          )}
       </div>
     );
 
@@ -454,7 +454,6 @@ const mapStateToProps = state => {
   const userMatches = getMarketplaceEntities(state, [{ type: 'user', id: userId }]);
   const user = userMatches.length === 1 ? userMatches[0] : null;
   const listings = getMarketplaceEntities(state, userListingRefs);
-  // console.log(currentUser ? currentUser.attributes.profile.publicData.username : 'none')
   return {
     scrollingDisabled: isScrollingDisabled(state),
     currentUser,
