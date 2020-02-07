@@ -4,7 +4,9 @@ import css from './ListingSocialMediaCard.css';
 const ListingSocialMediaCard = ({ img, username, audience, platform, whiteLetters }) => {
   return (
     <div className={css.container}>
-      <img src={img} className={css.roundImg} alt=""></img>
+      <div className={css.imgContainer}>
+        <img src={img} className={css.roundImg} alt=""></img>
+      </div>
       <div className={css.col}>
         <div className={whiteLetters ? css.whiteLetters : ''}>
           <p className={css.userContent}>{username}</p>

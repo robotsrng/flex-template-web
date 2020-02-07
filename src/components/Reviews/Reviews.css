@@ -48,10 +48,6 @@
   font-weight: 700;
 }
 
-.rating span {
-  font-weight: normal;
-}
-
 .avatar {
   flex-shrink: 0;
   margin-right: 22px;

@@ -31,6 +31,8 @@ import config from '../../config';
 
 import css from './ProfilePage.css';
 
+import instagram from './img/Instagram.jpg';
+
 const { UUID } = sdkTypes;
 const MAX_MOBILE_SCREEN_WIDTH = 768;
 
@@ -272,7 +274,7 @@ export class ProfilePageComponent extends Component {
           <ul className={css.listings}>
             {listings.map(l => (
               <li className={css.listing} key={l.id.uuid}>
-                <ListingSocialMediaCard username="frederickcalderon" audience="700k followers" platform="Instagram" />
+                <ListingSocialMediaCard img={instagram} username="frederickcalderon" audience="700k followers" platform="Instagram" />
               </li>
             ))}
           </ul>
