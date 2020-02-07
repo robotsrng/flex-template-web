@@ -17,6 +17,7 @@
 
 .aside {
   box-shadow: none;
+  justify-content: flex-start;
 }
 
 .asideContent {
@@ -233,16 +234,4 @@
 
 .desktopReviewsTabNav {
   margin-bottom: 32px;
-}
-
-.showMoreReviews {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  padding: 18px 0 0 0;
-}
-
-.showMoreReviews span {
-  @apply --marketplaceH4FontStyles;
-  font-weight: var(--fontWeightSemiBold);
 }

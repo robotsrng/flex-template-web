@@ -21,7 +21,7 @@ import {
   AvatarLarge,
   NamedLink,
   ListingCard,
-  Reviews,
+  ListingReviews,
   ButtonTabNavHorizontal,
   ListingSocialMediaCard,
 } from '../../components';
@@ -204,7 +204,7 @@ export class ProfilePageComponent extends Component {
         </h2>
         {/* <Reviews reviews={reviews} /> */}
         
-        <Reviews reviews={[
+        <ListingReviews reviews={[
           {
             id: {
               uuid: 1
@@ -232,6 +232,12 @@ export class ProfilePageComponent extends Component {
             }
           }
         ]} />
+
+        {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
+      <div className={css.showMoreReviews} onClick={()=>{/*do something here*/}}>
+        <span>+ Show more reviews</span>
+      </div>
+      
       </div>
     )
 

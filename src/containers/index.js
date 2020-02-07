@@ -19,6 +19,7 @@ export { default as PaymentMethodsPage } from './PaymentMethodsPage/PaymentMetho
 export { default as StripePayoutPage } from './StripePayoutPage/StripePayoutPage'
 export { default as PrivacyPolicyPage } from './PrivacyPolicyPage/PrivacyPolicyPage';
 export { default as ProfilePage } from './ProfilePage/ProfilePage';
+export { default as ReviewsPage } from './ReviewsPage/ReviewsPage';
 export { default as ProfileSettingsPage } from './ProfileSettingsPage/ProfileSettingsPage';
 export { default as SearchPage } from './SearchPage/SearchPage';
 export { default as StaticPage } from './StaticPage/StaticPage';
