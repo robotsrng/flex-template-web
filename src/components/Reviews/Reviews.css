@@ -27,6 +27,7 @@
   flex-basis: 564px;
   flex-shrink: 1;
   flex-grow: 0;
+  align-items: center;
 }
 
 .review p {
@@ -34,8 +35,8 @@
 }
 
 .username {
-  text-align: left;
   @apply --marketplaceH4FontStyles;
+  text-align: left;
   font-weight: var(--fontWeightSemiBold);
 }
 
