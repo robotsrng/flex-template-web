@@ -17,6 +17,7 @@ import css from './Avatar.css';
 const AVATAR_SIZES = '40px';
 const AVATAR_SIZES_MEDIUM = '60px';
 const AVATAR_SIZES_LARGE = '96px';
+const AVATAR_SIZES_REVIEW = '72px';
 
 const AVATAR_IMAGE_VARIANTS = [
   // 240x240
@@ -141,3 +142,8 @@ export const AvatarLarge = props => (
   <Avatar rootClassName={css.largeAvatar} renderSizes={AVATAR_SIZES_LARGE} {...props} />
 );
 AvatarLarge.displayName = 'AvatarLarge';
+
+export const AvatarReview = props => (
+  <Avatar rootClassName={css.reviewAvatar} renderSizes={AVATAR_SIZES_REVIEW} {...props} />
+);
+AvatarLarge.displayName = 'AvatarReview';

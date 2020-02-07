@@ -2,7 +2,7 @@ import React from 'react';
 import { injectIntl, intlShape } from '../../util/reactIntl';
 import { arrayOf, string } from 'prop-types';
 import classNames from 'classnames';
-import { Avatar, ReviewRating, UserDisplayName } from '../../components';
+import { Avatar, AvatarReview, ReviewRating, UserDisplayName } from '../../components';
 import { propTypes } from '../../util/types';
 
 import css from './Reviews.css';
@@ -12,29 +12,34 @@ const Review = props => {
 
   const date = review.attributes.createdAt;
   const dateString = intl.formatDate(date, { month: 'long', year: 'numeric' });
+  const username = review.author.attributes.profile.publicData.username;
 
   return (
     <div className={css.review}>
-      <Avatar className={css.avatar} user={review.author} />
+      <AvatarReview className={css.avatar} user={review.author} />
       <div>
-        <ReviewRating
-          rating={review.attributes.rating}
-          className={css.mobileReviewRating}
-          reviewStarClassName={css.reviewRatingStar}
-        />
-        <p className={css.reviewContent}>{review.attributes.content}</p>
+
+        {/* <p className={css.reviewContent}>{review.attributes.content}</p> */}
         <p className={css.reviewInfo}>
-          <UserDisplayName user={review.author} intl={intl} />
-          <span className={css.separator}>•</span>
-          {dateString}
-          <span className={css.desktopSeparator}>•</span>
-          <span className={css.desktopReviewRatingWrapper}>
+          {/* <UserDisplayName user={review.author} intl={intl} /> */}
+          {/* <p>{review.author.attributes.profile.profileData.username}</p> */}
+          {/* <span className={css.separator}>•</span> */}
+          <p className={css.username}>{username}</p>
+          <p className={css.date}>{dateString}</p>
+          <p className={css.rating}>&#9733; <span>{review.attributes.rating}</span></p>
+          {/* <ReviewRating
+            rating={review.attributes.rating}
+            className={css.mobileReviewRating}
+            reviewStarClassName={css.reviewRatingStar}
+          /> */}
+          {/* <span className={css.desktopSeparator}>•</span> */}
+          {/* <span className={css.desktopReviewRatingWrapper}>
             <ReviewRating
               rating={review.attributes.rating}
               className={css.desktopReviewRating}
               reviewStarClassName={css.reviewRatingStar}
             />
-          </span>
+          </span> */}
         </p>
       </div>
     </div>

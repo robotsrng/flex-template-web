@@ -4,8 +4,13 @@
   margin: 0;
 }
 
+.reviewItem:first-child {
+  margin-top: 18px;
+}
+
 .reviewItem {
-  margin-bottom: 32px;
+  /* margin-bottom: 32px; */
+  margin-top: 32px;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -22,6 +27,28 @@
   flex-basis: 564px;
   flex-shrink: 1;
   flex-grow: 0;
+}
+
+.review p {
+  color: var(--marketplaceColorDark);
+}
+
+.username {
+  text-align: left;
+  @apply --marketplaceH4FontStyles;
+  font-weight: var(--fontWeightSemiBold);
+}
+
+.date {
+  line-height: 0;
+}
+
+.rating {
+  font-weight: 700;
+}
+
+.rating span {
+  font-weight: normal;
 }
 
 .avatar {

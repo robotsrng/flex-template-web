@@ -54,7 +54,7 @@ export class ProfilePageComponent extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
+    // console.log(this.props)
   }
 
   showOfCustomerReviews() {
@@ -126,71 +126,71 @@ export class ProfilePageComponent extends Component {
       </p>
     );
 
-    const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
+    // const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
 
-    const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
+    // const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
 
-    const mobileReviews = (
-      <div className={css.mobileReviews}>
-        <h2 className={css.mobileReviewsTitle}>
-          <FormattedMessage
-            id="ProfilePage.reviewsOfProviderTitle"
-            values={{ count: reviewsOfProvider.length }}
-          />
-        </h2>
-        {queryReviewsError ? reviewsError : null}
-        <Reviews reviews={reviewsOfProvider} />
-        <h2 className={css.mobileReviewsTitle}>
-          <FormattedMessage
-            id="ProfilePage.reviewsOfCustomerTitle"
-            values={{ count: reviewsOfCustomer.length }}
-          />
-        </h2>
-        {queryReviewsError ? reviewsError : null}
-        <Reviews reviews={reviewsOfCustomer} />
-      </div>
-    );
+    // const mobileReviews = (
+    //   <div className={css.mobileReviews}>
+    //     <h2 className={css.mobileReviewsTitle}>
+    //       <FormattedMessage
+    //         id="ProfilePage.reviewsOfProviderTitle"
+    //         values={{ count: reviewsOfProvider.length }}
+    //       />
+    //     </h2>
+    //     {queryReviewsError ? reviewsError : null}
+    //     <Reviews reviews={reviewsOfProvider} />
+    //     <h2 className={css.mobileReviewsTitle}>
+    //       <FormattedMessage
+    //         id="ProfilePage.reviewsOfCustomerTitle"
+    //         values={{ count: reviewsOfCustomer.length }}
+    //       />
+    //     </h2>
+    //     {queryReviewsError ? reviewsError : null}
+    //     <Reviews reviews={reviewsOfCustomer} />
+    //   </div>
+    // );
 
-    const desktopReviewTabs = [
-      {
-        text: (
-          <h3 className={css.desktopReviewsTitle}>
-            <FormattedMessage
-              id="ProfilePage.reviewsOfProviderTitle"
-              values={{ count: reviewsOfProvider.length }}
-            />
-          </h3>
-        ),
-        selected: this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER,
-        onClick: this.showOfProviderReviews,
-      },
-      {
-        text: (
-          <h3 className={css.desktopReviewsTitle}>
-            <FormattedMessage
-              id="ProfilePage.reviewsOfCustomerTitle"
-              values={{ count: reviewsOfCustomer.length }}
-            />
-          </h3>
-        ),
-        selected: this.state.showReviewsType === REVIEW_TYPE_OF_CUSTOMER,
-        onClick: this.showOfCustomerReviews,
-      },
-    ];
+    // const desktopReviewTabs = [
+    //   {
+    //     text: (
+    //       <h3 className={css.desktopReviewsTitle}>
+    //         <FormattedMessage
+    //           id="ProfilePage.reviewsOfProviderTitle"
+    //           values={{ count: reviewsOfProvider.length }}
+    //         />
+    //       </h3>
+    //     ),
+    //     selected: this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER,
+    //     onClick: this.showOfProviderReviews,
+    //   },
+    //   {
+    //     text: (
+    //       <h3 className={css.desktopReviewsTitle}>
+    //         <FormattedMessage
+    //           id="ProfilePage.reviewsOfCustomerTitle"
+    //           values={{ count: reviewsOfCustomer.length }}
+    //         />
+    //       </h3>
+    //     ),
+    //     selected: this.state.showReviewsType === REVIEW_TYPE_OF_CUSTOMER,
+    //     onClick: this.showOfCustomerReviews,
+    //   },
+    // ];
 
-    const desktopReviews = (
-      <div className={css.desktopReviews}>
-        <ButtonTabNavHorizontal className={css.desktopReviewsTabNav} tabs={desktopReviewTabs} />
+    // const desktopReviews = (
+    //   <div className={css.desktopReviews}>
+    //     <ButtonTabNavHorizontal className={css.desktopReviewsTabNav} tabs={desktopReviewTabs} />
 
-        {queryReviewsError ? reviewsError : null}
+    //     {queryReviewsError ? reviewsError : null}
 
-        {this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER ? (
-          <Reviews reviews={reviewsOfProvider} />
-        ) : (
-            <Reviews reviews={reviewsOfCustomer} />
-          )}
-      </div>
-    );
+    //     {this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER ? (
+    //       <Reviews reviews={reviewsOfProvider} />
+    //     ) : (
+    //         <Reviews reviews={reviewsOfCustomer} />
+    //       )}
+    //   </div>
+    // );
 
     const reviewsContent = (
       <div className={listingsContainerClasses}>
@@ -200,7 +200,36 @@ export class ProfilePageComponent extends Component {
             values={{ count: reviews.length }}
           />
         </h2>
-        <Reviews reviews={reviews} />
+        {/* <Reviews reviews={reviews} /> */}
+        
+        <Reviews reviews={[
+          {
+            id: {
+              uuid: 1
+            },
+            author: {
+              ...profileUser
+            },
+            attributes: {
+              createdAt: '02/07/2020',
+              rating: 5,
+              content: 'Awesome product'
+            }
+          },
+          {
+            id: {
+              uuid: 2
+            },
+            author: {
+              ...profileUser
+            },
+            attributes: {
+              createdAt: '01/14/2020',
+              rating: 4.5,
+              content: 'Another cool review'
+            }
+          }
+        ]} />
       </div>
     )
 

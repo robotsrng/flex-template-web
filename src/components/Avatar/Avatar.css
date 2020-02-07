@@ -13,6 +13,7 @@
   --Avatar_size: 40px;
   --Avatar_sizeMedium: 60px;
   --Avatar_sizeLarge: 96px;
+  --Avatar_sizeReview: 72px;
 
   /* Base for all avatars */
   --Avatar_base: {
@@ -90,6 +91,22 @@
 }
 
 .largeAvatar .initials {
+  font-size: 30px;
+  font-weight: var(--fontWeightSemiBold);
+  padding-bottom: 6px;
+}
+
+/* Review Avatar */
+
+.reviewAvatar {
+  @apply --Avatar_base;
+
+  /* Fixed dimensions */
+  width: var(--Avatar_sizeReview);
+  height: var(--Avatar_sizeReview);
+}
+
+.reviewAvatar .initials {
   font-size: 30px;
   font-weight: var(--fontWeightSemiBold);
   padding-bottom: 6px;
