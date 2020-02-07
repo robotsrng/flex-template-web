@@ -246,3 +246,20 @@
   @apply --marketplaceH4FontStyles;
   font-weight: var(--fontWeightSemiBold);
 }
+
+.tabs {
+  border-bottom: 1px solid var(--matterColorNegative);
+}
+
+.tab {
+  cursor: pointer;
+  @apply --marketplaceH3FontStyles;
+  color: var(--matterColorAnti);
+  display: inline-block;
+  font-size: 18px;
+  margin-right: 25px;
+}
+
+.tab:last-child {
+  margin-right: 0;
+}

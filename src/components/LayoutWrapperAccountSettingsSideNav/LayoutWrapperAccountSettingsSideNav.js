@@ -35,6 +35,7 @@ const LayoutWrapperAccountSettingsSideNavComponent = props => {
   const hasFontsLoaded = hasViewport && document.documentElement.classList.contains('fontsLoaded');
 
   // Check if scrollToTab call is needed (tab is not visible on mobile)
+  // fix scroll bug
   if (hasVerticalTabLayout) {
     hasScrolledToTab = true;
   } else if (hasHorizontalTabLayout && !hasScrolledToTab && hasFontsLoaded) {

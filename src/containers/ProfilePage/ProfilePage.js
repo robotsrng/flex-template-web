@@ -24,6 +24,7 @@ import {
   ListingReviews,
   ButtonTabNavHorizontal,
   ListingSocialMediaCard,
+  TabNav
 } from '../../components';
 import { TopbarContainer, NotFoundPage } from '../../containers';
 import {
@@ -47,6 +48,7 @@ export class ProfilePageComponent extends Component {
     this.state = {
       // keep track of which reviews tab to show in desktop viewport
       showReviewsType: REVIEW_TYPE_OF_PROVIDER,
+      currentTab: 'brands'
     };
 
     this.showOfProviderReviews = this.showOfProviderReviews.bind(this);
@@ -67,6 +69,10 @@ export class ProfilePageComponent extends Component {
     this.setState({
       showReviewsType: REVIEW_TYPE_OF_CUSTOMER,
     });
+  }
+
+  switchTab = (tab) => {
+    this.setState({ currentTab: tab })
   }
 
   render() {
@@ -108,6 +114,13 @@ export class ProfilePageComponent extends Component {
       </NamedLink>
     ) : null;
 
+    const reviewTabs = (
+      <ul className={css.tabs}>
+        <li className={css.tab} onClick={e => { this.switchTab('brands') }}>From brands (102)</li>
+        <li className={css.tab} onClick={e => { this.switchTab('creators') }}>From creators (3)</li>
+      </ul>
+    )
+
     const asideContent = (
       <div className={css.asideContent}>
         {!showMoreReviews ? (
@@ -125,7 +138,13 @@ export class ProfilePageComponent extends Component {
             {editLinkMobile}
             {editLinkDesktop}
           </React.Fragment>
-        ) : null}
+        ) : (
+            <div>
+              <h1>You have 105 reviews</h1>
+              {/* show tabs here */}
+              {reviewTabs}
+            </div>
+          )}
       </div>
     );
 
@@ -139,9 +158,9 @@ export class ProfilePageComponent extends Component {
       </p>
     );
 
-    // const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
+    const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
 
-    // const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
+    const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
 
     // const mobileReviews = (
     //   <div className={css.mobileReviews}>
@@ -205,7 +224,7 @@ export class ProfilePageComponent extends Component {
     //   </div>
     // );
 
-    const reviewsContent = (
+    const allReviews = (
       <div className={listingsContainerClasses}>
         <h2 className={css.listingsTitle}>
           <FormattedMessage
@@ -252,6 +271,44 @@ export class ProfilePageComponent extends Component {
       </div>
     )
 
+    const renderReviewTab = () => {
+      switch (this.state.currentTab) {
+        case 'brands':
+          return <ListingReviews reviews={[
+            {
+              id: {
+                uuid: 2
+              },
+              author: {
+                ...profileUser
+              },
+              attributes: {
+                createdAt: '01/14/2020',
+                rating: 4.5,
+                content: 'Another cool review'
+              }
+            }
+          ]} />
+        case 'creators':
+          return <ListingReviews reviews={[
+            {
+              id: {
+                uuid: 1
+              },
+              author: {
+                ...profileUser
+              },
+              attributes: {
+                createdAt: '02/07/2020',
+                rating: 5,
+                content: 'Awesome product'
+              }
+            }
+          ]} />
+        default: return null;
+      }
+    }
+
     const mainContent = (
       <div>
         {!showMoreReviews ? (
@@ -281,7 +338,7 @@ export class ProfilePageComponent extends Component {
             ) : null}
             {/* {isMobileLayout ? mobileReviews : desktopReviews} */}
             {/* DISPLAY REVIEWS */}
-            {reviewsContent}
+            {allReviews}
             {/* DISPLAY CHANNELS */}
             <div className={listingsContainerClasses}>
               <h2 className={css.listingsTitle}>
@@ -299,7 +356,7 @@ export class ProfilePageComponent extends Component {
               </ul>
             </div>
           </React.Fragment>
-        ) : null}
+        ) : renderReviewTab()}
       </div>
     );
 

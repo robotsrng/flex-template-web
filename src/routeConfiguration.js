@@ -21,7 +21,6 @@ import {
   PaymentMethodsPage,
   PrivacyPolicyPage,
   ProfilePage,
-  ReviewsPage,
   ProfileSettingsPage,
   SearchPage,
   StyleguidePage,
@@ -176,12 +175,6 @@ const routeConfiguration = () => {
       name: 'ProfilePage',
       component: props => <ProfilePage {...props} />,
       loadData: ProfilePage.loadData,
-    },
-    {
-      path: '/u/:id/reviews',
-      name: 'ReviewsPage',
-      component: props => <ReviewsPage {...props} />,
-      loadData: ReviewsPage.loadData,
     },
     {
       path: '/profile-settings',
