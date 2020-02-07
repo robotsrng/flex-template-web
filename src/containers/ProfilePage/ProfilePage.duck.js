@@ -19,6 +19,9 @@ export const QUERY_REVIEWS_REQUEST = 'app/ProfilePage/QUERY_REVIEWS_REQUEST';
 export const QUERY_REVIEWS_SUCCESS = 'app/ProfilePage/QUERY_REVIEWS_SUCCESS';
 export const QUERY_REVIEWS_ERROR = 'app/ProfilePage/QUERY_REVIEWS_ERROR';
 
+export const SHOW_MORE_REVIEWS = 'app/ProfilePage/SHOW_MORE_REVIEWS';
+export const HIDE_MORE_REVIEWS = 'app/ProfilePage/HIDE_MORE_REVIEWS';
+
 // ================ Reducer ================ //
 
 const initialState = {
@@ -28,6 +31,7 @@ const initialState = {
   queryListingsError: null,
   reviews: [],
   queryReviewsError: null,
+  showMoreReviews: false,
 };
 
 export default function profilePageReducer(state = initialState, action = {}) {
@@ -61,6 +65,10 @@ export default function profilePageReducer(state = initialState, action = {}) {
       return { ...state, reviews: payload };
     case QUERY_REVIEWS_ERROR:
       return { ...state, reviews: [], queryReviewsError: payload };
+    case SHOW_MORE_REVIEWS:
+      return { ...state, showMoreReviews: true };
+    case HIDE_MORE_REVIEWS:
+      return { ...state, showMoreReviews: false };
 
     default:
       return state;
@@ -117,6 +125,14 @@ export const queryReviewsError = e => ({
   type: QUERY_REVIEWS_ERROR,
   error: true,
   payload: e,
+});
+
+export const showMoreReviews = () => ({
+  type: SHOW_MORE_REVIEWS,
+});
+
+export const hideMoreReviews = () => ({
+  type: HIDE_MORE_REVIEWS,
 });
 
 // ================ Thunks ================ //

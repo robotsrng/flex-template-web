@@ -26,7 +26,11 @@ import {
   ListingSocialMediaCard,
 } from '../../components';
 import { TopbarContainer, NotFoundPage } from '../../containers';
-import { loadData } from './ProfilePage.duck';
+import {
+  loadData,
+  showMoreReviews,
+  hideMoreReviews
+} from './ProfilePage.duck';
 import config from '../../config';
 
 import css from './ProfilePage.css';
@@ -77,6 +81,9 @@ export class ProfilePageComponent extends Component {
       queryReviewsError,
       viewport,
       intl,
+      showMoreReviews,
+      onShowMoreReviews,
+      onHideMoreReviews
     } = this.props;
     const ensuredCurrentUser = ensureCurrentUser(currentUser);
     const profileUser = ensureUserProfile(user);
@@ -103,18 +110,22 @@ export class ProfilePageComponent extends Component {
 
     const asideContent = (
       <div className={css.asideContent}>
-        <AvatarLarge className={css.avatar} user={user} disableProfileLink />
-        <div>
-          <h1 className={css.mobileHeading}>
-            {username ? (
-              <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: username }} />
-            ) : null}
-          </h1>
-          <a className={css.counter}>10.7k <span>audience</span></a>
-          <a className={css.counter}>5.0 <span>(105)</span></a>
-        </div>
-        {editLinkMobile}
-        {editLinkDesktop}
+        {!showMoreReviews ? (
+          <React.Fragment>
+            <AvatarLarge className={css.avatar} user={user} disableProfileLink />
+            <div>
+              <h1 className={css.mobileHeading}>
+                {username ? (
+                  <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: username }} />
+                ) : null}
+              </h1>
+              <a className={css.counter}>10.7k <span>audience</span></a>
+              <a className={css.counter}>5.0 <span>(105)</span></a>
+            </div>
+            {editLinkMobile}
+            {editLinkDesktop}
+          </React.Fragment>
+        ) : null}
       </div>
     );
 
@@ -203,7 +214,7 @@ export class ProfilePageComponent extends Component {
           />
         </h2>
         {/* <Reviews reviews={reviews} /> */}
-        
+
         <ListingReviews reviews={[
           {
             id: {
@@ -234,57 +245,61 @@ export class ProfilePageComponent extends Component {
         ]} />
 
         {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
-      <div className={css.showMoreReviews} onClick={()=>{/*do something here*/}}>
-        <span>+ Show more reviews</span>
-      </div>
-      
+        <div className={css.showMoreReviews} onClick={() => { onShowMoreReviews() }}>
+          <span>+ Show more reviews</span>
+        </div>
+
       </div>
     )
 
     const mainContent = (
       <div>
-        <h1 className={css.desktopHeading}>
-          <FormattedMessage id="ProfilePage.desktopHeading" values={{ name: displayName }} />
-        </h1>
-        <h1 className={css.displayName}>{displayName}</h1>
-        {location ? <h2 className={css.location}>{location.search}</h2> : null}
-        {hasBio ? <p className={css.bio}>{bio}</p> : null}
-        {hasListings ? (
-          <div className={listingsContainerClasses}>
-            <h2 className={css.listingsTitle}>
-              <FormattedMessage
-                id="ProfilePage.listingsTitle"
-                values={{ count: listings.length }}
-              />
-            </h2>
-            <ul className={css.listings}>
-              {listings.map(l => (
-                <li className={css.listing} key={l.id.uuid}>
-                  <ListingCard listing={l} />
-                </li>
-              ))}
-            </ul>
-          </div>
+        {!showMoreReviews ? (
+          <React.Fragment>
+            <h1 className={css.desktopHeading}>
+              <FormattedMessage id="ProfilePage.desktopHeading" values={{ name: displayName }} />
+            </h1>
+            <h1 className={css.displayName}>{displayName}</h1>
+            {location ? <h2 className={css.location}>{location.search}</h2> : null}
+            {hasBio ? <p className={css.bio}>{bio}</p> : null}
+            {hasListings ? (
+              <div className={listingsContainerClasses}>
+                <h2 className={css.listingsTitle}>
+                  <FormattedMessage
+                    id="ProfilePage.listingsTitle"
+                    values={{ count: listings.length }}
+                  />
+                </h2>
+                <ul className={css.listings}>
+                  {listings.map(l => (
+                    <li className={css.listing} key={l.id.uuid}>
+                      <ListingCard listing={l} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {/* {isMobileLayout ? mobileReviews : desktopReviews} */}
+            {/* DISPLAY REVIEWS */}
+            {reviewsContent}
+            {/* DISPLAY CHANNELS */}
+            <div className={listingsContainerClasses}>
+              <h2 className={css.listingsTitle}>
+                <FormattedMessage
+                  id="ProfilePage.channelsTitle"
+                  values={{ count: listings.length }}
+                />
+              </h2>
+              <ul className={css.listings}>
+                {listings.map(l => (
+                  <li className={css.listing} key={l.id.uuid}>
+                    <ListingSocialMediaCard img={instagram} username="frederickcalderon" audience="700k followers" platform="Instagram" />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </React.Fragment>
         ) : null}
-        {/* {isMobileLayout ? mobileReviews : desktopReviews} */}
-        {/* DISPLAY REVIEWS */}
-        {reviewsContent}
-        {/* DISPLAY CHANNELS */}
-        <div className={listingsContainerClasses}>
-          <h2 className={css.listingsTitle}>
-            <FormattedMessage
-              id="ProfilePage.channelsTitle"
-              values={{ count: listings.length }}
-            />
-          </h2>
-          <ul className={css.listings}>
-            {listings.map(l => (
-              <li className={css.listing} key={l.id.uuid}>
-                <ListingSocialMediaCard img={instagram} username="frederickcalderon" audience="700k followers" platform="Instagram" />
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
     );
 
@@ -377,6 +392,7 @@ const mapStateToProps = state => {
     userListingRefs,
     reviews,
     queryReviewsError,
+    showMoreReviews
   } = state.ProfilePage;
   const userMatches = getMarketplaceEntities(state, [{ type: 'user', id: userId }]);
   const user = userMatches.length === 1 ? userMatches[0] : null;
@@ -391,11 +407,20 @@ const mapStateToProps = state => {
     listings,
     reviews,
     queryReviewsError,
+    showMoreReviews
   };
 };
 
+const mapDispatchToProps = dispatch => ({
+  onShowMoreReviews: () => dispatch(showMoreReviews()),
+  onHideMoreReviews: () => dispatch(hideMoreReviews())
+});
+
 const ProfilePage = compose(
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
   withViewport,
   injectIntl
 )(ProfilePageComponent);
