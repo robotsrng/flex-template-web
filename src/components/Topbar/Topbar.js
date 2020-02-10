@@ -71,12 +71,11 @@ class TopbarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked:
-        window && window.sessionStorage
+      checked: process.browser
+        ? sessionStorage.getItem('checked')
           ? sessionStorage.getItem('checked')
-            ? sessionStorage.getItem('checked')
-            : 'keywords'
-          : 'keywords',
+          : 'keywords'
+        : 'keywords',
     };
     this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
     this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
