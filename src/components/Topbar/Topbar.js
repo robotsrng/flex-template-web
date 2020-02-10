@@ -18,10 +18,8 @@ import {
   NamedLink,
   TopbarDesktop,
   TopbarMobileMenu,
-  KeywordFilter,
 } from '../../components';
 import { TopbarSearchForm } from '../../forms';
-import omit from 'lodash/omit';
 
 import MenuIcon from './MenuIcon';
 import SearchIcon from './SearchIcon';
@@ -73,7 +71,7 @@ class TopbarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: 'keywords',
+      checked: sessionStorage.getItem('checked') ? sessionStorage.getItem('checked') : 'keywords',
     };
     this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
     this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
@@ -85,25 +83,24 @@ class TopbarComponent extends Component {
     this.initialValue = this.initialValue.bind(this);
     this.handleToggleButton = this.handleToggleButton.bind(this);
   }
-  componentDidMount() {
-    sessionStorage.setItem('filterState', JSON.stringify({ pub_listingType: 'post' }));
-  }
   componentWillUnmount() {
-    const sessionData = JSON.parse(sessionStorage.getItem('filterState'));
+    const sessionData = sessionStorage.getItem('filterState');
     if (sessionData) {
       sessionStorage.removeItem('filterState');
+      sessionStorage.removeItem('checked');
     }
   }
   handleToggleButton(e) {
     this.setState({
       checked: e.target.value,
     });
+    sessionStorage.setItem('checked', e.target.value);
     if (e.target.value === 'keywords') {
-      sessionStorage.setItem('filterState', JSON.stringify({ pub_listingType: 'post' }));
+      sessionStorage.setItem('filterState', 'post');
     } else if (e.target.value === 'creators') {
-      sessionStorage.setItem('filterState', JSON.stringify({ pub_listingType: 'personal' }));
+      sessionStorage.setItem('filterState', 'personal');
     } else if (e.target.value === 'brands') {
-      sessionStorage.setItem('filterState', JSON.stringify({ pub_listingType: 'business' }));
+      sessionStorage.setItem('filterState', 'business');
     }
   }
 
@@ -129,8 +126,9 @@ class TopbarComponent extends Component {
     const { history } = this.props;
     const { origin, bounds } = selectedPlace;
     const originMaybe = config.sortSearchByDistance ? { origin } : {};
-    const data = JSON.parse(sessionStorage.getItem('filterState'));
-    const pub_listingType = data.pub_listingType;
+    const pub_listingType = sessionStorage.getItem('filterState')
+      ? sessionStorage.getItem('filterState')
+      : 'post';
     const searchParams = {
       ...currentSearchParams,
       ...originMaybe,
@@ -146,8 +144,9 @@ class TopbarComponent extends Component {
     const keywords = values.keywords;
     const { history } = this.props;
     let searchParams;
-    const data = JSON.parse(sessionStorage.getItem('filterState'));
-    const pub_listingType = data.pub_listingType;
+    const pub_listingType = sessionStorage.getItem('filterState')
+      ? sessionStorage.getItem('filterState')
+      : 'post';
     searchParams = {
       ...currentSearchParams,
       keywords,
@@ -408,7 +407,6 @@ TopbarComponent.propTypes = {
   sendVerificationEmailInProgress: bool.isRequired,
   sendVerificationEmailError: propTypes.error,
   showGenericError: bool.isRequired,
-  urlQueryParams: object.isRequired,
   keywordFilter: propTypes.filterConfig,
 
   // These are passed from Page to keep Topbar rendering aware of location changes

@@ -15,11 +15,9 @@ class TopbarSearchFormComponent extends Component {
     super(props);
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleClear = this.handleClear.bind(this);
     this.searchInput = null;
     this.searchInputKeyword = React.createRef();
   }
-  handleClear() {}
   onChange(location) {
     if (location.selectedPlace) {
       // Note that we use `onSubmit` instead of the conventional
@@ -41,7 +39,7 @@ class TopbarSearchFormComponent extends Component {
     }
   }
   render() {
-    if (this.props.stateFilter !== 'location') {
+    if (sessionStorage.getItem('checked') !== 'location') {
       return (
         <FinalForm
           {...this.props}
@@ -60,7 +58,7 @@ class TopbarSearchFormComponent extends Component {
                           <button
                             type="button"
                             className={css.clearButton}
-                            onClick={this.handleClear}
+                            onClick={this.props.handleClear}
                           >
                             Clear
                           </button>
