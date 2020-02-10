@@ -13,7 +13,7 @@ import { ensureTransaction } from './data';
 // created with the initial request-payment transition.
 // At this transition a PaymentIntent is created by Marketplace API.
 // After this transition, the actual payment must be made on client-side directly to Stripe.
-export const TRANSITION_REQUEST_PAYMENT = 'transition/request';
+export const TRANSITION_REQUEST_PAYMENT = 'transition/request-payment';
 
 // A customer can also initiate a transaction with an enquiry, and
 // then transition that with a request.
@@ -108,7 +108,7 @@ const stateDescription = {
   // id is defined only to support Xstate format.
   // However if you have multiple transaction processes defined,
   // it is best to keep them in sync with transaction process aliases.
-  id: 'preauth-with-nightly-booking/release-1',
+  id: 'preauth-daily-booking/release-1',
 
   // This 'initial' state is a starting point for new transaction
   initial: STATE_INITIAL,
