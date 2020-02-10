@@ -70,13 +70,9 @@ GenericError.propTypes = {
 class TopbarComponent extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   checked: process.browser
-    //     ? sessionStorage.getItem('checked')
-    //       ? sessionStorage.getItem('checked')
-    //       : 'keywords'
-    //     : 'keywords',
-    // };
+    this.state = {
+      checked: 'keywords',
+    };
     this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
     this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
     this.handleMobileSearchOpen = this.handleMobileSearchOpen.bind(this);
@@ -86,6 +82,11 @@ class TopbarComponent extends Component {
     this.handleSubmitKeywords = this.handleSubmitKeywords.bind(this);
     this.initialValue = this.initialValue.bind(this);
     this.handleToggleButton = this.handleToggleButton.bind(this);
+  }
+  componentDidMount() {
+    if (process.browser) {
+      this.setState({ checked: sessionStorage ? sessionStorage.getItem('checked') : 'keywords' });
+    }
   }
   componentWillUnmount() {
     const sessionData = sessionStorage.getItem('filterState');
