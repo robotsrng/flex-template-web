@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 import { types as sdkTypes } from '../../util/sdkLoader';
 import { REVIEW_TYPE_OF_PROVIDER, REVIEW_TYPE_OF_CUSTOMER, propTypes } from '../../util/types';
-import { ensureCurrentUser, ensureUserProfile, ensureUser } from '../../util/data';
+import { ensureCurrentUser, ensureUserProfile } from '../../util/data';
 import { withViewport } from '../../util/contextHelpers';
 import { isScrollingDisabled } from '../../ducks/UI.duck';
 import { getMarketplaceEntities } from '../../ducks/marketplaceData.duck';
@@ -239,44 +239,49 @@ export class ProfilePageComponent extends Component {
         </h2>
         {/* <Reviews reviews={reviews} /> */}
 
-        <ListingReviews reviews={reviews}
-        //   [
-        //   {
-        //     id: {
-        //       uuid: 1
-        //     },
-        //     author: {
-        //       ...profileUser
-        //     },
-        //     attributes: {
-        //       createdAt: '02/07/2020',
-        //       rating: 5,
-        //       content: 'Awesome product'
-        //     }
-        //   },
-        //   {
-        //     id: {
-        //       uuid: 2
-        //     },
-        //     author: {
-        //       ...profileUser
-        //     },
-        //     attributes: {
-        //       createdAt: '01/14/2020',
-        //       rating: 4.5,
-        //       content: 'Another cool review'
-        //     }
-        //   }
-        // ]} 
+        <ListingReviews
+          reviews={reviews}
+          //   [
+          //   {
+          //     id: {
+          //       uuid: 1
+          //     },
+          //     author: {
+          //       ...profileUser
+          //     },
+          //     attributes: {
+          //       createdAt: '02/07/2020',
+          //       rating: 5,
+          //       content: 'Awesome product'
+          //     }
+          //   },
+          //   {
+          //     id: {
+          //       uuid: 2
+          //     },
+          //     author: {
+          //       ...profileUser
+          //     },
+          //     attributes: {
+          //       createdAt: '01/14/2020',
+          //       rating: 4.5,
+          //       content: 'Another cool review'
+          //     }
+          //   }
+          // ]}
         />
 
         {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
-        <div className={css.showMoreReviews} onClick={() => { onShowMoreReviews() }}>
+        <div
+          className={css.showMoreReviews}
+          onClick={() => {
+            onShowMoreReviews();
+          }}
+        >
           <span>+ Show more reviews</span>
         </div>
-
       </div>
-    )
+    );
 
     const renderReviewTab = () => {
       switch (this.state.currentTab) {
