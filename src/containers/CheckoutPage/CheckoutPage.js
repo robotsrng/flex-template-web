@@ -247,13 +247,12 @@ export class CheckoutPageComponent extends Component {
         storedTx.attributes.protectedData && storedTx.attributes.protectedData.stripePaymentIntents;
 
       // If paymentIntent exists, order has been initiated previously.
-      return hasPaymentIntents ? Promise.resolve(storedTx) : onInitiateOrder(fnParams, storedTx.id);
+      return hasPaymentIntents ? Promise.resolve(storedTx) : onInitiateOrder({...fnParams, cardToken:stripePaymentMethodId}, storedTx.id);
     };
 
     // Step 2: pay using Stripe SDK
     const fnHandleCardPayment = fnParams => {
       // fnParams should be returned transaction entity
-
       const order = ensureTransaction(fnParams);
       if (order.id) {
         // Store order.

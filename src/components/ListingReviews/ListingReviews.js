@@ -19,11 +19,11 @@ const ListingReviewCard = props => {
       <AvatarReview className={css.avatar} user={review.author} />
       <div>
 
-        <p className={css.reviewInfo}>
+        <div className={css.reviewInfo}>
           <p className={css.username}>{username}</p>
           <p className={css.date}>{dateString}</p>
           <p className={css.rating}>&#9733; <span>{review.attributes.rating}</span></p>
-        </p>
+        </div>
       </div>
     </div>
   );
