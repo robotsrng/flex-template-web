@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React /*, { Component }*/ from 'react';
 import { string, func } from 'prop-types';
 import { intlShape, injectIntl } from '../../util/reactIntl';
 import classNames from 'classnames';
 // import { lazyLoadWithDimensions } from '../../util/contextHelpers';
-import { LINE_ITEM_DAY, LINE_ITEM_NIGHT, propTypes } from '../../util/types';
+import { /*LINE_ITEM_DAY, LINE_ITEM_NIGHT,*/ propTypes } from '../../util/types';
 import { formatMoney } from '../../util/currency';
 import { ensureListing, ensureUser } from '../../util/data';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
-import { NamedLink, ResponsiveImage, ListingPostCard, ListingUserCard } from '../../components';
+import {
+  NamedLink /*, ResponsiveImage*/,
+  ListingPostCard,
+  ListingUserCard,
+} from '../../components';
 
 import css from './ListingCard.css';
 
@@ -31,11 +35,11 @@ const priceData = (price, intl) => {
   return {};
 };
 
-class ListingImage extends Component {
-  render() {
-    return <ResponsiveImage {...this.props} />;
-  }
-}
+// class ListingImage extends Component {
+//   render() {
+//     return <ResponsiveImage {...this.props} />;
+//   }
+// }
 
 export const ListingCardComponent = props => {
   const reviews = { rating: 5, ammount: 105 };
@@ -53,7 +57,7 @@ export const ListingCardComponent = props => {
   const offering = currentListing.attributes.publicData.offering
     ? currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase())
     : '';
-  const unitType = config.bookingUnitType;
+  // const unitType = config.bookingUnitType;
   // const isNightly = unitType === LINE_ITEM_NIGHT;
   // const isDaily = unitType === LINE_ITEM_DAY;
 

@@ -55,7 +55,7 @@ const EditListingFeaturesFormComponent = props => {
           ready,
           rootClassName,
           className,
-          name,
+          /* name, */
           handleSubmit,
           intl,
           pristine,

@@ -218,13 +218,13 @@ class SearchFiltersMobileComponent extends Component {
       onMapIconClick,
       onManageDisableScrolling,
       selectedFiltersCount,
-      categoryFilter,
+      // categoryFilter,
       postCategoriesFilter,
       socialMediasFilter,
       priceFilter,
       followerFilter,
-      dateRangeFilter,
-      keywordFilter,
+      // dateRangeFilter,
+      // keywordFilter,
       intl,
     } = this.props;
 

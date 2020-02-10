@@ -14,7 +14,7 @@ import {
   KeywordFilter,
 } from '../../components';
 import routeConfiguration from '../../routeConfiguration';
-import { parseDateFromISO8601, stringifyDateToISO8601 } from '../../util/dates';
+// import { parseDateFromISO8601, stringifyDateToISO8601 } from '../../util/dates';
 import { createResourceLocatorString } from '../../util/routes';
 import { propTypes } from '../../util/types';
 import css from './SearchFilters.css';
@@ -45,19 +45,19 @@ const initialPriceRangeValue = (queryParams, paramName) => {
     : null;
 };
 
-const initialDateRangeValue = (queryParams, paramName) => {
-  const dates = queryParams[paramName];
-  const rawValuesFromParams = !!dates ? dates.split(',') : [];
-  const valuesFromParams = rawValuesFromParams.map(v => parseDateFromISO8601(v));
-  const initialValues =
-    !!dates && valuesFromParams.length === 2
-      ? {
-          dates: { startDate: valuesFromParams[0], endDate: valuesFromParams[1] },
-        }
-      : { dates: null };
+// const initialDateRangeValue = (queryParams, paramName) => {
+//   const dates = queryParams[paramName];
+//   const rawValuesFromParams = !!dates ? dates.split(',') : [];
+//   const valuesFromParams = rawValuesFromParams.map(v => parseDateFromISO8601(v));
+//   const initialValues =
+//     !!dates && valuesFromParams.length === 2
+//       ? {
+//           dates: { startDate: valuesFromParams[0], endDate: valuesFromParams[1] },
+//         }
+//       : { dates: null };
 
-  return initialValues;
-};
+//   return initialValues;
+// };
 
 const SearchFiltersComponent = props => {
   const {
@@ -67,11 +67,11 @@ const SearchFiltersComponent = props => {
     listingsAreLoaded,
     resultsCount,
     searchInProgress,
-    categoryFilter,
+    // categoryFilter,
     postCategoriesFilter,
     priceFilter,
     socialMediasFilter,
-    dateRangeFilter,
+    // dateRangeFilter,
     keywordFilter,
     isSearchFiltersPanelOpen,
     toggleSearchFiltersPanel,
@@ -82,9 +82,9 @@ const SearchFiltersComponent = props => {
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
   const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
 
-  const categoryLabel = intl.formatMessage({
-    id: 'SearchFilters.categoryLabel',
-  });
+  // const categoryLabel = intl.formatMessage({
+  //   id: 'SearchFilters.categoryLabel',
+  // });
 
   const amenitiesLabel = intl.formatMessage({
     id: 'SearchFilters.amenitiesLabel',
@@ -106,17 +106,17 @@ const SearchFiltersComponent = props => {
     ? initialValues(urlQueryParams, socialMediasFilter.paramName)
     : null;
 
-  const initialCategory = categoryFilter
-    ? initialValue(urlQueryParams, categoryFilter.paramName)
-    : null;
+  // const initialCategory = categoryFilter
+  //   ? initialValue(urlQueryParams, categoryFilter.paramName)
+  //   : null;
 
   const initialPriceRange = priceFilter
     ? initialPriceRangeValue(urlQueryParams, priceFilter.paramName)
     : null;
 
-  const initialDateRange = dateRangeFilter
-    ? initialDateRangeValue(urlQueryParams, dateRangeFilter.paramName)
-    : null;
+  // const initialDateRange = dateRangeFilter
+  //   ? initialDateRangeValue(urlQueryParams, dateRangeFilter.paramName)
+  //   : null;
 
   const initialKeyword = keywordFilter
     ? initialValue(urlQueryParams, keywordFilter.paramName)
@@ -131,15 +131,15 @@ const SearchFiltersComponent = props => {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
-  const handleSelectOption = (urlParam, option) => {
-    // query parameters after selecting the option
-    // if no option is passed, clear the selection for the filter
-    const queryParams = option
-      ? { ...urlQueryParams, [urlParam]: option }
-      : omit(urlQueryParams, urlParam);
+  // const handleSelectOption = (urlParam, option) => {
+  //   // query parameters after selecting the option
+  //   // if no option is passed, clear the selection for the filter
+  //   const queryParams = option
+  //     ? { ...urlQueryParams, [urlParam]: option }
+  //     : omit(urlQueryParams, urlParam);
 
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
-  };
+  //   history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  // };
 
   const handlePrice = (urlParam, range) => {
     const { minPrice, maxPrice } = range || {};
@@ -151,19 +151,19 @@ const SearchFiltersComponent = props => {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
-  const handleDateRange = (urlParam, dateRange) => {
-    const hasDates = dateRange && dateRange.dates;
-    const { startDate, endDate } = hasDates ? dateRange.dates : {};
+  // const handleDateRange = (urlParam, dateRange) => {
+  //   const hasDates = dateRange && dateRange.dates;
+  //   const { startDate, endDate } = hasDates ? dateRange.dates : {};
 
-    const start = startDate ? stringifyDateToISO8601(startDate) : null;
-    const end = endDate ? stringifyDateToISO8601(endDate) : null;
+  //   const start = startDate ? stringifyDateToISO8601(startDate) : null;
+  //   const end = endDate ? stringifyDateToISO8601(endDate) : null;
 
-    const queryParams =
-      start != null && end != null
-        ? { ...urlQueryParams, [urlParam]: `${start},${end}` }
-        : omit(urlQueryParams, urlParam);
-    history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
-  };
+  //   const queryParams =
+  //     start != null && end != null
+  //       ? { ...urlQueryParams, [urlParam]: `${start},${end}` }
+  //       : omit(urlQueryParams, urlParam);
+  //   history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
+  // };
 
   const handleKeyword = (urlParam, values) => {
     const queryParams = values

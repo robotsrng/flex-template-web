@@ -386,7 +386,7 @@ TopbarComponent.defaultProps = {
   keywordFilter: null,
 };
 
-const { func, number, shape, string, object } = PropTypes;
+const { func, number, shape, string /*,object*/ } = PropTypes;
 
 TopbarComponent.propTypes = {
   className: string,
