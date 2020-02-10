@@ -70,13 +70,13 @@ GenericError.propTypes = {
 class TopbarComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      checked: process.browser
-        ? sessionStorage.getItem('checked')
-          ? sessionStorage.getItem('checked')
-          : 'keywords'
-        : 'keywords',
-    };
+    // this.state = {
+    //   checked: process.browser
+    //     ? sessionStorage.getItem('checked')
+    //       ? sessionStorage.getItem('checked')
+    //       : 'keywords'
+    //     : 'keywords',
+    // };
     this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
     this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
     this.handleMobileSearchOpen = this.handleMobileSearchOpen.bind(this);
