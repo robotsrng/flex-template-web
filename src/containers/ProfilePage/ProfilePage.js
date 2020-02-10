@@ -22,16 +22,12 @@ import {
   NamedLink,
   ListingCard,
   ListingReviews,
-  ButtonTabNavHorizontal,
+  // ButtonTabNavHorizontal,
   ListingSocialMediaCard,
-  TabNav
+  // TabNav
 } from '../../components';
 import { TopbarContainer, NotFoundPage } from '../../containers';
-import {
-  loadData,
-  showMoreReviews,
-  hideMoreReviews
-} from './ProfilePage.duck';
+import { loadData, showMoreReviews, hideMoreReviews } from './ProfilePage.duck';
 import config from '../../config';
 
 import css from './ProfilePage.css';
@@ -39,7 +35,7 @@ import css from './ProfilePage.css';
 import instagram from './img/Instagram.jpg';
 
 const { UUID } = sdkTypes;
-const MAX_MOBILE_SCREEN_WIDTH = 768;
+// const MAX_MOBILE_SCREEN_WIDTH = 768;
 
 export class ProfilePageComponent extends Component {
   constructor(props) {
@@ -48,7 +44,7 @@ export class ProfilePageComponent extends Component {
     this.state = {
       // keep track of which reviews tab to show in desktop viewport
       showReviewsType: REVIEW_TYPE_OF_PROVIDER,
-      currentTab: 'brands'
+      currentTab: 'brands',
     };
 
     this.showOfProviderReviews = this.showOfProviderReviews.bind(this);
@@ -71,9 +67,9 @@ export class ProfilePageComponent extends Component {
     });
   }
 
-  switchTab = (tab) => {
-    this.setState({ currentTab: tab })
-  }
+  switchTab = tab => {
+    this.setState({ currentTab: tab });
+  };
 
   render() {
     const {
@@ -84,12 +80,12 @@ export class ProfilePageComponent extends Component {
       queryListingsError,
       listings,
       reviews,
-      queryReviewsError,
-      viewport,
+      // queryReviewsError,
+      // viewport,
       intl,
       showMoreReviews,
       onShowMoreReviews,
-      onHideMoreReviews
+      // onHideMoreReviews,
     } = this.props;
     const ensuredCurrentUser = ensureCurrentUser(currentUser);
     const profileUser = ensureUserProfile(user);
@@ -101,7 +97,7 @@ export class ProfilePageComponent extends Component {
     const hasListings = listings.length > 0;
     const username = profileUser.attributes.profile.publicData.username;
     const location = profileUser.attributes.profile.publicData.location;
-    const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
+    // const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
 
     const editLinkMobile = isCurrentUser ? (
       <NamedLink className={css.editLinkMobile} name="ProfileSettingsPage">
@@ -116,10 +112,24 @@ export class ProfilePageComponent extends Component {
 
     const reviewTabs = (
       <ul className={css.tabs}>
-        <li className={css.tab} onClick={e => { this.switchTab('brands') }}>From brands (102)</li>
-        <li className={css.tab} onClick={e => { this.switchTab('creators') }}>From creators (3)</li>
+        <li
+          className={css.tab}
+          onClick={e => {
+            this.switchTab('brands');
+          }}
+        >
+          From brands (102)
+        </li>
+        <li
+          className={css.tab}
+          onClick={e => {
+            this.switchTab('creators');
+          }}
+        >
+          From creators (3)
+        </li>
       </ul>
-    )
+    );
 
     const asideContent = (
       <div className={css.asideContent}>
@@ -132,8 +142,12 @@ export class ProfilePageComponent extends Component {
                   <FormattedMessage id="ProfilePage.mobileHeading" values={{ name: username }} />
                 ) : null}
               </h1>
-              <a className={css.counter}>10.7k <span>audience</span></a>
-              <a className={css.counter}>5.0 <span>(105)</span></a>
+              <p className={css.counter}>
+                10.7k <span>audience</span>
+              </p>
+              <p className={css.counter}>
+                5.0 <span>(105)</span>
+              </p>
             </div>
             {editLinkMobile}
             {editLinkDesktop}
@@ -146,15 +160,15 @@ export class ProfilePageComponent extends Component {
       [css.withBioMissingAbove]: !hasBio,
     });
 
-    const reviewsError = (
-      <p className={css.error}>
-        <FormattedMessage id="ProfilePage.loadingReviewsFailed" />
-      </p>
-    );
+    // const reviewsError = (
+    //   <p className={css.error}>
+    //     <FormattedMessage id="ProfilePage.loadingReviewsFailed" />
+    //   </p>
+    // );
 
-    const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
+    // const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
 
-    const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
+    // const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
 
     // const mobileReviews = (
     //   <div className={css.mobileReviews}>
@@ -221,10 +235,7 @@ export class ProfilePageComponent extends Component {
     const allReviews = (
       <div className={listingsContainerClasses}>
         <h2 className={css.listingsTitle}>
-          <FormattedMessage
-            id="ProfilePage.reviewsTitle"
-            values={{ count: reviews.length }}
-          />
+          <FormattedMessage id="ProfilePage.reviewsTitle" values={{ count: reviews.length }} />
         </h2>
         {/* <Reviews reviews={reviews} /> */}
 
@@ -273,37 +284,91 @@ export class ProfilePageComponent extends Component {
           return <ListingReviews reviews={[
             {
               id: {
-                uuid: 2
+                uuid: 1,
               },
               author: {
-                ...profileUser
-              },
-              attributes: {
-                createdAt: '01/14/2020',
-                rating: 4.5,
-                content: 'Another cool review'
-              }
-            }
-          ]} />
-        case 'creators':
-          return <ListingReviews reviews={[
-            {
-              id: {
-                uuid: 1
-              },
-              author: {
-                ...profileUser
+                ...profileUser,
               },
               attributes: {
                 createdAt: '02/07/2020',
                 rating: 5,
-                content: 'Awesome product'
-              }
-            }
-          ]} />
-        default: return null;
+                content: 'Awesome product',
+              },
+            },
+            {
+              id: {
+                uuid: 2,
+              },
+              author: {
+                ...profileUser,
+              },
+              attributes: {
+                createdAt: '01/14/2020',
+                rating: 4.5,
+                content: 'Another cool review',
+              },
+            },
+          ]}
+        />
+
+        {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
+        <div
+          className={css.showMoreReviews}
+          onClick={() => {
+            onShowMoreReviews();
+          }}
+        >
+          <span>+ Show more reviews</span>
+        </div>
+      </div>
+    );
+
+    const renderReviewTab = () => {
+      switch (this.state.currentTab) {
+        case 'brands':
+          return (
+            <ListingReviews
+              reviews={[
+                {
+                  id: {
+                    uuid: 2,
+                  },
+                  author: {
+                    ...profileUser,
+                  },
+                  attributes: {
+                    createdAt: '01/14/2020',
+                    rating: 4.5,
+                    content: 'Another cool review',
+                  },
+                },
+              ]}
+            />
+          );
+        case 'creators':
+          return (
+            <ListingReviews
+              reviews={[
+                {
+                  id: {
+                    uuid: 1,
+                  },
+                  author: {
+                    ...profileUser,
+                  },
+                  attributes: {
+                    createdAt: '02/07/2020',
+                    rating: 5,
+                    content: 'Awesome product',
+                  },
+                },
+              ]}
+            />
+          );
+        default:
+          return null;
       }
-    }
+    };
 
     const mainContent = (
       <div>
@@ -346,19 +411,24 @@ export class ProfilePageComponent extends Component {
               <ul className={css.listings}>
                 {listings.map(l => (
                   <li className={css.listing} key={l.id.uuid}>
-                    <ListingSocialMediaCard img={instagram} username="frederickcalderon" audience="700k followers" platform="Instagram" />
+                    <ListingSocialMediaCard
+                      img={instagram}
+                      username="frederickcalderon"
+                      audience="700k followers"
+                      platform="Instagram"
+                    />
                   </li>
                 ))}
               </ul>
             </div>
           </React.Fragment>
         ) : (
-            <React.Fragment>
-              <h1>You have 105 reviews</h1>
-              {reviewTabs}
-              {renderReviewTab()}
-            </React.Fragment>
-          )}
+          <React.Fragment>
+            <h1>You have 105 reviews</h1>
+            {reviewTabs}
+            {renderReviewTab()}
+          </React.Fragment>
+        )}
       </div>
     );
 
@@ -451,7 +521,7 @@ const mapStateToProps = state => {
     userListingRefs,
     reviews,
     queryReviewsError,
-    showMoreReviews
+    showMoreReviews,
   } = state.ProfilePage;
   const userMatches = getMarketplaceEntities(state, [{ type: 'user', id: userId }]);
   const user = userMatches.length === 1 ? userMatches[0] : null;
@@ -465,13 +535,13 @@ const mapStateToProps = state => {
     listings,
     reviews,
     queryReviewsError,
-    showMoreReviews
+    showMoreReviews,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   onShowMoreReviews: () => dispatch(showMoreReviews()),
-  onHideMoreReviews: () => dispatch(hideMoreReviews())
+  onHideMoreReviews: () => dispatch(hideMoreReviews()),
 });
 
 const ProfilePage = compose(

@@ -3,7 +3,7 @@ import { func, number, shape, string } from 'prop-types';
 import classNames from 'classnames';
 import { FormattedMessage, injectIntl, intlShape } from '../../util/reactIntl';
 import { propTypes } from '../../util/types';
-import { formatCurrencyMajorUnit } from '../../util/currency';
+// import { formatCurrencyMajorUnit } from '../../util/currency';
 import config from '../../config';
 
 import { FollowerFilterForm } from '../../forms';
@@ -44,7 +44,7 @@ class FollowerFilterPlainComponent extends Component {
       max,
       step,
       intl,
-      currencyConfig,
+      // currencyConfig,
     } = this.props;
     const classes = classNames(rootClassName || css.root, className);
     const { minFollower, maxFollower } = initialValues || {};

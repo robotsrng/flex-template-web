@@ -38,7 +38,7 @@
 }
 .signupButton {
   @apply --marketplaceButtonStyles;
-  @apply --SectionHero_animation;
+  /* @apply --SectionHero_animation; */
 
   animation-delay: 0.8s;
 

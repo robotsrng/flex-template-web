@@ -124,8 +124,8 @@ export class SearchPageComponent extends Component {
 
       //const viewportMapCenter = SearchMap.getMapCenter(map);
       const originMaybe = config.sortSearchByDistance ? { origin: viewportCenter } : {};
-      const data = JSON.parse(sessionStorage.getItem('filterState'));
-      const pub_listingType = data.pub_listingType;
+      const data = sessionStorage.getItem('filterState');
+      const pub_listingType = data ? data.pub_listingType : 'post';
 
       const searchParams = {
         address,
