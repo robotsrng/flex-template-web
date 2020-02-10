@@ -84,7 +84,7 @@ class TopbarComponent extends Component {
     this.handleToggleButton = this.handleToggleButton.bind(this);
   }
   componentDidMount() {
-    if (process.browser) {
+    if (window && window.sessionStorage) {
       this.setState({ checked: sessionStorage ? sessionStorage.getItem('checked') : 'keywords' });
     }
   }
