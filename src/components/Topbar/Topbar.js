@@ -84,16 +84,14 @@ class TopbarComponent extends Component {
     this.handleToggleButton = this.handleToggleButton.bind(this);
   }
   componentDidMount() {
-    if (window && window.sessionStorage) {
-      this.setState({ checked: sessionStorage ? sessionStorage.getItem('checked') : 'keywords' });
+    if (sessionStorage.getItem('checked')) {
+      sessionStorage.setItem('checked', 'keywords');
     }
+    console.log(sessionStorage.getItem('checked'));
+    this.setState({ checked: sessionStorage.getItem('checked') });
   }
   componentWillUnmount() {
-    const sessionData = sessionStorage.getItem('filterState');
-    if (sessionData) {
-      sessionStorage.removeItem('filterState');
-      sessionStorage.removeItem('checked');
-    }
+    sessionStorage.clear();
   }
   handleToggleButton(e) {
     this.setState({
@@ -350,6 +348,7 @@ class TopbarComponent extends Component {
               onSubmit={
                 this.state.checked === 'location' ? this.handleSubmit : this.handleSubmitKeywords
               }
+              checked={this.state.checked}
               initialValues={initialSearchFormValues}
               isMobile
               initialKeyword={initialKeyword}
