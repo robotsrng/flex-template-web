@@ -80,6 +80,7 @@ export class ProfilePageComponent extends Component {
       queryListingsError,
       listings,
       reviews,
+      reviewsMeta,
       // queryReviewsError,
       // viewport,
       intl,
@@ -98,6 +99,7 @@ export class ProfilePageComponent extends Component {
     const username = profileUser.attributes.profile.publicData.username;
     const location = profileUser.attributes.profile.publicData.location;
     // const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
+    const totalReviews = reviewsMeta ? reviewsMeta.totalItems : 0;
 
     const editLinkMobile = isCurrentUser ? (
       <NamedLink className={css.editLinkMobile} name="ProfileSettingsPage">
@@ -118,7 +120,7 @@ export class ProfilePageComponent extends Component {
             this.switchTab('brands');
           }}
         >
-          <FormattedMessage id="ProfilePage.reviewsFromBrandsTab" values={{count:0}} />
+          <FormattedMessage id="ProfilePage.reviewsFromBrandsTab" values={{ count: 0 }} />
         </li>
         <li
           className={css.tab}
@@ -126,7 +128,7 @@ export class ProfilePageComponent extends Component {
             this.switchTab('creators');
           }}
         >
-          <FormattedMessage id="ProfilePage.reviewsFromCreatorsTab" values={{count:0}} />
+          <FormattedMessage id="ProfilePage.reviewsFromCreatorsTab" values={{ count: 0 }} />
         </li>
       </ul>
     );
@@ -236,7 +238,7 @@ export class ProfilePageComponent extends Component {
     const allReviews = (
       <div className={listingsContainerClasses}>
         <h2 className={css.listingsTitle}>
-          <FormattedMessage id="ProfilePage.reviewsTitle" values={{ count: reviews.length }} />
+          <FormattedMessage id="ProfilePage.reviewsTitle" values={{ count: totalReviews }} />
         </h2>
 
         <ListingReviews reviews={reviews}
@@ -271,10 +273,11 @@ export class ProfilePageComponent extends Component {
         />
 
         {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
-        <div className={css.showMoreReviews} onClick={() => { onShowMoreReviews() }}>
-          <FormattedMessage id="ProfilePage.showMoreReviewsLabel" />
-        </div>
-
+        {totalReviews > 3 && (
+          <div className={css.showMoreReviews} onClick={() => { onShowMoreReviews() }}>
+            <FormattedMessage id="ProfilePage.showMoreReviewsLabel" />
+          </div>
+        )}
       </div>
     )
 
@@ -442,6 +445,7 @@ ProfilePageComponent.defaultProps = {
   userShowError: null,
   queryListingsError: null,
   reviews: [],
+  reviewsMeta: null,
   queryReviewsError: null,
 };
 
@@ -475,12 +479,14 @@ const mapStateToProps = state => {
     queryListingsError,
     userListingRefs,
     reviews,
+    reviewsMeta,
     queryReviewsError,
     showMoreReviews,
   } = state.ProfilePage;
   const userMatches = getMarketplaceEntities(state, [{ type: 'user', id: userId }]);
   const user = userMatches.length === 1 ? userMatches[0] : null;
   const listings = getMarketplaceEntities(state, userListingRefs);
+
   return {
     scrollingDisabled: isScrollingDisabled(state),
     currentUser,
@@ -489,6 +495,7 @@ const mapStateToProps = state => {
     queryListingsError,
     listings,
     reviews,
+    reviewsMeta,
     queryReviewsError,
     showMoreReviews,
   };

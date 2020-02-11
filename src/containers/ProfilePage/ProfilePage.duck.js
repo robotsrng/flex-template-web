@@ -17,6 +17,7 @@ export const QUERY_LISTINGS_ERROR = 'app/ProfilePage/QUERY_LISTINGS_ERROR';
 
 export const QUERY_REVIEWS_REQUEST = 'app/ProfilePage/QUERY_REVIEWS_REQUEST';
 export const QUERY_REVIEWS_SUCCESS = 'app/ProfilePage/QUERY_REVIEWS_SUCCESS';
+export const QUERY_REVIEWS_META = 'app/ProfilePage/QUERY_REVIEWS_META';
 export const QUERY_REVIEWS_ERROR = 'app/ProfilePage/QUERY_REVIEWS_ERROR';
 
 export const SHOW_MORE_REVIEWS = 'app/ProfilePage/SHOW_MORE_REVIEWS';
@@ -30,6 +31,7 @@ const initialState = {
   userShowError: null,
   queryListingsError: null,
   reviews: [],
+  reviewsMeta: null,
   queryReviewsError: null,
   showMoreReviews: false,
 };
@@ -63,6 +65,8 @@ export default function profilePageReducer(state = initialState, action = {}) {
       return { ...state, queryReviewsError: null };
     case QUERY_REVIEWS_SUCCESS:
       return { ...state, reviews: payload };
+    case QUERY_REVIEWS_META:
+      return { ...state, reviewsMeta: payload };
     case QUERY_REVIEWS_ERROR:
       return { ...state, reviews: [], queryReviewsError: payload };
     case SHOW_MORE_REVIEWS:
@@ -121,6 +125,11 @@ export const queryReviewsSuccess = reviews => ({
   payload: reviews,
 });
 
+export const queryReviewsMeta = meta => ({
+  type: QUERY_REVIEWS_META,
+  payload: meta,
+});
+
 export const queryReviewsError = e => ({
   type: QUERY_REVIEWS_ERROR,
   error: true,
@@ -164,8 +173,10 @@ export const queryUserReviews = userId => (dispatch, getState, sdk) => {
       'fields.image': ['variants.square-small', 'variants.square-small2x'],
     })
     .then(response => {
+      const meta = response.data.meta;
       const reviews = denormalisedResponseEntities(response);
       dispatch(queryReviewsSuccess(reviews));
+      dispatch(queryReviewsMeta(meta));
     })
     .catch(e => dispatch(queryReviewsError(e)));
 };
