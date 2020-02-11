@@ -238,7 +238,6 @@ export class ProfilePageComponent extends Component {
         <h2 className={css.listingsTitle}>
           <FormattedMessage id="ProfilePage.reviewsTitle" values={{ count: reviews.length }} />
         </h2>
-        {/* <Reviews reviews={reviews} /> */}
 
         <ListingReviews reviews={reviews}
         //   [
@@ -283,42 +282,42 @@ export class ProfilePageComponent extends Component {
       switch (this.state.currentTab) {
         case 'brands':
           return (
-            <ListingReviews
-              reviews={[
-                {
-                  id: {
-                    uuid: 2,
-                  },
-                  author: {
-                    ...profileUser,
-                  },
-                  attributes: {
-                    createdAt: '01/14/2020',
-                    rating: 4.5,
-                    content: 'Another cool review',
-                  },
-                },
-              ]}
+            <ListingReviews reviews={reviewsOfProvider}
+              // reviews={[
+              //   {
+              //     id: {
+              //       uuid: 2,
+              //     },
+              //     author: {
+              //       ...profileUser,
+              //     },
+              //     attributes: {
+              //       createdAt: '01/14/2020',
+              //       rating: 4.5,
+              //       content: 'Another cool review',
+              //     },
+              //   },
+              // ]}
             />
           );
         case 'creators':
           return (
-            <ListingReviews
-              reviews={[
-                {
-                  id: {
-                    uuid: 1,
-                  },
-                  author: {
-                    ...profileUser,
-                  },
-                  attributes: {
-                    createdAt: '02/07/2020',
-                    rating: 5,
-                    content: 'Awesome product',
-                  },
-                },
-              ]}
+            <ListingReviews reviews={reviewsOfCustomer}
+              // reviews={[
+              //   {
+              //     id: {
+              //       uuid: 1,
+              //     },
+              //     author: {
+              //       ...profileUser,
+              //     },
+              //     attributes: {
+              //       createdAt: '02/07/2020',
+              //       rating: 5,
+              //       content: 'Awesome product',
+              //     },
+              //   },
+              // ]}
             />
           );
         default:
