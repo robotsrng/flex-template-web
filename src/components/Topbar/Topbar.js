@@ -84,14 +84,11 @@ class TopbarComponent extends Component {
     this.handleToggleButton = this.handleToggleButton.bind(this);
   }
   componentDidMount() {
-    if (sessionStorage.getItem('checked')) {
+    console.log(sessionStorage.getItem('checked'));
+    if (!sessionStorage.getItem('checked')) {
       sessionStorage.setItem('checked', 'keywords');
     }
-    console.log(sessionStorage.getItem('checked'));
     this.setState({ checked: sessionStorage.getItem('checked') });
-  }
-  componentWillUnmount() {
-    sessionStorage.clear();
   }
   handleToggleButton(e) {
     this.setState({
