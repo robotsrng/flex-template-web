@@ -166,9 +166,10 @@ export class ProfilePageComponent extends Component {
     //   </p>
     // );
 
-    // const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
+    const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
 
-    // const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
+    const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
+
 
     // const mobileReviews = (
     //   <div className={css.mobileReviews}>
@@ -272,7 +273,7 @@ export class ProfilePageComponent extends Component {
 
         {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
         <div className={css.showMoreReviews} onClick={() => { onShowMoreReviews() }}>
-          <span>+ Show more reviews</span>
+          <FormattedMessage id="ProfilePage.showMoreReviewsLabel"/>
         </div>
 
       </div>

@@ -666,6 +666,7 @@
   "ProfilePage.reviewsOfCustomerTitle": "Reviews from Hosts ({count})",
   "ProfilePage.reviewsOfProviderTitle": "Reviews from Guests ({count})",
   "ProfilePage.reviewsTitle": "Reviews ({count})",
+  "ProfilePage.showMoreReviewsLabel": "+ Show more reviews",
   "ProfilePage.schemaTitle": "{name} | {siteTitle}",
   "ProfileSettingsForm.addYourProfilePicture": "+ Add",
   "ProfileSettingsForm.addYourProfilePictureMobile": "+ Add",

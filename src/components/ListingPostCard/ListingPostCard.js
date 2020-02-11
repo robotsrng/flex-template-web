@@ -22,7 +22,7 @@ const ListingPostCard = ({
               {/* <img src={img} className={css.img} alt=""></img> */}
             </div>
           </div>
-          <div className={css['col-6']}>
+          <div className={css['col-9']}>
             <div className={css.col}>
               {postTitle && <p className={css.postTitle}>{postTitle}</p>}
               <p className={css.postContent}>{postUsername}</p>
@@ -38,7 +38,7 @@ const ListingPostCard = ({
           </div>
         </div>
       </div>
-      <div className={css['col-2']}>
+      <div className={css['col-3']}>
         {postValue && (
           <div className={css.colValue}>
             <p>{postValue}</p>
