@@ -39,7 +39,7 @@ class TopbarSearchFormComponent extends Component {
     }
   }
   render() {
-    if (sessionStorage.getItem('checked') !== 'location') {
+    if (this.props.checked !== 'location') {
       return (
         <FinalForm
           {...this.props}

@@ -71,7 +71,7 @@ class TopbarComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      checked: sessionStorage.getItem('checked') ? sessionStorage.getItem('checked') : 'keywords',
+      checked: 'keywords',
     };
     this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
     this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
@@ -83,12 +83,15 @@ class TopbarComponent extends Component {
     this.initialValue = this.initialValue.bind(this);
     this.handleToggleButton = this.handleToggleButton.bind(this);
   }
-  componentWillUnmount() {
-    const sessionData = sessionStorage.getItem('filterState');
-    if (sessionData) {
-      sessionStorage.removeItem('filterState');
-      sessionStorage.removeItem('checked');
+  componentDidMount() {
+    if (sessionStorage.getItem('checked')) {
+      sessionStorage.setItem('checked', 'keywords');
     }
+    console.log(sessionStorage.getItem('checked'));
+    this.setState({ checked: sessionStorage.getItem('checked') });
+  }
+  componentWillUnmount() {
+    sessionStorage.clear();
   }
   handleToggleButton(e) {
     this.setState({
@@ -345,6 +348,7 @@ class TopbarComponent extends Component {
               onSubmit={
                 this.state.checked === 'location' ? this.handleSubmit : this.handleSubmitKeywords
               }
+              checked={this.state.checked}
               initialValues={initialSearchFormValues}
               isMobile
               initialKeyword={initialKeyword}
