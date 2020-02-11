@@ -667,6 +667,8 @@
   "ProfilePage.reviewsOfProviderTitle": "Reviews from Guests ({count})",
   "ProfilePage.reviewsTitle": "Reviews ({count})",
   "ProfilePage.showMoreReviewsLabel": "+ Show more reviews",
+  "ProfilePage.reviewsFromBrandsTab": "From brands ({count})",
+  "ProfilePage.reviewsFromCreatorsTab": "From creators ({count})",
   "ProfilePage.schemaTitle": "{name} | {siteTitle}",
   "ProfileSettingsForm.addYourProfilePicture": "+ Add",
   "ProfileSettingsForm.addYourProfilePictureMobile": "+ Add",

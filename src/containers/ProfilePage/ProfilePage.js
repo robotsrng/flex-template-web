@@ -118,7 +118,7 @@ export class ProfilePageComponent extends Component {
             this.switchTab('brands');
           }}
         >
-          From brands (102)
+          <FormattedMessage id="ProfilePage.reviewsFromBrandsTab" values={{count:0}} />
         </li>
         <li
           className={css.tab}
@@ -126,7 +126,7 @@ export class ProfilePageComponent extends Component {
             this.switchTab('creators');
           }}
         >
-          From creators (3)
+          <FormattedMessage id="ProfilePage.reviewsFromCreatorsTab" values={{count:0}} />
         </li>
       </ul>
     );
@@ -272,7 +272,7 @@ export class ProfilePageComponent extends Component {
 
         {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
         <div className={css.showMoreReviews} onClick={() => { onShowMoreReviews() }}>
-          <FormattedMessage id="ProfilePage.showMoreReviewsLabel"/>
+          <FormattedMessage id="ProfilePage.showMoreReviewsLabel" />
         </div>
 
       </div>
@@ -283,41 +283,41 @@ export class ProfilePageComponent extends Component {
         case 'brands':
           return (
             <ListingReviews reviews={reviewsOfProvider}
-              // reviews={[
-              //   {
-              //     id: {
-              //       uuid: 2,
-              //     },
-              //     author: {
-              //       ...profileUser,
-              //     },
-              //     attributes: {
-              //       createdAt: '01/14/2020',
-              //       rating: 4.5,
-              //       content: 'Another cool review',
-              //     },
-              //   },
-              // ]}
+            // reviews={[
+            //   {
+            //     id: {
+            //       uuid: 2,
+            //     },
+            //     author: {
+            //       ...profileUser,
+            //     },
+            //     attributes: {
+            //       createdAt: '01/14/2020',
+            //       rating: 4.5,
+            //       content: 'Another cool review',
+            //     },
+            //   },
+            // ]}
             />
           );
         case 'creators':
           return (
             <ListingReviews reviews={reviewsOfCustomer}
-              // reviews={[
-              //   {
-              //     id: {
-              //       uuid: 1,
-              //     },
-              //     author: {
-              //       ...profileUser,
-              //     },
-              //     attributes: {
-              //       createdAt: '02/07/2020',
-              //       rating: 5,
-              //       content: 'Awesome product',
-              //     },
-              //   },
-              // ]}
+            // reviews={[
+            //   {
+            //     id: {
+            //       uuid: 1,
+            //     },
+            //     author: {
+            //       ...profileUser,
+            //     },
+            //     attributes: {
+            //       createdAt: '02/07/2020',
+            //       rating: 5,
+            //       content: 'Awesome product',
+            //     },
+            //   },
+            // ]}
             />
           );
         default:
@@ -378,12 +378,12 @@ export class ProfilePageComponent extends Component {
             </div>
           </React.Fragment>
         ) : (
-          <React.Fragment>
-            <h1>You have 105 reviews</h1>
-            {reviewTabs}
-            {renderReviewTab()}
-          </React.Fragment>
-        )}
+            <React.Fragment>
+              <h1>You have 105 reviews</h1>
+              {reviewTabs}
+              {renderReviewTab()}
+            </React.Fragment>
+          )}
       </div>
     );
 
