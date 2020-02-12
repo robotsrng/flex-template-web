@@ -7,7 +7,7 @@ import {
   LayoutWrapperFooter,
   Footer,
 } from '../../components';
-const TestPage = () => {
+const ContactPage = () => {
   // const handleResponse = data => {
   //   console.log(data);
   // };
@@ -18,12 +18,12 @@ const TestPage = () => {
   // prettier-ignore
   return (
     <StaticPage
-      title="Test"
+      title="Contact"
       schema={{
         '@context': 'http://schema.org',
-        '@type': 'TestPage',
+        '@type': 'ContactPage',
         description: 'About Sidesuite',
-        name: 'Test Page',
+        name: 'Contact Page',
       }}
     >
       <LayoutSingleColumn>
@@ -43,4 +43,4 @@ const TestPage = () => {
   );
 };
 
-export default TestPage;
+export default ContactPage;
