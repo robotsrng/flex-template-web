@@ -60,12 +60,9 @@ export const socialMedias = [
   { key: 'vsco', label: 'Vsco' },
   { key: 'pinterest', label: 'Pinterest' },
   { key: 'linkedIn', label: 'LinkedIn' },
-  { key: 'podcast', label: 'Podcast' },
   { key: 'tiktok', label: 'Tiktok' },
   { key: 'youtube', label: 'Youtube' },
-  { key: 'vimeo', label: 'Vimeo' },
   { key: 'twitch', label: 'Twitch' },
-  { key: 'blog', label: 'Blog' },
 ];
 
 export const categories = [
