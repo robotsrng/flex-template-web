@@ -250,6 +250,7 @@ export class AuthenticationPageComponent extends Component {
               id="AuthenticationPage.tos"
               isOpen={this.state.tosModalOpen}
               onClose={() => this.setState({ tosModalOpen: false })}
+              usePortal
               onManageDisableScrolling={onManageDisableScrolling}
             >
               <div className={css.termsWrapper}>
