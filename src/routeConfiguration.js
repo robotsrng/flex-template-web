@@ -26,7 +26,7 @@ import {
   StyleguidePage,
   TermsOfServicePage,
   TransactionPage,
-  TestPage,
+  ContactPage,
 } from './containers';
 
 // routeConfiguration needs to initialize containers first
@@ -52,9 +52,9 @@ const RedirectToLandingPage = () => <NamedRedirect name="LandingPage" />;
 const routeConfiguration = () => {
   return [
     {
-      path: '/testPage',
-      name: 'TestPage',
-      component: TestPage,
+      path: '/contact',
+      name: 'ContactPage',
+      component: ContactPage,
     },
     {
       path: '/',
