@@ -148,6 +148,14 @@ const httpsAgent = new https.Agent({ keepAlive: true });
 const mailer = require('./mailSender');
 app.use('/api', mailer);
 
+// Calculator initiator
+const calculator = require('./calculator');
+app.use('/api', calculator);
+
+// Verify social media initiator
+const verify = require('./socialMediaVerification');
+//app.use('/api', verify);
+
 app.get('*', (req, res) => {
   if (req.url.startsWith('/static/')) {
     // The express.static middleware only handles static resources

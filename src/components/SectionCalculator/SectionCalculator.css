@@ -12,7 +12,12 @@
 input {
   border-bottom-color: #ffaa00 !important;
 }
-
+.alert {
+  color: red;
+}
+.calculator {
+  margin-top: 30px;
+}
 .button {
   @apply --marketplaceButtonStyles;
   /* @apply --SectionHero_animation; */

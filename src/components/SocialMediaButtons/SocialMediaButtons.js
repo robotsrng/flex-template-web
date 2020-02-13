@@ -1,47 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './SocialMediaButtons.css';
-// import Swal from 'sweetalert2';
-// import axios from 'axios';
+import config from '../../config';
 
 const SocialMediaButtons = props => {
+  const { handleOnClick } = props;
+  const [socialMediasPlatform] = useState(config.custom.socialMedias);
   return (
     <div className={css.linkAccountContainer}>
-      <div className={css.colButtons}>
-        <button>Instagram</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Facebook</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Vsco</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Pinterest</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>LinkedIn</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Youtube</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Vimeo</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Twitch</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Blog</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Snapchat</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>Podcast</button>
-      </div>
-      <div className={css.colButtons}>
-        <button>TikTok</button>
-      </div>
+      {socialMediasPlatform.map(o => (
+        <div className={css.colButtons} key={o.key}>
+          <button onClick={handleOnClick} value={o.key}>
+            {o.label}
+          </button>
+        </div>
+      ))}
     </div>
   );
 };
