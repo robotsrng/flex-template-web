@@ -11,6 +11,7 @@ const SectionCalculator = props => {
   const { rootClassName, className, title, description } = props;
 
   const classes = classNames(rootClassName || css.root, className);
+  const [showCalculatorResult, setShowCalculatorResult] = useState(true);
   const [socialMediaSelected, setSocialMediaSelected] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [calculatedData, setCalculatedData] = useState();
@@ -23,30 +24,35 @@ const SectionCalculator = props => {
       .post('/api/calculate', data)
       .then(res => {
         setCalculatedData(res);
+        setShowCalculatorResult(true);
       })
       .catch(err => console.log(err));
   };
   const handleOnChange = value => {
+    if (showCalculatorResult) {
+      setShowCalculatorResult(false);
+    }
     setInputValue(value);
   };
-  const calculatorResult = calculatedData ? (
-    calculatedData.data.error ? (
-      <p className={css.alert}>
-        There was a problem loading your information, please verify your username and be sure the
-        account is public
-      </p>
-    ) : (
-      <ListingCalculatorResultCard
-        img={calculatedData.data.data.photo}
-        username={inputValue}
-        audience={calculatedData.data.followers}
-        platform={socialMediaSelected}
-        engagementRate={calculatedData.data.calculations.engagementRate}
-        estimatedLowPrice={calculatedData.data.calculations.lowerPrice}
-        estimatedHighPrice={calculatedData.data.calculations.price}
-      />
-    )
-  ) : null;
+  const calculatorResult =
+    calculatedData && showCalculatorResult ? (
+      calculatedData.data.error ? (
+        <p className={css.alert}>
+          There was a problem loading your information, please verify your username and be sure the
+          account is public
+        </p>
+      ) : (
+        <ListingCalculatorResultCard
+          img={calculatedData.data.data.photo}
+          username={inputValue}
+          audience={calculatedData.data.followers}
+          platform={socialMediaSelected}
+          engagementRate={calculatedData.data.calculations.engagementRate}
+          estimatedLowPrice={calculatedData.data.calculations.lowerPrice}
+          estimatedHighPrice={calculatedData.data.calculations.price}
+        />
+      )
+    ) : null;
   return (
     <div className={classes}>
       <div className={css.title}>
@@ -55,7 +61,7 @@ const SectionCalculator = props => {
       <div className={css.description}>
         <p>{description}</p>
       </div>
-      <SocialMediaButtons handleOnClick={handleOnClick} />
+      <SocialMediaButtons handleOnClick={handleOnClick} socialMediaSelected={socialMediaSelected} />
       <div className={css.calculatorInput}>
         <p className={css.inputTitle}>Username</p>
         <input
