@@ -11,6 +11,7 @@ router.post('/calculate', (req, res) => {
       res.send(r.data);
     })
     .catch(err => {
+      console.log(err.data);
       res.send(err);
     });
 });

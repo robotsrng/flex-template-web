@@ -21,23 +21,32 @@ const SectionCalculator = props => {
     const data = { service: socialMediaSelected, username: inputValue };
     axios
       .post('/api/calculate', data)
-      .then(res => setCalculatedData(res))
+      .then(res => {
+        setCalculatedData(res);
+      })
       .catch(err => console.log(err));
   };
   const handleOnChange = value => {
     setInputValue(value);
   };
-  const calculatorResult = calculatedData && (
-    <ListingCalculatorResultCard
-      img={calculatedData.data.data.photo}
-      username={inputValue}
-      audience={calculatedData.data.followers}
-      platform={socialMediaSelected}
-      engagementRate={calculatedData.data.calculations.engagementRate}
-      estimatedLowPrice={calculatedData.data.calculations.lowerPrice}
-      estimatedHighPrice={calculatedData.data.calculations.price}
-    />
-  );
+  const calculatorResult = calculatedData ? (
+    calculatedData.data.error ? (
+      <p className={css.alert}>
+        There was a problem loading your information, please verify your username and be sure the
+        account is public
+      </p>
+    ) : (
+      <ListingCalculatorResultCard
+        img={calculatedData.data.data.photo}
+        username={inputValue}
+        audience={calculatedData.data.followers}
+        platform={socialMediaSelected}
+        engagementRate={calculatedData.data.calculations.engagementRate}
+        estimatedLowPrice={calculatedData.data.calculations.lowerPrice}
+        estimatedHighPrice={calculatedData.data.calculations.price}
+      />
+    )
+  ) : null;
   return (
     <div className={classes}>
       <div className={css.title}>
@@ -54,10 +63,10 @@ const SectionCalculator = props => {
           onChange={e => handleOnChange(e.target.value)}
           value={inputValue}
         ></input>
-        {calculatorResult}
         <button className={css.button} onClick={handleCalculate}>
           Calculate
         </button>
+        <div className={css.calculator}>{calculatorResult}</div>
       </div>
     </div>
   );

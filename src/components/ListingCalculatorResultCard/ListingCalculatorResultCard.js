@@ -10,6 +10,12 @@ const ListingCalculatorResultCard = ({
   estimatedLowPrice,
   estimatedHighPrice,
 }) => {
+  const round = num => {
+    return Math.round(num * 100) / 100;
+  };
+  const upperCaseFirst = word => {
+    return word.replace(/^\w/, c => c.toUpperCase());
+  };
   return (
     <div className={css.container}>
       <div className={css.imgContainer}>
@@ -18,11 +24,11 @@ const ListingCalculatorResultCard = ({
       <div className={css.col}>
         <p className={css.userContent}>{username}</p>
         <p className={css.userContent}>
-          {platform.replace(/^\w/, c => c.toUpperCase())}|{audience}
+          {upperCaseFirst(platform)} | {audience} Followers
         </p>
-        <p className={css.userContent}>{Math.round(engagementRate)}% Engagement</p>
+        <p className={css.userContent}>{round(engagementRate)}% Engagement</p>
         <p className={css.userContent}>
-          ${Math.round(estimatedLowPrice)}-${Math.round(estimatedHighPrice)} per Post
+          ${round(estimatedLowPrice)}-${round(estimatedHighPrice)} per Post
         </p>
       </div>
     </div>

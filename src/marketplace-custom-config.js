@@ -59,6 +59,7 @@ export const socialMedias = [
   { key: 'snapchat', label: 'Snapchat' },
   { key: 'vsco', label: 'Vsco' },
   { key: 'pinterest', label: 'Pinterest' },
+  { key: 'twitter', label: 'Twitter' },
   { key: 'linkedIn', label: 'LinkedIn' },
   { key: 'tiktok', label: 'Tiktok' },
   { key: 'youtube', label: 'Youtube' },
