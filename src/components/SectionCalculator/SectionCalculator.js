@@ -15,11 +15,12 @@ const SectionCalculator = props => {
   const [socialMediaSelected, setSocialMediaSelected] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [calculatedData, setCalculatedData] = useState();
+  const disabled = !inputValue || !socialMediaSelected;
   const handleOnClick = e => {
     setSocialMediaSelected(e.target.value);
   };
   const handleCalculate = _ => {
-    const data = { service: socialMediaSelected, username: inputValue };
+    const data = { service: socialMediaSelected, username: inputValue.trim() };
     axios
       .post('/api/calculate', data)
       .then(res => {
@@ -69,7 +70,7 @@ const SectionCalculator = props => {
           onChange={e => handleOnChange(e.target.value)}
           value={inputValue}
         ></input>
-        <button className={css.button} onClick={handleCalculate}>
+        <button className={css.button} onClick={handleCalculate} disabled={disabled}>
           Calculate
         </button>
         <div className={css.calculator}>{calculatorResult}</div>
