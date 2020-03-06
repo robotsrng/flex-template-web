@@ -11,8 +11,15 @@ import {
 
 import css from './Blog.css';
 
+const heading = (
+  <div className={css.heading}>
+    <h1>Sidenotes</h1>
+    <p>Here's our story.</p>
+  </div>
+)
+
 const Blog = () => {
-  const marketingPlanImg = '';
+  const marketingPlanImg = require('./img/Hudson Bay.jpg');
   const marketingPlanTitle = 'Our Marketing Plan';
   const marketingPlanCreated = 'August 12, 2019';
   const marketingPlanDescription =
@@ -35,8 +42,9 @@ const Blog = () => {
 
         <LayoutWrapperMain className={css.staticPageWrapper}>
 
-
+        {heading}
           <div className={css.contentWrapper}>
+            <BlogItem img={marketingPlanImg} title={marketingPlanTitle} created={marketingPlanCreated} description={marketingPlanDescription}/>
             <BlogItem img={marketingPlanImg} title={marketingPlanTitle} created={marketingPlanCreated} description={marketingPlanDescription}/>
           </div>
         </LayoutWrapperMain>

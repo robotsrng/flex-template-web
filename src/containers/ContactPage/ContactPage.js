@@ -11,9 +11,10 @@ import {ListingContactCard} from './ListingContactCard';
 
 import css from './ContactPage.css';
 
-const AccountImage = require('./images/Account White _ Sidesuite copy 3.png');
-const CalendarImage = require('./images/Calendar White _ Bookings _ Sidesuite copy 3.png');
-const CreditCardImage = require('./images/Credit Card White _ Payment Method _ Sidesuite copy 3.png');
+const accountImage = require('./img/Account | Icon | Sidesuite.png');
+const calendarImage = require('./img/Calendar Dark | Icon | Sidesuite.png');
+const creditCardImage = require('./img/Credit Card | Icon | Sidesuite.png');
+const feedbackImg = require('./img/Glasses Dark | Icon | Sidesuite.png');
 
 const ContactPage = () => {
   // const handleResponse = data => {
@@ -27,16 +28,17 @@ const ContactPage = () => {
 
   const heading = (
     <div className={css.heading}>
-      <h1>Select one bellow</h1>
+      <h1>Select one below</h1>
       <p>We are here to help, and will get back to you withing 24 hours. Most likely a lot sooner than that.</p>
     </div>
   )
 
   const cards = (
     <div className={css.listingHolder}>
-      <ListingContactCard icon={CalendarImage}  title='Booking and Disputes'/>
-      <ListingContactCard icon={CreditCardImage}  title='Payments and Refounds'/>
-      <ListingContactCard icon={AccountImage}  title='My sidesuite Account'/>
+      <ListingContactCard icon={calendarImage}  title='Booking and disputes'/>
+      <ListingContactCard icon={creditCardImage}  title='Payments and refunds'/>
+      <ListingContactCard icon={accountImage}  title='My Sidesuite Account'/>
+      <ListingContactCard icon={feedbackImg}  title='Ways we can improve'/>
     </div>
   )
 

@@ -187,4 +187,4 @@ export {default as ListingUserCard} from './ListingUserCard/ListingUserCard';
 export {default as ListingCalculatorResultCard} from './ListingCalculatorResultCard/ListingCalculatorResultCard';
 export {default as ListingSocialMediaCard} from './ListingSocialMediaCard/ListingSocialMediaCard';
 export {default as BlogItem} from './BlogItem/BlogItem';
-export {default as SocialMediaButtons} from './SocialMediaButtons/SocialMediaButtons'
+export {default as SocialMediaButtons} from './SocialMediaButtons/SocialMediaButtons';

@@ -147,7 +147,8 @@
   }
 
   --marketplaceH3FontStyles: {
-    font-weight: var(--fontWeightLight);
+    font-weight: var(--fontWeightSemiBold);
+    color: #4a4a4a;
     font-size: 20px;
     line-height: 24px;
     letter-spacing: -0.2px;

@@ -1,7 +1,34 @@
 @import '../../marketplace.css';
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+a {text-decoration: none !important;}
+
+.blogItemContainer {
+  margin-top: 20px;
+}
+
+.diamondOne {
+  width: 88px;
+  height: 88px;
+  margin: 15px;
+  -ms-transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  overflow: hidden;
+  border-radius: 20px;
+  border: 8px solid #f5f5f5;
+  float: left;
+}
+.diamondTwo {
+  width: 115px;
+  height: 115px;
+  margin: -15px;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.blogItemContent {
+  float: left;
+  margin-top: 10px;
+  margin-left: 10px;
 }

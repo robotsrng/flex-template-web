@@ -5,19 +5,28 @@ import classNames from 'classnames';
 import css from './BlogItem.css';
 
 const BlogItem = props => {
-  const { rootClassName, className, img, title, created, description } = props;
+  const { rootClassName, className, img, title, created } = props;
 
   const classes = classNames(rootClassName || css.root, className);
 
   return (
+    <a href="/">
     <div className={classes}>
-      <div className={css.container}>
-        <img className={css.img} src={img} alt=""></img>
-        <h2>{title}</h2>
+
+      <div className={css.blogItemContainer}>
+
+        <div className={css.diamondOne}>
+        <img className={css.diamondTwo} src={img} alt=""></img>
+        </div>
+        <div className={css.blogItemContent}>
+        <h3>{title}</h3>
         <p>{created}</p>
-        <span>{description}</span>
+        </div>
+    
+
       </div>
-    </div>
+
+    </div></a>
   );
 };
 

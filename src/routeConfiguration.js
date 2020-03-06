@@ -3,7 +3,10 @@ import {
   AboutPage,
   Blog,
   Calculator,
+  FAQPage,
   HowItWorks,
+  ForBrands,
+  ForCreators,
   AuthenticationPage,
   CheckoutPage,
   ContactDetailsPage,
@@ -51,6 +54,21 @@ const RedirectToLandingPage = () => <NamedRedirect name="LandingPage" />;
 // See behaviour from Routes.js where Route is created.
 const routeConfiguration = () => {
   return [
+    {
+      path: '/FAQ',
+      name: 'FAQPage',
+      component: FAQPage,
+    },
+    {
+      path: '/for-brands',
+      name: 'ForBrands',
+      component: ForBrands,
+    },
+    {
+      path: '/for-creators',
+      name: 'ForCreators',
+      component: ForCreators,
+    },
     {
       path: '/contact',
       name: 'ContactPage',
