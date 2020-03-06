@@ -17,6 +17,7 @@ import {
   IconSpinner,
   FieldTextInput,
   LocationAutocompleteInputField,
+  NamedLink,
 } from '../../components';
 
 import css from './ProfileSettingsForm.css';
@@ -49,10 +50,6 @@ class ProfileSettingsFormComponent extends Component {
   }
 
   render() {
-    const addAccount = e => {
-      e.preventDefault();
-      this.props.setToggle({ toggleForm: 2 });
-    };
     return (
       <FinalForm
         {...this.props}
@@ -340,14 +337,14 @@ class ProfileSettingsFormComponent extends Component {
                   )}
                 />
                 <h3 className={css.sectionAccountSocialMedia}>Your verified accounts</h3>
-                <div className={css.accountPlaceholder} onClick={addAccount}>
+                <NamedLink name="AddAccountPage" className={css.accountPlaceholder}>
                   <div className={css.accountPlaceholderText}>
                     <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
                   </div>
                   <div className={css.accountPlaceholderTextMobile}>
                     <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
                   </div>
-                </div>
+                </NamedLink>
               </div>
               {submitError}
               <Button

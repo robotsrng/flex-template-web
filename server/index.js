@@ -154,7 +154,7 @@ app.use('/api', calculator);
 
 // Verify social media initiator
 const verify = require('./socialMediaVerification');
-//app.use('/api', verify);
+app.use('/api', verify);
 
 app.get('*', (req, res) => {
   if (req.url.startsWith('/static/')) {

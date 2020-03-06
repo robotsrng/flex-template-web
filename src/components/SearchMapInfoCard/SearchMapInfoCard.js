@@ -7,19 +7,18 @@ import config from '../../config';
 import { propTypes } from '../../util/types';
 import { formatMoney } from '../../util/currency';
 import { ensureListing } from '../../util/data';
-import { ResponsiveImage } from '../../components';
+import { ListingPostCard } from '../../components';
 
 import css from './SearchMapInfoCard.css';
 
 // ListingCard is the listing info without overlayview or carousel controls
 const ListingCard = props => {
   const { className, clickHandler, intl, isInCarousel, listing, urlToListing } = props;
-
-  const { title, price } = listing.attributes;
+  const { title, price, publicData } = listing.attributes;
   const formattedPrice =
     price && price.currency === config.currency ? formatMoney(intl, price) : price.currency;
   const firstImage = listing.images && listing.images.length > 0 ? listing.images[0] : null;
-
+  const img = firstImage ? firstImage.attributes.variants['scaled-small'].url : null;
   // listing card anchor needs sometimes inherited border radius.
   const classes = classNames(
     css.anchor,
@@ -44,14 +43,21 @@ const ListingCard = props => {
           [css.borderRadiusInheritBottom]: !isInCarousel,
         })}
       >
-        <div className={classNames(css.threeToTwoWrapper, css.borderRadiusInheritTop)}>
+        <ListingPostCard
+          img={img}
+          postTitle={title}
+          postFollowerAmmount={publicData.follower}
+          postValue={formattedPrice}
+          postSocialMedia={publicData.offering}
+        />
+        {/* <div className={classNames(css.threeToTwoWrapper, css.borderRadiusInheritTop)}>
           <div className={classNames(css.aspectWrapper, css.borderRadiusInheritTop)}>
             <ResponsiveImage
               rootClassName={classNames(css.rootForImage, css.borderRadiusInheritTop)}
               alt={title}
               noImageMessage={intl.formatMessage({ id: 'SearchMapInfoCard.noImage' })}
               image={firstImage}
-              variants={['landscape-crop', 'landscape-crop2x']}
+              variants={['scaled-small', 'landscape-crop', 'landscape-crop2x']}
               sizes="250px"
             />
           </div>
@@ -59,7 +65,7 @@ const ListingCard = props => {
         <div className={classNames(css.info, { [css.borderRadiusInheritBottom]: !isInCarousel })}>
           <div className={css.price}>{formattedPrice}</div>
           <div className={css.name}>{title}</div>
-        </div>
+        </div> */}
       </div>
     </a>
   );

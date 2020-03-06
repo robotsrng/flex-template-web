@@ -1,7 +1,7 @@
 const axios = require('axios').default;
 const express = require('express');
 const router = express.Router();
-const _EXTERNAL_URL = 'http://149.248.52.69';
+const _EXTERNAL_URL = process.env.REACT_APP_API_URL;
 
 router.post('/calculate', (req, res) => {
   const { service, username } = req.body;

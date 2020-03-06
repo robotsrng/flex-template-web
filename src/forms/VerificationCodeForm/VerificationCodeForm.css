@@ -1,0 +1,9 @@
+@import '../../marketplace.css';
+
+.container {
+  height: 640px;
+}
+.sectionTitle {
+  @apply --marketplaceH1FontStyles;
+  color: var(--marketplaceColorDark);
+}

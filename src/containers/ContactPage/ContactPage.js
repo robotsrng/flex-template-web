@@ -7,7 +7,7 @@ import {
   LayoutWrapperFooter,
   Footer,
 } from '../../components';
-import {ListingContactCard} from './ListingContactCard';
+import { ListingContactCard } from './ListingContactCard';
 
 import css from './ContactPage.css';
 
@@ -40,7 +40,7 @@ const ContactPage = () => {
       <ListingContactCard icon={accountImage}  title='My Sidesuite Account'/>
       <ListingContactCard icon={feedbackImg}  title='Ways we can improve'/>
     </div>
-  )
+  );
 
   return (
     <StaticPage

@@ -7,7 +7,6 @@ const ListingPostCard = ({
   postUsername,
   postFollowerAmmount,
   postValue,
-  postValueMaybe,
   postSocialMedia,
 }) => {
   return (
@@ -25,15 +24,19 @@ const ListingPostCard = ({
           <div className={css['col-9']}>
             <div className={css.col}>
               {postTitle && <p className={css.postTitle}>{postTitle}</p>}
-              <p className={css.postContent}>{postUsername}</p>
-              {postSocialMedia ? (
-                <p className={css.postContent}>
-                  {postSocialMedia} | {postFollowerAmmount}
-                </p>
+              {postUsername ? (
+                <React.Fragment>
+                  <p className={css.postContent}>{postUsername}</p>
+                  <p className={css.postContent}>
+                    {postSocialMedia} | {postFollowerAmmount}
+                  </p>
+                </React.Fragment>
               ) : (
-                  <p className={css.postContent}>{postFollowerAmmount}</p>
-                )}
-              <p className={css.postContent}>{postValueMaybe}</p>
+                <React.Fragment>
+                  <p className={css.postContent}>{postSocialMedia}</p>
+                  <p className={css.postContent}>{postFollowerAmmount} followers</p>
+                </React.Fragment>
+              )}
             </div>
           </div>
         </div>

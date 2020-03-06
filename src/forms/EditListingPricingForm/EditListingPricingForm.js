@@ -9,8 +9,7 @@ import { LINE_ITEM_NIGHT, LINE_ITEM_DAY, propTypes, LISTING_STATE_DRAFT } from '
 import * as validators from '../../util/validators';
 import { formatMoney } from '../../util/currency';
 import { types as sdkTypes } from '../../util/sdkLoader';
-import placheolderImg from './img/CalculatorPlaceholderImg.jpg';
-import { Button, Form, FieldCurrencyInput, ListingLink, ListingPostCard } from '../../components';
+import { Button, Form, FieldCurrencyInput, ListingLink } from '../../components';
 import css from './EditListingPricingForm.css';
 import { ensureOwnListing } from '../../util/data';
 
@@ -122,12 +121,6 @@ export const EditListingPricingFormComponent = props => (
 
           <h2>{secondTitle}</h2>
           <p>{secondTitleDescription}</p>
-          <ListingPostCard
-            img={placheolderImg}
-            postUsername="axelwhalen"
-            postFollowerAmmount="Instagram | 338 followers"
-            postValueMaybe="$45 - $55 per post"
-          />
           <Button
             className={css.submitButton}
             type="submit"

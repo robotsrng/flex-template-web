@@ -1,4 +1,5 @@
 export { default as AboutPage } from './AboutPage/AboutPage';
+export { default as AddAccountPage } from './AddAccountPage/AddAccountPage';
 export { default as AuthenticationPage } from './AuthenticationPage/AuthenticationPage';
 export { default as Blog } from './Blog/Blog'
 export { default as Calculator } from './Calculator/Calculator';

@@ -10,8 +10,11 @@ const ListingCalculatorResultCard = ({
   estimatedLowPrice,
   estimatedHighPrice,
 }) => {
+  const roundEngagement = num => {
+    return Math.round(num * 1000) / 10;
+  };
   const round = num => {
-    return Math.round(num * 100) / 100;
+    return Math.round(num * 10) / 10;
   };
   const upperCaseFirst = word => {
     return word.replace(/^\w/, c => c.toUpperCase());
@@ -26,7 +29,7 @@ const ListingCalculatorResultCard = ({
         <p className={css.userContent}>
           {upperCaseFirst(platform)} | {audience} Followers
         </p>
-        <p className={css.userContent}>{round(engagementRate)}% Engagement</p>
+        <p className={css.userContent}>{roundEngagement(engagementRate)}% Engagement</p>
         <p className={css.userContent}>
           ${round(estimatedLowPrice)}-${round(estimatedHighPrice)} per Post
         </p>
