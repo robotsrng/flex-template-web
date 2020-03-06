@@ -8,11 +8,8 @@ import arrayMutators from 'final-form-arrays';
 import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 
 import { ensureListing } from '../../util/data';
-import { propTypes } from '../../util/types';
-import config from '../../config';
-import { Button, Form } from '../../components';
-import { ListingLink } from '../../components';
-import { LISTING_STATE_DRAFT } from '../../util/types';
+import { propTypes, LISTING_STATE_DRAFT } from '../../util/types';
+import { Button, Form, ListingLink, FeatureButtons } from '../../components';
 
 import css from './EditListingFeaturesForm.css';
 
@@ -141,23 +138,10 @@ const EditListingFeaturesFormComponent = props => {
                 ))}
             </div>
             <h2 className={css.title}>{panelSecondTitle}</h2>
-            <div className={css.linkAccountContainer}>
-              {config.custom.postCategories.map(postCategories =>
-                props.postCategoriesList.includes(postCategories.label) ? (
-                  <div className={css.colButtonsSelected}>
-                    <button value={postCategories.label} onClick={handleOnClickPostCategories}>
-                      {postCategories.label}
-                    </button>
-                  </div>
-                ) : (
-                  <div className={css.colButtons}>
-                    <button value={postCategories.label} onClick={handleOnClickPostCategories}>
-                      {postCategories.label}
-                    </button>
-                  </div>
-                )
-              )}
-            </div>
+            <FeatureButtons
+              handleOnClick={handleOnClickPostCategories}
+              list={props.postCategoriesList}
+            />
 
             <Button
               className={css.submitButton}

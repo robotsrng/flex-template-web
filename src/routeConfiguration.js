@@ -5,6 +5,7 @@ import {
   Calculator,
   HowItWorks,
   AuthenticationPage,
+  AddAccountPage,
   CheckoutPage,
   ContactDetailsPage,
   EditListingPage,
@@ -60,6 +61,13 @@ const routeConfiguration = () => {
       path: '/',
       name: 'LandingPage',
       component: props => <LandingPage {...props} />,
+    },
+    {
+      path: '/add-social-media',
+      name: 'AddAccountPage',
+      auth: true,
+      authPage: 'LoginPage',
+      component: props => <AddAccountPage {...props} />,
     },
     {
       path: '/about',

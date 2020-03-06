@@ -17,7 +17,7 @@ import {
   Footer,
   NamedLink,
 } from '../../components';
-import { ProfileSettingsForm, AddAccountForm } from '../../forms';
+import { ProfileSettingsForm } from '../../forms';
 import { TopbarContainer } from '../../containers';
 
 import { updateProfile, uploadImage } from './ProfileSettingsPage.duck';
@@ -30,16 +30,9 @@ const onImageUploadHandler = (values, fn) => {
   }
 };
 export class ProfileSettingsPageComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { toggleForm: 1 };
-  }
   componentDidMount() {
     ReactDOM.findDOMNode(this).scrollIntoView();
   }
-  updateToggle = newToggle => {
-    this.setState(newToggle);
-  };
   render() {
     const {
       currentUser,
@@ -122,17 +115,6 @@ export class ProfileSettingsPageComponent extends Component {
         onSubmit={handleSubmit}
       />
     ) : null;
-    const addAccountForm = user.id ? (
-      <AddAccountForm
-        className={css.form}
-        currentUser={currentUser}
-        setToggle={this.updateToggle}
-        onSubmit={handleSubmit}
-        initialValues={{
-          profileImage: user.profileImage,
-        }}
-      />
-    ) : null;
 
     const title = intl.formatMessage({ id: 'ProfileSettingsPage.title' });
 
@@ -159,7 +141,7 @@ export class ProfileSettingsPageComponent extends Component {
                   </NamedLink>
                 ) : null}
               </div>
-              {this.state.toggleForm === 1 ? profileSettingsForm : addAccountForm}
+              {profileSettingsForm}
             </div>
           </LayoutWrapperMain>
           <LayoutWrapperFooter>

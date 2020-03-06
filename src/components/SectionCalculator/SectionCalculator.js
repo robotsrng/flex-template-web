@@ -24,6 +24,7 @@ const SectionCalculator = props => {
     axios
       .post('/api/calculate', data)
       .then(res => {
+        console.log(res);
         setCalculatedData(res);
         setShowCalculatorResult(true);
       })

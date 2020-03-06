@@ -1,4 +1,3 @@
-export { default as AddAccountForm } from './AddAccountForm/AddAccountForm';
 export { default as BookingDatesForm } from './BookingDatesForm/BookingDatesForm';
 export { default as ContactDetailsForm } from './ContactDetailsForm/ContactDetailsForm';
 export { default as EditListingAvailabilityForm } from './EditListingAvailabilityForm/EditListingAvailabilityForm';
@@ -22,8 +21,11 @@ export { default as PriceFilterForm } from './PriceFilterForm/PriceFilterForm';
 export { default as FollowerFilterForm } from './FollowerFilterForm/FollowerFilterForm';
 export { default as ProfileSettingsForm } from './ProfileSettingsForm/ProfileSettingsForm';
 export { default as ReviewForm } from './ReviewForm/ReviewForm';
+export { default as SelectChannelForm } from './SelectChannelForm/SelectChannelForm';
+export { default as SelectLocationForm } from './SelectLocationForm/SelectLocationForm';
 export { default as SendMessageForm } from './SendMessageForm/SendMessageForm';
 export { default as SignupForm } from './SignupForm/SignupForm';
 export { default as StripePaymentForm } from './StripePaymentForm/StripePaymentForm';
 export { default as StripeConnectAccountForm } from './StripeConnectAccountForm/StripeConnectAccountForm';
 export { default as TopbarSearchForm } from './TopbarSearchForm/TopbarSearchForm';
+export { default as VerificationCodeForm } from './VerificationCodeForm/VerificationCodeForm';

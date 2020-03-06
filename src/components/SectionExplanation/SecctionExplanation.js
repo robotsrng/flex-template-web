@@ -29,6 +29,7 @@ const SectionExplanation = props => {
             img={firstImg}
             postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
             postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+            postSocialMedia="Instagram"
             postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
             postValue={<FormattedMessage id="ListingPostCard.postValue" />}
           />
@@ -38,6 +39,7 @@ const SectionExplanation = props => {
             img={secondImg}
             postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
             postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+            postSocialMedia="Instagram"
             postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
             postValue={<FormattedMessage id="ListingPostCard.postValue" />}
           />
@@ -47,6 +49,7 @@ const SectionExplanation = props => {
             img={thirdImg}
             postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
             postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+            postSocialMedia="Instagram"
             postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
             postValue={<FormattedMessage id="ListingPostCard.postValue" />}
           />

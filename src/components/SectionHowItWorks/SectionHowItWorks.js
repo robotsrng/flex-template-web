@@ -57,6 +57,7 @@ const SectionHowItWorks = props => {
               img={firstImg}
               postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
               postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+              postSocialMedia="Instagram"
               postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
               postValue={<FormattedMessage id="ListingPostCard.postValue" />}
             />
@@ -66,6 +67,7 @@ const SectionHowItWorks = props => {
               img={secondImg}
               postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
               postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+              postSocialMedia="Instagram"
               postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
               postValue={<FormattedMessage id="ListingPostCard.postValue" />}
             />
@@ -75,6 +77,7 @@ const SectionHowItWorks = props => {
               img={thirdImg}
               postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
               postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+              postSocialMedia="Instagram"
               postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
               postValue={<FormattedMessage id="ListingPostCard.postValue" />}
             />

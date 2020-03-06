@@ -1,0 +1,21 @@
+@import '../../marketplace.css';
+
+.container {
+  height: 640px;
+}
+.socialContainer {
+  margin-bottom: 32px;
+}
+.sectionTitle {
+  @apply --marketplaceH1FontStyles;
+  color: var(--marketplaceColorDark);
+}
+
+.input {
+  margin-top: 70px;
+}
+.inputTitle {
+  color: var(--marketplaceColorDark);
+  font-weight: 600;
+  font-size: 16px;
+}

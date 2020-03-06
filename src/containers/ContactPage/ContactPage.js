@@ -7,7 +7,7 @@ import {
   LayoutWrapperFooter,
   Footer,
 } from '../../components';
-import {ListingContactCard} from './ListingContactCard';
+import { ListingContactCard } from './ListingContactCard';
 
 import css from './ContactPage.css';
 
@@ -34,11 +34,11 @@ const ContactPage = () => {
 
   const cards = (
     <div className={css.listingHolder}>
-      <ListingContactCard icon={CalendarImage}  title='Booking and Disputes'/>
-      <ListingContactCard icon={CreditCardImage}  title='Payments and Refounds'/>
-      <ListingContactCard icon={AccountImage}  title='My sidesuite Account'/>
+      <ListingContactCard icon={CalendarImage} title="Booking and Disputes" />
+      <ListingContactCard icon={CreditCardImage} title="Payments and Refunds" />
+      <ListingContactCard icon={AccountImage} title="My sidesuite Account" />
     </div>
-  )
+  );
 
   return (
     <StaticPage
