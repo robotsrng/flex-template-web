@@ -33,10 +33,10 @@
   align-items: center;
 
   /* fill */
-  background-color: var(--matterColorLight);
+  background-color: var(--matterColorBright);
 
   /* shadows */
-  box-shadow: var(--boxShadow);
+  box-shadow: none;
 
   @media (--viewportMedium) {
     display: none;

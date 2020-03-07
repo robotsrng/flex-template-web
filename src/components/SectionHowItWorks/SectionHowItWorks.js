@@ -3,14 +3,20 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 
-import firstImg from './img/FirstImg.jpg';
-import secondImg from './img/SecondImg.jpg';
-import thirdImg from './img/ThirdImg.jpg';
-import companyFirstImg from './img/FourthImg.png';
-import companySecondImg from './img/FifthImg.png';
-import linkAccountImg from './img/LinkAccountImg.jpg';
+import backpack from './img/Backpack.jpg';
+import addCircle from './img/AddCircle.png';
+import waterView from './img/WaterView.jpg';
+import road from './img/Road.jpg';
+import mountainWalk from './img/MountainWalk.jpg';
+import tinyLifeSupply from './img/TinyLifeSupply.png';
+import bugwoodBean from './img/BugwoodBean.png';
+import smithersBrewing from './img/SmithersBrewingCo.png';
+import localSupplyCo from './img/LocalSupplyCo.png';
+import novoBrand from './img/NovoBrand.png';
+import hudsonBayMountain from './img/HudsonBayMountain.png';
+import bulkleyValleyBrewery from './img/BulkleyValleyBrewery.png';
 
-import { NamedLink, ListingPostCard, ListingUserCard } from '../../components';
+import { NamedLink } from '../../components';
 
 import css from './SectionHowItWorks.css';
 import { SocialMediaButtons } from '../../components';
@@ -20,7 +26,6 @@ const SectionHowItWorks = props => {
 
   const classes = classNames(rootClassName || css.root, className);
 
-  const reviews = { rating: 5, ammount: 105 };
   return (
     <div className={classes}>
       <div className={css.title}>
@@ -37,7 +42,7 @@ const SectionHowItWorks = props => {
           </p>
           <div className={css.linkAccountContainer}>
             <div className={css.col}>
-              <img src={linkAccountImg} className={css.linkAccountImg} alt="" />
+              <img src={backpack} className={css.linkAccountImg} alt="" />
             </div>
             <div className={css.colButtons}>
               <SocialMediaButtons />
@@ -52,36 +57,26 @@ const SectionHowItWorks = props => {
           <p>
             <FormattedMessage id="SectionHowItWorks.text2" />
           </p>
-          <div className={css.accountContainer}>
-            <ListingPostCard
-              img={firstImg}
-              postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
-              postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
-              postSocialMedia="Instagram"
-              postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
-              postValue={<FormattedMessage id="ListingPostCard.postValue" />}
-            />
+
+
+        {/* axels code */}
+            <div>
+              <div className={css.addcircle}>
+                <img src={addCircle} className={css.roundSmallImg} alt=""></img>
+              </div>
+              <div className={css.smalllisting}>
+                <img src={waterView} className={css.smallListingImg} alt=""></img>
+              </div>
+              <div className={css.smalllisting}>
+                <img src={road} className={css.smallListingImg} alt=""></img>
+              </div>   
+              <div className={css.smalllisting}>
+                <img src={mountainWalk} className={css.smallListingImg} alt=""></img>
+              </div>                     
           </div>
-          <div className={css.accountContainer}>
-            <ListingPostCard
-              img={secondImg}
-              postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
-              postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
-              postSocialMedia="Instagram"
-              postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
-              postValue={<FormattedMessage id="ListingPostCard.postValue" />}
-            />
-          </div>
-          <div className={css.accountContainer}>
-            <ListingPostCard
-              img={thirdImg}
-              postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
-              postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
-              postSocialMedia="Instagram"
-              postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
-              postValue={<FormattedMessage id="ListingPostCard.postValue" />}
-            />
-          </div>
+         {/* axels code end*/}
+
+
         </div>
         <hr />
         <div className={css.step}>
@@ -91,18 +86,39 @@ const SectionHowItWorks = props => {
           <p>
             <FormattedMessage id="SectionHowItWorks.text3" />
           </p>
-          <ListingUserCard
-            img={companyFirstImg}
-            username="tinylifesupply"
-            userAudience="500"
-            reviews={reviews}
-          />
-          <ListingUserCard
-            img={companySecondImg}
-            username="sidesuite"
-            userAudience="500"
-            reviews={reviews}
-          />
+
+
+         {/* axels code */}
+         <div>
+            <div className={css.brandsHowItWorks}>
+               <img src={tinyLifeSupply} className={css.roundImg} alt=""></img>
+            </div>
+            <div className={css.brandsHowItWorks}>
+               <img src={bugwoodBean} className={css.roundImg} alt=""></img>
+            </div>
+            <div className={css.brandsHowItWorks}>
+               <img src={smithersBrewing} className={css.roundImg} alt=""></img>
+            </div>  
+            <div className={css.brandsHowItWorks}>
+               <img src={localSupplyCo} className={css.roundImg} alt=""></img>
+            </div>                      
+          </div>
+
+
+          <div>
+          <div className={css.brandsHowItWorks}>
+              <img src={novoBrand} className={css.roundImgTwo} alt=""></img>
+            </div>
+            <div className={css.brandsHowItWorks}>
+              <img src={hudsonBayMountain} className={css.roundImgTwo} alt=""></img>
+            </div>  
+            <div className={css.brandsHowItWorks}>
+              <img src={bulkleyValleyBrewery} className={css.roundImgTwo} alt=""></img>
+            </div>
+          </div>
+         {/* axels code end*/}
+
+
         </div>
       </div>
       <hr />

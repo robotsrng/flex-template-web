@@ -192,6 +192,7 @@
 
 .bookButton {
   @apply --marketplaceButtonStylesPrimary;
+  background-color: #2ecc71;
 
   /* Clear padding that is set for link elements looking like buttons */
   padding: 0;

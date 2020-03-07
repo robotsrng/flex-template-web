@@ -11,10 +11,10 @@ import { ListingContactCard } from './ListingContactCard';
 
 import css from './ContactPage.css';
 
-const accountImage = require('./img/Account | Icon | Sidesuite.png');
-const calendarImage = require('./img/Calendar Dark | Icon | Sidesuite.png');
-const creditCardImage = require('./img/Credit Card | Icon | Sidesuite.png');
-const feedbackImg = require('./img/Glasses Dark | Icon | Sidesuite.png');
+import accountImage from './img/AccountIcon.png';
+import calendarImage from './img/CalendarIcon.png';
+import creditCardImage from './img/CreditCardIcon.png';
+import feedbackImg from './img/GlassesIcon.png';
 
 const ContactPage = () => {
   // const handleResponse = data => {

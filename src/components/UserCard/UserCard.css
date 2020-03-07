@@ -11,6 +11,7 @@
 .avatar {
   flex-shrink: 0;
   margin-right: 36px;
+  border: 8px solid #f5f5f5;
 }
 
 .info {

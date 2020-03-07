@@ -14,7 +14,7 @@ import {
 } from '../../components';
 
 import css from './Footer.css';
-import sidesuiteSocialLink from './img/Logo 4A4A4A | Sidesuite.png';
+import sidesuiteSocialLink from './img/Logo4a4a4a.png';
 
 
 const renderSocialMediaLinks = intl => {

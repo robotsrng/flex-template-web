@@ -17,6 +17,8 @@
 
 .aside {
   box-shadow: none;
+  border-top: none;
+  background-color: var(--marketplaceColorBright);
 }
 
 .asideContent {
@@ -34,6 +36,7 @@
 .avatar {
   margin: 30px 26px 29px 0;
   flex-shrink: 0;
+  border: 8px solid #f5f5f5;
 
   @media (--viewportLarge) {
     margin: 0 96px 44px 0;
