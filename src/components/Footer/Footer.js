@@ -16,7 +16,6 @@ import {
 import css from './Footer.css';
 import sidesuiteSocialLink from './img/Logo4a4a4a.png';
 
-
 const renderSocialMediaLinks = intl => {
   const { siteFacebookPage, siteInstagramPage, siteTwitterHandle } = config;
   const siteTwitterPage = twitterPageURL(siteTwitterHandle);
@@ -64,19 +63,16 @@ const Footer = props => {
     <div className={classes}>
       <div className={css.topBorderWrapper}>
         <div className={css.content}>
-
-
-{/* Axel's Code Add Sidesuite Social Link */}
+          {/* Axel's Code Add Sidesuite Social Link */}
           <div>
-              <div>
-                <a href="/u/5e3f23c8-79ad-480d-b989-09c6cc5a13ed">
-                  <img src={sidesuiteSocialLink} className={css.sidesuiteSocialLink} alt=""></img>
-                </a>
-              </div>
-              <div className={css.someLiksMobile}>{socialMediaLinks}</div>
+            <div>
+              <a href="/u/5e3f23c8-79ad-480d-b989-09c6cc5a13ed">
+                <img src={sidesuiteSocialLink} className={css.sidesuiteSocialLink} alt=""></img>
+              </a>
+            </div>
+            <div className={css.someLiksMobile}>{socialMediaLinks}</div>
           </div>
-{/* Axel's Code End Add Sidesuite Social Link */}
-
+          {/* Axel's Code End Add Sidesuite Social Link */}
 
           <div className={css.links}>
             <div className={css.organization} id="organization">
@@ -108,7 +104,7 @@ const Footer = props => {
                   <NamedLink name="HowItWorks" className={css.link}>
                     <FormattedMessage id="Footer.toHowItWorks" />
                   </NamedLink>
-                </li>                
+                </li>
                 <li className={css.listItem}>
                   <NamedLink name="FAQPage" className={css.link}>
                     <FormattedMessage id="Footer.toFAQPage" />
@@ -150,14 +146,14 @@ const Footer = props => {
                 </li>
                 <li className={css.listItem}>
                   <NamedLink name="ForCreators" className={css.link}>
-                    <FormattedMessage id="For creators" />
+                    <FormattedMessage id="Footer.forCreators" />
                   </NamedLink>
                 </li>
                 <li className={css.listItem}>
                   <NamedLink name="ForBrands" className={css.link}>
-                    <FormattedMessage id="For brands" />
+                    <FormattedMessage id="Footer.forBrands" />
                   </NamedLink>
-                </li>                
+                </li>
                 <li className={css.listItem}>
                   <NamedLink name="Calculator" className={css.link}>
                     <FormattedMessage id="Footer.toCalculator" />
