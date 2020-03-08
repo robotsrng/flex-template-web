@@ -59,3 +59,73 @@
   font-weight: var(--fontWeightSemiBold);
   line-height: 16px;
 }
+
+
+/* This is where Axel's CSS starts*/
+
+.width30 {
+  width: 30%;
+  float: left;
+}
+.width40 {
+  width: 40%;
+  float: left;
+}
+
+.width60 {
+  width: 60%;
+  float: left;
+}
+
+.width70 {
+  width: 70%;
+  float: left;
+}
+
+.imageWrapperBrilliant {
+  width: 130px;
+  height: 218px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  border: solid;
+  border-color: #f5f5f5;
+  border-top-width: 24px;
+  border-bottom-width: 36px;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  margin-right: 16px;
+  margin-top: 24px;
+}
+
+.postTitleBrilliant {
+  @apply --marketplaceH4FontStyles;
+  font-weight: var(--fontWeightBold);
+  color: #4a4a4a;
+  line-height: 16px;
+  margin-top: 54px;
+}
+
+.postContentBrilliant {
+  font-size: 12px;
+  line-height: 6px;
+  color: #4a4a4a;
+}
+
+.postContentBrilliant {
+  font-size: 12px;
+  line-height: 6px;
+  color: #4a4a4a;
+}
+
+.buttonBrilliant {
+  background-color: #ffffff;
+  border-color: #f5f5f5 !important;
+  border-radius: 36px;
+  border: solid;
+  border-width: 5px;
+}

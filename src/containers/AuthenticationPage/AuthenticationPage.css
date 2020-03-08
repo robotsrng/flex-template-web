@@ -19,6 +19,7 @@
 .content {
   @apply --marketplaceModalBaseStyles;
   padding-top: 29px;
+
 }
 
 /* ================ Tabs & Form ================ */
@@ -33,6 +34,8 @@
   @apply --marketplaceModalTitleStyles;
   margin-top: 0;
   margin-bottom: 0;
+  font-weight: var(--fontweightSemiBold);
+
 
   @media (--viewportMedium) {
     margin-top: 0;

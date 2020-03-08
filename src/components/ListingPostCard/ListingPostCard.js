@@ -9,22 +9,45 @@ const ListingPostCard = ({
   postValue,
   postSocialMedia,
 }) => {
-  return (
-    <div className={css.container}>
-      <div className={css['col-9']}>
-        <div className={css.colInfo}>
-          {/* <div>
-          <img src={img} className={css.img} alt=""></img>
-        </div> */}
-          <div className={css['col-3']}>
-            <div style={{ backgroundImage: `url(${img})` }} className={css.imageWrapper}>
-              {/* <img src={img} className={css.img} alt=""></img> */}
-            </div>
-          </div>
-          <div className={css['col-9']}>
-            <div className={css.col}>
-              {postTitle && <p className={css.postTitle}>{postTitle}</p>}
-              {postUsername ? (
+  return ( 
+
+
+
+
+
+
+
+
+<div>
+
+
+
+         {/* axels code */}
+         <div><hr></hr>
+
+
+         <div className={css.container}> 
+          {/* listing image */}
+          <div>
+          <div style={{ backgroundImage: `url(${img})` }} className={css.imageWrapperBrilliant}>
+               </div>
+               </div>
+           
+    
+          <div className={css.width60}>
+          {/* listing image */}
+            <div>{postTitle && <p className={css.postTitleBrilliant}>{postTitle}</p>}</div>
+          {/* post buttons */}
+            <div><h6>Photo Text</h6></div>
+
+            <div>
+          {/* social media account image */}
+            <div className={css.width40}>image</div>
+          
+          
+          {/* social media username */}
+               <div className={css.width60}>
+               {postUsername ? (
                 <React.Fragment>
                   <p className={css.postContent}>{postUsername}</p>
                   <p className={css.postContent}>
@@ -37,18 +60,37 @@ const ListingPostCard = ({
                   <p className={css.postContent}>{postFollowerAmmount} followers</p>
                 </React.Fragment>
               )}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={css['col-3']}>
-        {postValue && (
-          <div className={css.colValue}>
+
+                   
+           
+               </div>
+            </div>    
+            <div>
+
+
+          {/* post value */}
+            <div className={css.width30}>        
+            {postValue && (
+          <div className={css.postContentBrilliant}>
             <p>{postValue}</p>
           </div>
-        )}
-      </div>
-    </div>
+        )}</div>
+
+          {/* button */}    
+               <div className={css.width70}>
+                 <button className={css.buttonBrilliant}><h5>view listing</h5></button>
+               </div>
+            </div>  
+            
+          </div>
+         </div></div>
+      
+
+
+
+
+  </div>
+
   );
 };
 
