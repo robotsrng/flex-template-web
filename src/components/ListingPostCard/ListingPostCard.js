@@ -1,6 +1,7 @@
 import React from 'react';
 import css from './ListingPostCard.css';
 
+
 const ListingPostCard = ({
   img,
   postTitle,
@@ -9,42 +10,28 @@ const ListingPostCard = ({
   postValue,
   postSocialMedia,
 }) => {
-  return ( 
-
-
-
-
-
-
-
-
-<div>
-
-
-
-         {/* axels code */}
-         <div><hr></hr>
-
-
-         <div className={css.container}> 
-          {/* listing image */}
-          <div>
+  return (
+  <div>
+  {/* axels code */}
+     <div><hr></hr>
+       <div className={css.container}>
+        {/* listing image */}
           <div style={{ backgroundImage: `url(${img})` }} className={css.imageWrapperBrilliant}>
                </div>
-               </div>
-           
-    
+
           <div className={css.width60}>
           {/* listing image */}
-            <div>{postTitle && <p className={css.postTitleBrilliant}>{postTitle}</p>}</div>
+            <div>{postTitle && <p className={css.postTitleBrilliant}>{postTitle}</p>}
+            </div>
           {/* post buttons */}
-            <div><h6>Photo Text</h6></div>
+            <div className={css.postButtonsBrilliant}><h6>Photo Text</h6></div>
 
             <div>
           {/* social media account image */}
-            <div className={css.width40}>image</div>
-          
-          
+            <div className={css.width40}>
+              <div className={css.postSocialImg}></div>
+            </div>
+
           {/* social media username */}
                <div className={css.width60}>
                {postUsername ? (
@@ -60,37 +47,28 @@ const ListingPostCard = ({
                   <p className={css.postContent}>{postFollowerAmmount} followers</p>
                 </React.Fragment>
               )}
-
-                   
-           
                </div>
-            </div>    
+            </div>
             <div>
 
-
           {/* post value */}
-            <div className={css.width30}>        
+            <div className={css.width30}>
             {postValue && (
           <div className={css.postContentBrilliant}>
             <p>{postValue}</p>
           </div>
         )}</div>
 
-          {/* button */}    
+          {/* button */}
                <div className={css.width70}>
                  <button className={css.buttonBrilliant}><h5>view listing</h5></button>
                </div>
-            </div>  
-            
+            </div>
+
           </div>
-         </div></div>
-      
-
-
-
-
+        </div>
+      </div>
   </div>
-
   );
 };
 

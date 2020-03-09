@@ -366,7 +366,7 @@
     flex-direction: column;
     padding: var(--modalPadding);
 
-    background-color: var(--matterColorLight);
+    background-color: var(--matterColorBright);
     border-radius: var(--borderRadius);
     border-bottom: none;
 
@@ -393,7 +393,7 @@
     height: 100vh;
     padding: 0;
 
-    background-color: var(--matterColorLight);
+    background-color: var(--matterColorBright);
     border-radius: var(--borderRadius);
 
     @media (--viewportMedium) {

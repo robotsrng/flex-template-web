@@ -27,18 +27,20 @@
 
 .buttons {
   display: flex;
+  border-radius: 20px;
 }
 
 .filtersButton {
   @apply --marketplaceButtonStylesSecondary;
   @apply --marketplaceTinyFontStyles;
   font-weight: var(--fontWeightBold);
-
+  background-color: #f5f5f5;
+  border: none;
   height: 35px;
   min-height: 35px;
   padding: 0 18px;
   margin: 0 9px 0 0;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 .filtersButtonSelected {
@@ -50,7 +52,7 @@
   min-height: 35px;
   padding: 0 18px;
   margin: 0 9px 0 0;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 .mapIcon {
@@ -62,7 +64,7 @@
   background-image: url(./images/map_icon216x105.png);
   background-size: cover;
 
-  border-radius: 3px;
+  border-radius: 20px;
   width: 72px;
   height: 35px;
   padding: 9px 22px;
@@ -77,7 +79,7 @@
 
 .modalHeadingWrapper {
   padding-bottom: 31px;
-  border-bottom: 1px solid var(--matterColorNegative);
+  border-bottom: 6px solid #ffffff;
 }
 
 .modalHeading {
@@ -123,12 +125,10 @@
   padding: 18px 24px;
 
   background: var(--matterColorLight);
-  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.1);
   z-index: 11;
 }
 
 .showListingsButton {
-  background-color: var(--marketplaceColor);
+  @apply --marketplaceButtonStyles;
   display: inline-block;
-  border-radius: 3px;
 }

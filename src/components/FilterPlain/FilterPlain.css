@@ -64,5 +64,5 @@
   display: block;
 }
 .border {
-  border-bottom: 1px solid var(--matterColorNegative);
+  border-bottom: 6px solid #ffffff;
 }

@@ -44,7 +44,7 @@
 }
 
 .mobileHeading {
-  @apply --marketplaceH4FontStyles;
+  @apply --marketplaceH3FontStyles;
   font-weight: var(--fontWeightSemiBold);
   line-height: 14px;
   flex-shrink: 0;

@@ -26,6 +26,7 @@ const SectionHowItWorks = props => {
 
   const classes = classNames(rootClassName || css.root, className);
 
+
   return (
     <div className={classes}>
       <div className={css.title}>
@@ -64,13 +65,13 @@ const SectionHowItWorks = props => {
               <div className={css.addcircle}>
                 <img src={addCircle} className={css.roundSmallImg} alt=""></img>
               </div>
-              <div className={css.smalllisting}>
+              <div className={css.smallListing}>
                 <img src={waterView} className={css.smallListingImg} alt=""></img>
               </div>
-              <div className={css.smalllisting}>
+              <div className={css.smallListing}>
                 <img src={road} className={css.smallListingImg} alt=""></img>
               </div>   
-              <div className={css.smalllisting}>
+              <div className={css.smallListing}>
                 <img src={mountainWalk} className={css.smallListingImg} alt=""></img>
               </div>                     
           </div>
