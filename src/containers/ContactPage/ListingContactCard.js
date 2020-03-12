@@ -6,7 +6,7 @@ export const ListingContactCard = ({ icon, title }) => {
   return (
     <div className={css.root}>
       <img className={css.iconImage} src={icon} alt="" />
-      <h2 className={css.title}>{title}</h2>
+      <h3 className={css.title}>{title}</h3>
     </div>
   );
 };

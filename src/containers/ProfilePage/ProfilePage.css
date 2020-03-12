@@ -132,10 +132,11 @@
   }
 }
 
+
 .listingsContainer {
   @apply --clearfix;
-  border-top: 1px solid var(--matterColorNegative);
-  border-bottom: 1px solid var(--matterColorNegative);
+  border-top: 6px solid var(--matterColorLight);
+  border-bottom: 0px solid var(--matterColorNegative);
   padding-bottom: 23px;
 
   @media (--viewportMedium) {

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 
-import backpack from './img/Backpack.jpg';
+import backpack from './img/Backpack-Influencer-Marketing.jpg';
 import addCircle from './img/AddCircle.png';
-import waterView from './img/WaterView.jpg';
-import road from './img/Road.jpg';
-import mountainWalk from './img/MountainWalk.jpg';
+import waterView from './img/Water-View-Influencer-Marketing.jpg';
+import road from './img/Road-Influencer-Marketing.jpg';
+import mountainWalk from './img/Moutain-Walk-Influencer-Marketing.jpg';
 import tinyLifeSupply from './img/TinyLifeSupply.png';
 import bugwoodBean from './img/BugwoodBean.png';
 import smithersBrewing from './img/SmithersBrewingCo.png';
@@ -70,10 +70,10 @@ const SectionHowItWorks = props => {
               </div>
               <div className={css.smallListing}>
                 <img src={road} className={css.smallListingImg} alt=""></img>
-              </div>   
+              </div>
               <div className={css.smallListing}>
                 <img src={mountainWalk} className={css.smallListingImg} alt=""></img>
-              </div>                     
+              </div>
           </div>
          {/* axels code end*/}
 
@@ -99,10 +99,10 @@ const SectionHowItWorks = props => {
             </div>
             <div className={css.brandsHowItWorks}>
                <img src={smithersBrewing} className={css.roundImg} alt=""></img>
-            </div>  
+            </div>
             <div className={css.brandsHowItWorks}>
                <img src={localSupplyCo} className={css.roundImg} alt=""></img>
-            </div>                      
+            </div>
           </div>
 
 
@@ -112,7 +112,7 @@ const SectionHowItWorks = props => {
             </div>
             <div className={css.brandsHowItWorks}>
               <img src={hudsonBayMountain} className={css.roundImgTwo} alt=""></img>
-            </div>  
+            </div>
             <div className={css.brandsHowItWorks}>
               <img src={bulkleyValleyBrewery} className={css.roundImgTwo} alt=""></img>
             </div>

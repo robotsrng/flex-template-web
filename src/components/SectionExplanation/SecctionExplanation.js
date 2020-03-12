@@ -4,9 +4,9 @@ import { FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { ListingPostCard } from '../../components';
 
-import firstImg from './img/MountainInversion.jpeg';
-import secondImg from './img/MountainView.jpg';
-import thirdImg from './img/ManWalk.jpg';
+import firstImg from './img/Mountain-Inversion-Influencer-Marketing.jpeg';
+import secondImg from './img/Mountain-View-Influencer-Marketing.jpg';
+import thirdImg from './img/Man-Walk-Influencer-Marketing.jpg';
 
 import css from './SectionExplanation.css';
 

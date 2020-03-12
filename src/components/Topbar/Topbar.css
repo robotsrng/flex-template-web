@@ -276,6 +276,7 @@
   justify-content: center;
   margin: 10px 20px 30px;
   list-style-type: none;
+
 }
 .col {
   margin: 0 10px;
@@ -283,9 +284,8 @@
 
 .buttons li {
   @apply --marketplaceButtonStyles;
-  background: var(--matterColor);
   margin: 0 5px 0 0;
-  width: 72px;
+
   font-size: 12px;
   height: 25px;
   padding: 0 10px;

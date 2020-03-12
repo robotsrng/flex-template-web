@@ -28,7 +28,7 @@ const ContactPage = () => {
 
   const heading = (
     <div className={css.heading}>
-      <h1>Select one below</h1>
+      <h1>What is this about?</h1>
       <p>We are here to help, and will get back to you withing 24 hours. Most likely a lot sooner than that.</p>
     </div>
   )
