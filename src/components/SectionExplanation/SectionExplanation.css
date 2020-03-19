@@ -15,4 +15,10 @@
 }
 .accountContainer {
   margin-bottom: 40px;
+  @media (--viewportMedium) {
+    float: left;
+    width: calc(33.3%);
+    padding-right: 20px;
+  }
+
 }

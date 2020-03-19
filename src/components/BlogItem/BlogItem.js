@@ -10,7 +10,7 @@ const BlogItem = props => {
   const classes = classNames(rootClassName || css.root, className);
 
   return (
-    <a href="/">
+
     <div className={classes}>
 
       <div className={css.blogItemContainer}>
@@ -26,7 +26,7 @@ const BlogItem = props => {
 
       </div>
 
-    </div></a>
+    </div>
   );
 };
 

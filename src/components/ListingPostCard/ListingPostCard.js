@@ -10,7 +10,7 @@ const ListingPostCard = ({
   postSocialMedia,
 }) => {
   return (
-       <div>
+    <div>
       {/* axels code */}
       <div>
         <hr></hr>

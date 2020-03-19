@@ -1,12 +1,12 @@
 @import '../../marketplace.css';
 
-.blogItemContainer {
+.FAQItemContainer {
   margin-top: 20px;
 }
 
-.diamondOne {
-  width: 88px;
-  height: 88px;
+.diamond {
+  width: 80px;
+  height: 80px;
   margin: 15px;
   -ms-transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
@@ -16,17 +16,23 @@
   border: 8px solid #f5f5f5;
   float: left;
 }
-.diamondTwo {
-  width: 115px;
-  height: 115px;
+
+.img {
+  width: 80px;
+  height: 80px;
   margin: -15px;
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
+  position: relative;
+  left: 8px;
+  top: 8px;
+
 }
 
-.blogItemContent {
+.FAQItemContent {
   float: left;
   margin-top: 10px;
   margin-left: 10px;
+  width: 192px;
 }

@@ -337,7 +337,7 @@ class SearchMapWithMapbox extends Component {
     if (hasDimensions) {
       this.map = new window.mapboxgl.Map({
         container: this.state.mapContainer,
-        style: 'mapbox://styles/sidesuite/ck6jfvlpw05ze1ina8ylgr4oe',
+        style: 'mapbox://styles/sidesuite/ck7qucj5m1lub1ipa9nkf3gys',
         scrollZoom: false,
       });
       window.mapboxMap = this.map;

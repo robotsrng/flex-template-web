@@ -7,6 +7,9 @@ import {
   HowItWorks,
   ForBrands,
   ForCreators,
+  HowDoesTheTransactionProcessWork,
+  HowDoIConnectMyChannels,
+  HowDoICreateAListing,
   AuthenticationPage,
   AddAccountPage,
   CheckoutPage,
@@ -61,6 +64,21 @@ const RedirectToLandingPage = () => <NamedRedirect name="LandingPage" />;
 // See behaviour from Routes.js where Route is created.
 const routeConfiguration = () => {
   return [
+    {
+      path: '/resources/how-do-i-connect-my-channels',
+      name: 'HowDoIConnectMyChannels',
+      component: HowDoIConnectMyChannels,
+    },   
+    {
+      path: '/resources/how-do-i-create-a-listing',
+      name: 'HowDoICreateAListing',
+      component: HowDoICreateAListing,
+    },
+    {
+      path: '/resources/how-does-the-transaction-process-work',
+      name: 'HowDoesTheTransactionProcessWork',
+      component: HowDoesTheTransactionProcessWork,
+    },
     {
       path: '/FAQ',
       name: 'FAQPage',

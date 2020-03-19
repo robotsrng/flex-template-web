@@ -57,7 +57,7 @@ const ContactPage = () => {
           <TopbarContainer />
         </LayoutWrapperTopbar>
 
-        <LayoutWrapperMain>
+        <LayoutWrapperMain className={css.staticPageWrapper}>
           {heading}
           {cards}
         </LayoutWrapperMain>

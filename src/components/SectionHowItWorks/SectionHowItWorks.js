@@ -26,15 +26,22 @@ const SectionHowItWorks = props => {
 
   const classes = classNames(rootClassName || css.root, className);
 
-
   return (
     <div className={classes}>
       <div className={css.title}>
         <FormattedMessage id="SectionHowItWorks.title" />
       </div>
-      <hr />
+
+
+      {/* Main Container */}
       <div className={css.steps}>
-        <div className={css.step}>
+
+
+
+        {/* Container 1 */}
+        <div className={css.stepContainer}>
+          <hr></hr>
+          <div className={css.stepContent}>
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.subtitle1" />
           </h2>
@@ -49,65 +56,69 @@ const SectionHowItWorks = props => {
               <SocialMediaButtons />
             </div>
           </div>
+          </div>
         </div>
-        <hr />
-        <div className={css.step}>
+
+
+
+
+        {/* Container 2 */}
+        <div className={css.stepContainer}>
+        <hr></hr>
+        <div className={css.stepContent}>
+
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.subtitle2" />
           </h2>
           <p>
             <FormattedMessage id="SectionHowItWorks.text2" />
           </p>
-
-
-        {/* axels code */}
-            <div>
-              <div className={css.addcircle}>
-                <img src={addCircle} className={css.roundSmallImg} alt=""></img>
-              </div>
-              <div className={css.smallListing}>
-                <img src={waterView} className={css.smallListingImg} alt=""></img>
-              </div>
-              <div className={css.smallListing}>
-                <img src={road} className={css.smallListingImg} alt=""></img>
-              </div>
-              <div className={css.smallListing}>
-                <img src={mountainWalk} className={css.smallListingImg} alt=""></img>
-              </div>
+          <div>
+            <div className={css.addcircle}>
+              <img src={addCircle} className={css.roundSmallImg} alt=""></img>
+            </div>
+            <div className={css.smallListing}>
+              <img src={waterView} className={css.smallListingImg} alt=""></img>
+            </div>
+            <div className={css.smallListing}>
+              <img src={road} className={css.smallListingImg} alt=""></img>
+            </div>
+            <div className={css.smallListing}>
+              <img src={mountainWalk} className={css.smallListingImg} alt=""></img>
+            </div>
           </div>
-         {/* axels code end*/}
-
-
         </div>
-        <hr />
-        <div className={css.step}>
+        </div>
+
+        {/* Container 3 */}
+        <div className={css.stepContainer}>
+        <hr></hr>
+        <div className={css.stepContent}>
+
           <h2 className={css.stepTitle}>
             <FormattedMessage id="SectionHowItWorks.subtitle3" />
           </h2>
           <p>
             <FormattedMessage id="SectionHowItWorks.text3" />
           </p>
-
-
-         {/* axels code */}
-         <div>
+          <div>
             <div className={css.brandsHowItWorks}>
-               <img src={tinyLifeSupply} className={css.roundImg} alt=""></img>
+              <img src={tinyLifeSupply} className={css.roundImg} alt=""></img>
             </div>
             <div className={css.brandsHowItWorks}>
-               <img src={bugwoodBean} className={css.roundImg} alt=""></img>
+              <img src={bugwoodBean} className={css.roundImg} alt=""></img>
             </div>
             <div className={css.brandsHowItWorks}>
-               <img src={smithersBrewing} className={css.roundImg} alt=""></img>
+              <img src={smithersBrewing} className={css.roundImg} alt=""></img>
             </div>
             <div className={css.brandsHowItWorks}>
-               <img src={localSupplyCo} className={css.roundImg} alt=""></img>
+              <img src={localSupplyCo} className={css.roundImg} alt=""></img>
             </div>
           </div>
 
 
           <div>
-          <div className={css.brandsHowItWorks}>
+            <div className={css.brandsHowItWorks}>
               <img src={novoBrand} className={css.roundImgTwo} alt=""></img>
             </div>
             <div className={css.brandsHowItWorks}>
@@ -117,16 +128,19 @@ const SectionHowItWorks = props => {
               <img src={bulkleyValleyBrewery} className={css.roundImgTwo} alt=""></img>
             </div>
           </div>
-         {/* axels code end*/}
-
-
+          {/* axels code end*/}
+        </div>
         </div>
       </div>
-      <hr />
+
+<div className={css.signUpLinkContainer}>
+      <hr></hr>
       <div className={css.signUpLink}>
+
         <NamedLink name="SignupPage" className={css.signupButton}>
           <FormattedMessage id="SectionHowItWorks.signUpLink" />
         </NamedLink>
+</div>
       </div>
     </div>
   );

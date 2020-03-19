@@ -24,6 +24,7 @@ const SectionExplanation = props => {
         <p className={css.subtitle}>
           <FormattedMessage id="SectionExplanation.subTitle" />
         </p>
+
         <div className={css.accountContainer}>
           <ListingPostCard
             img={firstImg}
@@ -34,6 +35,7 @@ const SectionExplanation = props => {
             postValue={<FormattedMessage id="ListingPostCard.postValue" />}
           />
         </div>
+
         <div className={css.accountContainer}>
           <ListingPostCard
             img={secondImg}
@@ -44,6 +46,7 @@ const SectionExplanation = props => {
             postValue={<FormattedMessage id="ListingPostCard.postValue" />}
           />
         </div>
+
         <div className={css.accountContainer}>
           <ListingPostCard
             img={thirdImg}

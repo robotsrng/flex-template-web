@@ -34,6 +34,7 @@
     /* Align the image within the container */
     background-position: center center;
 
+    /* Border around the background image desktop */
     @media (--viewportLarge) {
       border-radius: 0px;
       border: solid 0px var(--matterColorBright);
