@@ -1,0 +1,18 @@
+@import '../../marketplace.css';
+
+.container {
+  height: 640px;
+}
+.sectionTitle {
+  @apply --marketplaceH1FontStyles;
+  color: var(--marketplaceColorDark);
+}
+.greenText {
+  color: var(--successColor);
+}
+.redText {
+  color: var(--failColor);
+}
+.submitButton {
+  @apply --marketplaceButtonStyles;
+}

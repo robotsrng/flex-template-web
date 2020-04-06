@@ -70,6 +70,7 @@ export class AddAccountPageComponent extends Component {
   clearAll = _ => {
     sessionStorage.clear();
     sessionStorage.setItem('step', 'channel');
+    this.setState({ step: sessionStorage.getItem('step') });
   };
   render() {
     const {
@@ -138,7 +139,7 @@ export class AddAccountPageComponent extends Component {
             return <AddAccountSuccess />;
           }
           case 'error': {
-            return <AddAccountError />;
+            return <AddAccountError clearAll={this.clearAll} />;
           }
           default:
             return null;

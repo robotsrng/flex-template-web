@@ -88,7 +88,7 @@ export const updateProfile = actionPayload => {
       .then(res => {
         if (res.data.verified === true) {
           dispatch(updateProfileSuccess(res));
-          const userData = {};
+          // const userData = {publicData:{offering:{}}};
           // sdk.currentUser
           //   .updateProfile(actionPayload)
           //   .then(response => {})
