@@ -18,18 +18,26 @@ const VerificationCodeFormComponent = props => {
       username: sessionStorage.getItem('username'),
     };
     axios
-      .post('/api/new-code', data)
+      .post('/api/verify', data)
       .then(res => {
-        console.log(res);
-        if (res.data.success) {
+        if (res.data.code) {
           setVerificationCode(res.data.code.toString());
         }
       })
       .catch(err => console.log(err));
   }, []);
-  const handleBack = e => {
-    e.preventDefault();
-    props.onSubmit('channel');
+  const handleBack = _ => {
+    const data = {
+      service: sessionStorage.getItem('platform'),
+      username: sessionStorage.getItem('username'),
+    };
+    axios
+      .post('/api/delete-verification', data)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
+    props.updateStep('channel');
     props.setStepState('channel');
   };
 

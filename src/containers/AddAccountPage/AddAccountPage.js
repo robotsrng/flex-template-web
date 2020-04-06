@@ -14,6 +14,9 @@ import { TopbarContainer } from '../../containers';
 import { updateProfile } from './AddAccountPage.duck';
 import css from './AddAccountPage.css';
 
+import AddAccountSuccess from './AddAccountSuccess.js';
+import AddAccountError from './AddAccountError.js';
+
 export class AddAccountPageComponent extends Component {
   constructor(props) {
     super(props);
@@ -27,10 +30,26 @@ export class AddAccountPageComponent extends Component {
   }
   componentDidMount() {
     ReactDOM.findDOMNode(this).scrollIntoView();
-    if (!sessionStorage.getItem('step')) {
-      sessionStorage.setItem('step', 'channel');
+    if (this.props.location.tab) {
+      sessionStorage.clear();
+      sessionStorage.setItem('step', this.props.location.tab);
+    } else {
+      if (!sessionStorage.getItem('step')) {
+        sessionStorage.setItem('step', 'channel');
+      }
     }
     this.setState({ step: sessionStorage.getItem('step') });
+  }
+  componentDidUpdate(prevProps) {
+    if (this.props.success !== prevProps.success) {
+      if (this.props.success === true) {
+        sessionStorage.setItem('step', 'success');
+        this.setState({ step: 'success' });
+      } else if (this.props.success === false) {
+        sessionStorage.setItem('step', 'error');
+        this.setState({ step: 'error' });
+      }
+    }
   }
   updateStep = newStep => {
     sessionStorage.setItem('step', newStep);
@@ -53,7 +72,14 @@ export class AddAccountPageComponent extends Component {
     sessionStorage.setItem('step', 'channel');
   };
   render() {
-    const { currentUser, onUpdateProfile, scrollingDisabled, intl, updateInProgress } = this.props;
+    const {
+      currentUser,
+      onUpdateProfile,
+      scrollingDisabled,
+      intl,
+      updateInProgress,
+      success,
+    } = this.props;
 
     const handleSubmit = _ => {
       // Ensure that the optional bio is a string
@@ -104,14 +130,15 @@ export class AddAccountPageComponent extends Component {
                 onSubmit={handleSubmit}
                 updateStep={this.updateStep}
                 updateInProgress={updateInProgress}
+                success={success}
               />
             );
           }
           case 'success': {
-            return null;
+            return <AddAccountSuccess />;
           }
           case 'error': {
-            return null;
+            return <AddAccountError />;
           }
           default:
             return null;
@@ -133,6 +160,7 @@ export class AddAccountPageComponent extends Component {
 AddAccountPageComponent.defaultProps = {
   currentUser: null,
   updateProfileError: null,
+  success: null,
 };
 
 const { bool, func } = PropTypes;
@@ -143,6 +171,7 @@ AddAccountPageComponent.propTypes = {
   scrollingDisabled: bool.isRequired,
   updateInProgress: bool.isRequired,
   updateProfileError: propTypes.error,
+  success: bool.isRequired,
 
   // from injectIntl
   intl: intlShape.isRequired,
@@ -150,12 +179,13 @@ AddAccountPageComponent.propTypes = {
 
 const mapStateToProps = state => {
   const { currentUser } = state.user;
-  const { updateInProgress, updateProfileError } = state.AddAccountPage;
+  const { updateInProgress, updateProfileError, success } = state.AddAccountPage;
   return {
     currentUser,
     scrollingDisabled: isScrollingDisabled(state),
     updateInProgress,
     updateProfileError,
+    success,
   };
 };
 

@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const _EXTERNAL_URL = process.env.REACT_APP_API_URL;
 
-router.get('/getInfo', (req, res) => {
+router.post('/getInfo', (req, res) => {
   const { service, username } = req.body;
   axios
     .get(_EXTERNAL_URL + '/' + service + '/' + username)

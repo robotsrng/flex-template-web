@@ -17,6 +17,7 @@ export const UPDATE_PROFILE_ERROR = 'app/ProfileSettingsPage/UPDATE_PROFILE_ERRO
 const initialState = {
   updateInProgress: false,
   updateProfileError: null,
+  success: null,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -32,12 +33,14 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         updateInProgress: false,
+        success: true,
       };
     case UPDATE_PROFILE_ERROR:
       return {
         ...state,
         updateInProgress: false,
         updateProfileError: payload,
+        success: false,
       };
 
     case CLEAR_UPDATED_FORM:
@@ -78,30 +81,32 @@ export const updateProfileError = error => ({
 export const updateProfile = actionPayload => {
   return (dispatch, getState, sdk) => {
     dispatch(updateProfileRequest());
-    console.log(actionPayload);
     const data = { service: actionPayload.platform, username: actionPayload.username };
+    console.log(actionPayload);
     return axios
       .post('/api/verify', data)
       .then(res => {
         if (res.data.verified === true) {
           dispatch(updateProfileSuccess(res));
+          const userData = {};
+          // sdk.currentUser
+          //   .updateProfile(actionPayload)
+          //   .then(response => {})
+          //   .catch(e => dispatch(updateProfileError(storableError(e))));
 
-          const entities = denormalisedResponseEntities(res);
-          if (entities.length !== 1) {
-            throw new Error('Expected a resource in the sdk.currentUser.updateProfile response');
-          }
-          const currentUser = entities[0];
+          // const entities = denormalisedResponseEntities(res);
+          // if (entities.length !== 1) {
+          //   throw new Error('Expected a resource in the sdk.currentUser.updateProfile response');
+          // }
+          // const currentUser = entities[0];
 
-          // Update current user in state.user.currentUser through user.duck.js
-          dispatch(currentUserShowSuccess(currentUser));
-        }
+          // // Update current user in state.user.currentUser through user.duck.js
+          // dispatch(currentUserShowSuccess(currentUser));
+        } else dispatch(updateProfileError(storableError(res)));
       })
-      .catch(err => dispatch(updateProfileError(storableError(err))));
-    // sdk.currentUser
-    //   .updateProfile(actionPayload, queryParams)
-    //   .then(response => {
-
-    //   })
-    //   .catch(e => dispatch(updateProfileError(storableError(e))));
+      .catch(err => {
+        console.log(err);
+        dispatch(updateProfileError(storableError(err)));
+      });
   };
 };
