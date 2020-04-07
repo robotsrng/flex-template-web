@@ -90,14 +90,19 @@ export class ProfilePageComponent extends Component {
     } = this.props;
     const ensuredCurrentUser = ensureCurrentUser(currentUser);
     const profileUser = ensureUserProfile(user);
+    console.log(profileUser);
     const isCurrentUser =
       ensuredCurrentUser.id && profileUser.id && ensuredCurrentUser.id.uuid === profileUser.id.uuid;
     const displayName = profileUser.attributes.profile.displayName;
     const bio = profileUser.attributes.profile.bio;
     const hasBio = !!bio;
     const hasListings = listings.length > 0;
-    const username = profileUser.attributes.profile.publicData.username;
-    const location = profileUser.attributes.profile.publicData.location;
+    const username = profileUser.attributes.profile.publicData
+      ? profileUser.attributes.profile.publicData.username
+      : '';
+    const location = profileUser.attributes.profile.publicData
+      ? profileUser.attributes.profile.publicData.location
+      : '';
     // const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
     const totalReviews = reviewsMeta ? reviewsMeta.totalItems : 0;
 
@@ -171,7 +176,6 @@ export class ProfilePageComponent extends Component {
     const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
 
     const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
-
 
     // const mobileReviews = (
     //   <div className={css.mobileReviews}>
@@ -275,7 +279,12 @@ export class ProfilePageComponent extends Component {
 
         {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
         {totalReviews > 3 && (
-          <div className={css.showMoreReviews} onClick={() => { onShowMoreReviews() }}>
+          <div
+            className={css.showMoreReviews}
+            onClick={() => {
+              onShowMoreReviews();
+            }}
+          >
             <FormattedMessage id="ProfilePage.showMoreReviewsLabel" />
           </div>
         )}
@@ -286,42 +295,44 @@ export class ProfilePageComponent extends Component {
       switch (this.state.currentTab) {
         case 'brands':
           return (
-            <ListingReviews reviews={reviewsOfProvider}
-            // reviews={[
-            //   {
-            //     id: {
-            //       uuid: 2,
-            //     },
-            //     author: {
-            //       ...profileUser,
-            //     },
-            //     attributes: {
-            //       createdAt: '01/14/2020',
-            //       rating: 4.5,
-            //       content: 'Another cool review',
-            //     },
-            //   },
-            // ]}
+            <ListingReviews
+              reviews={reviewsOfProvider}
+              // reviews={[
+              //   {
+              //     id: {
+              //       uuid: 2,
+              //     },
+              //     author: {
+              //       ...profileUser,
+              //     },
+              //     attributes: {
+              //       createdAt: '01/14/2020',
+              //       rating: 4.5,
+              //       content: 'Another cool review',
+              //     },
+              //   },
+              // ]}
             />
           );
         case 'creators':
           return (
-            <ListingReviews reviews={reviewsOfCustomer}
-            // reviews={[
-            //   {
-            //     id: {
-            //       uuid: 1,
-            //     },
-            //     author: {
-            //       ...profileUser,
-            //     },
-            //     attributes: {
-            //       createdAt: '02/07/2020',
-            //       rating: 5,
-            //       content: 'Awesome product',
-            //     },
-            //   },
-            // ]}
+            <ListingReviews
+              reviews={reviewsOfCustomer}
+              // reviews={[
+              //   {
+              //     id: {
+              //       uuid: 1,
+              //     },
+              //     author: {
+              //       ...profileUser,
+              //     },
+              //     attributes: {
+              //       createdAt: '02/07/2020',
+              //       rating: 5,
+              //       content: 'Awesome product',
+              //     },
+              //   },
+              // ]}
             />
           );
         default:
@@ -382,12 +393,12 @@ export class ProfilePageComponent extends Component {
             </div>
           </React.Fragment>
         ) : (
-            <React.Fragment>
-              <h1>You have 105 reviews</h1>
-              {reviewTabs}
-              {renderReviewTab()}
-            </React.Fragment>
-          )}
+          <React.Fragment>
+            <h1>You have 105 reviews</h1>
+            {reviewTabs}
+            {renderReviewTab()}
+          </React.Fragment>
+        )}
       </div>
     );
 

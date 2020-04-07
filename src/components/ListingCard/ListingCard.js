@@ -54,9 +54,21 @@ export const ListingCardComponent = props => {
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
   const { priceTitle } = priceData(price, intl);
-  const offering = currentListing.attributes.publicData.offering
-    ? currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase())
-    : '';
+
+  // Change later when updating listings
+  // const offering = currentListing.attributes.publicData.offering
+  //   ? currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase())
+  //   : '';
+  let offering;
+  if (currentListing.attributes.publicData.offering) {
+    if (currentListing.attributes.publicData.offering.platform) {
+      offering = currentListing.attributes.publicData.offering.platform.replace(/^\w/, c =>
+        c.toUpperCase()
+      );
+    } else {
+      offering = currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase());
+    }
+  }
   // const unitType = config.bookingUnitType;
   // const isNightly = unitType === LINE_ITEM_NIGHT;
   // const isDaily = unitType === LINE_ITEM_DAY;
