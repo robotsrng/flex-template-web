@@ -24,7 +24,7 @@ const EditListingDescriptionPanel = props => {
 
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
-  let { description, title } = currentListing.attributes;
+  let { title } = currentListing.attributes;
   title === 'defaultUltimateTitleSidesuite' && (title = '');
 
   return (
@@ -32,13 +32,12 @@ const EditListingDescriptionPanel = props => {
       <EditListingDescriptionForm
         listing={listing}
         className={css.form}
-        initialValues={{ title, description }}
+        initialValues={{ title }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
-          const { title, description } = values;
+          const { title } = values;
           const updateValues = {
             title: title.trim(),
-            description,
             publicData: { listingType: 'post' },
           };
 

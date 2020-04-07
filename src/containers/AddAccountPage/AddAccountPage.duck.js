@@ -1,7 +1,3 @@
-import { denormalisedResponseEntities } from '../../util/data';
-import { storableError } from '../../util/errors';
-import { currentUserShowSuccess } from '../../ducks/user.duck';
-
 import axios from 'axios';
 
 // ================ Action types ================ //
@@ -82,31 +78,43 @@ export const updateProfile = actionPayload => {
   return (dispatch, getState, sdk) => {
     dispatch(updateProfileRequest());
     const data = { service: actionPayload.platform, username: actionPayload.username };
-    console.log(actionPayload);
     return axios
       .post('/api/verify', data)
       .then(res => {
         if (res.data.verified === true) {
-          dispatch(updateProfileSuccess(res));
-          // const userData = {publicData:{offering:{}}};
-          // sdk.currentUser
-          //   .updateProfile(actionPayload)
-          //   .then(response => {})
-          //   .catch(e => dispatch(updateProfileError(storableError(e))));
-
-          // const entities = denormalisedResponseEntities(res);
-          // if (entities.length !== 1) {
-          //   throw new Error('Expected a resource in the sdk.currentUser.updateProfile response');
-          // }
-          // const currentUser = entities[0];
-
-          // // Update current user in state.user.currentUser through user.duck.js
-          // dispatch(currentUserShowSuccess(currentUser));
-        } else dispatch(updateProfileError(storableError(res)));
+          // dispatch(updateProfileSuccess(res));
+          sdk.currentUser
+            .show()
+            .then(resp => {
+              const offeringList = resp.data.data.attributes.profile.publicData.offering;
+              offeringList.push(actionPayload);
+              const userData = { publicData: { offering: offeringList } };
+              sdk.currentUser
+                .updateProfile(userData)
+                .then(response => {
+                  console.log(response);
+                  dispatch(updateProfileSuccess(response));
+                })
+                .catch(e => {
+                  console.log(e);
+                  axios
+                    .post('/api/delete-verification', data)
+                    .then(res => {
+                      console.log(res);
+                    })
+                    .catch(err => console.log(err));
+                  dispatch(updateProfileError(null));
+                });
+            })
+            .catch(err => {
+              console.log(err);
+              dispatch(updateProfileError(null));
+            });
+        } else dispatch(updateProfileError(null));
       })
-      .catch(err => {
-        console.log(err);
-        dispatch(updateProfileError(storableError(err)));
+      .catch(error => {
+        console.log(error);
+        dispatch(updateProfileError(null));
       });
   };
 };

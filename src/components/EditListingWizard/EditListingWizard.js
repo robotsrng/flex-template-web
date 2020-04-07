@@ -35,8 +35,8 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 // All the other panels can be reordered.
 export const TABS = [
   OFFERING,
-  DESCRIPTION,
   FEATURES,
+  DESCRIPTION,
   LOCATION,
   PRICING,
   ...availabilityMaybe,
@@ -362,6 +362,7 @@ class EditListingWizard extends Component {
                 tab={tab}
                 intl={intl}
                 params={params}
+                currentUser={currentUser}
                 listing={listing}
                 marketplaceTabs={TABS}
                 errors={errors}

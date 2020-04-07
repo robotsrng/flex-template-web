@@ -13,6 +13,7 @@ import { TopbarContainer } from '../../containers';
 
 import { updateProfile } from './AddAccountPage.duck';
 import css from './AddAccountPage.css';
+import axios from 'axios';
 
 import AddAccountSuccess from './AddAccountSuccess.js';
 import AddAccountError from './AddAccountError.js';
@@ -83,17 +84,33 @@ export class AddAccountPageComponent extends Component {
     } = this.props;
 
     const handleSubmit = _ => {
-      // Ensure that the optional bio is a string
       const featuresArray = sessionStorage.getItem('features').split(',');
-      let data = {
-        platform: sessionStorage.getItem('platform'),
-        features: featuresArray,
+      const userData = {
+        service: sessionStorage.getItem('platform'),
         username: sessionStorage.getItem('username'),
-        location: JSON.parse(sessionStorage.getItem('location')),
       };
-      // Update profileImage only if file system has been accessed
-      const updatedValues = data;
-      onUpdateProfile(updatedValues);
+      axios
+        .post('/api/getInfo', userData)
+        .then(res => {
+          const photo = res.data.photo;
+          const count = res.data.count;
+          let data = {
+            photo: photo,
+            count: count,
+            platform: sessionStorage.getItem('platform'),
+            features: featuresArray,
+            username: sessionStorage.getItem('username'),
+            location: JSON.parse(sessionStorage.getItem('location')),
+          };
+          // Update profileImage only if file system has been accessed
+          const updatedValues = data;
+          onUpdateProfile(updatedValues);
+        })
+        .catch(err => {
+          console.log(err);
+          this.updateStep('error');
+          this.setState({ step: sessionStorage.getItem('step') });
+        });
     };
     const handleStepState = step => {
       this.setState({ step: step });

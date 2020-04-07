@@ -17,13 +17,13 @@ const EditListingOfferingPanel = props => {
     panelUpdated,
     updateInProgress,
     errors,
+    currentUser,
   } = props;
-
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
   const { publicData } = currentListing.attributes;
-  const [offering, setOffering] = useState('');
-  const [follower] = useState(120);
+  const [offering, setOffering] = useState();
+  const [channelList, setChannelList] = useState();
   useEffect(
     _ => {
       if (publicData.offering) {
@@ -32,17 +32,25 @@ const EditListingOfferingPanel = props => {
     },
     [publicData.offering]
   );
+  useEffect(
+    _ => {
+      if (currentUser) {
+        setChannelList(currentUser.attributes.profile.publicData.offering);
+      }
+    },
+    [currentUser]
+  );
   const title = 'defaultUltimateTitleSidesuite';
   const form = (
     <EditListingOfferingForm
       listing={listing}
       offering={offering}
-      follower={follower}
       setOffering={setOffering}
+      channelList={channelList}
       className={css.form}
       onSubmit={_ => {
         let updatedValues = {
-          publicData: { offering, follower },
+          publicData: { offering },
         };
         !currentListing.attributes.title && (updatedValues = { title: title, ...updatedValues });
         onSubmit(updatedValues);

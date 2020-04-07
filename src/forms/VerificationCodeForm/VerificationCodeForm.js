@@ -12,6 +12,7 @@ import css from './VerificationCodeForm.css';
 
 const VerificationCodeFormComponent = props => {
   const [verificationCode, setVerificationCode] = useState('');
+  const [error, setError] = useState(false);
   useEffect(() => {
     const data = {
       service: sessionStorage.getItem('platform'),
@@ -22,9 +23,12 @@ const VerificationCodeFormComponent = props => {
       .then(res => {
         if (res.data.code) {
           setVerificationCode(res.data.code.toString());
-        }
+        } else setError(true);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        setError(true);
+      });
   }, []);
   const handleBack = _ => {
     const data = {
@@ -64,7 +68,8 @@ const VerificationCodeFormComponent = props => {
                   Next
                 </Button>
               </div>
-            ) : (
+            ) : null}
+            {error ? (
               <div>
                 <div className={css.container}>
                   <p className={css.sectionTitle}>Something went wrong</p>
@@ -74,7 +79,7 @@ const VerificationCodeFormComponent = props => {
                   Back to select channel
                 </Button>
               </div>
-            )}
+            ) : null}
           </Form>
         );
       }}
