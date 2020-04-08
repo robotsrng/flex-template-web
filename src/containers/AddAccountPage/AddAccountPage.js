@@ -78,7 +78,6 @@ export class AddAccountPageComponent extends Component {
           username: sessionStorage.getItem('username'),
           location: JSON.parse(sessionStorage.getItem('location')),
         };
-        console.log(data);
         // Update profileImage only if file system has been accessed
         const updatedValues = data;
         this.props.onUpdateProfile(updatedValues);

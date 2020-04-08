@@ -86,10 +86,9 @@ export const updateProfile = actionPayload => {
           sdk.currentUser
             .show()
             .then(resp => {
-              console.log(resp);
-              const offeringList = resp.data.data.attributes.profile.publicData.offering;
-              console.log(offeringList);
-              console.log(actionPayload);
+              const offeringList = resp.data.data.attributes.profile.publicData.offering
+                ? resp.data.data.attributes.profile.publicData.offering
+                : [];
               offeringList.push(actionPayload);
               const totalAudience = resp.data.data.attributes.profile.publicData.audience
                 ? resp.data.data.attributes.profile.publicData.audience + actionPayload.count
