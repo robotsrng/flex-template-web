@@ -71,13 +71,14 @@ export class AddAccountPageComponent extends Component {
         const photo = res.data.photo;
         const count = res.data.count;
         let data = {
-          photo: photo,
-          count: count,
+          photo,
+          count,
           platform: sessionStorage.getItem('platform'),
           features: featuresArray,
           username: sessionStorage.getItem('username'),
           location: JSON.parse(sessionStorage.getItem('location')),
         };
+        console.log(data);
         // Update profileImage only if file system has been accessed
         const updatedValues = data;
         this.props.onUpdateProfile(updatedValues);
