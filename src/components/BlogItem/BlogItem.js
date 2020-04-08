@@ -14,13 +14,10 @@ const BlogItem = props => {
     <div className={classes}>
 
       <div className={css.blogItemContainer}>
-
-        <div className={css.diamondOne}>
-        <img className={css.diamondTwo} src={img} alt=""></img>
-        </div>
+        <img className={css.img} src={img} alt=""></img>
         <div className={css.blogItemContent}>
-        <h3>{title}</h3>
-        <p>{created}</p>
+        <div className={css.blogTitle}>{title}</div>
+        <div className={css.blogDate}>{created}</div>
         </div>
     
 

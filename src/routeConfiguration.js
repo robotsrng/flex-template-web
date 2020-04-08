@@ -7,9 +7,12 @@ import {
   HowItWorks,
   ForBrands,
   ForCreators,
+  HowDoesSidesuiteProtectUsers,
   HowDoesTheTransactionProcessWork,
+  HowDoIChooseTheRightCreator,
   HowDoIConnectMyChannels,
   HowDoICreateAListing,
+  HowDoTaxesWorkForCreators,
   AuthenticationPage,
   AddAccountPage,
   CheckoutPage,
@@ -34,6 +37,10 @@ import {
   TermsOfServicePage,
   TransactionPage,
   ContactPage,
+  WhatAreTheFees,
+  WhatDoINeedToDiscloseWhenPosting,
+  WhatTypesOfPostsWorkTheBest,
+  WhyIsMarketingWithSidesuiteBetter,
 } from './containers';
 
 // routeConfiguration needs to initialize containers first
@@ -65,10 +72,45 @@ const RedirectToLandingPage = () => <NamedRedirect name="LandingPage" />;
 const routeConfiguration = () => {
   return [
     {
+      path: '/resources/what-types-of-posts-work-the-best',
+      name: 'WhatTypesOfPostsWorkTheBest',
+      component: WhatTypesOfPostsWorkTheBest,
+    },
+    {
+      path: '/resources/what-are-the-fees',
+      name: 'WhatAreTheFees',
+      component: WhatAreTheFees,
+    },
+    {
+      path: '/resources/how-do-i-choose-the-right-creator',
+      name: 'HowDoIChooseTheRightCreator',
+      component: HowDoIChooseTheRightCreator,
+    },
+    {
+      path: '/resources/why-is-marketing-with-sidesuite-better',
+      name: 'WhyIsMarketingWithSidesuiteBetter',
+      component: WhyIsMarketingWithSidesuiteBetter,
+    },
+    {
+      path: '/resources/how-does-sidesuite-protect-users',
+      name: 'HowDoesSidesuiteProtectUsers',
+      component: HowDoesSidesuiteProtectUsers,
+    },
+    {
+      path: '/resources/how-do-taxes-work-for-creators',
+      name: 'HowDoTaxesWorkForCreators',
+      component: HowDoTaxesWorkForCreators,
+    },
+    {
+      path: '/resources/what-do-i-need-to-disclose-when-posting',
+      name: 'WhatDoINeedToDiscloseWhenPosting',
+      component: WhatDoINeedToDiscloseWhenPosting,
+    },
+    {
       path: '/resources/how-do-i-connect-my-channels',
       name: 'HowDoIConnectMyChannels',
       component: HowDoIConnectMyChannels,
-    },   
+    },
     {
       path: '/resources/how-do-i-create-a-listing',
       name: 'HowDoICreateAListing',

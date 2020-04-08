@@ -8,14 +8,15 @@
 }
 
 .iconImage {
-  width: 88px;
-  height: 88px;
+  width: 72px;
+  height: 72px;
   border-radius: 100px;
-  margin-right: 16px;
-  background-color: #f5f5f5;
-  border: 8px solid #ffffff
+  margin-right: 20px;
+  background-color: #ffffff;
+  border: 8px solid #f5f5f5
 }
 
 .title {
+  margin-top: 22px;
   padding-right: 30px;
 }

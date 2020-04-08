@@ -9,10 +9,13 @@ export { default as EditListingPage } from './EditListingPage/EditListingPage';
 export { default as EmailVerificationPage } from './EmailVerificationPage/EmailVerificationPage';
 export { default as FAQPage } from './FAQPage/FAQPage';
 export { default as ForBrands } from './ForBrands/ForBrands';
-export { default as ForCreators } from './ForCreators/ForCreators'; 
+export { default as ForCreators } from './ForCreators/ForCreators';
+export { default as HowDoesSidesuiteProtectUsers } from './HowDoesSidesuiteProtectUsers/HowDoesSidesuiteProtectUsers';
 export { default as HowDoesTheTransactionProcessWork } from './HowDoesTheTransactionProcessWork/HowDoesTheTransactionProcessWork';
+export { default as HowDoIChooseTheRightCreator } from './HowDoIChooseTheRightCreator/HowDoIChooseTheRightCreator';
 export { default as HowDoIConnectMyChannels } from './HowDoIConnectMyChannels/HowDoIConnectMyChannels';
 export { default as HowDoICreateAListing } from './HowDoICreateAListing/HowDoICreateAListing';
+export { default as HowDoTaxesWorkForCreators } from './HowDoTaxesWorkForCreators/HowDoTaxesWorkForCreators';
 export { default as HowItWorks } from './HowItWorks/HowItWorks';
 export { default as InboxPage } from './InboxPage/InboxPage';
 export { default as LandingPage } from './LandingPage/LandingPage';
@@ -34,3 +37,8 @@ export { default as TermsOfServicePage } from './TermsOfServicePage/TermsOfServi
 export { default as ContactPage } from './ContactPage/ContactPage';
 export { default as TopbarContainer } from './TopbarContainer/TopbarContainer';
 export { default as TransactionPage } from './TransactionPage/TransactionPage';
+export { default as WhatAreTheFees } from './WhatAreTheFees/WhatAreTheFees';
+export { default as WhatDoINeedToDiscloseWhenPosting } from './WhatDoINeedToDiscloseWhenPosting/WhatDoINeedToDiscloseWhenPosting';
+export { default as WhatTypesOfPostsWorkTheBest } from './WhatTypesOfPostsWorkTheBest/WhatTypesOfPostsWorkTheBest';
+export { default as WhyIsMarketingWithSidesuiteBetter } from './WhyIsMarketingWithSidesuiteBetter/WhyIsMarketingWithSidesuiteBetter';
+

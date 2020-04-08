@@ -26,6 +26,9 @@
 
 .desktopInputRoot {
   height: var(--topbarHeightDesktop);
+  border-bottom: none;
+  position: relative;
+  top: -14px;
 }
 
 .mobileIcon {
@@ -186,6 +189,8 @@
   align-self: stretch;
   background-color: var(--matterColorLight);
   margin-left: 24px;
+  position: relative;
+  top: -14px;
 }
 
 .iconSvg {

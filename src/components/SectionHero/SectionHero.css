@@ -115,4 +115,7 @@
 .searchIcon {
   height: 20px;
   vertical-align: bottom;
+  @media (--viewportMedium) {
+    margin-top: 24px;
+  }
 }

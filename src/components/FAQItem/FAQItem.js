@@ -3,15 +3,14 @@ import css from './FAQItem.css';
 
 const FAQItem = ({ img, title }) => {
   return (
-
     <div>
       <div className={css.FAQItemContainer}>
-        <div className={css.diamond}>
-          <img className={css.img} src={img} alt=""></img>
-        </div>
+        <img className={css.img} src={img} alt=""></img>
+
         <div className={css.FAQItemContent}>
-          <h3>{title}</h3>
-        </div>
+          {title}
+          </div>
+
       </div>
     </div>
   );

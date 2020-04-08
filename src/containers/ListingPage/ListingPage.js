@@ -288,7 +288,7 @@ export class ListingPageComponent extends Component {
       return (
         <Page title={loadingTitle} scrollingDisabled={scrollingDisabled}>
           <LayoutSingleColumn className={css.pageRoot}>
-            <LayoutWrapperTopbar>{topbar}</LayoutWrapperTopbar>
+          <LayoutWrapperTopbar>{topbar}</LayoutWrapperTopbar>
             <LayoutWrapperMain>
               <p className={css.loadingText}>
                 <FormattedMessage id="ListingPage.loadingListingMessage" />

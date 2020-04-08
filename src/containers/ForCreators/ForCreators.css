@@ -10,3 +10,21 @@
     margin: 72px auto;
   }
 }
+
+.FAQItemsContainer {
+  @media (--viewportMedium) {
+    display: flex;
+    align-items: left;
+    width: 100%;
+  }
+}
+
+.FAQList {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  @media (--viewportMedium) {
+    width: 50%;
+
+  }
+}
+

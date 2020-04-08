@@ -1,32 +1,38 @@
 @import '../../marketplace.css';
 
 .blogItemContainer {
-  margin-top: 20px;
+  display: flex;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  align-items: left;
+  width: 100%;
 }
 
-.diamondOne {
-  width: 88px;
-  height: 88px;
-  margin: 15px;
-  -ms-transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  overflow: hidden;
+.img {
+  width: 72px;
+  height: 72px;
   border-radius: 20px;
+  margin-right: 20px;
+  background-color: #ffffff;
   border: 8px solid #f5f5f5;
-  float: left;
-}
-.diamondTwo {
-  width: 115px;
-  height: 115px;
-  margin: -15px;
-  -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 
 .blogItemContent {
-  float: left;
+  width: 235px;
+  
+  
+}
+
+.blogTitle {
+  @apply --marketplaceH3FontStyles;
+  width: 235px;
   margin-top: 10px;
-  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.blogDate {
+  @apply --marketplaceBodyFontStyles;
+  width: 235px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }

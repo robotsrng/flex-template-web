@@ -11,10 +11,10 @@ import { ListingContactCard } from './ListingContactCard';
 
 import css from './ContactPage.css';
 
-import accountImage from './img/AccountIcon.png';
-import calendarImage from './img/CalendarIcon.png';
-import creditCardImage from './img/CreditCardIcon.png';
-import feedbackImg from './img/GlassesIcon.png';
+import calendarImage from '../../assets/IconLibrary/Calendar-Icon.png';
+import creditCardImage from '../../assets/IconLibrary/Credit-Card-Icon.png';
+import accountImage from '../../assets/IconLibrary/Account-Icon.png';
+import feedbackImg from '../../assets/IconLibrary/Glasses-Icon.png';
 
 const ContactPage = () => {
   // const handleResponse = data => {
