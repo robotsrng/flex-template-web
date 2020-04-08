@@ -26,9 +26,9 @@ const { Money } = sdkTypes;
 export const EditListingPricingFormComponent = props => {
   const [calculatedData, setCalculatedData] = useState();
   const [calculatedUserInfo, setCalculatedUserInfo] = useState();
+  const listingCurrent = ensureOwnListing(props.listing);
   useEffect(() => {
-    const currentListing = ensureOwnListing(props.listing);
-    const { publicData } = currentListing.attributes;
+    const { publicData } = listingCurrent.attributes;
     if (publicData && publicData.offering) {
       const data = {
         service: publicData.offering.platform,
@@ -53,9 +53,8 @@ export const EditListingPricingFormComponent = props => {
           console.log(err);
         });
     }
-  }, []);
+  }, [listingCurrent]);
   let calculatorResult;
-  const listingCurrent = ensureOwnListing(props.listing);
   if (listingCurrent.attributes.publicData) {
     if (calculatedData && calculatedUserInfo) {
       if (calculatedData.error) {

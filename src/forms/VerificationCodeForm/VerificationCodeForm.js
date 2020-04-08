@@ -31,18 +31,7 @@ const VerificationCodeFormComponent = props => {
       });
   }, []);
   const handleBack = _ => {
-    const data = {
-      service: sessionStorage.getItem('platform'),
-      username: sessionStorage.getItem('username'),
-    };
-    axios
-      .post('/api/delete-verification', data)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => console.log(err));
     props.updateStep('channel');
-    props.setStepState('channel');
   };
 
   return (
