@@ -30,9 +30,8 @@ const SelectLocationFormComponent = props => {
     }
   };
   const handleNext = values => {
-    props.updateFeatures(postCategoriesList);
-    props.updateLocation(values.location.selectedPlace.origin);
-    props.setStepState('code');
+    props.updateStorage('features', postCategoriesList);
+    props.updateStorage('location', JSON.stringify(values.location));
     props.onSubmit('code');
   };
 

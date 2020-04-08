@@ -31,7 +31,6 @@ const LimitedAccessBanner = props => {
     authScopes.length === 1 &&
     authScopes[0] === 'user:limited' &&
     !disabledPages.includes(currentPage);
-
   const { firstName, lastName } = user.attributes.profile;
 
   return showBanner ? (

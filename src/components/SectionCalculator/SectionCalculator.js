@@ -15,6 +15,7 @@ const SectionCalculator = props => {
   const [socialMediaSelected, setSocialMediaSelected] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [calculatedData, setCalculatedData] = useState();
+  const [calculatedUserInfo, setCalculatedUserInfo] = useState();
   const [inProgress, setInProgress] = useState(false);
 
   const disabled = !inputValue || !socialMediaSelected;
@@ -28,10 +29,15 @@ const SectionCalculator = props => {
     axios
       .post('/api/calculate', data)
       .then(res => {
-        console.log(res);
         setCalculatedData(res);
-        setShowCalculatorResult(true);
-        setInProgress(false);
+        axios
+          .post('/api/getInfo', data)
+          .then(response => {
+            setCalculatedUserInfo(response);
+            setShowCalculatorResult(true);
+            setInProgress(false);
+          })
+          .catch(error => console.log(error));
       })
       .catch(err => {
         console.log(err);
@@ -53,9 +59,9 @@ const SectionCalculator = props => {
         </p>
       ) : (
         <ListingCalculatorResultCard
-          img={calculatedData.data.data.photo}
+          img={calculatedUserInfo.data.photo}
           username={inputValue}
-          audience={calculatedData.data.followers}
+          audience={calculatedUserInfo.data.count}
           platform={socialMediaSelected}
           engagementRate={calculatedData.data.calculations.engagementRate}
           estimatedLowPrice={calculatedData.data.calculations.lowerPrice}

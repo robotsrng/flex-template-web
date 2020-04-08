@@ -9,7 +9,7 @@ import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 
 import { ensureListing } from '../../util/data';
 import { propTypes, LISTING_STATE_DRAFT } from '../../util/types';
-import { Button, Form, ListingLink, FeatureButtons } from '../../components';
+import { Button, Form, ListingLink } from '../../components';
 
 import css from './EditListingFeaturesForm.css';
 
@@ -30,17 +30,6 @@ const EditListingFeaturesFormComponent = props => {
     e.preventDefault();
     props.setBrandList(props.brandList.filter(brand => brand !== e.target.value));
   };
-  const handleOnClickPostCategories = e => {
-    e.preventDefault();
-    const exist = props.postCategoriesList && props.postCategoriesList.includes(e.target.value);
-    if (!exist) {
-      props.setPostCategoriesList([...props.postCategoriesList, e.target.value]);
-    } else {
-      props.setPostCategoriesList(
-        props.postCategoriesList.filter(postCategories => postCategories !== e.target.value)
-      );
-    }
-  };
   return (
     <FinalForm
       {...props}
@@ -52,7 +41,6 @@ const EditListingFeaturesFormComponent = props => {
           ready,
           rootClassName,
           className,
-          /* name, */
           handleSubmit,
           intl,
           pristine,
@@ -72,14 +60,7 @@ const EditListingFeaturesFormComponent = props => {
         ) : (
           <FormattedMessage id="EditListingFeaturesPanel.createListingTitle" />
         );
-        const panelSecondTitle = isPublished ? (
-          <FormattedMessage
-            id="EditListingFeaturesPanel.subtitle"
-            values={{ listingTitle: <ListingLink listing={listing} /> }}
-          />
-        ) : (
-          <FormattedMessage id="EditListingFeaturesPanel.createListingSubtitle" />
-        );
+
         const selectBrandPlaceholder = intl.formatMessage({
           id: 'EditListingFeaturesPanel.inputBrandPlaceholder',
         });
@@ -137,11 +118,6 @@ const EditListingFeaturesFormComponent = props => {
                   </div>
                 ))}
             </div>
-            <h2 className={css.title}>{panelSecondTitle}</h2>
-            <FeatureButtons
-              handleOnClick={handleOnClickPostCategories}
-              list={props.postCategoriesList}
-            />
 
             <Button
               className={css.submitButton}

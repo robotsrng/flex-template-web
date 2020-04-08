@@ -17,7 +17,7 @@ import {
   IconSpinner,
   FieldTextInput,
   LocationAutocompleteInputField,
-  NamedLink,
+  AddAccountNamedLink,
 } from '../../components';
 
 import css from './ProfileSettingsForm.css';
@@ -337,14 +337,18 @@ class ProfileSettingsFormComponent extends Component {
                   )}
                 />
                 <h3 className={css.sectionAccountSocialMedia}>Your verified accounts</h3>
-                <NamedLink name="AddAccountPage" className={css.accountPlaceholder}>
+                <AddAccountNamedLink
+                  name="AddAccountPage"
+                  className={css.accountPlaceholder}
+                  tab="channel"
+                >
                   <div className={css.accountPlaceholderText}>
                     <FormattedMessage id="ProfileSettingsForm.addYourProfilePicture" />
                   </div>
                   <div className={css.accountPlaceholderTextMobile}>
                     <FormattedMessage id="ProfileSettingsForm.addYourProfilePictureMobile" />
                   </div>
-                </NamedLink>
+                </AddAccountNamedLink>
               </div>
               {submitError}
               <Button

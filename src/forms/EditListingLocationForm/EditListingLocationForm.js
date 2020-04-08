@@ -5,16 +5,10 @@ import { Form as FinalForm } from 'react-final-form';
 import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
-import {
-  autocompleteSearchRequired,
-  autocompletePlaceSelected,
-  composeValidators,
-} from '../../util/validators';
-import { Form, LocationAutocompleteInputField, Button } from '../../components';
+import { required, composeValidators } from '../../util/validators';
+import { Form, Button, FieldTextInput } from '../../components';
 
 import css from './EditListingLocationForm.css';
-
-const identity = v => v;
 
 export const EditListingLocationFormComponent = props => (
   <FinalForm
@@ -32,42 +26,39 @@ export const EditListingLocationFormComponent = props => (
         updated,
         updateInProgress,
         fetchErrors,
-        values,
       } = formRenderProps;
 
-      const titleRequiredMessage = intl.formatMessage({ id: 'EditListingLocationForm.address' });
-      const addressPlaceholderMessage = intl.formatMessage({
-        id: 'EditListingLocationForm.addressPlaceholder',
-      });
-      const addressRequiredMessage = intl.formatMessage({
-        id: 'EditListingLocationForm.addressRequired',
-      });
-      const addressNotRecognizedMessage = intl.formatMessage({
-        id: 'EditListingLocationForm.addressNotRecognized',
+      const subtitleDescription = intl.formatMessage({
+        id: 'EditListingDescriptionForm.subtitleDescription',
       });
 
-      /* const optionalText = intl.formatMessage({
-        id: 'EditListingLocationForm.optionalText',
-      }); */
+      const descriptionMessage = intl.formatMessage({
+        id: 'EditListingDescriptionForm.description',
+      });
+      const descriptionPlaceholderMessage = intl.formatMessage({
+        id: 'EditListingDescriptionForm.descriptionPlaceholder',
+      });
+      const descriptionRequiredMessage = intl.formatMessage({
+        id: 'EditListingDescriptionForm.descriptionRequired',
+      });
 
-      /* const buildingMessage = intl.formatMessage(
-        { id: 'EditListingLocationForm.building' },
-        { optionalText: optionalText }
-      );
-      const buildingPlaceholderMessage = intl.formatMessage({
-        id: 'EditListingLocationForm.buildingPlaceholder',
-      }); */
-
-      const { updateListingError, showListingsError } = fetchErrors || {};
-      const errorMessage = updateListingError ? (
+      const { updateListingError, createListingDraftError, showListingsError } = fetchErrors || {};
+      const errorMessageUpdateListing = updateListingError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingLocationForm.updateFailed" />
+          <FormattedMessage id="EditListingDescriptionForm.updateFailed" />
+        </p>
+      ) : null;
+
+      // This error happens only on first tab (of EditListingWizard)
+      const errorMessageCreateListingDraft = createListingDraftError ? (
+        <p className={css.error}>
+          <FormattedMessage id="EditListingDescriptionForm.createListingDraftError" />
         </p>
       ) : null;
 
       const errorMessageShowListing = showListingsError ? (
         <p className={css.error}>
-          <FormattedMessage id="EditListingLocationForm.showListingFailed" />
+          <FormattedMessage id="EditListingDescriptionForm.showListingFailed" />
         </p>
       ) : null;
 
@@ -78,25 +69,19 @@ export const EditListingLocationFormComponent = props => (
 
       return (
         <Form className={classes} onSubmit={handleSubmit}>
-          {errorMessage}
+          {errorMessageCreateListingDraft}
+          {errorMessageUpdateListing}
           {errorMessageShowListing}
-          <LocationAutocompleteInputField
-            className={css.locationAddress}
-            inputClassName={css.locationAutocompleteInput}
-            iconClassName={css.locationAutocompleteInputIcon}
-            predictionsClassName={css.predictionsRoot}
-            validClassName={css.validLocation}
-            autoFocus
-            name="location"
-            label={titleRequiredMessage}
-            placeholder={addressPlaceholderMessage}
-            useDefaultPredictions={false}
-            format={identity}
-            valueFromForm={values.location}
-            validate={composeValidators(
-              autocompleteSearchRequired(addressRequiredMessage),
-              autocompletePlaceSelected(addressNotRecognizedMessage)
-            )}
+
+          <p>{subtitleDescription}</p>
+          <FieldTextInput
+            id="description"
+            name="description"
+            className={css.description}
+            type="textarea"
+            label={descriptionMessage}
+            placeholder={descriptionPlaceholderMessage}
+            validate={composeValidators(required(descriptionRequiredMessage))}
           />
 
           <Button

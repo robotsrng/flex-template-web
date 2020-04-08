@@ -47,19 +47,8 @@ const EditListingDescriptionFormComponent = props => (
         <FormattedMessage id="EditListingDescriptionForm.createListingTitle" />
       );
 
-      const panelSubTitle = isPublished ? (
-        <FormattedMessage
-          id="EditListingDescriptionForm.titleDescriptionEdit"
-          values={{ listingTitle: <ListingLink listing={listing} /> }}
-        />
-      ) : (
-        <FormattedMessage id="EditListingDescriptionForm.titleDescription" />
-      );
       const titleDescription = intl.formatMessage({ id: 'EditListingDescriptionForm.title' });
 
-      const subtitleDescription = intl.formatMessage({
-        id: 'EditListingDescriptionForm.subtitleDescription',
-      });
       const titleMessage = intl.formatMessage({ id: 'EditListingDescriptionForm.name' });
       const titlePlaceholderMessage = intl.formatMessage({
         id: 'EditListingDescriptionForm.titlePlaceholder',
@@ -73,17 +62,7 @@ const EditListingDescriptionFormComponent = props => (
           maxLength: TITLE_MAX_LENGTH,
         }
       );
-
-      const descriptionMessage = intl.formatMessage({
-        id: 'EditListingDescriptionForm.description',
-      });
-      const descriptionPlaceholderMessage = intl.formatMessage({
-        id: 'EditListingDescriptionForm.descriptionPlaceholder',
-      });
       const maxLength60Message = maxLength(maxLengthMessage, TITLE_MAX_LENGTH);
-      const descriptionRequiredMessage = intl.formatMessage({
-        id: 'EditListingDescriptionForm.descriptionRequired',
-      });
 
       const { updateListingError, createListingDraftError, showListingsError } = fetchErrors || {};
       const errorMessageUpdateListing = updateListingError ? (
@@ -127,18 +106,6 @@ const EditListingDescriptionFormComponent = props => (
             maxLength={TITLE_MAX_LENGTH}
             validate={composeValidators(required(titleRequiredMessage), maxLength60Message)}
             autoFocus
-          />
-
-          <h2 className={css.title}>{panelSubTitle}</h2>
-          <p>{subtitleDescription}</p>
-          <FieldTextInput
-            id="description"
-            name="description"
-            className={css.description}
-            type="textarea"
-            label={descriptionMessage}
-            placeholder={descriptionPlaceholderMessage}
-            validate={composeValidators(required(descriptionRequiredMessage))}
           />
 
           <Button

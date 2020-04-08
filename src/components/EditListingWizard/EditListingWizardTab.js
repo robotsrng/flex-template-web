@@ -32,9 +32,9 @@ export const PHOTOS = 'photos';
 // EditListingWizardTab component supports these tabs
 export const SUPPORTED_TABS = [
   OFFERING,
+  LOCATION,
   DESCRIPTION,
   FEATURES,
-  LOCATION,
   PRICING,
   AVAILABILITY,
   PHOTOS,
@@ -94,8 +94,8 @@ const EditListingWizardTab = props => {
     updatedTab,
     updateInProgress,
     intl,
+    currentUser,
   } = props;
-
   const { type } = params;
   const isNewURI = type === LISTING_PAGE_PARAM_TYPE_NEW;
   const isDraftURI = type === LISTING_PAGE_PARAM_TYPE_DRAFT;
@@ -165,6 +165,21 @@ const EditListingWizardTab = props => {
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);
           }}
+          currentUser={currentUser}
+        />
+      );
+    }
+    case LOCATION: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewLocation'
+        : 'EditListingWizard.saveEditLocation';
+      return (
+        <EditListingLocationPanel
+          {...panelProps(LOCATION)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
         />
       );
     }
@@ -189,20 +204,6 @@ const EditListingWizardTab = props => {
       return (
         <EditListingFeaturesPanel
           {...panelProps(FEATURES)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-        />
-      );
-    }
-    case LOCATION: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewLocation'
-        : 'EditListingWizard.saveEditLocation';
-      return (
-        <EditListingLocationPanel
-          {...panelProps(LOCATION)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);

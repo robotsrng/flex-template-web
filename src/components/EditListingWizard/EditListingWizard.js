@@ -35,8 +35,8 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 // All the other panels can be reordered.
 export const TABS = [
   OFFERING,
-  DESCRIPTION,
   FEATURES,
+  DESCRIPTION,
   LOCATION,
   PRICING,
   ...availabilityMaybe,
@@ -89,11 +89,17 @@ const tabCompleted = (tab, listing) => {
     case OFFERING:
       return !!(publicData && publicData.offering);
     case DESCRIPTION:
-      return !!(description && title);
+      return !!(title && title !== 'defaultUltimateTitleSidesuite');
     case FEATURES:
-      return !!(publicData && publicData.brandList && publicData.postCategoriesList);
+      return !!(publicData && publicData.postCategoriesList);
     case LOCATION:
-      return !!(geolocation && publicData && publicData.location && publicData.location.address);
+      return !!(
+        description &&
+        geolocation &&
+        publicData &&
+        publicData.location &&
+        publicData.location.address
+      );
     case PRICING:
       return !!price;
     case AVAILABILITY:
@@ -362,6 +368,7 @@ class EditListingWizard extends Component {
                 tab={tab}
                 intl={intl}
                 params={params}
+                currentUser={currentUser}
                 listing={listing}
                 marketplaceTabs={TABS}
                 errors={errors}

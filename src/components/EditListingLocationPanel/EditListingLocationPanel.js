@@ -24,22 +24,28 @@ class EditListingLocationPanel extends Component {
   getInitialValues() {
     const { listing } = this.props;
     const currentListing = ensureOwnListing(listing);
-    const { geolocation, publicData } = currentListing.attributes;
-
+    const { author, attributes } = currentListing;
+    console.log(author);
     // Only render current search if full place object is available in the URL params
     // TODO bounds are missing - those need to be queried directly from Google Places
     const locationFieldsPresent =
-      publicData && publicData.location && publicData.location.address && geolocation;
-    const location = publicData && publicData.location ? publicData.location : {};
-    const { address, building } = location;
+      author &&
+      author.attributes.profile.publicData.location &&
+      author.attributes.profile.publicData.location.selectedPlace.address &&
+      author.attributes.profile.publicData.location.selectedPlace.origin;
+    const location =
+      author && author.attributes.profile.publicData.location.selectedPlace
+        ? author.attributes.profile.publicData.location.selectedPlace
+        : {};
+    const { address, origin } = location;
     return {
-      building,
       location: locationFieldsPresent
         ? {
             search: address,
-            selectedPlace: { address, origin: geolocation },
+            selectedPlace: { address, origin: origin },
           }
         : null,
+      description: attributes.description,
     };
   }
 
@@ -57,7 +63,6 @@ class EditListingLocationPanel extends Component {
       updateInProgress,
       errors,
     } = this.props;
-
     const classes = classNames(rootClassName || css.root, className);
     const currentListing = ensureOwnListing(listing);
 
@@ -79,22 +84,18 @@ class EditListingLocationPanel extends Component {
           className={css.form}
           initialValues={this.state.initialValues}
           onSubmit={values => {
-            const { building = '', location } = values;
+            const { description } = values;
+            const { building = '', location } = this.state.initialValues;
             const {
               selectedPlace: { address, origin },
             } = location;
             const updateValues = {
               geolocation: origin,
+              description,
               publicData: {
                 location: { address, building },
               },
             };
-            this.setState({
-              initialValues: {
-                building,
-                location: { search: address, selectedPlace: { address, origin } },
-              },
-            });
             onSubmit(updateValues);
           }}
           onChange={onChange}

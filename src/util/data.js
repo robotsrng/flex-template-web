@@ -132,7 +132,6 @@ export const denormalisedResponseEntities = sdkResponse => {
   if (!data || resources.length === 0) {
     return [];
   }
-
   const entities = updatedEntities({}, apiResponse);
   return denormalisedEntities(entities, resources);
 };
@@ -205,7 +204,7 @@ export const ensureUser = user => {
 };
 // Custom to bring public data
 export const ensureUserProfile = user => {
-  const empty = { id: null, type: 'user', attributes: { profile: {publicData:{}} } };
+  const empty = { id: null, type: 'user', attributes: { profile: { publicData: {} } } };
   return { ...empty, ...user };
 };
 /**

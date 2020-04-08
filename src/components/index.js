@@ -194,3 +194,4 @@ export {default as ResourceItem} from './ResourceItem/ResourceItem';
 export {default as SocialMediaButtons} from './SocialMediaButtons/SocialMediaButtons'
 export {default as VerificationCodeField} from './VerificationCodeField/VerificationCodeField'
 export {default as FeatureButtons} from './FeatureButtons/FeatureButtons'
+export { default as AddAccountNamedLink } from './NamedLink/AddAccountNamedLink';

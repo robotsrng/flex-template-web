@@ -44,6 +44,8 @@ const mergeCurrentUser = (oldCurrentUser, newCurrentUser) => {
   const { id: oId, type: oType, attributes: oAttr, ...oldRelationships } = oldCurrentUser || {};
   const { id, type, attributes, ...relationships } = newCurrentUser || {};
 
+  console.log(newCurrentUser || '');
+  console.log(oldCurrentUser || '');
   // Passing null will remove currentUser entity.
   // Only relationships are merged.
   // TODO figure out if sparse fields handling needs a better handling.

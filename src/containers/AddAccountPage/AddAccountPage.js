@@ -13,105 +13,112 @@ import { TopbarContainer } from '../../containers';
 
 import { updateProfile } from './AddAccountPage.duck';
 import css from './AddAccountPage.css';
+import axios from 'axios';
+
+import AddAccountSuccess from './AddAccountSuccess.js';
+import AddAccountError from './AddAccountError.js';
 
 export class AddAccountPageComponent extends Component {
   constructor(props) {
     super(props);
     this.state = { step: 'channel' };
-    this.updateStep = this.updateStep.bind(this);
-    this.updatePlatform = this.updatePlatform.bind(this);
-    this.updateUsername = this.updateUsername.bind(this);
-    this.updateLocation = this.updateLocation.bind(this);
-    this.updateFeatures = this.updateFeatures.bind(this);
-    this.clearAll = this.clearAll.bind(this);
   }
   componentDidMount() {
     ReactDOM.findDOMNode(this).scrollIntoView();
-    if (!sessionStorage.getItem('step')) {
-      sessionStorage.setItem('step', 'channel');
+    if (this.props.location.tab) {
+      sessionStorage.clear();
+      sessionStorage.setItem('step', this.props.location.tab);
+    } else {
+      if (!sessionStorage.getItem('step')) {
+        sessionStorage.setItem('step', 'channel');
+      }
     }
     this.setState({ step: sessionStorage.getItem('step') });
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.success !== prevProps.success) {
+      if (this.props.success === true) {
+        sessionStorage.setItem('step', 'success');
+        this.setState({ step: 'success' });
+      } else if (this.props.success === false) {
+        sessionStorage.setItem('step', 'error');
+        this.setState({ step: 'error' });
+      }
+    }
+  }
   updateStep = newStep => {
     sessionStorage.setItem('step', newStep);
+    this.setState({ step: newStep });
   };
 
-  updatePlatform = newPlatform => {
-    sessionStorage.setItem('platform', newPlatform);
-  };
-  updateUsername = newUsername => {
-    sessionStorage.setItem('username', newUsername);
-  };
-  updateLocation = newLocation => {
-    sessionStorage.setItem('location', JSON.stringify(newLocation));
-  };
-  updateFeatures = newFeatures => {
-    sessionStorage.setItem('features', newFeatures.toString());
+  updateStorage = (storageName, data) => {
+    sessionStorage.setItem(storageName, data);
   };
   clearAll = _ => {
     sessionStorage.clear();
     sessionStorage.setItem('step', 'channel');
+    this.setState({ step: sessionStorage.getItem('step') });
+  };
+  handleSubmit = _ => {
+    const featuresArray = sessionStorage.getItem('features').split(',');
+    const userData = {
+      service: sessionStorage.getItem('platform'),
+      username: sessionStorage.getItem('username'),
+    };
+    axios
+      .post('/api/getInfo', userData)
+      .then(res => {
+        const photo = res.data.photo;
+        const count = res.data.count;
+        let data = {
+          photo,
+          count,
+          platform: sessionStorage.getItem('platform'),
+          features: featuresArray,
+          username: sessionStorage.getItem('username'),
+          location: JSON.parse(sessionStorage.getItem('location')),
+        };
+        // Update profileImage only if file system has been accessed
+        const updatedValues = data;
+        this.props.onUpdateProfile(updatedValues);
+      })
+      .catch(err => {
+        console.log(err);
+        this.updateStep('error');
+      });
   };
   render() {
-    const { currentUser, onUpdateProfile, scrollingDisabled, intl, updateInProgress } = this.props;
+    const { currentUser, scrollingDisabled, intl, updateInProgress, success } = this.props;
 
-    const handleSubmit = _ => {
-      // Ensure that the optional bio is a string
-      const featuresArray = sessionStorage.getItem('features').split(',');
-      let data = {
-        platform: sessionStorage.getItem('platform'),
-        features: featuresArray,
-        username: sessionStorage.getItem('username'),
-        location: JSON.parse(sessionStorage.getItem('location')),
-      };
-      // Update profileImage only if file system has been accessed
-      const updatedValues = data;
-      onUpdateProfile(updatedValues);
-    };
-    const handleStepState = step => {
-      this.setState({ step: step });
-    };
     const user = ensureCurrentUserProfile(currentUser);
     const form = tab => {
       if (user.id) {
         switch (tab) {
           case 'channel': {
             return (
-              <SelectChannelForm
-                className={css.form}
-                updatePlatform={this.updatePlatform}
-                updateUsername={this.updateUsername}
-                setStepState={handleStepState}
-                onSubmit={this.updateStep}
-              />
+              <SelectChannelForm updateStorage={this.updateStorage} onSubmit={this.updateStep} />
             );
           }
           case 'location': {
             return (
-              <SelectLocationForm
-                className={css.form}
-                updateLocation={this.updateLocation}
-                updateFeatures={this.updateFeatures}
-                setStepState={handleStepState}
-                onSubmit={this.updateStep}
-              />
+              <SelectLocationForm updateStorage={this.updateStorage} onSubmit={this.updateStep} />
             );
           }
           case 'code': {
             return (
               <VerificationCodeForm
-                setStepState={handleStepState}
-                onSubmit={handleSubmit}
+                onSubmit={this.handleSubmit}
                 updateStep={this.updateStep}
                 updateInProgress={updateInProgress}
+                success={success}
               />
             );
           }
           case 'success': {
-            return null;
+            return <AddAccountSuccess />;
           }
           case 'error': {
-            return null;
+            return <AddAccountError clearAll={this.clearAll} />;
           }
           default:
             return null;
@@ -133,6 +140,7 @@ export class AddAccountPageComponent extends Component {
 AddAccountPageComponent.defaultProps = {
   currentUser: null,
   updateProfileError: null,
+  success: null,
 };
 
 const { bool, func } = PropTypes;
@@ -143,6 +151,7 @@ AddAccountPageComponent.propTypes = {
   scrollingDisabled: bool.isRequired,
   updateInProgress: bool.isRequired,
   updateProfileError: propTypes.error,
+  success: bool,
 
   // from injectIntl
   intl: intlShape.isRequired,
@@ -150,12 +159,13 @@ AddAccountPageComponent.propTypes = {
 
 const mapStateToProps = state => {
   const { currentUser } = state.user;
-  const { updateInProgress, updateProfileError } = state.AddAccountPage;
+  const { updateInProgress, updateProfileError, success } = state.AddAccountPage;
   return {
     currentUser,
     scrollingDisabled: isScrollingDisabled(state),
     updateInProgress,
     updateProfileError,
+    success,
   };
 };
 

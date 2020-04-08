@@ -1,7 +1,3 @@
-import { denormalisedResponseEntities } from '../../util/data';
-import { storableError } from '../../util/errors';
-import { currentUserShowSuccess } from '../../ducks/user.duck';
-
 import axios from 'axios';
 
 // ================ Action types ================ //
@@ -17,6 +13,7 @@ export const UPDATE_PROFILE_ERROR = 'app/ProfileSettingsPage/UPDATE_PROFILE_ERRO
 const initialState = {
   updateInProgress: false,
   updateProfileError: null,
+  success: null,
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -32,12 +29,14 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         updateInProgress: false,
+        success: true,
       };
     case UPDATE_PROFILE_ERROR:
       return {
         ...state,
         updateInProgress: false,
         updateProfileError: payload,
+        success: false,
       };
 
     case CLEAR_UPDATED_FORM:
@@ -78,30 +77,49 @@ export const updateProfileError = error => ({
 export const updateProfile = actionPayload => {
   return (dispatch, getState, sdk) => {
     dispatch(updateProfileRequest());
-    console.log(actionPayload);
     const data = { service: actionPayload.platform, username: actionPayload.username };
     return axios
       .post('/api/verify', data)
       .then(res => {
         if (res.data.verified === true) {
-          dispatch(updateProfileSuccess(res));
-
-          const entities = denormalisedResponseEntities(res);
-          if (entities.length !== 1) {
-            throw new Error('Expected a resource in the sdk.currentUser.updateProfile response');
-          }
-          const currentUser = entities[0];
-
-          // Update current user in state.user.currentUser through user.duck.js
-          dispatch(currentUserShowSuccess(currentUser));
-        }
+          // dispatch(updateProfileSuccess(res));
+          sdk.currentUser
+            .show()
+            .then(resp => {
+              const offeringList = resp.data.data.attributes.profile.publicData.offering
+                ? resp.data.data.attributes.profile.publicData.offering
+                : [];
+              offeringList.push(actionPayload);
+              const totalAudience = resp.data.data.attributes.profile.publicData.audience
+                ? resp.data.data.attributes.profile.publicData.audience + actionPayload.count
+                : actionPayload.count;
+              const userData = { publicData: { offering: offeringList, audience: totalAudience } };
+              sdk.currentUser
+                .updateProfile(userData)
+                .then(response => {
+                  console.log(response);
+                  dispatch(updateProfileSuccess(response));
+                })
+                .catch(e => {
+                  console.log(e);
+                  axios
+                    .post('/api/delete-verification', data)
+                    .then(res => {
+                      console.log(res);
+                    })
+                    .catch(err => console.log(err));
+                  dispatch(updateProfileError(null));
+                });
+            })
+            .catch(err => {
+              console.log(err);
+              dispatch(updateProfileError(null));
+            });
+        } else dispatch(updateProfileError(null));
       })
-      .catch(err => dispatch(updateProfileError(storableError(err))));
-    // sdk.currentUser
-    //   .updateProfile(actionPayload, queryParams)
-    //   .then(response => {
-
-    //   })
-    //   .catch(e => dispatch(updateProfileError(storableError(e))));
+      .catch(error => {
+        console.log(error);
+        dispatch(updateProfileError(null));
+      });
   };
 };

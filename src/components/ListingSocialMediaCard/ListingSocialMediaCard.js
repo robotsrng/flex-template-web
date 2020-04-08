@@ -11,7 +11,7 @@ const ListingSocialMediaCard = ({ img, username, audience, platform, whiteLetter
         <div className={whiteLetters ? css.whiteLetters : ''}>
           <p className={css.userContent}>{username}</p>
           <p className={css.userContent}>{platform}</p>
-          <p className={css.userContent}>{audience}</p>
+          <p className={css.userContent}>{audience} followers</p>
         </div>
       </div>
     </div>
