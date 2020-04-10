@@ -1,18 +1,13 @@
-import React /*, { Component }*/ from 'react';
+import React from 'react';
 import { string, func } from 'prop-types';
 import { intlShape, injectIntl } from '../../util/reactIntl';
 import classNames from 'classnames';
-// import { lazyLoadWithDimensions } from '../../util/contextHelpers';
-import { /*LINE_ITEM_DAY, LINE_ITEM_NIGHT,*/ propTypes } from '../../util/types';
+import { propTypes } from '../../util/types';
 import { formatMoney } from '../../util/currency';
 import { ensureListing, ensureUser } from '../../util/data';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
-import {
-  NamedLink /*, ResponsiveImage*/,
-  ListingPostCard,
-  ListingUserCard,
-} from '../../components';
+import { NamedLink, ListingPostCard, ListingUserCard } from '../../components';
 
 import css from './ListingCard.css';
 
@@ -35,12 +30,6 @@ const priceData = (price, intl) => {
   return {};
 };
 
-// class ListingImage extends Component {
-//   render() {
-//     return <ResponsiveImage {...this.props} />;
-//   }
-// }
-
 export const ListingCardComponent = props => {
   const reviews = { rating: 5, ammount: 105 };
   const { className, rootClassName, intl, listing } = props;
@@ -55,10 +44,6 @@ export const ListingCardComponent = props => {
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
   const { priceTitle } = priceData(price, intl);
 
-  // Change later when updating listings
-  // const offering = currentListing.attributes.publicData.offering
-  //   ? currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase())
-  //   : '';
   let offering;
   if (currentListing.attributes.publicData.offering) {
     if (currentListing.attributes.publicData.offering.platform) {
@@ -69,16 +54,6 @@ export const ListingCardComponent = props => {
       offering = currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase());
     }
   }
-  // const unitType = config.bookingUnitType;
-  // const isNightly = unitType === LINE_ITEM_NIGHT;
-  // const isDaily = unitType === LINE_ITEM_DAY;
-
-  // const unitTranslationKey = isNightly
-  //   ? 'ListingCard.perNight'
-  //   : isDaily
-  //   ? 'ListingCard.perDay'
-  //   : 'ListingCard.perUnit';
-
   return listing.attributes.publicData.listingType === 'post' ? (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
       <div className={css.accountContainer}>
@@ -91,42 +66,6 @@ export const ListingCardComponent = props => {
           postSocialMedia={offering}
         />
       </div>
-      {/* <div
-        className={css.threeToTwoWrapper}
-        onMouseEnter={() => setActiveListing(currentListing.id)}
-        onMouseLeave={() => setActiveListing(null)}
-      >
-        <div className={css.aspectWrapper}>
-          <LazyImage
-            rootClassName={css.rootForImage}
-            alt={title}
-            image={firstImage}
-            variants={['landscape-crop', 'landscape-crop2x']}
-            sizes={renderSizes}
-          />
-        </div>
-      </div>
-      <div className={css.info}>
-        <div className={css.price}>
-          <div className={css.priceValue} title={priceTitle}>
-            {formattedPrice}
-          </div>
-          <div className={css.perUnit}>
-            <FormattedMessage id={unitTranslationKey} />
-          </div>
-        </div>
-        <div className={css.mainInfo}>
-          <div className={css.title}>
-            {richText(title, {
-              longWordMinLength: MIN_LENGTH_FOR_LONG_WORDS,
-              longWordClass: css.longWord,
-            })}
-          </div>
-          <div className={css.authorInfo}>
-            <FormattedMessage id="ListingCard.hostedBy" values={{ authorName }} />
-          </div>
-        </div>
-      </div> */}
     </NamedLink>
   ) : (
     <NamedLink className={css.link} name="ProfilePage" params={{ id: listing.author.id.uuid }}>

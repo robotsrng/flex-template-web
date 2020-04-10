@@ -20,9 +20,6 @@
   margin: 24px;
 }
 
-.sectionImages {
-}
-
 .threeToTwoWrapper {
   /* Layout */
   display: block;
@@ -41,8 +38,9 @@
 /* Firefox doesn't support image aspect ratio inside flexbox */
 .aspectWrapper {
   position: relative; /* allow positioning own listing action bar */
-  padding-bottom: 66.6667%; /* 3:2 Aspect Ratio */
+  padding-bottom: 100%; /* 3:2 Aspect Ratio */
   background-color: var(--matterColorNegative); /* Loading BG color */
+  overflow: hidden;
 
   /* Image carousel can be opened from the image, therefore we should show a pointer */
   cursor: pointer;
@@ -52,8 +50,12 @@
   }
 }
 
+.actionBarContainer {
+  display: flex;
+  flex-direction: column;
+}
 .actionBar {
-  position: absolute;
+  position: relative;
   display: flex;
   justify-content: space-between;
   top: 13px;
@@ -68,6 +70,24 @@
   cursor: initial;
 
   border-radius: var(--borderRadius);
+}
+.backButton {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  top: 20px;
+  left: 13px;
+  width: 74px;
+  z-index: 1; /* bring on top of mobile image */
+
+  /* Action bar prevents the image click events going to the parent and
+   should not show a pointer */
+  cursor: initial;
+
+  border-radius: var(--borderRadius);
+}
+.backButton a {
+  color: var(--matterColorBright);
 }
 
 .ownListingText {
@@ -121,11 +141,12 @@
 .rootForImage {
   /* Layout - image will take space defined by aspect ratio wrapper */
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+  height: 100%;
 
   transition: var(--transitionStyleButton);
 
@@ -245,6 +266,15 @@
     /* The calendar needs 312px */
     flex-basis: 312px;
     flex-shrink: 0;
+  }
+}
+.sectionOfferingMaybe {
+  padding: 0 24px;
+  margin-bottom: 35px;
+  margin-top: 40px;
+  @media (--viewportMedium) {
+    padding: 0;
+    margin-bottom: 52px;
   }
 }
 
@@ -435,7 +465,7 @@
 }
 
 .description {
-  margin-top: 0;
+  margin-top: 40px;
   margin-bottom: 0;
 
   /* Preserve newlines, but collapse other whitespace */
@@ -500,6 +530,7 @@
   position: relative;
   padding: 0 24px;
   margin-bottom: 5px;
+  margin-top: 120px;
 
   @media (--viewportMedium) {
     padding: 0;
@@ -559,10 +590,11 @@
   /* Dimensions: Map takes all available space from viewport (excludes action button and section title) */
   height: calc(100vh - 193px);
   width: 100%;
+  border-radius: 50%;
 
   /* Static map: dimensions are 640px */
-  max-width: 640px;
-  max-height: 640px;
+  max-width: 327px;
+  max-height: 327px;
   background-color: #eee;
   padding: 0;
   border: 0;
@@ -575,6 +607,9 @@
   @media (--viewportLarge) {
     height: 417px;
   }
+}
+.map img {
+  border-radius: 50%;
 }
 
 .longWord {

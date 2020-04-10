@@ -19,13 +19,27 @@ const SectionImages = props => {
 
   const hasImages = listing.images && listing.images.length > 0;
   const firstImage = hasImages ? listing.images[0] : null;
+  const buttonText = '< Back';
   // Action bar is wrapped with a div that prevents the click events
   // to the parent that would otherwise open the image carousel
   const actionBar = listing.id ? (
+    <React.Fragment>
+      <div onClick={e => e.stopPropagation()}>
+        <div className={css.actionBarContainer}>
+          <ActionBarMaybe isOwnListing={isOwnListing} listing={listing} editParams={editParams} />
+          <div className={css.backButton}>
+            <a href="javascript:history.back()">{buttonText}</a>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
+  ) : (
     <div onClick={e => e.stopPropagation()}>
-      <ActionBarMaybe isOwnListing={isOwnListing} listing={listing} editParams={editParams} />
+      <div className={css.backButton}>
+        <a href="javascript:history.back()">{buttonText}</a>
+      </div>
     </div>
-  ) : null;
+  );
 
   const viewPhotosButton = hasImages ? (
     <button className={css.viewPhotos} onClick={handleViewPhotosClick}>

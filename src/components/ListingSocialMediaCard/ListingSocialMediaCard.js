@@ -1,5 +1,6 @@
 import React from 'react';
 import css from './ListingSocialMediaCard.css';
+import { abbreviateNumber } from '../../util/abbreviateNumber.js';
 
 const ListingSocialMediaCard = ({ img, username, audience, platform, whiteLetters }) => {
   return (
@@ -11,7 +12,7 @@ const ListingSocialMediaCard = ({ img, username, audience, platform, whiteLetter
         <div className={whiteLetters ? css.whiteLetters : ''}>
           <p className={css.userContent}>{username}</p>
           <p className={css.userContent}>{platform}</p>
-          <p className={css.userContent}>{audience} followers</p>
+          <p className={css.userContent}>{abbreviateNumber(audience, 0)} followers</p>
         </div>
       </div>
     </div>

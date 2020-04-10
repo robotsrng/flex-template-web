@@ -4,9 +4,11 @@
   width: 100%;
   height: 100%;
   background-color: var(--matterColorNegative);
+  border-radius: 50%;
 }
 
 .mapRoot {
   width: 100%;
   height: 100%;
+  border-radius: 50%;
 }

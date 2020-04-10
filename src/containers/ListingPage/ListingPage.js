@@ -30,7 +30,6 @@ import { manageDisableScrolling, isScrollingDisabled } from '../../ducks/UI.duck
 import { initializeCardPaymentData } from '../../ducks/stripe.duck.js';
 import {
   Page,
-  NamedLink,
   NamedRedirect,
   LayoutSingleColumn,
   LayoutWrapperTopbar,
@@ -43,13 +42,8 @@ import { TopbarContainer, NotFoundPage } from '../../containers';
 
 import { sendEnquiry, loadData, setInitialValues } from './ListingPage.duck';
 import SectionImages from './SectionImages';
-import SectionAvatar from './SectionAvatar';
-import SectionHeading from './SectionHeading';
 import SectionDescriptionMaybe from './SectionDescriptionMaybe';
-import SectionFeaturesMaybe from './SectionFeaturesMaybe';
-import SectionReviews from './SectionReviews';
 import SectionHostMaybe from './SectionHostMaybe';
-import SectionRulesMaybe from './SectionRulesMaybe';
 import SectionMapMaybe from './SectionMapMaybe';
 import SectionOfferingMaybe from './SectionOfferingMaybe';
 import css from './ListingPage.css';
@@ -69,11 +63,6 @@ const priceData = (price, intl) => {
     };
   }
   return {};
-};
-
-const categoryLabel = (categories, key) => {
-  const cat = categories.find(c => c.key === key);
-  return cat ? cat.label : key;
 };
 
 export class ListingPageComponent extends Component {
@@ -183,14 +172,10 @@ export class ListingPageComponent extends Component {
       location,
       scrollingDisabled,
       showListingError,
-      reviews,
-      fetchReviewsError,
       sendEnquiryInProgress,
       sendEnquiryError,
       timeSlots,
       fetchTimeSlotsError,
-      categoriesConfig,
-      amenitiesConfig,
     } = this.props;
 
     const listingId = new UUID(rawParams.id);
@@ -288,7 +273,7 @@ export class ListingPageComponent extends Component {
       return (
         <Page title={loadingTitle} scrollingDisabled={scrollingDisabled}>
           <LayoutSingleColumn className={css.pageRoot}>
-          <LayoutWrapperTopbar>{topbar}</LayoutWrapperTopbar>
+            <LayoutWrapperTopbar></LayoutWrapperTopbar>
             <LayoutWrapperMain>
               <p className={css.loadingText}>
                 <FormattedMessage id="ListingPage.loadingListingMessage" />
@@ -314,7 +299,6 @@ export class ListingPageComponent extends Component {
     const userAndListingAuthorAvailable = !!(currentUser && authorAvailable);
     const isOwnListing =
       userAndListingAuthorAvailable && currentListing.author.id.uuid === currentUser.id.uuid;
-    const showContactUser = authorAvailable && (!currentUser || (currentUser && !isOwnListing));
 
     const currentAuthor = authorAvailable ? currentListing.author : null;
     const ensuredAuthor = ensureUser(currentAuthor);
@@ -324,7 +308,7 @@ export class ListingPageComponent extends Component {
     // banned or deleted display names for the function
     const authorDisplayName = userDisplayNameAsString(ensuredAuthor, '');
 
-    const { formattedPrice, priceTitle } = priceData(price, intl);
+    const { formattedPrice } = priceData(price, intl);
 
     const handleBookingSubmit = values => {
       const isCurrentlyClosed = currentListing.attributes.state === LISTING_STATE_CLOSED;
@@ -359,24 +343,6 @@ export class ListingPageComponent extends Component {
       { title, price: formattedPrice, siteTitle }
     );
 
-    const hostLink = (
-      <NamedLink
-        className={css.authorNameLink}
-        name="ListingPage"
-        params={params}
-        to={{ hash: '#host' }}
-      >
-        {authorDisplayName}
-      </NamedLink>
-    );
-
-    const category =
-      publicData && publicData.category ? (
-        <span>
-          {categoryLabel(categoriesConfig, publicData.category)}
-          <span className={css.separator}>•</span>
-        </span>
-      ) : null;
     return (
       <Page
         title={schemaTitle}
@@ -395,7 +361,7 @@ export class ListingPageComponent extends Component {
         }}
       >
         <LayoutSingleColumn className={css.pageRoot}>
-          <LayoutWrapperTopbar>{topbar}</LayoutWrapperTopbar>
+          <LayoutWrapperTopbar></LayoutWrapperTopbar>
           <LayoutWrapperMain>
             <div>
               <SectionImages
@@ -414,27 +380,14 @@ export class ListingPageComponent extends Component {
                 onManageDisableScrolling={onManageDisableScrolling}
               />
               <div className={css.contentContainer}>
-                <SectionAvatar user={currentAuthor} params={params} />
                 <div className={css.mainContent}>
-                  <SectionHeading
-                    priceTitle={priceTitle}
-                    formattedPrice={formattedPrice}
-                    richTitle={richTitle}
-                    category={category}
-                    hostLink={hostLink}
-                    showContactUser={showContactUser}
-                    onContactUser={this.onContactUser}
-                  />
                   <SectionOfferingMaybe publicData={publicData} />
-                  <SectionDescriptionMaybe description={description} />
-                  <SectionFeaturesMaybe options={amenitiesConfig} publicData={publicData} />
-                  <SectionRulesMaybe publicData={publicData} />
+                  <SectionDescriptionMaybe description={description} title={title} />
                   <SectionMapMaybe
                     geolocation={geolocation}
                     publicData={publicData}
                     listingId={currentListing.id}
                   />
-                  <SectionReviews reviews={reviews} fetchReviewsError={fetchReviewsError} />
                   <SectionHostMaybe
                     title={title}
                     listing={currentListing}
@@ -465,9 +418,7 @@ export class ListingPageComponent extends Component {
               </div>
             </div>
           </LayoutWrapperMain>
-          <LayoutWrapperFooter>
-            <Footer />
-          </LayoutWrapperFooter>
+          <LayoutWrapperFooter></LayoutWrapperFooter>
         </LayoutSingleColumn>
       </Page>
     );

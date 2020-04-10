@@ -3,8 +3,8 @@ import { string, func, oneOfType } from 'prop-types';
 import { FormattedMessage } from '../../util/reactIntl';
 import truncate from 'lodash/truncate';
 import classNames from 'classnames';
-import { AvatarLarge, NamedLink, InlineTextButton } from '../../components';
-import { ensureUser, ensureCurrentUser } from '../../util/data';
+import { ListingUserCard, NamedLink, InlineTextButton } from '../../components';
+import { ensureUser, ensureCurrentUser, userAbbreviatedName } from '../../util/data';
 import { propTypes } from '../../util/types';
 
 import css from './UserCard.css';
@@ -115,16 +115,27 @@ const UserCard = props => {
       {isCurrentUser ? editProfileMobile : contact}
     </p>
   ) : null;
-
+  const audience =
+    ensuredUser && ensuredUser.attributes.profile.publicData
+      ? ensuredUser.attributes.profile.publicData.audience
+      : '';
+  const photo =
+    ensuredUser && ensuredUser.profileImage
+      ? ensuredUser.profileImage.attributes.variants['scaled-small'].url
+      : '';
+  const abbreviatedName = userAbbreviatedName(ensuredUser, '');
+  console.log(abbreviatedName);
   return (
     <div className={classes}>
       <div className={css.content}>
-        <AvatarLarge className={css.avatar} user={user} />
         <div className={css.info}>
           <div className={css.headingRow}>
-            <h3 className={css.heading}>
-              <FormattedMessage id="UserCard.heading" values={{ name: displayName }} />
-            </h3>
+            <ListingUserCard
+              img={photo}
+              username={displayName}
+              userAudience={audience}
+              reviews="5"
+            />
             {editProfileDesktop}
           </div>
           {hasBio ? <ExpandableBio className={css.desktopBio} bio={bio} /> : null}

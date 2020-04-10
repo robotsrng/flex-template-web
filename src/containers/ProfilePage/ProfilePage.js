@@ -22,9 +22,7 @@ import {
   NamedLink,
   ListingCard,
   ListingReviews,
-  // ButtonTabNavHorizontal,
   ListingSocialMediaCard,
-  // TabNav
 } from '../../components';
 import { TopbarContainer, NotFoundPage } from '../../containers';
 import { loadData, showMoreReviews, hideMoreReviews } from './ProfilePage.duck';
@@ -32,17 +30,13 @@ import config from '../../config';
 
 import css from './ProfilePage.css';
 
-import instagram from './img/Instagram.jpg';
-
 const { UUID } = sdkTypes;
-// const MAX_MOBILE_SCREEN_WIDTH = 768;
 
 export class ProfilePageComponent extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      // keep track of which reviews tab to show in desktop viewport
       showReviewsType: REVIEW_TYPE_OF_PROVIDER,
       currentTab: 'brands',
     };
@@ -57,9 +51,7 @@ export class ProfilePageComponent extends Component {
     });
   }
 
-  componentDidMount() {
-    // console.log(this.props)
-  }
+  componentDidMount() {}
 
   showOfCustomerReviews() {
     this.setState({
@@ -81,16 +73,12 @@ export class ProfilePageComponent extends Component {
       listings,
       reviews,
       reviewsMeta,
-      // queryReviewsError,
-      // viewport,
       intl,
       showMoreReviews,
       onShowMoreReviews,
-      // onHideMoreReviews,
     } = this.props;
     const ensuredCurrentUser = ensureCurrentUser(currentUser);
     const profileUser = ensureUserProfile(user);
-    console.log(profileUser);
     const isCurrentUser =
       ensuredCurrentUser.id && profileUser.id && ensuredCurrentUser.id.uuid === profileUser.id.uuid;
     const displayName = profileUser.attributes.profile.displayName;
@@ -103,9 +91,16 @@ export class ProfilePageComponent extends Component {
     const location = profileUser.attributes.profile.publicData
       ? profileUser.attributes.profile.publicData.location
       : '';
-    // const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
     const totalReviews = reviewsMeta ? reviewsMeta.totalItems : 0;
 
+    const userAudience =
+      currentUser && currentUser.attributes.profile.publicData.audience
+        ? currentUser.attributes.profile.publicData.audience
+        : 0;
+    const channelList =
+      currentUser && currentUser.attributes.profile.publicData.offering
+        ? currentUser.attributes.profile.publicData.offering
+        : [];
     const editLinkMobile = isCurrentUser ? (
       <NamedLink className={css.editLinkMobile} name="ProfileSettingsPage">
         <FormattedMessage id="ProfilePage.editProfileLinkMobile" />
@@ -137,7 +132,6 @@ export class ProfilePageComponent extends Component {
         </li>
       </ul>
     );
-
     const asideContent = (
       <div className={css.asideContent}>
         {!showMoreReviews ? (
@@ -150,7 +144,7 @@ export class ProfilePageComponent extends Component {
                 ) : null}
               </h1>
               <p className={css.counter}>
-                10.7k <span>audience</span>
+                {userAudience} <span>audience</span>
               </p>
               <p className={css.counter}>
                 5.0 <span>(105)</span>
@@ -167,77 +161,9 @@ export class ProfilePageComponent extends Component {
       [css.withBioMissingAbove]: !hasBio,
     });
 
-    // const reviewsError = (
-    //   <p className={css.error}>
-    //     <FormattedMessage id="ProfilePage.loadingReviewsFailed" />
-    //   </p>
-    // );
-
     const reviewsOfProvider = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_PROVIDER);
 
     const reviewsOfCustomer = reviews.filter(r => r.attributes.type === REVIEW_TYPE_OF_CUSTOMER);
-
-    // const mobileReviews = (
-    //   <div className={css.mobileReviews}>
-    //     <h2 className={css.mobileReviewsTitle}>
-    //       <FormattedMessage
-    //         id="ProfilePage.reviewsOfProviderTitle"
-    //         values={{ count: reviewsOfProvider.length }}
-    //       />
-    //     </h2>
-    //     {queryReviewsError ? reviewsError : null}
-    //     <Reviews reviews={reviewsOfProvider} />
-    //     <h2 className={css.mobileReviewsTitle}>
-    //       <FormattedMessage
-    //         id="ProfilePage.reviewsOfCustomerTitle"
-    //         values={{ count: reviewsOfCustomer.length }}
-    //       />
-    //     </h2>
-    //     {queryReviewsError ? reviewsError : null}
-    //     <Reviews reviews={reviewsOfCustomer} />
-    //   </div>
-    // );
-
-    // const desktopReviewTabs = [
-    //   {
-    //     text: (
-    //       <h3 className={css.desktopReviewsTitle}>
-    //         <FormattedMessage
-    //           id="ProfilePage.reviewsOfProviderTitle"
-    //           values={{ count: reviewsOfProvider.length }}
-    //         />
-    //       </h3>
-    //     ),
-    //     selected: this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER,
-    //     onClick: this.showOfProviderReviews,
-    //   },
-    //   {
-    //     text: (
-    //       <h3 className={css.desktopReviewsTitle}>
-    //         <FormattedMessage
-    //           id="ProfilePage.reviewsOfCustomerTitle"
-    //           values={{ count: reviewsOfCustomer.length }}
-    //         />
-    //       </h3>
-    //     ),
-    //     selected: this.state.showReviewsType === REVIEW_TYPE_OF_CUSTOMER,
-    //     onClick: this.showOfCustomerReviews,
-    //   },
-    // ];
-
-    // const desktopReviews = (
-    //   <div className={css.desktopReviews}>
-    //     <ButtonTabNavHorizontal className={css.desktopReviewsTabNav} tabs={desktopReviewTabs} />
-
-    //     {queryReviewsError ? reviewsError : null}
-
-    //     {this.state.showReviewsType === REVIEW_TYPE_OF_PROVIDER ? (
-    //       <Reviews reviews={reviewsOfProvider} />
-    //     ) : (
-    //         <Reviews reviews={reviewsOfCustomer} />
-    //       )}
-    //   </div>
-    // );
 
     const allReviews = (
       <div className={listingsContainerClasses}>
@@ -245,37 +171,7 @@ export class ProfilePageComponent extends Component {
           <FormattedMessage id="ProfilePage.reviewsTitle" values={{ count: totalReviews }} />
         </h2>
 
-        <ListingReviews
-          reviews={reviews}
-          //   [
-          //   {
-          //     id: {
-          //       uuid: 1
-          //     },
-          //     author: {
-          //       ...profileUser
-          //     },
-          //     attributes: {
-          //       createdAt: '02/07/2020',
-          //       rating: 5,
-          //       content: 'Awesome product'
-          //     }
-          //   },
-          //   {
-          //     id: {
-          //       uuid: 2
-          //     },
-          //     author: {
-          //       ...profileUser
-          //     },
-          //     attributes: {
-          //       createdAt: '01/14/2020',
-          //       rating: 4.5,
-          //       content: 'Another cool review'
-          //     }
-          //   }
-          // ]}
-        />
+        <ListingReviews reviews={reviews} />
 
         {/* DISPLAY THIS ONLY IF THERE ARE MORE REVIEWS AVAILABLE */}
         {totalReviews > 3 && (
@@ -294,47 +190,9 @@ export class ProfilePageComponent extends Component {
     const renderReviewTab = () => {
       switch (this.state.currentTab) {
         case 'brands':
-          return (
-            <ListingReviews
-              reviews={reviewsOfProvider}
-              // reviews={[
-              //   {
-              //     id: {
-              //       uuid: 2,
-              //     },
-              //     author: {
-              //       ...profileUser,
-              //     },
-              //     attributes: {
-              //       createdAt: '01/14/2020',
-              //       rating: 4.5,
-              //       content: 'Another cool review',
-              //     },
-              //   },
-              // ]}
-            />
-          );
+          return <ListingReviews reviews={reviewsOfProvider} />;
         case 'creators':
-          return (
-            <ListingReviews
-              reviews={reviewsOfCustomer}
-              // reviews={[
-              //   {
-              //     id: {
-              //       uuid: 1,
-              //     },
-              //     author: {
-              //       ...profileUser,
-              //     },
-              //     attributes: {
-              //       createdAt: '02/07/2020',
-              //       rating: 5,
-              //       content: 'Awesome product',
-              //     },
-              //   },
-              // ]}
-            />
-          );
+          return <ListingReviews reviews={reviewsOfCustomer} />;
         default:
           return null;
       }
@@ -359,15 +217,18 @@ export class ProfilePageComponent extends Component {
                   />
                 </h2>
                 <ul className={css.listings}>
-                  {listings.map(l => (
-                    <li className={css.listing} key={l.id.uuid}>
-                      <ListingCard listing={l} />
-                    </li>
-                  ))}
+                  {listings.map(l => {
+                    if (l.attributes.publicData.listingType === 'post') {
+                      return (
+                        <li className={css.listing} key={l.id.uuid}>
+                          <ListingCard listing={l} />
+                        </li>
+                      );
+                    } else return null;
+                  })}
                 </ul>
               </div>
             ) : null}
-            {/* {isMobileLayout ? mobileReviews : desktopReviews} */}
             {/* DISPLAY REVIEWS */}
             {allReviews}
             {/* DISPLAY CHANNELS */}
@@ -375,17 +236,17 @@ export class ProfilePageComponent extends Component {
               <h2 className={css.listingsTitle}>
                 <FormattedMessage
                   id="ProfilePage.channelsTitle"
-                  values={{ count: listings.length }}
+                  values={{ count: channelList.length }}
                 />
               </h2>
               <ul className={css.listings}>
-                {listings.map(l => (
-                  <li className={css.listing} key={l.id.uuid}>
+                {channelList.map(channel => (
+                  <li className={css.listing} key={channel.username}>
                     <ListingSocialMediaCard
-                      img={instagram}
-                      username="frederickcalderon"
-                      audience="700k followers"
-                      platform="Instagram"
+                      img={channel.photo}
+                      username={channel.username}
+                      audience={channel.count}
+                      platform={channel.platform}
                     />
                   </li>
                 ))}
