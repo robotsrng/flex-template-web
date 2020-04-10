@@ -1,12 +1,14 @@
 import React from 'react';
 import css from './ListingUserCard.css';
+import altImg from './img/altImg.png';
 
 const ListingUserCard = ({ img, username, userAudience, reviews }) => {
+  const image = img ? img : altImg;
   return (
     <div className={css.container}>
       <div className={css.colInfo}>
         <div>
-          <img src={img} className={css.roundImg} alt=""></img>
+          <img src={image} className={css.roundImg} alt=""></img>
         </div>
         <div className={css.col}>
           <p className={css.username}>{username}</p>
