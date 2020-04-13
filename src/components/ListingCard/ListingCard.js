@@ -47,30 +47,15 @@ export const ListingCardComponent = props => {
     author && author.attributes.profile.publicData.audience
       ? author.attributes.profile.publicData.audience
       : 0;
-  /**
-   * Edit when all users are deleted from console
-   */
-  let offering;
-  let count;
-  if (
-    currentListing &&
-    currentListing.attributes.publicData.offering &&
-    currentListing.attributes.publicData.offering.count
-  ) {
-    count = currentListing.attributes.publicData.offering.count;
-  } else {
-    count = 0;
-  }
 
-  if (currentListing.attributes.publicData.offering) {
-    if (currentListing.attributes.publicData.offering.platform) {
-      offering = currentListing.attributes.publicData.offering.platform.replace(/^\w/, c =>
-        c.toUpperCase()
-      );
-    } else {
-      offering = currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase());
-    }
-  }
+  const offering =
+    currentListing && currentListing.attributes.publicData.offering.platform
+      ? currentListing.attributes.publicData.offering.platform.replace(/^\w/, c => c.toUpperCase())
+      : '';
+  const count =
+    currentListing && currentListing.attributes.publicData.offering.count
+      ? currentListing.attributes.publicData.offering.count
+      : 0;
 
   return listing.attributes.publicData.listingType === 'post' ? (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
