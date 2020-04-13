@@ -14,7 +14,7 @@ const SectionExplanation = props => {
   const { rootClassName, className } = props;
 
   const classes = classNames(rootClassName || css.root, className);
-
+  const exampleList = [firstImg, secondImg, thirdImg];
   return (
     <div className={classes}>
       <div className={css.container}>
@@ -24,39 +24,20 @@ const SectionExplanation = props => {
         <p className={css.subtitle}>
           <FormattedMessage id="SectionExplanation.subTitle" />
         </p>
-
-        <div className={css.accountContainer}>
-          <ListingPostCard
-            img={firstImg}
-            postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
-            postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
-            postSocialMedia="Instagram"
-            postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
-            postValue={<FormattedMessage id="ListingPostCard.postValue" />}
-          />
-        </div>
-
-        <div className={css.accountContainer}>
-          <ListingPostCard
-            img={secondImg}
-            postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
-            postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
-            postSocialMedia="Instagram"
-            postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
-            postValue={<FormattedMessage id="ListingPostCard.postValue" />}
-          />
-        </div>
-
-        <div className={css.accountContainer}>
-          <ListingPostCard
-            img={thirdImg}
-            postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
-            postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
-            postSocialMedia="Instagram"
-            postFollowerAmmount={<FormattedMessage id="ListingPostCard.postFollowerAmmount" />}
-            postValue={<FormattedMessage id="ListingPostCard.postValue" />}
-          />
-        </div>
+        {exampleList.map(example => {
+          return (
+            <div className={css.accountContainer}>
+              <ListingPostCard
+                img={example}
+                postTitle={<FormattedMessage id="ListingPostCard.postTitle" />}
+                postUsername={<FormattedMessage id="ListingPostCard.postUsername" />}
+                postSocialMedia="Instagram"
+                postFollowerAmmount="338"
+                postValue={<FormattedMessage id="ListingPostCard.postValue" />}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

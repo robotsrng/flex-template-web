@@ -98,8 +98,8 @@ export class ProfilePageComponent extends Component {
         ? currentUser.attributes.profile.publicData.audience
         : 0;
     const channelList =
-      currentUser && currentUser.attributes.profile.publicData.offering
-        ? currentUser.attributes.profile.publicData.offering
+      profileUser && profileUser.attributes.profile.publicData.offering
+        ? profileUser.attributes.profile.publicData.offering
         : [];
     const editLinkMobile = isCurrentUser ? (
       <NamedLink className={css.editLinkMobile} name="ProfileSettingsPage">

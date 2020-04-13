@@ -77,14 +77,14 @@ export class ManageListingsPageComponent extends Component {
     );
 
     const noResults =
-      listingsAreLoaded && pagination.totalItems === 0 ? (
+      listingsAreLoaded && pagination.totalItems === 1 ? (
         <h1 className={css.title}>
           <FormattedMessage id="ManageListingsPage.noResults" />
         </h1>
       ) : null;
 
     const heading =
-      listingsAreLoaded && pagination.totalItems > 0 ? (
+      listingsAreLoaded && pagination.totalItems > 1 ? (
         <h1 className={css.title}>
           <FormattedMessage
             id="ManageListingsPage.youHaveListings"
@@ -119,7 +119,7 @@ export class ManageListingsPageComponent extends Component {
       `(max-width: 1920px) ${panelWidth / 2}vw`,
       `${panelWidth / 3}vw`,
     ].join(', ');
-
+    console.log(listings);
     return (
       <Page title={title} scrollingDisabled={scrollingDisabled}>
         <LayoutSingleColumn>
@@ -133,21 +133,25 @@ export class ManageListingsPageComponent extends Component {
             <div className={css.listingPanel}>
               {heading}
               <div className={css.listingCards}>
-                {listings.map(l => (
-                  <ManageListingCard
-                    className={css.listingCard}
-                    key={l.id.uuid}
-                    listing={l}
-                    isMenuOpen={!!listingMenuOpen && listingMenuOpen.id.uuid === l.id.uuid}
-                    actionsInProgressListingId={openingListing || closingListing}
-                    onToggleMenu={this.onToggleMenu}
-                    onCloseListing={onCloseListing}
-                    onOpenListing={onOpenListing}
-                    hasOpeningError={openingErrorListingId.uuid === l.id.uuid}
-                    hasClosingError={closingErrorListingId.uuid === l.id.uuid}
-                    renderSizes={renderSizes}
-                  />
-                ))}
+                {listings.map(l => {
+                  if (l.attributes.publicData.listingType === 'post') {
+                    return (
+                      <ManageListingCard
+                        className={css.listingCard}
+                        key={l.id.uuid}
+                        listing={l}
+                        isMenuOpen={!!listingMenuOpen && listingMenuOpen.id.uuid === l.id.uuid}
+                        actionsInProgressListingId={openingListing || closingListing}
+                        onToggleMenu={this.onToggleMenu}
+                        onCloseListing={onCloseListing}
+                        onOpenListing={onOpenListing}
+                        hasOpeningError={openingErrorListingId.uuid === l.id.uuid}
+                        hasClosingError={closingErrorListingId.uuid === l.id.uuid}
+                        renderSizes={renderSizes}
+                      />
+                    );
+                  }
+                })}
               </div>
               {paginationLinks}
             </div>

@@ -177,7 +177,6 @@ export const ensureListing = listing => {
   };
   return { ...empty, ...listing };
 };
-
 /**
  * Create shell objects to ensure that attributes etc. exists.
  *
@@ -400,4 +399,25 @@ export const humanizeLineItemCode = code => {
   const lowercase = code.replace(/^line-item\//, '').replace(/-/g, ' ');
 
   return lowercase.charAt(0).toUpperCase() + lowercase.slice(1);
+};
+
+/**
+ * Abbreviate number (k,m,b)
+ */
+
+export const abbreviateNumber = (num, fixed) => {
+  const number = parseInt(num);
+  if (number === null) {
+    return null;
+  } // terminate early
+  if (number === 0) {
+    return '0';
+  } // terminate early
+  fixed = !fixed || fixed < 0 ? 0 : fixed; // number of decimal places to show
+  var b = number.toPrecision(2).split('e'), // get power
+    k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
+    c = k < 1 ? number.toFixed(0 + fixed) : (number / Math.pow(10, k * 3)).toFixed(1 + fixed), // divide by power
+    d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
+    e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
+  return e;
 };

@@ -398,7 +398,7 @@ SearchPage.loadData = (params, search) => {
     perPage: RESULT_PAGE_SIZE,
     include: ['author', 'images'],
     'fields.listing': ['title', 'geolocation', 'price', 'publicData'],
-    'fields.user': ['profile.displayName', 'profile.abbreviatedName'],
+    'fields.user': ['profile.displayName', 'profile.abbreviatedName', 'profile.publicData'],
     'fields.image': ['variants.scaled-small'],
     'limit.images': 1,
   });

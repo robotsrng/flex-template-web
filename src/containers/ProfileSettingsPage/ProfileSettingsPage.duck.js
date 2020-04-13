@@ -203,8 +203,13 @@ export const updateProfile = actionPayload => {
             if (actionPayload.profileImageId) {
               sdk.ownListings
                 .update(actionPayloadUserCard, queryParamsUserCard)
-                .then(r => console.log(r));
-            } else sdk.ownListings.update(actionPayloadUserCard).then(r => console.log(r));
+                .then(r => console.log(r))
+                .catch(error => console.log(error));
+            } else
+              sdk.ownListings
+                .update(actionPayloadUserCard)
+                .then(r => console.log(r))
+                .catch(error => console.log(error));
           })
           .catch(err => console.log(err));
         dispatch(updateProfileSuccess(response));

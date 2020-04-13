@@ -4,7 +4,7 @@ import { FormattedMessage } from '../../util/reactIntl';
 import truncate from 'lodash/truncate';
 import classNames from 'classnames';
 import { ListingUserCard, NamedLink, InlineTextButton } from '../../components';
-import { ensureUser, ensureCurrentUser, userAbbreviatedName } from '../../util/data';
+import { ensureUser, ensureCurrentUser } from '../../util/data';
 import { propTypes } from '../../util/types';
 
 import css from './UserCard.css';
@@ -123,8 +123,6 @@ const UserCard = props => {
     ensuredUser && ensuredUser.profileImage
       ? ensuredUser.profileImage.attributes.variants['scaled-small'].url
       : '';
-  const abbreviatedName = userAbbreviatedName(ensuredUser, '');
-  console.log(abbreviatedName);
   return (
     <div className={classes}>
       <div className={css.content}>

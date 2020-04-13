@@ -4,7 +4,7 @@ import { intlShape, injectIntl } from '../../util/reactIntl';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import { formatMoney } from '../../util/currency';
-import { ensureListing, ensureUser } from '../../util/data';
+import { ensureListing, ensureUserProfile } from '../../util/data';
 import { createSlug } from '../../util/urlHelpers';
 import config from '../../config';
 import { NamedLink, ListingPostCard, ListingUserCard } from '../../components';
@@ -38,13 +38,30 @@ export const ListingCardComponent = props => {
   const id = currentListing.id.uuid;
   const { title = '', price } = currentListing.attributes;
   const slug = createSlug(title);
-  const author = ensureUser(listing.author);
+  const author = ensureUserProfile(listing.author);
   const authorName = author.attributes.profile.displayName;
   const firstImage =
     currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
   const { priceTitle } = priceData(price, intl);
-
+  const audience =
+    author && author.attributes.profile.publicData.audience
+      ? author.attributes.profile.publicData.audience
+      : 0;
+  /**
+   * Edit when all users are deleted from console
+   */
   let offering;
+  let count;
+  if (
+    currentListing &&
+    currentListing.attributes.publicData.offering &&
+    currentListing.attributes.publicData.offering.count
+  ) {
+    count = currentListing.attributes.publicData.offering.count;
+  } else {
+    count = 0;
+  }
+
   if (currentListing.attributes.publicData.offering) {
     if (currentListing.attributes.publicData.offering.platform) {
       offering = currentListing.attributes.publicData.offering.platform.replace(/^\w/, c =>
@@ -54,6 +71,7 @@ export const ListingCardComponent = props => {
       offering = currentListing.attributes.publicData.offering.replace(/^\w/, c => c.toUpperCase());
     }
   }
+
   return listing.attributes.publicData.listingType === 'post' ? (
     <NamedLink className={classes} name="ListingPage" params={{ id, slug }}>
       <div className={css.accountContainer}>
@@ -61,7 +79,7 @@ export const ListingCardComponent = props => {
           img={firstImage && firstImage.attributes.variants['scaled-small'].url}
           postTitle={title}
           postUsername={authorName}
-          postFollowerAmmount="120 followers"
+          postFollowerAmmount={count}
           postValue={priceTitle}
           postSocialMedia={offering}
         />
@@ -72,7 +90,7 @@ export const ListingCardComponent = props => {
       <ListingUserCard
         img={firstImage && firstImage.attributes.variants['scaled-small'].url}
         username={title}
-        userAudience="500"
+        userAudience={audience}
         reviews={reviews}
       />
     </NamedLink>

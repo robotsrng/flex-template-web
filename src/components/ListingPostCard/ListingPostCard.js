@@ -1,5 +1,6 @@
 import React from 'react';
 import css from './ListingPostCard.css';
+import { abbreviateNumber } from '../../util/data';
 
 const ListingPostCard = ({
   img,
@@ -41,13 +42,15 @@ const ListingPostCard = ({
                   <React.Fragment>
                     <p className={css.postContent}>{postUsername}</p>
                     <p className={css.postContent}>
-                      {postSocialMedia} | {postFollowerAmmount}
+                      {postSocialMedia} | {abbreviateNumber(postFollowerAmmount, 0)} followers
                     </p>
                   </React.Fragment>
                 ) : (
                   <React.Fragment>
                     <p className={css.postContent}>{postSocialMedia}</p>
-                    <p className={css.postContent}>{postFollowerAmmount} followers</p>
+                    <p className={css.postContent}>
+                      {abbreviateNumber(postFollowerAmmount, 0)} followers
+                    </p>
                   </React.Fragment>
                 )}
               </div>

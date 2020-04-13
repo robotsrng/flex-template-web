@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './ListingSocialMediaCard.css';
-import { abbreviateNumber } from '../../util/abbreviateNumber.js';
+import { abbreviateNumber } from '../../util/data';
 
 const ListingSocialMediaCard = ({ img, username, audience, platform, whiteLetters }) => {
   return (

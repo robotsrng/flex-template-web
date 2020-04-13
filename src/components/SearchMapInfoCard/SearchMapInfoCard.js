@@ -26,7 +26,6 @@ const ListingCard = props => {
     { [css.borderRadiusInheritBottom]: !isInCarousel },
     className
   );
-
   return (
     <a
       alt={title}
@@ -50,22 +49,6 @@ const ListingCard = props => {
           postValue={formattedPrice}
           postSocialMedia={publicData.offering}
         />
-        {/* <div className={classNames(css.threeToTwoWrapper, css.borderRadiusInheritTop)}>
-          <div className={classNames(css.aspectWrapper, css.borderRadiusInheritTop)}>
-            <ResponsiveImage
-              rootClassName={classNames(css.rootForImage, css.borderRadiusInheritTop)}
-              alt={title}
-              noImageMessage={intl.formatMessage({ id: 'SearchMapInfoCard.noImage' })}
-              image={firstImage}
-              variants={['scaled-small', 'landscape-crop', 'landscape-crop2x']}
-              sizes="250px"
-            />
-          </div>
-        </div>
-        <div className={classNames(css.info, { [css.borderRadiusInheritBottom]: !isInCarousel })}>
-          <div className={css.price}>{formattedPrice}</div>
-          <div className={css.name}>{title}</div>
-        </div> */}
       </div>
     </a>
   );

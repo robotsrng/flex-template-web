@@ -62,16 +62,16 @@ export const EditListingOfferingFormComponent = props => {
               <h2 className={css.title}>{panelTitle}</h2>
               <p>{titleDescription}</p>
               <div className={css.accountContainer}>
-                {channelList.map(o => {
+                {channelList.map(channel => {
                   return (
                     <React.Fragment>
                       <button
                         type="button"
-                        onClick={e => handleOnClickAccount(e, o)}
+                        onClick={e => handleOnClickAccount(e, channel)}
                         className={
                           offering &&
-                          offering.username === o.username &&
-                          offering.platform === o.platform
+                          offering.username === channel.username &&
+                          offering.platform === channel.platform
                             ? css.accountButtonSelected
                             : css.accountButton
                         }
@@ -80,13 +80,13 @@ export const EditListingOfferingFormComponent = props => {
                           <ListingSocialMediaCard
                             whiteLetters={
                               offering &&
-                              offering.username === o.username &&
-                              offering.platform === o.platform
+                              offering.username === channel.username &&
+                              offering.platform === channel.platform
                             }
-                            img={o.photo}
-                            username={o.username}
-                            platform={o.platform}
-                            audience={o.count}
+                            img={channel.photo}
+                            username={channel.username}
+                            platform={channel.platform}
+                            audience={channel.count}
                           />
                         </div>
                       </button>
