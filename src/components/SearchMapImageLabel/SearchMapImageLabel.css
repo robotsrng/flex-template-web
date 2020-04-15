@@ -21,7 +21,7 @@
   }
 }
 
-.priceLabel {
+.imgContainter {
   /**
    * Since caret is absolutely positioned,
    * label must have relative to be included to the same rendering layer
@@ -40,11 +40,10 @@
   border-style: solid;
   border-color: var(--matterColorNegative);
   border-width: 1px;
-  border-radius: 12px;
+  border-radius: 50%;
   box-shadow: var(--boxShadowPopupLight);
 
   /* Dimensions */
-  padding: 6px 10px;
   margin-top: 0;
   margin-bottom: 0;
   transition: var(--transitionStyleButton);
@@ -56,14 +55,19 @@
   }
 }
 
-.priceLabelActive {
+.imgContainterActive {
   /* Same as hover */
   background-color: var(--marketplaceColor);
   border-color: var(--marketplaceColor);
   color: var(--matterColorLight);
   box-shadow: var(--boxShadowPopup);
 }
-
+.imgContainter img,
+.imgContainterActive img {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+}
 .caretShadow {
   /* Caret / arrow dimensions and position */
   width: 6px;

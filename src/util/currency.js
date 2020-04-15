@@ -258,7 +258,32 @@ export const formatMoney = (intl, value) => {
 
   return intl.formatNumber(valueAsNumber, numberFormatOptions);
 };
+/**
+ * Format the given money to a string without cents
+ *
+ * @param {Object} intl
+ * @param {Money} value
+ *
+ * @return {String} formatted money value
+ */
+export const formatMoneyInteger = (intl, value) => {
+  if (!(value instanceof Money)) {
+    throw new Error('Value must be a Money type');
+  }
+  const valueAsNumber = convertMoneyToNumber(value);
 
+  // See: https://github.com/yahoo/react-intl/wiki/API#formatnumber
+  const numberFormatOptions = {
+    style: 'currency',
+    currency: value.currency,
+    currencyDisplay: 'symbol',
+    useGrouping: true,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  };
+
+  return intl.formatNumber(valueAsNumber, numberFormatOptions);
+};
 /**
  * Format the given major-unit string value as currency. E.g. "10" -> "$10".
  *

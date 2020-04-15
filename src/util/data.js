@@ -421,3 +421,14 @@ export const abbreviateNumber = (num, fixed) => {
     e = d + ['', 'K', 'M', 'B', 'T'][k]; // append power
   return e;
 };
+
+/**
+ * Abbreviate string if length > 13
+ * Replace with ... after letter number 10
+ */
+export const abbreviateString = word => {
+  if (word.length > 13) {
+    const abbreviatedWord = word.slice(0, 10) + '...';
+    return abbreviatedWord;
+  } else return word;
+};

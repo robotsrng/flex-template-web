@@ -5,12 +5,16 @@
   justify-content: space-between;
   align-items: stretch;
 }
-.container .colInfo {
+.container .colInfo,
+.container .colInfoMap {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   vertical-align: middle;
+}
+.container .colInfoMap {
+  margin-left: 5px;
 }
 .container .col {
   margin-left: 15px;

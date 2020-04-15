@@ -3,12 +3,11 @@
 .root {
   display: block;
   position: relative;
-  height: auto;
   border: 0;
   padding: 0;
 
   /* Borders */
-  border-radius: 4px;
+  border-radius: 32px;
   box-shadow: var(--boxShadowPopupLight);
 
   transition: var(--transitionStyleButton);
@@ -29,14 +28,20 @@
 }
 
 .card {
+  width: 285px;
+}
+.cardUser {
+  width: 215px;
+}
+.card,
+.cardUser {
   /**
    * Since caret is absolutely positioned,
    * label must have relative to be included to the same rendering layer
    */
   position: relative;
 
-  width: 250px;
-  min-height: 207px;
+  max-height: 150px;
 
   /* Font */
   @apply --marketplaceH5FontStyles;
@@ -55,11 +60,20 @@
     margin-bottom: 0;
   }
 }
-
-/* Overwrite Mapbox's specific font rules */
 .root .card {
+  height: 92px !important;
+  justify-content: center;
+}
+.root .cardUser {
+  height: 78px !important;
+}
+/* Overwrite Mapbox's specific font rules */
+.root .card,
+.root .cardUser {
   font-family: 'sofiapro', Helvetica, Arial, sans-serif;
   font-weight: var(--fontWeightSemiBold);
+  display: flex;
+  align-items: center;
 }
 
 .threeToTwoWrapper {

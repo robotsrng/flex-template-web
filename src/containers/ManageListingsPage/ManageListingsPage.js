@@ -88,7 +88,7 @@ export class ManageListingsPageComponent extends Component {
         <h1 className={css.title}>
           <FormattedMessage
             id="ManageListingsPage.youHaveListings"
-            values={{ count: pagination.totalItems }}
+            values={{ count: pagination.totalItems - 1 }}
           />
         </h1>
       ) : (

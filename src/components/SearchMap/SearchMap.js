@@ -60,6 +60,7 @@ export class SearchMapComponent extends Component {
     this.state = { infoCardOpen: null, mapReattachmentCount };
 
     this.createURLToListing = this.createURLToListing.bind(this);
+    this.createURLToProfilePage = this.createURLToProfilePage.bind(this);
     this.onListingInfoCardClicked = this.onListingInfoCardClicked.bind(this);
     this.onListingClicked = this.onListingClicked.bind(this);
     this.onMapClicked = this.onMapClicked.bind(this);
@@ -79,6 +80,13 @@ export class SearchMapComponent extends Component {
 
     return createResourceLocatorString('ListingPage', routes, pathParams, {});
   }
+  createURLToProfilePage(listing) {
+    const routes = routeConfiguration();
+    const id = listing.attributes.publicData.uuid;
+    const pathParams = { id };
+
+    return createResourceLocatorString('ProfilePage', routes, pathParams, {});
+  }
 
   onListingClicked(listings) {
     this.setState({ infoCardOpen: listings });
@@ -89,9 +97,12 @@ export class SearchMapComponent extends Component {
       this.props.onCloseAsModal();
     }
 
+    const isPost = listing.attributes.publicData.listingType === 'post';
     // To avoid full page refresh we need to use internal router
     const history = this.props.history;
-    history.push(this.createURLToListing(listing));
+    if (isPost) {
+      history.push(this.createURLToListing(listing));
+    } else history.push(this.createURLToProfilePage(listing));
   }
 
   onMapClicked(e) {
@@ -182,6 +193,7 @@ export class SearchMapComponent extends Component {
           activeListingId={activeListingId}
           mapComponentRefreshToken={this.state.mapReattachmentCount}
           createURLToListing={this.createURLToListing}
+          createURLToProfilePage={this.createURLToProfilePage}
           onListingClicked={this.onListingClicked}
           onListingInfoCardClicked={this.onListingInfoCardClicked}
           onMapLoad={this.onMapLoadHandler}

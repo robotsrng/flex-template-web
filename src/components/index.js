@@ -185,6 +185,7 @@ export { default as TransactionPanel } from './TransactionPanel/TransactionPanel
 
 // Custom Components
 export {default as ListingPostCard} from './ListingPostCard/ListingPostCard';
+export {default as ListingPostCardSimplified} from './ListingPostCardSimplified/ListingPostCardSimplified';
 export {default as ListingUserCard} from './ListingUserCard/ListingUserCard';
 export {default as ListingCalculatorResultCard} from './ListingCalculatorResultCard/ListingCalculatorResultCard';
 export {default as ListingSocialMediaCard} from './ListingSocialMediaCard/ListingSocialMediaCard';
@@ -195,3 +196,4 @@ export {default as SocialMediaButtons} from './SocialMediaButtons/SocialMediaBut
 export {default as VerificationCodeField} from './VerificationCodeField/VerificationCodeField'
 export {default as FeatureButtons} from './FeatureButtons/FeatureButtons'
 export { default as AddAccountNamedLink } from './NamedLink/AddAccountNamedLink';
+export { default as SearchMapImageLabel } from './SearchMapImageLabel/SearchMapImageLabel';

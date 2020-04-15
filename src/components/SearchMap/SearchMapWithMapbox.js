@@ -9,7 +9,12 @@ import { parse } from '../../util/urlHelpers';
 import { propTypes } from '../../util/types';
 import { ensureListing } from '../../util/data';
 import { sdkBoundsToFixedCoordinates, hasSameSDKBounds } from '../../util/maps';
-import { SearchMapInfoCard, SearchMapPriceLabel, SearchMapGroupLabel } from '../../components';
+import {
+  SearchMapInfoCard,
+  SearchMapPriceLabel,
+  SearchMapImageLabel,
+  SearchMapGroupLabel,
+} from '../../components';
 
 import { groupedByCoordinates, reducedToArray } from './SearchMap.helpers.js';
 import css from './SearchMapWithMapbox.css';
@@ -141,7 +146,6 @@ const priceLabelsInLocations = (
     const isActive = activeListingId
       ? !!listingArr.find(l => activeListingId.uuid === l.id.uuid)
       : false;
-
     // If location contains only one listing, print price label
     if (listingArr.length === 1) {
       const listing = listingArr[0];
@@ -160,10 +164,11 @@ const priceLabelsInLocations = (
       const { geolocation } = listing.attributes;
 
       const key = listing.id.uuid;
+      const type = listing.attributes.publicData.listingType === 'post' ? 'price' : 'image';
       return {
         markerId: `price_${key}`,
         location: geolocation,
-        type: 'price',
+        type,
         componentProps: {
           key,
           isActive,
@@ -204,6 +209,7 @@ const infoCardComponent = (
   infoCardOpen,
   onListingInfoCardClicked,
   createURLToListing,
+  createURLToProfilePage,
   mapComponentRefreshToken
 ) => {
   const listingsArray = Array.isArray(infoCardOpen) ? infoCardOpen : [infoCardOpen];
@@ -226,6 +232,7 @@ const infoCardComponent = (
       listings: listingsArray,
       onListingInfoCardClicked,
       createURLToListing,
+      createURLToProfilePage,
     },
   };
 };
@@ -373,9 +380,9 @@ class SearchMapWithMapbox extends Component {
       onListingClicked,
       onListingInfoCardClicked,
       createURLToListing,
+      createURLToProfilePage,
       mapComponentRefreshToken,
     } = this.props;
-
     if (this.map) {
       // Create markers out of price labels and grouped labels
       const labels = priceLabelsInLocations(
@@ -385,7 +392,6 @@ class SearchMapWithMapbox extends Component {
         onListingClicked,
         mapComponentRefreshToken
       );
-
       // If map has moved or info card opened, unnecessary markers need to be removed
       const removableMarkers = differenceBy(this.currentMarkers, labels, 'markerId');
       removableMarkers.forEach(rm => rm.marker.remove());
@@ -423,6 +429,7 @@ class SearchMapWithMapbox extends Component {
           infoCardOpen,
           onListingInfoCardClicked,
           createURLToListing,
+          createURLToProfilePage,
           mapComponentRefreshToken
         );
 
@@ -477,6 +484,11 @@ class SearchMapWithMapbox extends Component {
           } else if (isMapReadyForMarkers && m.type === 'group') {
             return ReactDOM.createPortal(
               <SearchMapGroupLabel {...m.componentProps} />,
+              portalDOMContainer
+            );
+          } else if (isMapReadyForMarkers && m.type === 'image') {
+            return ReactDOM.createPortal(
+              <SearchMapImageLabel {...m.componentProps} />,
               portalDOMContainer
             );
           }

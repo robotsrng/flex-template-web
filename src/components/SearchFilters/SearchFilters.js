@@ -6,15 +6,8 @@ import classNames from 'classnames';
 import { withRouter } from 'react-router-dom';
 import omit from 'lodash/omit';
 
-import {
-  // BookingDateRangeFilter,
-  // SelectSingleFilter,
-  SelectMultipleFilter,
-  PriceFilter,
-  KeywordFilter,
-} from '../../components';
+import { SelectMultipleFilter, PriceFilter, KeywordFilter } from '../../components';
 import routeConfiguration from '../../routeConfiguration';
-// import { parseDateFromISO8601, stringifyDateToISO8601 } from '../../util/dates';
 import { createResourceLocatorString } from '../../util/routes';
 import { propTypes } from '../../util/types';
 import css from './SearchFilters.css';
@@ -45,20 +38,6 @@ const initialPriceRangeValue = (queryParams, paramName) => {
     : null;
 };
 
-// const initialDateRangeValue = (queryParams, paramName) => {
-//   const dates = queryParams[paramName];
-//   const rawValuesFromParams = !!dates ? dates.split(',') : [];
-//   const valuesFromParams = rawValuesFromParams.map(v => parseDateFromISO8601(v));
-//   const initialValues =
-//     !!dates && valuesFromParams.length === 2
-//       ? {
-//           dates: { startDate: valuesFromParams[0], endDate: valuesFromParams[1] },
-//         }
-//       : { dates: null };
-
-//   return initialValues;
-// };
-
 const SearchFiltersComponent = props => {
   const {
     rootClassName,
@@ -67,11 +46,9 @@ const SearchFiltersComponent = props => {
     listingsAreLoaded,
     resultsCount,
     searchInProgress,
-    // categoryFilter,
     postCategoriesFilter,
     priceFilter,
     socialMediasFilter,
-    // dateRangeFilter,
     keywordFilter,
     isSearchFiltersPanelOpen,
     toggleSearchFiltersPanel,
@@ -81,10 +58,6 @@ const SearchFiltersComponent = props => {
   } = props;
   const hasNoResult = listingsAreLoaded && resultsCount === 0;
   const classes = classNames(rootClassName || css.root, { [css.longInfo]: hasNoResult }, className);
-
-  // const categoryLabel = intl.formatMessage({
-  //   id: 'SearchFilters.categoryLabel',
-  // });
 
   const amenitiesLabel = intl.formatMessage({
     id: 'SearchFilters.amenitiesLabel',
@@ -131,16 +104,6 @@ const SearchFiltersComponent = props => {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
-  // const handleSelectOption = (urlParam, option) => {
-  //   // query parameters after selecting the option
-  //   // if no option is passed, clear the selection for the filter
-  //   const queryParams = option
-  //     ? { ...urlQueryParams, [urlParam]: option }
-  //     : omit(urlQueryParams, urlParam);
-
-  //   history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
-  // };
-
   const handlePrice = (urlParam, range) => {
     const { minPrice, maxPrice } = range || {};
     const queryParams =
@@ -151,20 +114,6 @@ const SearchFiltersComponent = props => {
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
 
-  // const handleDateRange = (urlParam, dateRange) => {
-  //   const hasDates = dateRange && dateRange.dates;
-  //   const { startDate, endDate } = hasDates ? dateRange.dates : {};
-
-  //   const start = startDate ? stringifyDateToISO8601(startDate) : null;
-  //   const end = endDate ? stringifyDateToISO8601(endDate) : null;
-
-  //   const queryParams =
-  //     start != null && end != null
-  //       ? { ...urlQueryParams, [urlParam]: `${start},${end}` }
-  //       : omit(urlQueryParams, urlParam);
-  //   history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
-  // };
-
   const handleKeyword = (urlParam, values) => {
     const queryParams = values
       ? { ...urlQueryParams, [urlParam]: values }
@@ -172,18 +121,6 @@ const SearchFiltersComponent = props => {
 
     history.push(createResourceLocatorString('SearchPage', routeConfiguration(), {}, queryParams));
   };
-
-  // const categoryFilterElement = categoryFilter ? (
-  //   <SelectSingleFilter
-  //     urlParam={categoryFilter.paramName}
-  //     label={categoryLabel}
-  //     onSelect={handleSelectOption}
-  //     showAsPopup
-  //     options={categoryFilter.options}
-  //     initialValue={initialCategory}
-  //     contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
-  //   />
-  // ) : null;
 
   const socialMediasFilterElement = socialMediasFilter ? (
     <SelectMultipleFilter
@@ -224,18 +161,6 @@ const SearchFiltersComponent = props => {
       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
     />
   ) : null;
-
-  // const dateRangeFilterElement =
-  //   dateRangeFilter && dateRangeFilter.config.active ? (
-  //     <BookingDateRangeFilter
-  //       id="SearchFilters.dateRangeFilter"
-  //       urlParam={dateRangeFilter.paramName}
-  //       onSubmit={handleDateRange}
-  //       showAsPopup
-  //       contentPlacementOffset={FILTER_DROPDOWN_OFFSET}
-  //       initialValues={initialDateRange}
-  //     />
-  //   ) : null;
 
   const keywordFilterElement =
     keywordFilter && keywordFilter.config.active ? (

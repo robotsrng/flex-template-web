@@ -25,17 +25,17 @@ class EditListingLocationPanel extends Component {
     const { listing } = this.props;
     const currentListing = ensureOwnListing(listing);
     const { author, attributes } = currentListing;
-    console.log(author);
+    console.log(listing);
     // Only render current search if full place object is available in the URL params
     // TODO bounds are missing - those need to be queried directly from Google Places
     const locationFieldsPresent =
-      author &&
-      author.attributes.profile.publicData.location &&
-      author.attributes.profile.publicData.location.selectedPlace.address &&
-      author.attributes.profile.publicData.location.selectedPlace.origin;
+      listing &&
+      listing.attributes.publicData.offering.location &&
+      listing.attributes.publicData.offering.location.selectedPlace.address &&
+      listing.attributes.publicData.offering.location.selectedPlace.origin;
     const location =
-      author && author.attributes.profile.publicData.location.selectedPlace
-        ? author.attributes.profile.publicData.location.selectedPlace
+      listing && listing.attributes.publicData.offering.location.selectedPlace
+        ? listing.attributes.publicData.offering.location.selectedPlace
         : {};
     const { address, origin } = location;
     return {

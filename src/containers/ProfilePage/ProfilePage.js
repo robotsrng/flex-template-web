@@ -213,7 +213,7 @@ export class ProfilePageComponent extends Component {
                 <h2 className={css.listingsTitle}>
                   <FormattedMessage
                     id="ProfilePage.listingsTitle"
-                    values={{ count: listings.length }}
+                    values={{ count: listings.length - 1 }}
                   />
                 </h2>
                 <ul className={css.listings}>

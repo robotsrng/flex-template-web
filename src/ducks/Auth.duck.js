@@ -192,37 +192,20 @@ export const signup = params => (dispatch, getState, sdk) => {
   if (!firstName) firstName = businessName;
   if (!lastName) lastName = businessName;
   const createUserParams = isEmpty(rest)
-    ? businessName
-      ? {
-          email,
-          password,
-          firstName,
-          lastName,
-          displayName: businessName,
-          publicData: { accountType, username },
-        }
-      : {
-          email,
-          password,
-          firstName,
-          lastName,
-          publicData: { accountType, username },
-        }
-    : businessName
     ? {
         email,
         password,
         firstName,
         lastName,
-        displayName: businessName,
+        displayName: username,
         publicData: { accountType, username },
-        protectedData: { ...rest },
       }
     : {
         email,
         password,
         firstName,
         lastName,
+        displayName: username,
         publicData: { accountType, username },
         protectedData: { ...rest },
       };
@@ -238,7 +221,7 @@ export const signup = params => (dispatch, getState, sdk) => {
         email: params.email,
         firstName: params.firstName,
         lastName: params.lastName,
-        displayName: params.businessName,
+        displayName: params.userName,
       });
     });
 };

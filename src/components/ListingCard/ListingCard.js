@@ -49,11 +49,11 @@ export const ListingCardComponent = props => {
       : 0;
 
   const offering =
-    currentListing && currentListing.attributes.publicData.offering.platform
+    currentListing && currentListing.attributes.publicData.offering
       ? currentListing.attributes.publicData.offering.platform.replace(/^\w/, c => c.toUpperCase())
       : '';
   const count =
-    currentListing && currentListing.attributes.publicData.offering.count
+    currentListing && currentListing.attributes.publicData.offering
       ? currentListing.attributes.publicData.offering.count
       : 0;
 
