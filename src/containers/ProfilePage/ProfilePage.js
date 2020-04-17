@@ -240,8 +240,8 @@ export class ProfilePageComponent extends Component {
                 />
               </h2>
               <ul className={css.listings}>
-                {channelList.map(channel => (
-                  <li className={css.listing} key={channel.username}>
+                {channelList.map((channel, index) => (
+                  <li className={css.listing} key={index}>
                     <ListingSocialMediaCard
                       img={channel.photo}
                       username={channel.username}

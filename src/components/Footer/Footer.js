@@ -24,6 +24,16 @@ const renderSocialMediaLinks = intl => {
   const goToInsta = intl.formatMessage({ id: 'Footer.goToInstagram' });
   const goToTwitter = intl.formatMessage({ id: 'Footer.goToTwitter' });
 
+  const sideSuiteLink = (
+    <NamedLink
+      className={css.link}
+      name="ProfilePage"
+      params={{ id: '5e922c1f-07f2-4dfd-a916-b47f1f761ec9' }}
+    >
+      <img src={sidesuiteSocialLink} className={css.sidesuiteSocialLink} alt=""></img>
+    </NamedLink>
+  );
+
   const fbLink = siteFacebookPage ? (
     <ExternalLink key="linkToFacebook" href={siteFacebookPage} className={css.icon} title={goToFb}>
       <IconSocialMediaFacebook />
@@ -51,7 +61,7 @@ const renderSocialMediaLinks = intl => {
       <IconSocialMediaInstagram />
     </ExternalLink>
   ) : null;
-  return [fbLink, twitterLink, instragramLink].filter(v => v != null);
+  return [sideSuiteLink, fbLink, twitterLink, instragramLink].filter(v => v != null);
 };
 
 const Footer = props => {
@@ -63,17 +73,7 @@ const Footer = props => {
     <div className={classes}>
       <div className={css.topBorderWrapper}>
         <div className={css.content}>
-          {/* Axel's Code Add Sidesuite Social Link */}
-          <div>
-            <div>
-              <a href="/u/5e3f23c8-79ad-480d-b989-09c6cc5a13ed">
-                <img src={sidesuiteSocialLink} className={css.sidesuiteSocialLink} alt=""></img>
-              </a>
-            </div>
-            <div className={css.someLiksMobile}>{socialMediaLinks}</div>
-          </div>
-          {/* Axel's Code End Add Sidesuite Social Link */}
-
+          <div className={css.someLiksMobile}>{socialMediaLinks}</div>
           <div className={css.links}>
             <div className={css.organization} id="organization">
               <NamedLink name="LandingPage" className={css.logoLink}>

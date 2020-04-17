@@ -27,29 +27,13 @@ const EditListingFeaturesPanel = props => {
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureListing(listing);
   const { publicData } = currentListing.attributes;
-  const { author } = currentListing;
 
   const [brandList, setBrandList] = useState([]);
-  const [postCategoriesList, setPostCategoriesList] = useState([]);
   useEffect(() => {
     if (publicData.brandList) {
       setBrandList(publicData.brandList);
     }
   }, [publicData.brandList]);
-  useEffect(() => {
-    if (author) {
-      const channelList = author.attributes.profile.publicData.offering;
-      const selectedChannel = publicData.offering;
-      for (let i = 0; i < channelList.length; i++) {
-        if (
-          channelList[i].username === selectedChannel.username &&
-          channelList[i].platform === selectedChannel.platform
-        ) {
-          setPostCategoriesList(channelList[i].features);
-        }
-      }
-    }
-  }, [publicData.postCategoriesList]);
   return (
     <div className={classes}>
       <EditListingFeaturesForm
@@ -60,7 +44,7 @@ const EditListingFeaturesPanel = props => {
         setBrandList={setBrandList}
         onSubmit={_ => {
           const updatedValues = {
-            publicData: { brandList, postCategoriesList },
+            publicData: { brandList },
           };
           onSubmit(updatedValues);
         }}

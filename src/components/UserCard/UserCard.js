@@ -121,7 +121,7 @@ const UserCard = props => {
       : '';
   const photo =
     ensuredUser && ensuredUser.profileImage
-      ? ensuredUser.profileImage.attributes.variants['scaled-small'].url
+      ? ensuredUser.profileImage.attributes.variants['square-small'].url
       : '';
   return (
     <div className={classes}>

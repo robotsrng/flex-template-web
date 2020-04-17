@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from '../../util/reactIntl';
-import { UserCard, Modal } from '../../components';
+import { UserCard, Modal, NamedLink } from '../../components';
 import { EnquiryForm } from '../../forms';
 
 import css from './ListingPage.css';
@@ -26,7 +26,9 @@ const SectionHostMaybe = props => {
 
   return (
     <div id="host" className={css.sectionHost}>
-      <UserCard user={listing.author} currentUser={currentUser} onContactUser={onContactUser} />
+      <NamedLink className={css.link} name="ProfilePage" params={{ id: listing.author.id.uuid }}>
+        <UserCard user={listing.author} currentUser={currentUser} onContactUser={onContactUser} />
+      </NamedLink>
       <Modal
         id="ListingPage.enquiry"
         contentClassName={css.enquiryModalContent}

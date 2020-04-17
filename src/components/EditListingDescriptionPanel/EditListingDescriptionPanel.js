@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { bool, func, object, string } from 'prop-types';
 import classNames from 'classnames';
 import { ensureOwnListing } from '../../util/data';
@@ -25,7 +25,25 @@ const EditListingDescriptionPanel = props => {
   const classes = classNames(rootClassName || css.root, className);
   const currentListing = ensureOwnListing(listing);
   let { title } = currentListing.attributes;
+  const { publicData } = currentListing.attributes;
+  const { author } = currentListing;
+  const [postCategoriesList, setPostCategoriesList] = useState([]);
   title === 'defaultUltimateTitleSidesuite' && (title = '');
+
+  useEffect(() => {
+    if (author) {
+      const channelList = author.attributes.profile.publicData.offering;
+      const selectedChannel = publicData.offering;
+      for (let i = 0; i < channelList.length; i++) {
+        if (
+          channelList[i].username === selectedChannel.username &&
+          channelList[i].platform === selectedChannel.platform
+        ) {
+          setPostCategoriesList(channelList[i].features);
+        }
+      }
+    }
+  }, [publicData.postCategoriesList]);
 
   return (
     <div className={classes}>
@@ -38,7 +56,7 @@ const EditListingDescriptionPanel = props => {
           const { title } = values;
           const updateValues = {
             title: title.trim(),
-            publicData: { listingType: 'post' },
+            publicData: { postCategoriesList },
           };
 
           onSubmit(updateValues);

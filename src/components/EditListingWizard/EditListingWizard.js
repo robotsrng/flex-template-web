@@ -20,7 +20,7 @@ import { StripeConnectAccountForm } from '../../forms';
 import EditListingWizardTab, {
   AVAILABILITY,
   DESCRIPTION,
-  FEATURES,
+  // FEATURES,
   LOCATION,
   OFFERING,
   PRICING,
@@ -35,7 +35,7 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 // All the other panels can be reordered.
 export const TABS = [
   OFFERING,
-  FEATURES,
+  // FEATURES,
   DESCRIPTION,
   LOCATION,
   PRICING,
@@ -52,8 +52,8 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelOffering';
   } else if (tab === DESCRIPTION) {
     key = 'EditListingWizard.tabLabelDescription';
-  } else if (tab === FEATURES) {
-    key = 'EditListingWizard.tabLabelFeatures';
+    // } else if (tab === FEATURES) {
+    //   key = 'EditListingWizard.tabLabelFeatures';
   } else if (tab === LOCATION) {
     key = 'EditListingWizard.tabLabelLocation';
   } else if (tab === PRICING) {
@@ -89,9 +89,14 @@ const tabCompleted = (tab, listing) => {
     case OFFERING:
       return !!(publicData && publicData.offering);
     case DESCRIPTION:
-      return !!(title && title !== 'defaultUltimateTitleSidesuite');
-    case FEATURES:
-      return !!(publicData && publicData.postCategoriesList);
+      return !!(
+        title &&
+        title !== 'defaultUltimateTitleSidesuite' &&
+        publicData &&
+        publicData.postCategoriesList
+      );
+    // case FEATURES:
+    //   return !!(publicData && publicData.postCategoriesList);
     case LOCATION:
       return !!(
         description &&

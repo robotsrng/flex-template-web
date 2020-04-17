@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { Component } from 'react';
-import { array, arrayOf, bool, func, shape, string, oneOf } from 'prop-types';
+import { array, number, arrayOf, bool, func, shape, string, oneOf } from 'prop-types';
 import { FormattedMessage, intlShape, injectIntl } from '../../util/reactIntl';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -24,6 +24,7 @@ import {
   ensureUser,
   userDisplayNameAsString,
 } from '../../util/data';
+import { withViewport } from '../../util/contextHelpers';
 import { richText } from '../../util/richText';
 import { getMarketplaceEntities } from '../../ducks/marketplaceData.duck';
 import { manageDisableScrolling, isScrollingDisabled } from '../../ducks/UI.duck';
@@ -49,6 +50,7 @@ import SectionOfferingMaybe from './SectionOfferingMaybe';
 import css from './ListingPage.css';
 
 const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
+const MAX_MOBILE_SCREEN_WIDTH = 768;
 
 const { UUID } = sdkTypes;
 
@@ -176,8 +178,10 @@ export class ListingPageComponent extends Component {
       sendEnquiryError,
       timeSlots,
       fetchTimeSlotsError,
+      viewport,
     } = this.props;
 
+    const isMobileLayout = viewport.width < MAX_MOBILE_SCREEN_WIDTH;
     const listingId = new UUID(rawParams.id);
     const isPendingApprovalVariant = rawParams.variant === LISTING_PAGE_PENDING_APPROVAL_VARIANT;
     const isDraftVariant = rawParams.variant === LISTING_PAGE_DRAFT_VARIANT;
@@ -273,7 +277,7 @@ export class ListingPageComponent extends Component {
       return (
         <Page title={loadingTitle} scrollingDisabled={scrollingDisabled}>
           <LayoutSingleColumn className={css.pageRoot}>
-            <LayoutWrapperTopbar></LayoutWrapperTopbar>
+            <LayoutWrapperTopbar>{!isMobileLayout ? topbar : null}</LayoutWrapperTopbar>
             <LayoutWrapperMain>
               <p className={css.loadingText}>
                 <FormattedMessage id="ListingPage.loadingListingMessage" />
@@ -361,7 +365,7 @@ export class ListingPageComponent extends Component {
         }}
       >
         <LayoutSingleColumn className={css.pageRoot}>
-          <LayoutWrapperTopbar></LayoutWrapperTopbar>
+          <LayoutWrapperTopbar>{isMobileLayout ? null : topbar}</LayoutWrapperTopbar>
           <LayoutWrapperMain>
             <div>
               <SectionImages
@@ -378,6 +382,7 @@ export class ListingPageComponent extends Component {
                 onImageCarouselClose={() => this.setState({ imageCarouselOpen: false })}
                 handleViewPhotosClick={handleViewPhotosClick}
                 onManageDisableScrolling={onManageDisableScrolling}
+                isMobile={isMobileLayout}
               />
               <div className={css.contentContainer}>
                 <div className={css.mainContent}>
@@ -418,7 +423,7 @@ export class ListingPageComponent extends Component {
               </div>
             </div>
           </LayoutWrapperMain>
-          <LayoutWrapperFooter></LayoutWrapperFooter>
+          <LayoutWrapperFooter>{!isMobileLayout ? <Footer /> : null}</LayoutWrapperFooter>
         </LayoutSingleColumn>
       </Page>
     );
@@ -478,6 +483,12 @@ ListingPageComponent.propTypes = {
 
   categoriesConfig: array,
   amenitiesConfig: array,
+
+  // from withViewport
+  viewport: shape({
+    width: number.isRequired,
+    height: number.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => {
@@ -543,7 +554,8 @@ const ListingPage = compose(
     mapStateToProps,
     mapDispatchToProps
   ),
-  injectIntl
+  injectIntl,
+  withViewport
 )(ListingPageComponent);
 
 ListingPage.setInitialValues = initialValues => setInitialValues(initialValues);

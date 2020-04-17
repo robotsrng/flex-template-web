@@ -12,7 +12,7 @@ import { createResourceLocatorString } from '../../util/routes';
 import {
   EditListingAvailabilityPanel,
   EditListingDescriptionPanel,
-  EditListingFeaturesPanel,
+  // EditListingFeaturesPanel,
   EditListingLocationPanel,
   EditListingPhotosPanel,
   EditListingPricingPanel,
@@ -23,7 +23,7 @@ import css from './EditListingWizard.css';
 
 export const AVAILABILITY = 'availability';
 export const DESCRIPTION = 'description';
-export const FEATURES = 'features';
+// export const FEATURES = 'features';
 export const LOCATION = 'location';
 export const OFFERING = 'offering';
 export const PRICING = 'pricing';
@@ -34,7 +34,7 @@ export const SUPPORTED_TABS = [
   OFFERING,
   LOCATION,
   DESCRIPTION,
-  FEATURES,
+  // FEATURES,
   PRICING,
   AVAILABILITY,
   PHOTOS,
@@ -197,20 +197,20 @@ const EditListingWizardTab = props => {
         />
       );
     }
-    case FEATURES: {
-      const submitButtonTranslationKey = isNewListingFlow
-        ? 'EditListingWizard.saveNewFeatures'
-        : 'EditListingWizard.saveEditFeatures';
-      return (
-        <EditListingFeaturesPanel
-          {...panelProps(FEATURES)}
-          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
-          onSubmit={values => {
-            onCompleteEditListingWizardTab(tab, values);
-          }}
-        />
-      );
-    }
+    // case FEATURES: {
+    //   const submitButtonTranslationKey = isNewListingFlow
+    //     ? 'EditListingWizard.saveNewFeatures'
+    //     : 'EditListingWizard.saveEditFeatures';
+    //   return (
+    //     <EditListingFeaturesPanel
+    //       {...panelProps(FEATURES)}
+    //       submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+    //       onSubmit={values => {
+    //         onCompleteEditListingWizardTab(tab, values);
+    //       }}
+    //     />
+    //   );
+    // }
     case PRICING: {
       const submitButtonTranslationKey = isNewListingFlow
         ? 'EditListingWizard.saveNewPricing'

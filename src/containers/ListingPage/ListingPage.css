@@ -38,7 +38,7 @@
 /* Firefox doesn't support image aspect ratio inside flexbox */
 .aspectWrapper {
   position: relative; /* allow positioning own listing action bar */
-  padding-bottom: 100%; /* 3:2 Aspect Ratio */
+  padding-bottom: 75%; /* 1:1 Aspect Ratio */
   background-color: var(--matterColorNegative); /* Loading BG color */
   overflow: hidden;
 
@@ -47,9 +47,9 @@
 
   @media (--viewportMedium) {
     padding-bottom: 0; /* No fixed aspect on desktop layouts */
+    border-radius: var(--borderRadius);
   }
 }
-
 .actionBarContainer {
   display: flex;
   flex-direction: column;
@@ -160,7 +160,7 @@
     max-height: 50vh;
     object-fit: cover;
     border-radius: var(--borderRadius);
-
+    width: 100%;
     &:hover {
       transform: scale(1.005);
       box-shadow: var(--boxShadowListingCard);

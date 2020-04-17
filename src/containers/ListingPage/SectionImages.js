@@ -15,6 +15,7 @@ const SectionImages = props => {
     imageCarouselOpen,
     onImageCarouselClose,
     onManageDisableScrolling,
+    isMobile,
   } = props;
 
   const hasImages = listing.images && listing.images.length > 0;
@@ -22,24 +23,33 @@ const SectionImages = props => {
   const buttonText = '< Back';
   // Action bar is wrapped with a div that prevents the click events
   // to the parent that would otherwise open the image carousel
-  const actionBar = listing.id ? (
-    <React.Fragment>
-      <div onClick={e => e.stopPropagation()}>
-        <div className={css.actionBarContainer}>
-          <ActionBarMaybe isOwnListing={isOwnListing} listing={listing} editParams={editParams} />
+  let actionBar;
+  if (listing.id) {
+    actionBar = (
+      <React.Fragment>
+        <div onClick={e => e.stopPropagation()}>
+          <div className={css.actionBarContainer}>
+            <ActionBarMaybe isOwnListing={isOwnListing} listing={listing} editParams={editParams} />
+            {isMobile ? (
+              <div className={css.backButton}>
+                <a href="javascript:history.back()">{buttonText}</a>
+              </div>
+            ) : null}
+          </div>
+        </div>
+      </React.Fragment>
+    );
+  } else {
+    if (isMobile) {
+      actionBar = (
+        <div onClick={e => e.stopPropagation()}>
           <div className={css.backButton}>
             <a href="javascript:history.back()">{buttonText}</a>
           </div>
         </div>
-      </div>
-    </React.Fragment>
-  ) : (
-    <div onClick={e => e.stopPropagation()}>
-      <div className={css.backButton}>
-        <a href="javascript:history.back()">{buttonText}</a>
-      </div>
-    </div>
-  );
+      );
+    }
+  }
 
   const viewPhotosButton = hasImages ? (
     <button className={css.viewPhotos} onClick={handleViewPhotosClick}>

@@ -85,7 +85,8 @@
 .desktopInput {
   flex-grow: 1;
   /* Font */
-  @apply --marketplaceH4FontStyles;
+  @apply --marketplaceH1FontStyles;
+  font-size: 30px;
   height: var(--topbarHeightDesktop);
   line-height: unset;
   border: none;
@@ -117,7 +118,7 @@
   &::placeholder {
     text-overflow: ellipsis;
     overflow-x: hidden;
-    font-weight: var(--fontWeightRegular);
+    font-weight: var(--fontWeightSemiBold);
     transition: var(--transitionStyleButton);
   }
 
