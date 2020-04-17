@@ -76,7 +76,7 @@ export class SearchPageComponent extends Component {
         paramName: 'pub_postCategoriesList',
         options: postCategories,
       },
-      socialMediasFilter: { paramName: 'pub_offering', options: socialMedias },
+      socialMediasFilter: { paramName: 'pub_socialMedia', options: socialMedias },
       priceFilter: {
         paramName: 'price',
         config: priceFilterConfig,

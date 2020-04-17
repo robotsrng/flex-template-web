@@ -35,6 +35,7 @@ class SearchFiltersMobileComponent extends Component {
     this.handleSelectSingle = this.handleSelectSingle.bind(this);
     this.handleSelectMultiple = this.handleSelectMultiple.bind(this);
     this.handlePrice = this.handlePrice.bind(this);
+    this.handleFollower = this.handleFollower.bind(this);
     this.handleDateRange = this.handleDateRange.bind(this);
     this.handleKeyword = this.handleKeyword.bind(this);
     this.initialValue = this.initialValue.bind(this);
@@ -107,6 +108,7 @@ class SearchFiltersMobileComponent extends Component {
   }
 
   handleFollower(urlParam, range) {
+    console.log(range);
     const { urlQueryParams, history } = this.props;
     const { minFollower, maxFollower } = range || {};
     const queryParams =
@@ -298,6 +300,7 @@ class SearchFiltersMobileComponent extends Component {
     ) : null;
 
     const initialPriceRange = this.initialPriceRangeValue(priceFilter.paramName);
+    console.log(priceFilter.paramName);
 
     const priceFilterElement = priceFilter ? (
       <PriceFilter
@@ -309,14 +312,14 @@ class SearchFiltersMobileComponent extends Component {
         initialValues={initialPriceRange}
       />
     ) : null;
-
+    console.log(followerFilter.paramName);
     const initialFollowerRange = this.initialFollowerRangeValue(followerFilter.paramName);
 
     const followerFilterElement = followerFilter ? (
       <FollowerFilter
         id="SearchFiltersMobile.followerFilter"
         urlParam={followerFilter.paramName}
-        onSubmit={this.handlePrice}
+        onSubmit={this.handleFollower}
         liveEdit
         {...followerFilter.config}
         initialValues={initialFollowerRange}

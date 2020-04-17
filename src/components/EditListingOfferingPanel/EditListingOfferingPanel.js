@@ -50,7 +50,12 @@ const EditListingOfferingPanel = props => {
       className={css.form}
       onSubmit={_ => {
         let updatedValues = {
-          publicData: { offering, listingType: 'post' },
+          publicData: {
+            offering,
+            listingType: 'post',
+            follower: offering.count,
+            socialMedia: offering.platform,
+          },
         };
         !currentListing.attributes.title && (updatedValues = { title: title, ...updatedValues });
         onSubmit(updatedValues);
